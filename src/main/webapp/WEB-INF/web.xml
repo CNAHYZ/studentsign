@@ -1,0 +1,98 @@
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         version="3.0"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+    http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <display-name>Archetype Created Web Application</display-name>
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+
+    <!-- log4j2配置文件地址 -->
+    <context-param>
+        <param-name>log4jConfiguration</param-name>
+        <param-value>classpath:properties/log4j2.xml</param-value>
+    </context-param>
+    <!-- Log4j2的监听器要放在spring监听器前面 -->
+    <listener>
+        <listener-class>org.apache.logging.log4j.web.Log4jServletContextListener</listener-class>
+    </listener>
+
+    <!-- 加载spring容器 -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:spring/applicationContext.xml</param-value>
+    </context-param>
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <!--前端控制器-->
+    <servlet>
+        <servlet-name>springmvc</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <!--通过contextConfigLocation加载springmvc的配置文件（配置处理器映射器、适配器等），
+        如果不配置contextConfigLocation，默认加载的是/WEB-INF/servlet名称-servlet.xml-->
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:spring/springmvc.xml</param-value>
+        </init-param>
+        <!-- 配置服务器启动后立即加载Spring MVC配置文件 -->
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>springmvc</servlet-name>
+        <!--第一种：*.do，访问以do结尾由DispatcherServlet进行解析。
+        第二种：/，所有的访问的地址都由DispatcherServlet进行解析，对于静态的文件我们不希望用
+        DispatcherServlet解析,需要在springmvc.xml中添加静态资源映射！使用此种方法可以实现RESTful风格的url。
+        第三种：/*,这种配置不对，使用这种配置，最终要转发到一个jsp页面时，
+        仍然会由DispatcherServlet解析jsp，不能根据jsp页面找到handler，会报错-->
+        <url-pattern>*.do</url-pattern>
+    </servlet-mapping>
+    <!-- post乱码过滤器 -->
+    <filter>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>utf-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
+    <!--会话超时配置（单位为分钟）-->
+    <session-config>
+        <!--如果某个会话在一定时间未被访问，则服务器可以扔掉以节约内存-->
+        <session-timeout>120</session-timeout>
+    </session-config>
+    <!--MIME类型配置 -->
+    <mime-mapping>
+        <!--设定某种扩展名的文件用一种应用程序来打开的方式类型，
+        当该扩展名文件被访问的时候，浏览器会自动使用指定应用程序来打开-->
+        <extension>*.ppt</extension>
+        <!--扩展名名称-->
+        <mime-type>application/mspowerpoint</mime-type>
+        <!--MIME格式-->
+    </mime-mapping>
+    <!--配置错误页面-->
+    <error-page>
+        <!--将错误代码(Error Code)或异常(Exception)的种类对应到web应用资源路径.-->
+        <error-code>404</error-code>
+        <!--HTTP Error code,例如: 404、403-->
+        <location>/404.html</location>
+        <!--用来设置发生错误或异常时要显示的页面-->
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <!--HTTP Error code,例如: 404、403-->
+        <location>/500.html</location>
+    </error-page>
+    <!--<error-page>-->
+    <!--<exception-type>java.lang.Exception</exception-type>-->
+    <!--&lt;!&ndash;设置可能会发生的java异常类型,例如:java.lang.Exception&ndash;&gt;-->
+    <!--<location>/ExceptionError.html</location>-->
+    <!--&lt;!&ndash;用来设置发生错误或异常时要显示的页面&ndash;&gt;-->
+    <!--</error-page>-->
+</web-app>
+

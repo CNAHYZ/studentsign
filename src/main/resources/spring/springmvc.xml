@@ -1,0 +1,91 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.1.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--这里扫描controller注解，指定controller的包-->
+    <context:component-scan base-package="top.flytop.studentsign.controller"/>
+
+    <!-- 注解驱动：配置处理器映射器和适配器 -->
+    <mvc:annotation-driven/>
+
+    <!--静态资源映射-->
+    <!--    <mvc:resources mapping="/css/**" location="/css"/>
+        <mvc:resources mapping="/js/**" location="/js"/>-->
+
+    <!-- 配置多上传解析器 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8"/>
+        <!-- 设定文件上传的最大值5MB，5*1024*1024 -->
+        <property name="maxUploadSize" value="5242880"/>
+    </bean>
+
+    <!--使用 Fastjson 提供的FastJsonHttpMessageConverter来替换Spring MVC默认的
+    HttpMessageConverter可用于@RestController @ResponseBody @RequestBody注解的JSON序列化-->
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/html;charset=UTF-8</value>
+                        <value>application/json</value>
+                        <value>application/xml;charset=UTF-8</value>
+                    </list>
+                </property>
+                <property name="features">
+                    <list>
+                        <!-- 是否输出值为null的字段 ，默认是false-->
+                        <value>WriteMapNullValue</value>
+                        <value>WriteNullNumberAsZero</value>
+                        <value>WriteNullListAsEmpty</value>
+                        <value>WriteNullStringAsEmpty</value>
+                        <value>WriteNullBooleanAsFalse</value>
+                        <value>WriteDateUseDateFormat</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <!-- 使用xml配置aop ,引入AOP的命名空间-->
+    <!-- 强制使用cglib代理，如果不设置，将默认使用jdk的代理，但是jdk的代理是基于接口的 -->
+    <aop:config proxy-target-class="true"/>
+    <aop:config>
+        <!--定义切面-->
+        <aop:aspect id="logAspect" ref="logInterceptor">
+            <!--定义切入点-->
+            <!--第一个*代表任意返回值，第二个和第三个*代表controller包下的任意类的任意方法-->
+            <!-- ..表示方法可以有0个或多个参数 -->
+            <aop:pointcut expression="execution(* top.flytop.studentsign.controller.*.*(..))" id="logPointCut"/>
+            <!--方法执行之前被调用执行的-->
+            <!--<aop:before method="before" pointcut-ref="logPointCut"/>&lt;!&ndash;一个切入点的引用&ndash;&gt;-->
+            <!--<aop:after method="after" pointcut-ref="logPointCut"/>&lt;!&ndash;一个切入点的引用&ndash;&gt;-->
+            <!--<aop:after-throwing method="afterThrowing" pointcut-ref="logPointCut" />-->
+            <!--<aop:after-returning method="afterReturn" pointcut-ref="logPointCut" />-->
+            <aop:around method="around" pointcut-ref="logPointCut"/>
+        </aop:aspect>
+    </aop:config>
+
+
+    <!-- 拦截器 -->
+    <!--    <mvc:interceptors>
+            &lt;!&ndash; 多个拦截器,顺序执行 &ndash;&gt;
+            <mvc:interceptor>
+                &lt;!&ndash; /**拦截所有请求，包括二级以上目录，</*>拦截所有请求，不包括二级以上目录 &ndash;&gt;
+                <mvc:mapping path="/**"/>
+                <bean class=""></bean>
+            </mvc:interceptor>
+            <mvc:interceptor>
+                <mvc:mapping path="/**"/>
+                &lt;!&ndash;排除&ndash;&gt;
+                <mvc:exclude-mapping path="/admin/**"/>
+                <bean class="" />
+            </mvc:interceptor>
+        </mvc:interceptors>-->
+</beans>

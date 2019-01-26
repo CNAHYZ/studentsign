@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.flytop.studentsign.mapper.UserMapper">
+
+    <!--=========================resultMap===========================-->
+    <resultMap id="userResultMap" type="user">
+        <result property="typeId" column="type_id"/>
+    </resultMap>
+    <resultMap id="studentResultMap" type="student">
+        <result property="buildingNo" column="building_no"/>
+        <result property="roomNo" column="room_no"/>
+        <result property="faceImage" column="face_image"/>
+    </resultMap>
+
+    <!--===========================查询=============================-->
+    <!--用户登录-->
+    <select id="userLogin" resultMap="userResultMap">
+        select *
+        FROM user
+        WHERE username = #{username}
+          and pwd = #{pwd}
+    </select>
+    <!--获取学生信息-->
+    <select id="getStuGeneralInfo" resultMap="studentResultMap">
+        select *
+        FROM student
+        WHERE sno = #{sNo}
+    </select>
+    <!--获取学生列表-->
+    <select id="getAllStudent" resultMap="studentResultMap">
+        select *
+        from student;
+    </select>
+    <!--根据用户名获取用户，用于在删除学生时，
+    判断用户表中是否存在该学生的账号密码-->
+    <select id="getUser" resultType="user">
+        select *
+        from user
+        where username = #{username};
+    </select>
+
+    <!--===========================修改=============================-->
+    <!--修改学生信息-->
+    <update id="updateStuInfo" parameterType="student">
+        update student
+        <trim prefix="SET" suffixOverrides="," suffix="where sno=#{sNo}">
+            <if test="sName != null and sName != ''">sname=#{sName},</if>
+            <if test="gender != null">gender=#{gender},</if>
+            <if test="buildingNo != null">building_no=#{buildingNo},</if>
+            <if test="roomNo != null">room_no=#{roomNo},</if>
+            <if test="birthday != null">birthday=#{birthday},</if>
+            <if test="faceImage != null">face_image=#{faceImage}</if>
+        </trim>
+    </update>
+
+    <!--===========================插入=============================-->
+    <!--添加学生-->
+    <insert id="addStudent" parameterType="student">
+        <if test="sNo!='' and sNo != null and sName != null and sName != ''">
+            insert student
+            values (#{id}, #{sNo},
+            #{sName}, #{gender}, #{birthday},
+            #{buildingNo}, #{roomNo}, #{faceImage})
+        </if>
+    </insert>
+
+    <!--===========================删除=============================-->
+    <!--删除学生-->
+    <delete id="deleteStudent">
+        delete
+        from student
+        where
+        <if test="_parameter!=null">sno = #{sNo}</if>;
+    </delete>
+    <!--删除用户-->
+    <delete id="deleteUser">
+        delete
+        from user
+        where
+        <if test="_parameter!=null">username = #{username}</if>;
+    </delete>
+</mapper>

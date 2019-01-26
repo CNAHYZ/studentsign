@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+            http://www.springframework.org/schema/tx  
+            http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+    <!--<context:annotation-config/>-->
+    <!--1 自动扫描 将标注Spring注解的类自动转化Bean-->
+    <context:component-scan base-package="top.flytop.studentsign">
+        <!-- 不扫描@Controller注解的类-->
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <!--2 加载数据资源属性文件 -->
+    <bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:properties/jdbc.properties"/>
+    </bean>
+
+    <!-- 3 配置数据源 -->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+          destroy-method="close">
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <!-- 连接池最大数量 -->
+        <property name="maxActive" value="${maxActive}"/>
+        <!-- 连接池最小空闲 -->
+        <property name="minIdle" value="${minIdle}"/>
+    </bean>
+
+    <!-- 4   配置sessionfactory -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!-- 加载mybatis的全局配置文件 -->
+        <property name="configLocation" value="classpath:mybatis/SqlMapConfig.xml"/>
+        <!-- 自动扫描mapping.xml文件 -->
+        <property name="mapperLocations" value="classpath*:mapper/*.xml"/>
+    </bean>
+
+    <!-- 5  装配dao接口 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="top.flytop.studentsign.mapper"/>
+        <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+
+    <!-- 6、声明式事务管理 -->
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- 7、开启事务的注解 -->
+    <!--设置proxy-target-class="true"，使用CGLIB实现AOP，CGLIB直接生成二进制码，使得普通类也可以实现AOP-->
+    <tx:annotation-driven proxy-target-class="true" transaction-manager="transactionManager"/>
+
+    <!--开启基于注解的事务，使用xml配置形式的事务（必要主要的都是使用配置式）  -->
+    <!--    <aop:config>
+            &lt;!&ndash; 切入点表达式 &ndash;&gt;
+            <aop:pointcut expression="execution(* com.qihang.service..*(..))" id="txPoint"/>
+            &lt;!&ndash; 配置事务增强 &ndash;&gt;
+            <aop:advisor advice-ref="txAdvice" pointcut-ref="txPoint"/>
+        </aop:config>-->
+
+    <!-- 配置视图解析器 -->
+    <!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+         <property name="suffix" value=".html"/>
+         &lt;!&ndash; 视图后缀controller中的方法返回的url字符串会添加该前缀 &ndash;&gt;
+         &lt;!&ndash;<property name="prefix" value="/WEB-INF/jsp/"/> &ndash;&gt;
+     </bean>-->
+</beans>

@@ -1,0 +1,80 @@
+2019-01-26 17:05:58 [ERROR] [http-nio-8080-exec-17] LogInterceptor:78 - ----------------------------------------------------------------------------------
+2019-01-26 17:05:58 [ERROR] [http-nio-8080-exec-17] LogInterceptor:79 - ===执行top.flytop.studentsign.controller.SignInController类的searchSignList()方法的748行
+2019-01-26 17:05:58 [ERROR] [http-nio-8080-exec-17] LogInterceptor:80 - ===异常信息为：org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.reflection.ReflectionException: There is no getter for property named 'keyword' in 'class java.lang.String'  
+2019-01-26 17:05:58 [ERROR] [http-nio-8080-exec-17] LogInterceptor:81 - ===参数信息为：1  
+2019-01-26 17:08:24 [ERROR] [http-nio-8080-exec-20] LogInterceptor:78 - ----------------------------------------------------------------------------------
+2019-01-26 17:08:24 [ERROR] [http-nio-8080-exec-20] LogInterceptor:79 - ===执行top.flytop.studentsign.controller.SignInController类的searchSignList()方法的748行
+2019-01-26 17:08:24 [ERROR] [http-nio-8080-exec-20] LogInterceptor:80 - ===异常信息为：org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.reflection.ReflectionException: There is no getter for property named 'keyword' in 'class java.lang.String'  
+2019-01-26 17:08:24 [ERROR] [http-nio-8080-exec-20] LogInterceptor:81 - ===参数信息为：1  
+2019-01-26 17:15:11 [ERROR] [http-nio-8080-exec-29] LogInterceptor:78 - ----------------------------------------------------------------------------------
+2019-01-26 17:15:11 [ERROR] [http-nio-8080-exec-29] LogInterceptor:79 - ===执行top.flytop.studentsign.controller.SignInController类的searchSignList()方法的748行
+2019-01-26 17:15:11 [ERROR] [http-nio-8080-exec-29] LogInterceptor:80 - ===异常信息为：org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.IllegalArgumentException: invalid comparison: org.apache.ibatis.binding.MapperMethod$ParamMap and java.lang.String
+### Cause: java.lang.IllegalArgumentException: invalid comparison: org.apache.ibatis.binding.MapperMethod$ParamMap and java.lang.String  
+2019-01-26 17:15:11 [ERROR] [http-nio-8080-exec-29] LogInterceptor:81 - ===参数信息为：1  
+2019-01-26 17:20:53 [ERROR] [http-nio-8080-exec-35] LogInterceptor:78 - ----------------------------------------------------------------------------------
+2019-01-26 17:20:53 [ERROR] [http-nio-8080-exec-35] LogInterceptor:79 - ===执行top.flytop.studentsign.controller.SignInController类的searchSignList()方法的748行
+2019-01-26 17:20:53 [ERROR] [http-nio-8080-exec-35] LogInterceptor:80 - ===异常信息为：org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.binding.BindingException: Parameter 'keywod' not found. Available parameters are [keyword, param1]  
+2019-01-26 17:20:53 [ERROR] [http-nio-8080-exec-35] LogInterceptor:81 - ===参数信息为：1  
+2019-01-26 17:21:19 [ERROR] [http-nio-8080-exec-39] LogInterceptor:78 - ----------------------------------------------------------------------------------
+2019-01-26 17:21:19 [ERROR] [http-nio-8080-exec-39] LogInterceptor:79 - ===执行top.flytop.studentsign.controller.SignInController类的searchSignList()方法的748行
+2019-01-26 17:21:19 [ERROR] [http-nio-8080-exec-39] LogInterceptor:80 - ===异常信息为：org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.binding.BindingException: Parameter 'keywod' not found. Available parameters are [keyword, param1]  
+2019-01-26 17:21:19 [ERROR] [http-nio-8080-exec-39] LogInterceptor:81 - ===参数信息为：1  
+2019-01-26 17:22:20 [ERROR] [http-nio-8080-exec-42] LogInterceptor:78 - ----------------------------------------------------------------------------------
+2019-01-26 17:22:20 [ERROR] [http-nio-8080-exec-42] LogInterceptor:79 - ===执行top.flytop.studentsign.controller.SignInController类的searchSignList()方法的748行
+2019-01-26 17:22:20 [ERROR] [http-nio-8080-exec-42] LogInterceptor:80 - ===异常信息为：org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.IllegalArgumentException: invalid comparison: java.util.LinkedHashMap and java.lang.String
+### Cause: java.lang.IllegalArgumentException: invalid comparison: java.util.LinkedHashMap and java.lang.String  
+2019-01-26 17:22:20 [ERROR] [http-nio-8080-exec-42] LogInterceptor:81 - ===参数信息为：1  
+2019-01-26 17:27:42 [ERROR] [http-nio-8080-exec-47] LogInterceptor:78 - ----------------------------------------------------------------------------------
+2019-01-26 17:27:42 [ERROR] [http-nio-8080-exec-47] LogInterceptor:79 - ===执行top.flytop.studentsign.controller.SignInController类的searchSignList()方法的748行
+2019-01-26 17:27:42 [ERROR] [http-nio-8080-exec-47] LogInterceptor:80 - ===异常信息为：org.springframework.dao.DataIntegrityViolationException: 
+### Error querying database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'sno' in where clause is ambiguous
+### The error may exist in file [D:\Idea_workspace\studentsign\target\studentsign\WEB-INF\classes\mapper\signInMapper.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: select a.*,b.sname from sign_in a,student b         where a.sno = b.sno                       # bind标签（动态SQL）可以使用OGNL表达式创建一个变量并将其绑定到上下文中。                           and sname like ? or sno like ?;
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'sno' in where clause is ambiguous
+; SQL []; Column 'sno' in where clause is ambiguous; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'sno' in where clause is ambiguous  
+2019-01-26 17:27:42 [ERROR] [http-nio-8080-exec-47] LogInterceptor:81 - ===参数信息为：1  
+2019-01-26 17:47:07 [ERROR] [http-nio-8080-exec-67] LogInterceptor:78 - ----------------------------------------------------------------------------------
+2019-01-26 17:47:07 [ERROR] [http-nio-8080-exec-67] LogInterceptor:79 - ===执行top.flytop.studentsign.controller.SignInController类的searchSignList()方法的748行
+2019-01-26 17:47:07 [ERROR] [http-nio-8080-exec-67] LogInterceptor:80 - ===异常信息为：org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'a.sno' in 'where clause'
+### The error may exist in file [D:\Idea_workspace\studentsign\target\studentsign\WEB-INF\classes\mapper\signInMapper.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: select * from(         select a.*,b.sname from sign_in a,student b where a.sno = b.sno         ) c                                     where sname like ? or a.sno like ?;
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'a.sno' in 'where clause'
+; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'a.sno' in 'where clause'  
+2019-01-26 17:47:07 [ERROR] [http-nio-8080-exec-67] LogInterceptor:81 - ===参数信息为：a  
+2019-01-26 17:51:05 [ERROR] [http-nio-8080-exec-81] LogInterceptor:78 - ----------------------------------------------------------------------------------
+2019-01-26 17:51:05 [ERROR] [http-nio-8080-exec-81] LogInterceptor:79 - ===执行top.flytop.studentsign.controller.SignInController类的searchSignList()方法的748行
+2019-01-26 17:51:05 [ERROR] [http-nio-8080-exec-81] LogInterceptor:80 - ===异常信息为：org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.IllegalArgumentException: invalid comparison: org.apache.ibatis.binding.MapperMethod$ParamMap and java.lang.String
+### Cause: java.lang.IllegalArgumentException: invalid comparison: org.apache.ibatis.binding.MapperMethod$ParamMap and java.lang.String  
+2019-01-26 17:51:05 [ERROR] [http-nio-8080-exec-81] LogInterceptor:81 - ===参数信息为：校园网  
+2019-01-26 17:52:30 [ERROR] [http-nio-8080-exec-87] LogInterceptor:78 - ----------------------------------------------------------------------------------
+2019-01-26 17:52:30 [ERROR] [http-nio-8080-exec-87] LogInterceptor:79 - ===执行top.flytop.studentsign.controller.SignInController类的searchSignList()方法的748行
+2019-01-26 17:52:30 [ERROR] [http-nio-8080-exec-87] LogInterceptor:80 - ===异常信息为：org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.IllegalArgumentException: invalid comparison: org.apache.ibatis.binding.MapperMethod$ParamMap and java.lang.String
+### Cause: java.lang.IllegalArgumentException: invalid comparison: org.apache.ibatis.binding.MapperMethod$ParamMap and java.lang.String  
+2019-01-26 17:52:30 [ERROR] [http-nio-8080-exec-87] LogInterceptor:81 - ===参数信息为：校园网  
+2019-01-26 17:53:14 [ERROR] [http-nio-8080-exec-86] LogInterceptor:78 - ----------------------------------------------------------------------------------
+2019-01-26 17:53:14 [ERROR] [http-nio-8080-exec-86] LogInterceptor:79 - ===执行top.flytop.studentsign.controller.SignInController类的searchSignList()方法的748行
+2019-01-26 17:53:14 [ERROR] [http-nio-8080-exec-86] LogInterceptor:80 - ===异常信息为：org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.IllegalArgumentException: invalid comparison: org.apache.ibatis.binding.MapperMethod$ParamMap and java.lang.String
+### Cause: java.lang.IllegalArgumentException: invalid comparison: org.apache.ibatis.binding.MapperMethod$ParamMap and java.lang.String  
+2019-01-26 17:53:14 [ERROR] [http-nio-8080-exec-86] LogInterceptor:81 - ===参数信息为：校园网  
+2019-01-26 17:53:17 [ERROR] [http-nio-8080-exec-88] LogInterceptor:78 - ----------------------------------------------------------------------------------
+2019-01-26 17:53:17 [ERROR] [http-nio-8080-exec-88] LogInterceptor:79 - ===执行top.flytop.studentsign.controller.SignInController类的searchSignList()方法的748行
+2019-01-26 17:53:17 [ERROR] [http-nio-8080-exec-88] LogInterceptor:80 - ===异常信息为：org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.IllegalArgumentException: invalid comparison: org.apache.ibatis.binding.MapperMethod$ParamMap and java.lang.String
+### Cause: java.lang.IllegalArgumentException: invalid comparison: org.apache.ibatis.binding.MapperMethod$ParamMap and java.lang.String  
+2019-01-26 17:53:17 [ERROR] [http-nio-8080-exec-88] LogInterceptor:81 - ===参数信息为：校园网  
+2019-01-26 17:53:31 [ERROR] [http-nio-8080-exec-84] LogInterceptor:78 - ----------------------------------------------------------------------------------
+2019-01-26 17:53:31 [ERROR] [http-nio-8080-exec-84] LogInterceptor:79 - ===执行top.flytop.studentsign.controller.SignInController类的searchSignList()方法的748行
+2019-01-26 17:53:31 [ERROR] [http-nio-8080-exec-84] LogInterceptor:80 - ===异常信息为：org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.IllegalArgumentException: invalid comparison: org.apache.ibatis.binding.MapperMethod$ParamMap and java.lang.String
+### Cause: java.lang.IllegalArgumentException: invalid comparison: org.apache.ibatis.binding.MapperMethod$ParamMap and java.lang.String  
+2019-01-26 17:53:31 [ERROR] [http-nio-8080-exec-84] LogInterceptor:81 - ===参数信息为：校园网  

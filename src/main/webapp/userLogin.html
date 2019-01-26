@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+    <title>OneUI - Bootstrap 4 Admin Template &amp; UI Framework</title>
+
+    <meta name="description"
+          content="OneUI - Bootstrap 4 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
+    <meta name="author" content="pixelcave">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Open Graph Meta -->
+    <meta property="og:title" content="OneUI - Bootstrap 4 Admin Template &amp; UI Framework">
+    <meta property="og:site_name" content="OneUI">
+    <meta property="og:description"
+          content="OneUI - Bootstrap 4 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+
+    <!-- Icons -->
+    <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
+    <link rel="shortcut icon" href="assets/media/favicons/favicon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/media/favicons/favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/media/favicons/apple-touch-icon-180x180.png">
+    <!-- END Icons -->
+
+    <!-- Stylesheets -->
+    <!-- Fonts and OneUI framework -->
+    <link rel="stylesheet" href="#">
+    <link rel="stylesheet" id="css-main" href="assets/css/oneui.min.css">
+    <link rel="stylesheet" href="assets/js/plugins/sweetalert2/sweetalert2.min.css">
+    <!-- END Stylesheets -->
+</head>
+<body>
+<div id="page-container">
+
+    <!-- Main Container -->
+    <main id="main-container">
+
+        <!-- Page Content -->
+        <div class="bg-image" style="background-image: url('assets/media/photos/bg_login.jpg');">
+            <div class="hero-static bg-dark-60">
+                <div class="content">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8 col-lg-6 col-xl-4">
+                            <!-- Sign In Block -->
+                            <div class="block block-themed  mb-0">
+                                <div class="block-header">
+                                    <h3 class="block-title">登 录</h3>
+                                    <div class="block-options">
+                                        <a class="btn-block-option font-size-sm" href="op_auth_reminder.html">忘记密码?</a>
+                                    </div>
+                                </div>
+                                <div class="block-content">
+                                    <div class="p-sm-3 px-lg-4 py-lg-5">
+                                        <h1 class="mb-2">签到系统</h1>
+                                        <p>欢迎使用，请登录</p>
+
+                                        <!-- Sign In Form -->
+                                        <!-- jQuery Validation (.js-validation-signin class is initialized in js/pages/op_auth_signin.min.js which was auto compiled from _es6/pages/op_auth_signin.js) -->
+                                        <!-- For more info and examples you can check out https://github.com/jzaefferer/jquery-validation -->
+                                        <form class="js-validation-signin" action="#" method="POST">
+                                            <div class="py-3">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="si si-user"></i>
+                                                    </span>
+                                                        </div>
+                                                        <input type="text" class="form-control  form-control-lg"
+                                                               id="login-username" name="login-username"
+                                                               placeholder="请输入账号">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="si si-key"></i>
+                                                    </span>
+                                                        </div>
+                                                        <input type="password" class="form-control  form-control-lg"
+                                                               id="login-password" name="login-password"
+                                                               placeholder="请输入密码">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row" style="margin: 0">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="si si-pencil"></i>
+                                                            </span>
+                                                        </div>
+                                                        <input type="text" class="form-control  form-control-lg"
+                                                               id="login-validation" name="login-validation"
+                                                               placeholder="请输入验证码" maxlength="4">
+                                                        <img id="vCode" class="input-group-append"
+                                                             src="getVerifyCode.do" alt="验证码">
+                                                    </div>
+                                                </div>
+                                                <div class="py-2">
+                                                    <div class="form-group">
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input"
+                                                                   id="login-remember" name="login-remember">
+                                                            <label class="custom-control-label font-w400"
+                                                                   for="login-remember">记住密码</label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-md-6 col-xl-5">
+                                                        <button type="button" class="btn btn-block btn-primary"
+                                                                id="signin">
+                                                            <i class="fa fa-fw fa-sign-in-alt mr-1"></i> 登 录
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                        </form>
+                                        <!-- END Sign In Form -->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END Sign In Block -->
+                        </div>
+                    </div>
+                </div>
+                <div class="content content-full font-size-sm text-muted text-center">
+                    <strong>OneUI 4.0</strong> &copy; <span data-toggle="year-copy">2018</span>
+                </div>
+            </div>
+        </div>
+        <!-- END Page Content -->
+
+    </main>
+    <!-- END Main Container -->
+</div>
+<!-- END Page Container -->
+<script src="assets/js/oneui.core.min.js"></script>
+
+<!--
+    OneUI JS
+-->
+<script src="assets/js/oneui.app.min.js"></script>
+
+<!-- Page JS Plugins -->
+<script src="assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js"></script>
+<!-- Page JS Code -->
+<!--<script src="assets/js/pages/signin.min.js"></script>-->
+<script>
+    /**
+     *登录按钮点击事件
+     */
+    $("#signin").click(function () {
+        var t = $(".js-validation-signin").valid();
+        if (!t) return;
+        console.log(t);
+        var username = $("#login-username").val();
+        var pwd = $("#login-password").val();
+        var vCode = $("#login-validation").val();
+        $.ajax({
+            type: "post",
+            url: "loginbypwd.do",
+            data: {
+                "username": username,
+                "pwd": pwd,
+                "vCode": vCode
+            },
+            dataType: "json",
+            success: function (result) {
+                if (result.success) {
+                    window.location.href = result.data;
+                } else
+                    One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: result.errMsg});
+            },
+            error: function (data) {
+                One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: "未知错误，请重试!"});
+            }
+        });
+    });
+
+    /**
+     * 验证码点击更换
+     */
+    $('#vCode').click(function () {
+        var ts = new Date();
+        console.log(ts);
+        $('#vCode').attr('src', 'getVerifyCode.do?' + ts);
+    });
+
+    /**
+     * 表单合法性验证
+     */
+    jQuery(".js-validation-signin").validate({
+        errorClass: "invalid-feedback animated fadeIn",
+        errorElement: "div",
+        errorPlacement: function (e, n) {
+            jQuery(n).addClass("is-invalid");
+            jQuery(n).parents(".form-group").append(e)
+        },
+        highlight: function (e) {
+            jQuery(e).parents(".form-group").find(".is-invalid").removeClass("is-invalid").addClass("is-invalid")
+        },
+        success: function (e) {
+            jQuery(e).parents(".form-group").find(".is-invalid").removeClass("is-invalid").addClass("is-valid");
+            jQuery(e).remove()
+        },
+        rules: {
+            "login-username": {required: !0, minlength: 3},
+            "login-password": {required: !0, minlength: 3},
+            "login-validation": {
+                required: !0, remote: {
+                    url: "checkVCode.do",
+                    type: "post",
+                    dataType: "json",
+                    data: {
+                        vCode: function () {
+                            return $("#login-validation").val();
+                        }
+                    }
+                }
+            }
+        },
+        messages: {
+            "login-username": {
+                required: "用户名不能为空！",
+                minlength: "用户名不能少于5个字符"
+            },
+            "login-password": {
+                required: "密码不能为空！",
+                minlength: "密码不能少于6个字符！"
+            },
+            "login-validation": {
+                required: "验证码不能为空！",
+                remote: "验证码错误，请检查！"
+            }
+        }
+    })
+
+</script>
+</body>
+</html>

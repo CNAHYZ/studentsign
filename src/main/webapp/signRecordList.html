@@ -1,0 +1,777 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>OneUI - Bootstrap 4 Admin Template &amp; UI Framework</title>
+    <meta name="robots" content="noindex, nofollow">
+    <!-- Open Graph Meta -->
+
+    <!-- Icons -->
+    <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
+    <link rel="shortcut icon" href="assets/media/favicons/favicon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/media/favicons/favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/media/favicons/apple-touch-icon-180x180.png">
+    <!-- END Icons -->
+
+    <!-- Stylesheets -->
+    <!-- Fonts and OneUI framework -->
+    <link rel="stylesheet" href="#">
+    <link rel="stylesheet" id="css-main" href="assets/css/oneui.min.css">
+
+    <link rel="stylesheet" href="assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css">
+    <!-- END Stylesheets -->
+</head>
+<body>
+<!-- Page Container -->
+<div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-fixed">
+
+    <!-- Sidebar -->
+    <nav id="sidebar" aria-label="Main Navigation">
+        <!-- Side Header -->
+        <div class="content-header bg-white-5">
+            <!-- Logo -->
+            <a class="font-w600 text-dual" href="index.html">
+                <i class="fa fa-circle-notch text-primary"></i>
+                <span class="smini-hide">
+                            <span class="font-w700 font-size-h5">ne</span> <span class="font-w400">4.0</span>
+                        </span>
+            </a>
+            <!-- END Logo -->
+
+            <!-- Options -->
+            <div>
+                <!-- Color Variations -->
+                <div class="dropdown d-inline-block ml-3">
+                    <a class="text-dual font-size-sm" id="sidebar-themes-dropdown" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" href="#">
+                        <i class="si si-drop"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right font-size-sm smini-hide border-0"
+                         aria-labelledby="sidebar-themes-dropdown">
+                        <!-- Color Themes -->
+                        <!-- Layout API, functionality initialized in Template._uiHandleTheme() -->
+                        <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme"
+                           data-theme="default" href="#">
+                            <span>Default</span>
+                            <i class="fa fa-circle text-default"></i>
+                        </a>
+                        <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme"
+                           data-theme="assets/css/themes/amethyst.min.css" href="#">
+                            <span>Amethyst</span>
+                            <i class="fa fa-circle text-amethyst"></i>
+                        </a>
+                        <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme"
+                           data-theme="assets/css/themes/city.min.css" href="#">
+                            <span>City</span>
+                            <i class="fa fa-circle text-city"></i>
+                        </a>
+                        <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme"
+                           data-theme="assets/css/themes/modern.min.css" href="#">
+                            <span>Modern</span>
+                            <i class="fa fa-circle text-modern"></i>
+                        </a>
+                        <!-- END Color Themes -->
+
+                        <div class="dropdown-divider"></div>
+
+                        <!-- Sidebar Styles -->
+                        <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                        <a class="dropdown-item" data-toggle="layout" data-action="sidebar_style_light" href="#">
+                            <span>Sidebar Light</span>
+                        </a>
+                        <a class="dropdown-item" data-toggle="layout" data-action="sidebar_style_dark" href="#">
+                            <span>Sidebar Dark</span>
+                        </a>
+                        <!-- Sidebar Styles -->
+
+                        <div class="dropdown-divider"></div>
+
+                        <!-- Header Styles -->
+                        <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                        <a class="dropdown-item" data-toggle="layout" data-action="header_style_light" href="#">
+                            <span>Header Light</span>
+                        </a>
+                        <a class="dropdown-item" data-toggle="layout" data-action="header_style_dark" href="#">
+                            <span>Header Dark</span>
+                        </a>
+                        <!-- Header Styles -->
+                    </div>
+                </div>
+                <!-- END Themes -->
+
+                <!-- Close Sidebar, Visible only on mobile screens -->
+                <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                <a class="d-lg-none text-dual ml-3" data-toggle="layout" data-action="sidebar_close"
+                   href="javascript:void(0)">
+                    <i class="fa fa-times"></i>
+                </a>
+                <!-- END Close Sidebar -->
+            </div>
+            <!-- END Options -->
+        </div>
+        <!-- END Side Header -->
+
+        <!-- Side Navigation -->
+        <div class="content-side content-side-full">
+            <ul class="nav-main">
+                <li class="nav-main-item">
+                    <a class="nav-main-link" href="be_pages_dashboard.html">
+                        <i class="nav-main-link-icon si si-speedometer"></i>
+                        <span class="nav-main-link-name">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-main-heading">System Management</li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
+                       aria-expanded="false" href="#">
+                        <i class="nav-main-link-icon si si-speech"></i>
+                        <span class="nav-main-link-name">通知管理</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_blocks_styles.html">
+                                <span class="nav-main-link-name">Styles</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_blocks_options.html">
+                                <span class="nav-main-link-name">Options</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
+                       aria-expanded="false" href="#">
+                        <i class="nav-main-link-icon si si-users"></i>
+                        <span class="nav-main-link-name">学生管理</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="studentList.html">
+                                <i class="nav-main-link-icon fa fa-address-book"></i>
+                                <span class="nav-main-link-name">学生列表</span>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="studentAdd.html">
+                                <i class="nav-main-link-icon fa fa-user-plus"></i>
+                                <span class="nav-main-link-name">添加学生</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-main-item  open">
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
+                       aria-expanded="false" href="#">
+                        <i class="nav-main-link-icon si si-badge"></i>
+                        <span class="nav-main-link-name">签到管理</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link   active" href="signRecordList.html">
+                                <span class="nav-main-link-name">签到记录</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="">
+                                <span class="nav-main-link-name">签到概况</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
+                       aria-expanded="false" href="#">
+                        <i class="nav-main-link-icon si si-grid"></i>
+                        <span class="nav-main-link-name">请假管理</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_tables_styles.html">
+                                <span class="nav-main-link-name">Styles</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_tables_responsive.html">
+                                <span class="nav-main-link-name">Responsive</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-main-heading">System Setting</li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
+                       aria-expanded="false" href="#">
+                        <i class="nav-main-link-icon si si-wrench"></i>
+                        <span class="nav-main-link-name">系统设置</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_comp_loaders.html">
+                                <span class="nav-main-link-name">Loaders</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_comp_image_cropper.html">
+                                <span class="nav-main-link-name">Image Cropper</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-main-heading">About Me</li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link" href="admin_index.html">
+                        <i class="nav-main-link-icon si si-info"></i>
+                        <span class="nav-main-link-name">系统介绍</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- END Side Navigation -->
+    </nav>
+    <!-- END Sidebar -->
+
+    <!-- Header -->
+    <header id="page-header">
+        <!-- Header Content -->
+        <div class="content-header">
+            <!-- Left Section -->
+            <div class="d-flex align-items-center">
+                <!-- Toggle Sidebar -->
+                <!-- Layout API, functionality initialized in Template._uiApiLayout()-->
+                <button type="button" class="btn btn-sm btn-dual mr-2 d-lg-none" data-toggle="layout"
+                        data-action="sidebar_toggle">
+                    <i class="fa fa-fw fa-bars"></i>
+                </button>
+                <!-- END Toggle Sidebar -->
+
+                <!-- Toggle Mini Sidebar -->
+                <!-- Layout API, functionality initialized in Template._uiApiLayout()-->
+                <button type="button" class="btn btn-sm btn-dual mr-2 d-none d-lg-inline-block" data-toggle="layout"
+                        data-action="sidebar_mini_toggle">
+                    <i class="fa fa-fw fa-ellipsis-v"></i>
+                </button>
+                <!-- END Toggle Mini Sidebar -->
+
+
+                <!-- Open Search Section (visible on smaller screens) -->
+                <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                <button type="button" class="btn btn-sm btn-dual d-sm-none" data-toggle="layout"
+                        data-action="header_search_on">
+                    <i class="si si-magnifier"></i>
+                </button>
+                <!-- END Open Search Section -->
+
+                <!-- Search Form (visible on larger screens) -->
+                <form class="d-none d-sm-inline-block" action="be_pages_generic_search.html" method="POST">
+                    <div class="input-group input-group-sm">
+                        <input type="text" class="form-control form-control-alt" placeholder="Search.."
+                               id="page-header-search-input2" name="page-header-search-input2">
+                        <div class="input-group-append">
+                                    <span class="input-group-text bg-body border-0">
+                                        <i class="si si-magnifier"></i>
+                                    </span>
+                        </div>
+                    </div>
+                </form>
+                <!-- END Search Form -->
+            </div>
+            <!-- END Left Section -->
+
+            <!-- Right Section -->
+            <div class="d-flex align-items-center">
+                <!-- User Dropdown -->
+                <div class="dropdown d-inline-block ml-2">
+                    <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img class="rounded" src="assets/media/avatars/avatar0.jpg" alt="Header Avatar"
+                             style="width: 18px;">
+                        <span class="d-none d-sm-inline-block ml-1">Adam</span>
+                        <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right p-0 border-0 font-size-sm"
+                         aria-labelledby="page-header-user-dropdown">
+                        <div class="p-3 text-center bg-primary">
+                            <img class="img-avatar img-avatar48 img-avatar-thumb" src="assets/media/avatars/avatar0.jpg"
+                                 alt="">
+                        </div>
+                        <div class="p-2">
+                            <h5 class="dropdown-header text-uppercase">User Options</h5>
+                            <a class="dropdown-item d-flex align-items-center justify-content-between"
+                               href="be_pages_generic_inbox.html">
+                                <span>Inbox</span>
+                                <span>
+                                            <span class="badge badge-pill badge-primary">3</span>
+                                            <i class="si si-envelope-open ml-1"></i>
+                                        </span>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center justify-content-between"
+                               href="be_pages_generic_profile.html">
+                                <span>Profile</span>
+                                <span>
+                                            <span class="badge badge-pill badge-success">1</span>
+                                            <i class="si si-user ml-1"></i>
+                                        </span>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center justify-content-between"
+                               href="javascript:void(0)">
+                                <span>Settings</span>
+                                <i class="si si-settings"></i>
+                            </a>
+                            <div role="separator" class="dropdown-divider"></div>
+                            <h5 class="dropdown-header text-uppercase">Actions</h5>
+                            <a class="dropdown-item d-flex align-items-center justify-content-between"
+                               href="op_auth_lock.html">
+                                <span>Lock Account</span>
+                                <i class="si si-lock ml-1"></i>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center justify-content-between"
+                               href="userLogin.html">
+                                <span>Log Out</span>
+                                <i class="si si-logout ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- END User Dropdown -->
+
+                <!-- Notifications Dropdown -->
+                <div class="dropdown d-inline-block ml-2">
+                    <button type="button" class="btn btn-sm btn-dual" id="page-header-notifications-dropdown"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="si si-bell"></i>
+                        <span class="badge badge-primary badge-pill">6</span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0 border-0 font-size-sm"
+                         aria-labelledby="page-header-notifications-dropdown">
+                        <div class="p-2 bg-primary text-center">
+                            <h5 class="dropdown-header text-uppercase text-white">Notifications</h5>
+                        </div>
+                        <ul class="nav-items mb-0">
+                            <li>
+                                <a class="text-dark media py-2" href="javascript:void(0)">
+                                    <div class="mr-2 ml-3">
+                                        <i class="fa fa-fw fa-check-circle text-success"></i>
+                                    </div>
+                                    <div class="media-body pr-2">
+                                        <div class="font-w600">You have a new follower</div>
+                                        <small class="text-muted">15 min ago</small>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="text-dark media py-2" href="javascript:void(0)">
+                                    <div class="mr-2 ml-3">
+                                        <i class="fa fa-fw fa-plus-circle text-info"></i>
+                                    </div>
+                                    <div class="media-body pr-2">
+                                        <div class="font-w600">1 new sale, keep it up</div>
+                                        <small class="text-muted">22 min ago</small>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="text-dark media py-2" href="javascript:void(0)">
+                                    <div class="mr-2 ml-3">
+                                        <i class="fa fa-fw fa-times-circle text-danger"></i>
+                                    </div>
+                                    <div class="media-body pr-2">
+                                        <div class="font-w600">Update failed, restart server</div>
+                                        <small class="text-muted">26 min ago</small>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="text-dark media py-2" href="javascript:void(0)">
+                                    <div class="mr-2 ml-3">
+                                        <i class="fa fa-fw fa-plus-circle text-info"></i>
+                                    </div>
+                                    <div class="media-body pr-2">
+                                        <div class="font-w600">2 new sales, keep it up</div>
+                                        <small class="text-muted">33 min ago</small>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="text-dark media py-2" href="javascript:void(0)">
+                                    <div class="mr-2 ml-3">
+                                        <i class="fa fa-fw fa-user-plus text-success"></i>
+                                    </div>
+                                    <div class="media-body pr-2">
+                                        <div class="font-w600">You have a new subscriber</div>
+                                        <small class="text-muted">41 min ago</small>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="text-dark media py-2" href="javascript:void(0)">
+                                    <div class="mr-2 ml-3">
+                                        <i class="fa fa-fw fa-check-circle text-success"></i>
+                                    </div>
+                                    <div class="media-body pr-2">
+                                        <div class="font-w600">You have a new follower</div>
+                                        <small class="text-muted">42 min ago</small>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="p-2 border-top">
+                            <a class="btn btn-sm btn-light btn-block text-center" href="javascript:void(0)">
+                                <i class="fa fa-fw fa-arrow-down mr-1"></i> Load More..
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- END Notifications Dropdown -->
+            </div>
+            <!-- END Right Section -->
+        </div>
+        <!-- END Header Content -->
+
+        <!-- Header Search -->
+        <div id="page-header-search" class="overlay-header bg-white">
+            <div class="content-header">
+                <form class="w-100" action="" method="POST">
+                    <div class="input-group input-group-sm">
+                        <div class="input-group-prepend">
+                            <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                            <button type="button" class="btn btn-danger" data-toggle="layout"
+                                    data-action="header_search_off">
+                                <i class="fa fa-fw fa-times-circle"></i>
+                            </button>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Search or hit ESC.."
+                               id="page-header-search-input" name="page-header-search-input">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- END Header Search -->
+
+        <!-- Header Loader -->
+        <!-- Please check out the Loaders page under Components category to see examples of showing/hiding it -->
+        <div id="page-header-loader" class="overlay-header bg-white">
+            <div class="content-header">
+                <div class="w-100 text-center">
+                    <i class="fa fa-fw fa-circle-notch fa-spin"></i>
+                </div>
+            </div>
+        </div>
+        <!-- END Header Loader -->
+    </header>
+    <!-- END Header -->
+
+    <!-- Main Container -->
+    <main id="main-container">
+
+        <!-- Hero -->
+        <div class="bg-body-light">
+            <div class="content content-full">
+                <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
+                    <h1 class="flex-sm-fill h3 my-2">
+                        Authentication
+                        <small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted">All
+                            pages in one spot!
+                        </small>
+                    </h1>
+                    <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
+                        <ol class="breadcrumb breadcrumb-alt">
+                            <li class="breadcrumb-item">Authentication</li>
+                            <li class="breadcrumb-item" aria-current="page">
+                                <a class="link-fx" href="">All</a>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- END Hero -->
+
+        <!-- Page Content -->
+        <div class="content">
+            <!-- Dynamic Table with Export Buttons -->
+            <div class="block">
+                <!--      <div class="block-header">
+                          <h3 class="block-title">Dynamic Table
+                              <small>Export Buttons</small>
+                          </h3>
+                      </div>-->
+                <div class="block-content block-content-full">
+                    <div class="row">
+                        <div class="px-lg-2"></div>
+                        <div class="dropdown" style="">
+                            <label style="vertical-align: bottom;">快速筛选：</label>
+                            <button type="button" class="btn btn-outline-primary dropdown-toggle" id="btn_time"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                今天
+                            </button>
+                            <div class="dropdown-menu font-size-sm" aria-labelledby="dropdown-default-outline-primary"
+                                 style="min-width:77px">
+                                <a class="dropdown-item" onclick="dropSelect(this,0)">今天</a>
+                                <a class="dropdown-item" onclick="dropSelect(this,1)">昨天</a>
+                                <!--<div class="dropdown-divider"></div>-->
+                                <a class="dropdown-item" onclick="dropSelect(this,7)">近7天</a>
+                                <a class="dropdown-item" onclick="dropSelect(this,30)">近30天</a>
+                            </div>
+                        </div>
+                        <div class="px-lg-3"></div>
+                        <div class="col-lg-8 col-xl-6 row">
+                            <div class="input-daterange input-group">
+                                <label class="" style="margin: auto">指定日期筛选：</label>
+                                <input type="text" class="form-control" id="daterange1"
+                                       name="daterange1" placeholder="开始日期">
+                                <div class="input-group-prepend input-group-append">
+                                    <span class="input-group-text font-w600">
+                                        <i class="fa fa-fw fa-arrow-right"></i>
+                                    </span>
+                                </div>
+                                <input type="text" class="form-control" id="daterange2"
+                                       name="daterange2" placeholder="结束日期">
+                            </div>
+                        </div>
+                        <div class="px-lg-3"></div>
+                        <div class="input-group col-lg-3 col-xl-3">
+                            <input type="text" class="form-control" id="ipt_search"
+                                   name="keyword" placeholder="学号、姓名">
+                            <div class="input-group-prepend">
+                                <button type="button" class="btn btn-primary" id="btn_search">
+                                    <i class="fa fa-search mr-1"></i> 搜索
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="py-2"></div>
+                    <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons text-center"
+                           id="mydatatable">
+                        <thead>
+                        <tr>
+                            <th class="text-center" style="width: 40px;">ID</th>
+                            <th class="d-none d-sm-table-cell" style="width: 15%;">学号</th>
+                            <th class="d-none d-sm-table-cell" style="width: 15%;">姓名</th>
+                            <th class="d-none d-sm-table-cell" style="width: 12%;">签到状态</th>
+                            <th class="d-none d-sm-table-cell" style="width: 20%;">签到时间</th>
+                            <th class="d-none d-sm-table-cell" style="width: 15%;">签到次数</th>
+                            <!--<th class="d-none d-sm-table-cell" style="width: 15%;">操作</th>-->
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- END Dynamic Table with Export Buttons -->
+        </div>
+        <!-- END Page Content -->
+
+    </main>
+    <!-- END Main Container -->
+
+    <!-- Footer -->
+    <footer id="page-footer" class="bg-body-light">
+        <div class="content py-3">
+            <div class="row font-size-sm">
+                <div class="col-sm-6 order-sm-1 py-1 text-center text-sm-left">
+                    <a class="font-w600" href="https://1.envato.market/xWy" target="_blank">OneUI 4.0</a> &copy; <span
+                        data-toggle="year-copy">2018</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- END Footer -->
+</div>
+<!-- END Page Container -->
+
+<script src="assets/js/oneui.core.min.js"></script>
+
+<!--
+    OneUI JS
+-->
+<script src="assets/js/oneui.app.min.js"></script>
+
+<!-- Page JS Plugins -->
+<script src="assets/js/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="assets/js/plugins/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="assets/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+<script src="assets/js/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+<!-- Page JS Helpers (BS Datepicker + BS Maxlength + Select2 ) -->
+<script>
+    jQuery(function () {
+        One.helpers(['datepicker']);
+    });
+</script>
+
+<script>
+    var t = $('#mydatatable').DataTable(
+        {
+            "processing": true,
+            "retrieve": true,
+            "bStateSave": true,
+            "lengthChange": false,
+            "searching": false,
+            language: {
+                "sProcessing": "正在加载数据，请稍后...",
+                // "sLengthMenu": "显示 _MENU_ 项结果",
+                "sZeroRecords": "没有匹配结果",
+                "sInfo": "显示第 _START_ 至 _END_ 条记录，共 _TOTAL_ 项",
+                "sInfoEmpty": "显示第 0 至 0 条记录，共 0 项",
+                "sSearch": "搜索:",
+                "sEmptyTable": "没有找到记录",
+                "sLoadingRecords": "载入中...",
+                "sInfoThousands": ",",
+                "oPaginate": {
+                    "sFirst": "首页",
+                    "sPrevious": "上页",
+                    "sNext": "下页",
+                    "sLast": "末页"
+                }
+            },
+            ajax: {
+                type: "post",
+                url: "signList.do",
+                //注意：直接写成{"dayNum": d}不可行，dayNum会一直为0
+                data:
+                    function () {
+                        sendData = {"dayNum": 0};//这里可以调用一个方法，获取sendData
+                        return sendData;
+                    },
+                beforeSend: function () {
+                    console.log(sendData)
+                }
+            },
+            //每页显示n条数据
+            pageLength: 10,
+            columns: [
+                {data: null},
+                {data: "sNo"},
+                {
+                    data: "sName",
+                    defaultContent: "-"
+                },
+                {
+                    data: "signStatus",
+                    defaultContent: "-"
+                },
+                {
+                    data: "signTime",
+                    defaultContent: "-"
+                },
+                {
+                    data: "signTimes",
+                    defaultContent: "-"
+                }
+                /*{
+                    "data": null,
+                    render: function (data, type, row) {
+                        return '<div class="btn-group">' +
+                            '<button type="button" class="btn btn-sm btn-primary js-tooltip-enabled" ' +
+                            'data-toggle="tooltip" title="删除" onclick="delStudent(' + row.sNo + ')">' +
+                            '<i class="fa fa-fw fa-times"></i>' +
+                            '</button>' +
+                            '</div>'
+                    }
+                }*/
+            ],
+            "columnDefs": [
+                {//每列定义
+                    "orderable": false,
+                    "targets": [2, 5, -1]//第x列不排序
+                }]
+        });
+    //前台添加序号
+    t.on('order.dt search.dt', function () {
+        t.column(0, {
+            "search": 'applied',
+            "order": 'applied'
+        }).nodes().each(function (cell, i) {
+            cell.innerHTML = i + 1;
+        })
+    }).draw();
+
+    /* /!**
+      *
+      *!/
+     function delStudent(id) {
+         $.ajax(
+             {
+                 type: "post",
+                 url: "removeUser.do",
+                 dataType: "json",
+                 data: {
+                     "sNo": id
+                 },
+                 success: function (data) {
+                     if (data.success) {
+                         $("#mydatatable").dataTable().fnDraw(false);
+                         //重新加载表格数据
+                         t.ajax.reload();
+                         alert(data.data)
+                     } else {
+                         alert(data.errMsg)
+                     }
+                 }, error: function (data) {
+                     alert("未知错误")
+                 }
+             }
+         )
+     }*/
+
+    /**
+     *日期筛选按钮的操作
+     * @type {number}
+     */
+    function dropSelect(option, day) {
+        $("#btn_time").text($(option).text());
+        sendData = {'dayNum': day};
+        t.settings()[0].ajax.data = sendData;
+        t.ajax.url('signList.do').load();
+
+    }
+
+    /**
+     * 初始化datepicker
+     */
+    $('.input-daterange').datepicker({
+        endDate: '0d',//最大只能选择到今天
+        language: "zh-CN",
+        weekStart: "1",
+        autoclose: "true",
+        todayHighlight: "true",
+        format: "yyyy-mm-dd",
+        todayBtn: "linked",
+        maxViewMode: "years"
+    })
+    /**
+     * 日期改变后的事件
+     */
+        .on('changeDate', function (e) {
+            var startTime = $('#daterange1').val();
+            var endTime = $('#daterange2').val();
+            sendData = {
+                "startTime": startTime,
+                "endTime": endTime
+            };
+            //修改ajax传递的参数
+            t.settings()[0].ajax.data = sendData;
+            t.ajax.url('signListFilter.do').load();
+            // t.settings()[0].ajax.error = ;
+        });
+    /**
+     * 搜索点击事件
+     */
+    $('#btn_search').click(function () {
+        var keyword = $('#ipt_search').val();
+        if (keyword === '') return false;
+        sendData = {'keyword': keyword};
+        //修改ajax传递的参数
+        t.settings()[0].ajax.data = sendData;
+        t.ajax.url('searchSignList.do').load();
+    })
+
+</script>
+</body>
+</html>

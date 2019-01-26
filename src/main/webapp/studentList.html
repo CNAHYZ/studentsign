@@ -1,0 +1,994 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+    <title>OneUI - Bootstrap 4 Admin Template &amp; UI Framework</title>
+
+    <meta name="description"
+          content="OneUI - Bootstrap 4 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
+    <meta name="author" content="pixelcave">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Open Graph Meta -->
+    <meta property="og:title" content="OneUI - Bootstrap 4 Admin Template &amp; UI Framework">
+    <meta property="og:site_name" content="OneUI">
+    <meta property="og:description"
+          content="OneUI - Bootstrap 4 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+
+    <!-- Icons -->
+    <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
+    <link rel="shortcut icon" href="assets/media/favicons/favicon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/media/favicons/favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/media/favicons/apple-touch-icon-180x180.png">
+    <!-- END Icons -->
+
+    <!-- Stylesheets -->
+    <!-- Page JS Plugins CSS -->
+    <link rel="stylesheet" href="assets/js/plugins/datatables/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="assets/js/plugins/datatables/buttons-bs4/buttons.bootstrap4.min.css">
+
+    <!-- Fonts and OneUI framework -->
+    <link rel="stylesheet" href="#">
+    <link rel="stylesheet" id="css-main" href="assets/css/oneui.min.css">
+
+    <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
+    <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/amethyst.min.css"> -->
+    <!-- END Stylesheets -->
+</head>
+<body>
+<!-- Page Container -->
+<!--
+    Available classes for #page-container:
+
+GENERIC
+
+    'enable-cookies'                            Remembers active color theme between pages (when set through color theme helper Template._uiHandleTheme())
+
+SIDEBAR & SIDE OVERLAY
+
+    'sidebar-r'                                 Right Sidebar and left Side Overlay (default is left Sidebar and right Side Overlay)
+    'sidebar-mini'                              Mini hoverable Sidebar (screen width > 991px)
+    'sidebar-o'                                 Visible Sidebar by default (screen width > 991px)
+    'sidebar-o-xs'                              Visible Sidebar by default (screen width < 992px)
+    'sidebar-dark'                              Dark themed sidebar
+
+    'side-overlay-hover'                        Hoverable Side Overlay (screen width > 991px)
+    'side-overlay-o'                            Visible Side Overlay by default
+
+    'enable-page-overlay'                       Enables a visible clickable Page Overlay (closes Side Overlay on click) when Side Overlay opens
+
+    'side-scroll'                               Enables custom scrolling on Sidebar and Side Overlay instead of native scrolling (screen width > 991px)
+
+HEADER
+
+    ''                                          Static Header if no class is added
+    'page-header-fixed'                         Fixed Header
+
+HEADER STYLE
+
+    ''                                          Light themed Header
+    'page-header-dark'                          Dark themed Header
+
+MAIN CONTENT LAYOUT
+
+    ''                                          Full width Main Content if no class is added
+    'main-content-boxed'                        Full width Main Content with a specific maximum width (screen width > 1200px)
+    'main-content-narrow'                       Full width Main Content with a percentage width (screen width > 1200px)
+-->
+<div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-fixed">
+
+    <!-- Sidebar -->
+    <!--
+        Sidebar Mini Mode - Display Helper classes
+
+        Adding 'smini-hide' class to an element will make it invisible (opacity: 0) when the sidebar is in mini mode
+        Adding 'smini-show' class to an element will make it visible (opacity: 1) when the sidebar is in mini mode
+            If you would like to disable the transition animation, make sure to also add the 'no-transition' class to your element
+
+        Adding 'smini-hidden' to an element will hide it when the sidebar is in mini mode
+        Adding 'smini-visible' to an element will show it (display: inline-block) only when the sidebar is in mini mode
+        Adding 'smini-visible-block' to an element will show it (display: block) only when the sidebar is in mini mode
+    -->
+    <nav id="sidebar" aria-label="Main Navigation">
+        <!-- Side Header -->
+        <div class="content-header bg-white-5">
+            <!-- Logo -->
+            <a class="font-w600 text-dual" href="index.html">
+                <i class="fa fa-circle-notch text-primary"></i>
+                <span class="smini-hide">
+                            <span class="font-w700 font-size-h5">ne</span> <span class="font-w400">4.0</span>
+                        </span>
+            </a>
+            <!-- END Logo -->
+
+            <!-- Options -->
+            <div>
+                <!-- Color Variations -->
+                <div class="dropdown d-inline-block ml-3">
+                    <a class="text-dual font-size-sm" id="sidebar-themes-dropdown" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" href="#">
+                        <i class="si si-drop"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right font-size-sm smini-hide border-0"
+                         aria-labelledby="sidebar-themes-dropdown">
+                        <!-- Color Themes -->
+                        <!-- Layout API, functionality initialized in Template._uiHandleTheme() -->
+                        <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme"
+                           data-theme="default" href="#">
+                            <span>Default</span>
+                            <i class="fa fa-circle text-default"></i>
+                        </a>
+                        <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme"
+                           data-theme="assets/css/themes/amethyst.min.css" href="#">
+                            <span>Amethyst</span>
+                            <i class="fa fa-circle text-amethyst"></i>
+                        </a>
+                        <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme"
+                           data-theme="assets/css/themes/city.min.css" href="#">
+                            <span>City</span>
+                            <i class="fa fa-circle text-city"></i>
+                        </a>
+                        <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme"
+                           data-theme="assets/css/themes/modern.min.css" href="#">
+                            <span>Modern</span>
+                            <i class="fa fa-circle text-modern"></i>
+                        </a>
+                        <!-- END Color Themes -->
+
+                        <div class="dropdown-divider"></div>
+
+                        <!-- Sidebar Styles -->
+                        <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                        <a class="dropdown-item" data-toggle="layout" data-action="sidebar_style_light" href="#">
+                            <span>Sidebar Light</span>
+                        </a>
+                        <a class="dropdown-item" data-toggle="layout" data-action="sidebar_style_dark" href="#">
+                            <span>Sidebar Dark</span>
+                        </a>
+                        <!-- Sidebar Styles -->
+
+                        <div class="dropdown-divider"></div>
+
+                        <!-- Header Styles -->
+                        <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                        <a class="dropdown-item" data-toggle="layout" data-action="header_style_light" href="#">
+                            <span>Header Light</span>
+                        </a>
+                        <a class="dropdown-item" data-toggle="layout" data-action="header_style_dark" href="#">
+                            <span>Header Dark</span>
+                        </a>
+                        <!-- Header Styles -->
+                    </div>
+                </div>
+                <!-- END Themes -->
+
+                <!-- Close Sidebar, Visible only on mobile screens -->
+                <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                <a class="d-lg-none text-dual ml-3" data-toggle="layout" data-action="sidebar_close"
+                   href="javascript:void(0)">
+                    <i class="fa fa-times"></i>
+                </a>
+                <!-- END Close Sidebar -->
+            </div>
+            <!-- END Options -->
+        </div>
+        <!-- END Side Header -->
+
+        <!-- Side Navigation -->
+
+        <!-- Side Navigation -->
+        <div class="content-side content-side-full">
+            <ul class="nav-main">
+                <li class="nav-main-item">
+                    <a class="nav-main-link" href="be_pages_dashboard.html">
+                        <i class="nav-main-link-icon si si-speedometer"></i>
+                        <span class="nav-main-link-name">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-main-heading">User Interface</li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
+                       aria-expanded="false" href="#">
+                        <i class="nav-main-link-icon si si-energy"></i>
+                        <span class="nav-main-link-name">通知管理</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_blocks_styles.html">
+                                <span class="nav-main-link-name">Styles</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_blocks_options.html">
+                                <span class="nav-main-link-name">Options</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
+                       aria-expanded="false" href="#">
+                        <i class="nav-main-link-icon si si-badge"></i>
+                        <span class="nav-main-link-name">签到管理</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_ui_grid.html">
+                                <span class="nav-main-link-name">Grid</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_ui_typography.html">
+                                <span class="nav-main-link-name">Typography</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_ui_icons.html">
+                                <span class="nav-main-link-name">Icons</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
+                       aria-expanded="false" href="#">
+                        <i class="nav-main-link-icon si si-grid"></i>
+                        <span class="nav-main-link-name">请假管理</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_tables_styles.html">
+                                <span class="nav-main-link-name">Styles</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_tables_responsive.html">
+                                <span class="nav-main-link-name">Responsive</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
+                       aria-expanded="false" href="#">
+                        <i class="nav-main-link-icon si si-note"></i>
+                        <span class="nav-main-link-name">学生管理</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="studentList.html">
+                                <span class="nav-main-link-name">学生列表</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="studentAdd.html">
+                                <span class="nav-main-link-name">添加学生</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-main-heading">Develop</li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
+                       aria-expanded="false" href="#">
+                        <i class="nav-main-link-icon si si-wrench"></i>
+                        <span class="nav-main-link-name">系统设置</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_comp_loaders.html">
+                                <span class="nav-main-link-name">Loaders</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_comp_image_cropper.html">
+                                <span class="nav-main-link-name">Image Cropper</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
+                       aria-expanded="false" href="#">
+                        <i class="nav-main-link-icon si si-magic-wand"></i>
+                        <span class="nav-main-link-name">Layout</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
+                               aria-expanded="false" href="#">
+                                <span class="nav-main-link-name">Page</span>
+                            </a>
+                            <ul class="nav-main-submenu">
+                                <li class="nav-main-item">
+                                    <a class="nav-main-link" href="be_layout_page_default.html">
+                                        <span class="nav-main-link-name">Default</span>
+                                    </a>
+                                </li>
+                                <li class="nav-main-item">
+                                    <a class="nav-main-link" href="be_layout_page_flipped.html">
+                                        <span class="nav-main-link-name">Flipped</span>
+                                    </a>
+                                </li>
+                                <li class="nav-main-item">
+                                    <a class="nav-main-link" href="be_layout_page_native_scrolling.html">
+                                        <span class="nav-main-link-name">Native Scrolling</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
+                               aria-expanded="false" href="#">
+                                <span class="nav-main-link-name">Main Content</span>
+                            </a>
+                            <ul class="nav-main-submenu">
+                                <li class="nav-main-item">
+                                    <a class="nav-main-link" href="be_layout_content_main_full_width.html">
+                                        <span class="nav-main-link-name">Full Width</span>
+                                    </a>
+                                </li>
+                                <li class="nav-main-item">
+                                    <a class="nav-main-link" href="be_layout_content_main_narrow.html">
+                                        <span class="nav-main-link-name">Narrow</span>
+                                    </a>
+                                </li>
+                                <li class="nav-main-item">
+                                    <a class="nav-main-link" href="be_layout_content_main_boxed.html">
+                                        <span class="nav-main-link-name">Boxed</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
+                               aria-expanded="false" href="#">
+                                <span class="nav-main-link-name">Header</span>
+                            </a>
+                            <ul class="nav-main-submenu">
+                                <li class="nav-main-heading">Fixed</li>
+                                <li class="nav-main-item">
+                                    <a class="nav-main-link" href="be_layout_header_fixed_light.html">
+                                        <span class="nav-main-link-name">Light</span>
+                                    </a>
+                                </li>
+                                <li class="nav-main-item">
+                                    <a class="nav-main-link" href="be_layout_header_fixed_dark.html">
+                                        <span class="nav-main-link-name">Dark</span>
+                                    </a>
+                                </li>
+                                <li class="nav-main-heading">Static</li>
+                                <li class="nav-main-item">
+                                    <a class="nav-main-link" href="be_layout_header_static_light.html">
+                                        <span class="nav-main-link-name">Light</span>
+                                    </a>
+                                </li>
+                                <li class="nav-main-item">
+                                    <a class="nav-main-link" href="be_layout_header_static_dark.html">
+                                        <span class="nav-main-link-name">Dark</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
+                               aria-expanded="false" href="#">
+                                <span class="nav-main-link-name">Sidebar</span>
+                            </a>
+                            <ul class="nav-main-submenu">
+                                <li class="nav-main-item">
+                                    <a class="nav-main-link" href="be_layout_sidebar_mini.html">
+                                        <span class="nav-main-link-name">Mini</span>
+                                    </a>
+                                </li>
+                                <li class="nav-main-item">
+                                    <a class="nav-main-link" href="be_layout_sidebar_light.html">
+                                        <span class="nav-main-link-name">Light</span>
+                                    </a>
+                                </li>
+                                <li class="nav-main-item">
+                                    <a class="nav-main-link" href="be_layout_sidebar_dark.html">
+                                        <span class="nav-main-link-name">Dark</span>
+                                    </a>
+                                </li>
+                                <li class="nav-main-item">
+                                    <a class="nav-main-link" href="be_layout_sidebar_hidden.html">
+                                        <span class="nav-main-link-name">Hidden</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
+                               aria-expanded="false" href="#">
+                                <span class="nav-main-link-name">Side Overlay</span>
+                            </a>
+                            <ul class="nav-main-submenu">
+                                <li class="nav-main-item">
+                                    <a class="nav-main-link" href="be_layout_side_overlay_visible.html">
+                                        <span class="nav-main-link-name">Visible</span>
+                                    </a>
+                                </li>
+                                <li class="nav-main-item">
+                                    <a class="nav-main-link" href="be_layout_side_overlay_mode_hover.html">
+                                        <span class="nav-main-link-name">Hover Mode</span>
+                                    </a>
+                                </li>
+                                <li class="nav-main-item">
+                                    <a class="nav-main-link" href="be_layout_side_overlay_no_page_overlay.html">
+                                        <span class="nav-main-link-name">No Page Overlay</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_layout_api.html">
+                                <span class="nav-main-link-name">API</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-main-heading">Pages</li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
+                       aria-expanded="false" href="#">
+                        <i class="nav-main-link-icon si si-layers"></i>
+                        <span class="nav-main-link-name">Generic</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_pages_generic_blank.html">
+                                <span class="nav-main-link-name">Blank</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_pages_generic_blank_block.html">
+                                <span class="nav-main-link-name">Blank (Block)</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_pages_generic_search.html">
+                                <span class="nav-main-link-name">Search</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_pages_generic_profile.html">
+                                <span class="nav-main-link-name">Profile</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_pages_generic_inbox.html">
+                                <span class="nav-main-link-name">Inbox</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_pages_generic_invoice.html">
+                                <span class="nav-main-link-name">Invoice</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_pages_generic_faq.html">
+                                <span class="nav-main-link-name">FAQ</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="op_coming_soon.html">
+                                <span class="nav-main-link-name">Coming Soon</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-main-item open">
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
+                       aria-expanded="true" href="#">
+                        <i class="nav-main-link-icon si si-lock"></i>
+                        <span class="nav-main-link-name">Authentication</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link active" href="admin_index.html">
+                                <span class="nav-main-link-name">All</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="userLogin.html">
+                                <span class="nav-main-link-name">Sign In</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="op_auth_signup.html">
+                                <span class="nav-main-link-name">Sign Up</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="op_auth_lock.html">
+                                <span class="nav-main-link-name">Lock Screen</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="op_auth_reminder.html">
+                                <span class="nav-main-link-name">Pass Reminder</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- END Side Navigation -->
+    </nav>
+    <!-- END Sidebar -->
+
+    <!-- Header -->
+    <header id="page-header">
+        <!-- Header Content -->
+        <div class="content-header">
+            <!-- Left Section -->
+            <div class="d-flex align-items-center">
+                <!-- Toggle Sidebar -->
+                <!-- Layout API, functionality initialized in Template._uiApiLayout()-->
+                <button type="button" class="btn btn-sm btn-dual mr-2 d-lg-none" data-toggle="layout"
+                        data-action="sidebar_toggle">
+                    <i class="fa fa-fw fa-bars"></i>
+                </button>
+                <!-- END Toggle Sidebar -->
+
+                <!-- Toggle Mini Sidebar -->
+                <!-- Layout API, functionality initialized in Template._uiApiLayout()-->
+                <button type="button" class="btn btn-sm btn-dual mr-2 d-none d-lg-inline-block" data-toggle="layout"
+                        data-action="sidebar_mini_toggle">
+                    <i class="fa fa-fw fa-ellipsis-v"></i>
+                </button>
+                <!-- END Toggle Mini Sidebar -->
+
+                <!-- Open Search Section (visible on smaller screens) -->
+                <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                <button type="button" class="btn btn-sm btn-dual d-sm-none" data-toggle="layout"
+                        data-action="header_search_on">
+                    <i class="si si-magnifier"></i>
+                </button>
+                <!-- END Open Search Section -->
+
+                <!-- Search Form (visible on larger screens) -->
+                <form class="d-none d-sm-inline-block" action="be_pages_generic_search.html" method="POST">
+                    <div class="input-group input-group-sm">
+                        <input type="text" class="form-control form-control-alt" placeholder="Search.."
+                               id="page-header-search-input2" name="page-header-search-input2">
+                        <div class="input-group-append">
+                                    <span class="input-group-text bg-body border-0">
+                                        <i class="si si-magnifier"></i>
+                                    </span>
+                        </div>
+                    </div>
+                </form>
+                <!-- END Search Form -->
+            </div>
+            <!-- END Left Section -->
+
+            <!-- Right Section -->
+            <div class="d-flex align-items-center">
+                <!-- User Dropdown -->
+                <div class="dropdown d-inline-block ml-2">
+                    <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img class="rounded" src="assets/media/avatars/avatar0.jpg" alt="Header Avatar"
+                             style="width: 18px;">
+                        <span class="d-none d-sm-inline-block ml-1">Adam</span>
+                        <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right p-0 border-0 font-size-sm"
+                         aria-labelledby="page-header-user-dropdown">
+                        <div class="p-3 text-center bg-primary">
+                            <img class="img-avatar img-avatar48 img-avatar-thumb"
+                                 src="assets/media/avatars/avatar0.jpg" alt="">
+                        </div>
+                        <div class="p-2">
+                            <h5 class="dropdown-header text-uppercase">User Options</h5>
+                            <a class="dropdown-item d-flex align-items-center justify-content-between"
+                               href="be_pages_generic_inbox.html">
+                                <span>Inbox</span>
+                                <span>
+                                            <span class="badge badge-pill badge-primary">3</span>
+                                            <i class="si si-envelope-open ml-1"></i>
+                                        </span>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center justify-content-between"
+                               href="be_pages_generic_profile.html">
+                                <span>Profile</span>
+                                <span>
+                                            <span class="badge badge-pill badge-success">1</span>
+                                            <i class="si si-user ml-1"></i>
+                                        </span>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center justify-content-between"
+                               href="javascript:void(0)">
+                                <span>Settings</span>
+                                <i class="si si-settings"></i>
+                            </a>
+                            <div role="separator" class="dropdown-divider"></div>
+                            <h5 class="dropdown-header text-uppercase">Actions</h5>
+                            <a class="dropdown-item d-flex align-items-center justify-content-between"
+                               href="op_auth_lock.html">
+                                <span>Lock Account</span>
+                                <i class="si si-lock ml-1"></i>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center justify-content-between"
+                               href="op_auth_signin.html">
+                                <span>Log Out</span>
+                                <i class="si si-logout ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- END User Dropdown -->
+
+                <!-- Notifications Dropdown -->
+                <div class="dropdown d-inline-block ml-2">
+                    <button type="button" class="btn btn-sm btn-dual" id="page-header-notifications-dropdown"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="si si-bell"></i>
+                        <span class="badge badge-primary badge-pill">6</span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0 border-0 font-size-sm"
+                         aria-labelledby="page-header-notifications-dropdown">
+                        <div class="p-2 bg-primary text-center">
+                            <h5 class="dropdown-header text-uppercase text-white">Notifications</h5>
+                        </div>
+                        <ul class="nav-items mb-0">
+                            <li>
+                                <a class="text-dark media py-2" href="javascript:void(0)">
+                                    <div class="mr-2 ml-3">
+                                        <i class="fa fa-fw fa-check-circle text-success"></i>
+                                    </div>
+                                    <div class="media-body pr-2">
+                                        <div class="font-w600">You have a new follower</div>
+                                        <small class="text-muted">15 min ago</small>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="text-dark media py-2" href="javascript:void(0)">
+                                    <div class="mr-2 ml-3">
+                                        <i class="fa fa-fw fa-plus-circle text-info"></i>
+                                    </div>
+                                    <div class="media-body pr-2">
+                                        <div class="font-w600">1 new sale, keep it up</div>
+                                        <small class="text-muted">22 min ago</small>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="text-dark media py-2" href="javascript:void(0)">
+                                    <div class="mr-2 ml-3">
+                                        <i class="fa fa-fw fa-times-circle text-danger"></i>
+                                    </div>
+                                    <div class="media-body pr-2">
+                                        <div class="font-w600">Update failed, restart server</div>
+                                        <small class="text-muted">26 min ago</small>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="text-dark media py-2" href="javascript:void(0)">
+                                    <div class="mr-2 ml-3">
+                                        <i class="fa fa-fw fa-plus-circle text-info"></i>
+                                    </div>
+                                    <div class="media-body pr-2">
+                                        <div class="font-w600">2 new sales, keep it up</div>
+                                        <small class="text-muted">33 min ago</small>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="text-dark media py-2" href="javascript:void(0)">
+                                    <div class="mr-2 ml-3">
+                                        <i class="fa fa-fw fa-user-plus text-success"></i>
+                                    </div>
+                                    <div class="media-body pr-2">
+                                        <div class="font-w600">You have a new subscriber</div>
+                                        <small class="text-muted">41 min ago</small>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="text-dark media py-2" href="javascript:void(0)">
+                                    <div class="mr-2 ml-3">
+                                        <i class="fa fa-fw fa-check-circle text-success"></i>
+                                    </div>
+                                    <div class="media-body pr-2">
+                                        <div class="font-w600">You have a new follower</div>
+                                        <small class="text-muted">42 min ago</small>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="p-2 border-top">
+                            <a class="btn btn-sm btn-light btn-block text-center" href="javascript:void(0)">
+                                <i class="fa fa-fw fa-arrow-down mr-1"></i> Load More..
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- END Notifications Dropdown -->
+            </div>
+            <!-- END Right Section -->
+        </div>
+        <!-- END Header Content -->
+
+        <!-- Header Search -->
+        <div id="page-header-search" class="overlay-header bg-white">
+            <div class="content-header">
+                <form class="w-100" action="be_pages_generic_search.html" method="POST">
+                    <div class="input-group input-group-sm">
+                        <div class="input-group-prepend">
+                            <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                            <button type="button" class="btn btn-danger" data-toggle="layout"
+                                    data-action="header_search_off">
+                                <i class="fa fa-fw fa-times-circle"></i>
+                            </button>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Search or hit ESC.."
+                               id="page-header-search-input" name="page-header-search-input">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- END Header Search -->
+
+        <!-- Header Loader -->
+        <!-- Please check out the Loaders page under Components category to see examples of showing/hiding it -->
+        <div id="page-header-loader" class="overlay-header bg-white">
+            <div class="content-header">
+                <div class="w-100 text-center">
+                    <i class="fa fa-fw fa-circle-notch fa-spin"></i>
+                </div>
+            </div>
+        </div>
+        <!-- END Header Loader -->
+    </header>
+    <!-- END Header -->
+
+    <!-- Main Container -->
+    <main id="main-container">
+
+        <!-- Hero -->
+        <div class="bg-body-light">
+            <div class="content content-full">
+                <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
+                    <h1 class="flex-sm-fill h3 my-2">
+                        学生列表
+                        <small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted">
+                            显示所有学生，同时可进行修改和删除
+                        </small>
+                    </h1>
+                    <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
+                        <ol class="breadcrumb breadcrumb-alt">
+                            <li class="breadcrumb-item">学生管理</li>
+                            <li class="breadcrumb-item" aria-current="page">
+                                <a class="link-fx" href="">学生列表</a>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- END Hero -->
+
+        <!-- Page Content -->
+        <div class="content">
+
+            <!-- Dynamic Table with Export Buttons -->
+            <div class="block">
+                <!--      <div class="block-header">
+                          <h3 class="block-title">Dynamic Table
+                              <small>Export Buttons</small>
+                          </h3>
+                      </div>-->
+                <div class="block-content block-content-full">
+                    <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons text-center"
+                           id="mydatatable">
+                        <thead>
+                        <tr>
+                            <th class="text-center" style="width: 40px;">ID</th>
+                            <th class="d-none d-sm-table-cell" style="width: 15%;">学号</th>
+                            <th class="d-none d-sm-table-cell" style="width: 12%;">姓名</th>
+                            <th class="d-none d-sm-table-cell" style="width: 10%;">性别</th>
+                            <th class="d-none d-sm-table-cell" style="width: 12%;">楼号</th>
+                            <th class="d-none d-sm-table-cell" style="width: 12%;">房间号</th>
+                            <th class="d-none d-sm-table-cell" style="width: 15%;">出生日期</th>
+                            <th class="d-none d-sm-table-cell" style="width: 15%;">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- END Dynamic Table with Export Buttons -->
+        </div>
+        <!-- END Page Content -->
+
+    </main>
+    <!-- END Main Container -->
+
+    <!-- Footer -->
+    <footer id="page-footer" class="bg-body-light">
+        <div class="content py-3">
+            <div class="row font-size-sm">
+                <div class="col-sm-6 order-sm-2 py-1 text-center text-sm-right">
+                    Crafted with <i class="fa fa-heart text-danger"></i> by <a class="font-w600"
+                                                                               href="https://1.envato.market/ydb"
+                                                                               target="_blank">pixelcave</a>
+                </div>
+                <div class="col-sm-6 order-sm-1 py-1 text-center text-sm-left">
+                    <a class="font-w600" href="https://1.envato.market/xWy" target="_blank">OneUI 4.0</a> &copy; <span
+                        data-toggle="year-copy">2018</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- END Footer -->
+</div>
+<!-- END Page Container -->
+
+<!--
+    OneUI JS Core
+
+    Vital libraries and plugins used in all pages. You can choose to not include this file if you would like
+    to handle those dependencies through webpack. Please check out assets/_es6/main/bootstrap.js for more info.
+
+    If you like, you could also include them separately directly from the assets/js/core folder in the following
+    order. That can come in handy if you would like to include a few of them (eg jQuery) from a CDN.
+
+    assets/js/core/jquery.min.js
+    assets/js/core/bootstrap.bundle.min.js
+    assets/js/core/simplebar.min.js
+    assets/js/core/jquery-scrollLock.min.js
+    assets/js/core/jquery.appear.min.js
+    assets/js/core/js.cookie.min.js
+-->
+<script src="assets/js/oneui.core.min.js"></script>
+
+<!--
+    OneUI JS
+
+    Custom functionality including Blocks/Layout API as well as other vital and optional helpers
+    webpack is putting everything together at assets/_es6/main/app.js
+-->
+<script src="assets/js/oneui.app.min.js"></script>
+
+<!-- Page JS Plugins -->
+<script src="assets/js/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="assets/js/plugins/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="assets/js/plugins/datatables/buttons/dataTables.buttons.min.js"></script>
+<script>
+    var t = $('#mydatatable').DataTable(
+        {
+            "processing": true,
+            // "destroy": true,
+            "retrieve": true,
+            "bStateSave": true,
+            language: {
+                "sProcessing": "正在加载数据，请稍后...",
+                "sLengthMenu": "显示 _MENU_ 项结果",
+                "sZeroRecords": "没有匹配结果",
+                "sInfo": "显示第 _START_ 至 _END_ 条记录，共 _TOTAL_ 项",
+                "sInfoEmpty": "显示第 0 至 0 条记录，共 0 项",
+                "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+                "sSearch": "搜索:",
+                "sEmptyTable": "表中数据为空",
+                "sLoadingRecords": "载入中...",
+                "sInfoThousands": ",",
+                "oPaginate": {
+                    "sFirst": "首页",
+                    "sPrevious": "上页",
+                    "sNext": "下页",
+                    "sLast": "末页"
+                }
+            },
+            ajax: {
+                type: "post",
+                url: "studentList.do"
+            },
+            //每页显示n条数据
+            pageLength: 10,
+            columns: [
+                {data: null},
+                {data: "sNo"},
+                {data: "sName"},
+                {
+                    data: "gender",
+                    defaultContent: "-"
+                },
+                {
+                    data: "buildingNO",
+                    defaultContent: "-"
+                },
+                {
+                    data: "roomNo",
+                    defaultContent: "-"
+                },
+                {
+                    data: "birthday",
+                    defaultContent: "-"
+                },
+                {
+                    "data": null,
+                    render: function (data, type, row) {
+                        return '<div class="btn-group">' +
+                            '<button type="button" class="btn btn-sm btn-primary js-tooltip-enabled"' +
+                            'data-toggle="tooltip" title="编辑" onclick="editStudent(' + row.sNo + ')">' +
+                            '<i class="fa fa-fw fa-pencil-alt"></i>' +
+                            '</button>' +
+                            '<button type="button" class="btn btn-sm btn-primary js-tooltip-enabled" ' +
+                            'data-toggle="tooltip" title="删除" onclick="delStudent(' + row.sNo + ')">' +
+                            '<i class="fa fa-fw fa-times"></i>' +
+                            '</button>' +
+                            '</div>'
+                    }
+                }
+            ],
+            "columnDefs": [
+                {//每列定义
+                    "orderable": false,
+                    "targets": [2, 5, -1]//第x列不排序
+                }]
+            /*,
+            {
+                targets: -1,
+
+            }]*/
+        });
+    //前台添加序号
+    t.on('order.dt search.dt', function () {
+        t.column(0, {
+            "search": 'applied',
+            "order": 'applied'
+        }).nodes().each(function (cell, i) {
+            cell.innerHTML = i + 1;
+        })
+    }).draw();
+
+    function editStudent(id) {
+        window.location.href = "studentInfo.html?" + id;
+    }
+
+    function delStudent(id) {
+        $.ajax(
+            {
+                type: "post",
+                url: "removeUser.do",
+                dataType: "json",
+                data: {
+                    "sNo": id
+                },
+                success: function (data) {
+                    if (data.success) {
+                        $("#mydatatable").dataTable().fnDraw(false);
+                        //重新加载表格数据
+                        t.ajax.reload();
+                        alert(data.data)
+                    } else {
+                        alert(data.errMsg)
+                    }
+                }, error: function (data) {
+                    alert("未知错误")
+                }
+            }
+        )
+    }
+</script>
+
+<!-- Page JS Code -->
+<!--
+<script src="assets/js/pages/be_tables_datatables.min.js"></script>
+-->
+
+</body>
+</html>
