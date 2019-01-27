@@ -58,7 +58,7 @@
 
     <!--===========================插入=============================-->
     <!--记录学生签到-->
-    <insert id="studentSign" parameterType="signIn">
+    <insert id="addSignRecord" parameterType="signIn">
         insert sign_in (sno, signstatus, signtime)
         values (#{sNo}, #{signStatus}, #{signTime})
     </insert>
