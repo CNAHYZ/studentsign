@@ -23,4 +23,6 @@ public interface LeaveMapper {
     List<Leave> getLeave(String dayNum);
 
     Leave getLeaveDetailById(Integer id);
+
+    Boolean updateAuditStatus(Leave leave);
 }

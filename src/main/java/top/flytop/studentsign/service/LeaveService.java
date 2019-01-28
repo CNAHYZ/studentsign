@@ -1,6 +1,7 @@
 package top.flytop.studentsign.service;
 
 import top.flytop.studentsign.dto.BaseResult;
+import top.flytop.studentsign.pojo.Leave;
 
 /**
  * @ClassName LeaveService
@@ -18,4 +19,6 @@ public interface LeaveService {
     BaseResult removeLeave(Integer id);
 
     BaseResult getLeaveDetailById(Integer id);
+
+    BaseResult examineLeave(Leave leave);
 }

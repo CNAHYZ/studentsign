@@ -79,4 +79,21 @@ public class LeaveServiceImpl implements LeaveService {
         else return new BaseResult(false, 1, "没有该条信息！");
     }
 
+    /**
+     * @param leave
+     * @return top.flytop.studentsign.dto.BaseResult
+     * @Description TODO
+     * @date 2019/1/28 15:43
+     */
+    @Override
+    public BaseResult examineLeave(Leave leave) {
+        Boolean updateResult = leaveMapper.updateAuditStatus(leave);
+        if (updateResult) {
+            if (leave.getAuditStatus() == 1)
+                return new BaseResult<>(true, "已同意该生请假！");
+            else
+                return new BaseResult<>(true, "已拒绝该生请假！");
+        } else return new BaseResult(false, 1, "操作失败，请重试！");
+    }
+
 }

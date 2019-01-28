@@ -14,6 +14,18 @@
         <package name="top.flytop.studentsign.pojo"/>
     </typeAliases>
 
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <property name="offsetAsPageNum" value="true"/>
+            <!-- rowBoundsWithCount设置为true时，使用 RowBounds 分页会进行 count 查询。 -->
+            <property name="rowBoundsWithCount" value="true"/>
+            <!-- pageSizeZero 为 true， 当 pageSize=0 或者 RowBounds.limit = 0 就会查询出全部的结果 -->
+            <property name="pageSizeZero" value="true"/>
+            <!-- reasonable 为 true，这时如果 pageNum<=0 会查询第一页，如果 pageNum>总页数 会查询最后一页 -->
+            <property name="reasonable" value="true"/>
+            <property name="returnPageInfo" value="check"/>
+        </plugin>
+    </plugins>
 
     <!--<plugins>-->
     <!--&lt;!&ndash; com.github.pagehelper 为 PageHelper 类所在包名 &ndash;&gt;-->

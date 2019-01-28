@@ -1270,18 +1270,10 @@
      *
      * */
     $(getInfo = function () {
-        var thisURL = document.URL;
-        /*使用 window.location.search()方法获取地址栏要传递的参数。得到"?id=1"。
-        用perimeters.substr(1)取到'?'之后的值。
-        再把取到的值以等号为界分割成包含一个一个值的数组，
-        如果传递的值是汉字就会出现乱码。这里就要用到decodeURI()方法来转换一下*/
-        var parameters = window.location.search;
-        id = decodeURI(parameters.substr(1).split('=')[1]);
-        console.log(id);
         $.ajax({
             type: "post",
-            url: "getLeaveDetail.do",
-            data: {"id": id},
+            url: "getNoExamineLeave.do",
+            data: {"leaveExamine": 0},
             dataType: "json",
             success: function (data) {
                 if (data.success) {

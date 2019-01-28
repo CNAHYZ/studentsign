@@ -72,7 +72,12 @@
         </select>-->
 
     <!--===========================修改=============================-->
-
+    <update id="updateAuditStatus" parameterType="leave">
+        update sleave
+        set audit_status   = #{auditStatus},
+            refusal_reason = #{refusalReason}
+        where id = #{id}
+    </update>
 
     <!--===========================插入=============================-->
     <!--记录学生请假-->
