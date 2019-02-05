@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.flytop.studentsign.mapper.NoticeMapper">
+
+    <!--=========================resultMap===========================-->
+    <resultMap id="noticeResultMap" type="notice">
+        <result property="createTime" column="create_time"></result>
+        <result property="noticeId" column="notice_id"></result>
+    </resultMap>
+    <!--===========================查询=============================-->
+    <!--获取所有通知或以id获取-->
+    <select id="getNoticeById" resultMap="noticeResultMap">
+        select *
+        from notice
+        <if test="_parameter!='' and _parameter!=null">
+            where notice_id = #{noticeId}
+        </if>
+    </select>
+
+    <!--以关键词搜素通知-->
+    <select id="getNoticeByWord" resultMap="noticeResultMap">
+        <bind name="searchWord" value="'%'+_parameter+'%'"></bind>
+        select *
+        from notice
+        where title like #{searchWord}
+        or keyword like #{searchWord}
+    </select>
+
+    <!--以状态搜素通知，以状态、时间降序-->
+    <select id="getNoticeByStatus" resultMap="noticeResultMap">
+        select *
+        from notice
+        where status = #{status1}
+           or status = #{status2}
+        order by status desc,create_time desc
+    </select>
+
+    <!--获取上一条通知-->
+    <select id="getPrevNotice">
+        select noticeId,title
+        from notice
+        where status = 0
+           or status = 2
+        order by status desc,create_time desc
+    </select>
+    <!--===========================修改=============================-->
+    <!--根据id修改通知-->
+    <update id="updateNoticeById" parameterType="notice">
+        update notice
+        set title   = #{title},
+            keyword = #{keyword},
+            content = #{content},
+            status  = #{status}
+        where notice_id = #{noticeId}
+    </update>
+    <!--根据id改变通知展示状态-->
+    <update id="changeNoticeStatus">
+        update notice
+        set status = #{status}
+        where notice_id = #{noticeId}
+    </update>
+
+    <!--===========================插入=============================-->
+    <!--保存通知-->
+    <insert id="saveNotice" parameterType="notice">
+        insert notice(title, keyword, content, create_time, status)
+        values (#{title}, #{keyword}, #{content}, #{createTime}, #{status})
+    </insert>
+
+    <!--===========================删除=============================-->
+    <!--根据记录id删除通知-->
+    <delete id="removeNoticeById">
+        delete
+        from notice
+        where notice_id = #{noticeId}
+    </delete>
+</mapper>

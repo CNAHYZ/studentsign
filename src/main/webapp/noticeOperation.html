@@ -22,66 +22,24 @@
     <link rel="stylesheet" href="#">
     <link rel="stylesheet" id="css-main" href="assets/css/oneui.min.css">
 
-    <link href="assets/js/plugins/ueditor/themes/default/css/ueditor.css" type="text/css" rel="stylesheet">
-
-    <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
-    <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/amethyst.min.css"> -->
+    <link rel="stylesheet" href="assets/js/plugins/sweetalert2/sweetalert2.min.css">
     <!-- END Stylesheets -->
+    //解决wangeditor的z-index过大
+    <style>
+        .w-e-menu {
+            z-index: 2 !important;
+        }
+
+        .w-e-text-container {
+            z-index: 1 !important;
+        }
+    </style>
 </head>
 <body>
 <!-- Page Container -->
-<!--
-    Available classes for #page-container:
-
-GENERIC
-
-    'enable-cookies'                            Remembers active color theme between pages (when set through color theme helper Template._uiHandleTheme())
-
-SIDEBAR & SIDE OVERLAY
-
-    'sidebar-r'                                 Right Sidebar and left Side Overlay (default is left Sidebar and right Side Overlay)
-    'sidebar-mini'                              Mini hoverable Sidebar (screen width > 991px)
-    'sidebar-o'                                 Visible Sidebar by default (screen width > 991px)
-    'sidebar-o-xs'                              Visible Sidebar by default (screen width < 992px)
-    'sidebar-dark'                              Dark themed sidebar
-
-    'side-overlay-hover'                        Hoverable Side Overlay (screen width > 991px)
-    'side-overlay-o'                            Visible Side Overlay by default
-
-    'enable-page-overlay'                       Enables a visible clickable Page Overlay (closes Side Overlay on click) when Side Overlay opens
-
-    'side-scroll'                               Enables custom scrolling on Sidebar and Side Overlay instead of native scrolling (screen width > 991px)
-
-HEADER
-
-    ''                                          Static Header if no class is added
-    'page-header-fixed'                         Fixed Header
-
-HEADER STYLE
-
-    ''                                          Light themed Header
-    'page-header-dark'                          Dark themed Header
-
-MAIN CONTENT LAYOUT
-
-    ''                                          Full width Main Content if no class is added
-    'main-content-boxed'                        Full width Main Content with a specific maximum width (screen width > 1200px)
-    'main-content-narrow'                       Full width Main Content with a percentage width (screen width > 1200px)
--->
 <div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-fixed">
 
     <!-- Sidebar -->
-    <!--
-        Sidebar Mini Mode - Display Helper classes
-
-        Adding 'smini-hide' class to an element will make it invisible (opacity: 0) when the sidebar is in mini mode
-        Adding 'smini-show' class to an element will make it visible (opacity: 1) when the sidebar is in mini mode
-            If you would like to disable the transition animation, make sure to also add the 'no-transition' class to your element
-
-        Adding 'smini-hidden' to an element will hide it when the sidebar is in mini mode
-        Adding 'smini-visible' to an element will show it (display: inline-block) only when the sidebar is in mini mode
-        Adding 'smini-visible-block' to an element will show it (display: block) only when the sidebar is in mini mode
-    -->
     <nav id="sidebar" aria-label="Main Navigation">
         <!-- Side Header -->
         <div class="content-header bg-white-5">
@@ -185,13 +143,13 @@ MAIN CONTENT LAYOUT
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_blocks_styles.html">
-                                <span class="nav-main-link-name">Styles</span>
+                            <a class="nav-main-link" href="noticeList.html">
+                                <span class="nav-main-link-name">所有通知</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_blocks_options.html">
-                                <span class="nav-main-link-name">Options</span>
+                            <a class="nav-main-link" href="noticeOperation.html">
+                                <span class="nav-main-link-name">添加通知</span>
                             </a>
                         </li>
                     </ul>
@@ -556,19 +514,58 @@ MAIN CONTENT LAYOUT
         <div class="content">
             <div class="block">
                 <div class="block-content block-content-full ">
-                    <form>
+                    <form id="myNotice">
                         <!-- 加载编辑器的容器 -->
-                        <script id="container" name="content" type="text/plain"></script>
-                        <div style="margin: 20px 0;text-align: right;padding: 0 -50px;">
-                            <button class="btn btn-outline-danger mr-1 mb-3" type="reset">
-                                <i class="fa fa-fw fa-times mr-1"></i>重置
-                            </button>
-                            <button class="btn btn-outline-success mr-1 mb-3" type="button">
-                                <i class="fa fa-fw fa-plus mr-1"></i>仅保存
-                            </button>
-                            <button class="btn btn-outline-primary mr-1 mb-3" type="submit">
-                                <i class="fa fa-fw fa-upload mr-1"></i> 保存并发布
-                            </button>
+                        <div id="editor">
+                            <p></p>
+                        </div>
+                        <div class="py-2"></div>
+                        <div>
+                            <div class="input-group mx-0 form-group">
+                                <div class=" input-group-prepend" style="width: 80px;">
+                                    <span class="input-group-text">标&nbsp;&nbsp;&nbsp; 题
+                                    <span class="text-danger">*</span>
+                                    </span>
+                                </div>
+                                <input id="notice_title" name="title" class="col-sm-4 col-lg-5 form-control"
+                                       maxlength="50">
+                            </div>
+                            <!--<div class="px-lg-6 px-sm-5"></div>-->
+                            <div class="form-group input-group mx-0">
+                                <div class=" input-group-prepend">
+                                    <span class="input-group-text">关键词
+                                    <span class="text-danger">*</span>
+                                    </span>
+                                </div>
+                                <input id="notice_keyword" name="keyword"
+                                       class="col-sm-4 col-lg-5 form-control"
+                                       maxlength="50" placeholder="多个关键词时，以英文逗号“,”隔开">
+                            </div>
+                            <div class="row mx-0 form-group" id="status">
+                                <label class="d-block">展示状态：</label>
+                                <div class="custom-control custom-radio custom-control-inline custom-control-lg">
+                                    <input type="radio" class="custom-control-input" id="lg1" name="status" value="1">
+                                    <label class="custom-control-label" for="lg1">取消展示</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline custom-control-lg">
+                                    <input type="radio" class="custom-control-input" id="lg2" name="status" value="0"
+                                           checked="checked">
+                                    <label class="custom-control-label" for="lg2">普通展示</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline custom-control-lg">
+                                    <input type="radio" class="custom-control-input" id="lg3" value="2" name="status">
+                                    <label class="custom-control-label" for="lg3">置顶展示</label>
+                                </div>
+                            </div>
+                            <div style="margin: 20px 0;text-align: right;padding: 0 -50px;">
+                                <button class="btn btn-outline-danger mr-1 mb-3" type="reset">
+                                    <i class="fa fa-fw fa-times mr-1"></i>重置
+                                </button>
+                                <button class="btn btn-outline-success mr-1 mb-3" type="button"
+                                        onclick="commitContent()">
+                                    <i class="fa fa-fw fa-plus mr-1"></i>确认提交
+                                </button>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -593,113 +590,144 @@ MAIN CONTENT LAYOUT
     <!-- END Footer -->
 </div>
 <!-- END Page Container -->
-
-<!--
-    OneUI JS Core
-
-    Vital libraries and plugins used in all pages. You can choose to not include this file if you would like
-    to handle those dependencies through webpack. Please check out assets/_es6/main/bootstrap.js for more info.
-
-    If you like, you could also include them separately directly from the assets/js/core folder in the following
-    order. That can come in handy if you would like to include a few of them (eg jQuery) from a CDN.
-
-    assets/js/core/jquery.min.js
-    assets/js/core/bootstrap.bundle.min.js
-    assets/js/core/simplebar.min.js
-    assets/js/core/jquery-scrollLock.min.js
-    assets/js/core/jquery.appear.min.js
-    assets/js/core/js.cookie.min.js
--->
 <script src="assets/js/oneui.core.min.js"></script>
 
-<!--
-    OneUI JS
-
-    Custom functionality including Blocks/Layout API as well as other vital and optional helpers
-    webpack is putting everything together at assets/_es6/main/app.js
--->
 <script src="assets/js/oneui.app.min.js"></script>
+<script src="assets/js/plugins/jquery.formautofill.js"></script>
+<script src="assets/js/plugins/wangEditor/wangEditor.min.js"></script>
+<script src="assets/js/plugins/sweetalert2/sweetalert2.min.js"></script>
+<script src="assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
 
-<script type="text/javascript" charset="utf-8" src="assets/js/plugins/ueditor/ueditor.config.js"></script>
-<script type="text/javascript" charset="utf-8" src="assets/js/plugins/ueditor/ueditor.all.min.js"></script>
-<!--<script type="text/javascript" src="assets/js/plugins/ueditor/ueditor.parse.min.js"></script>-->
-<script type="text/javascript" src="assets/js/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
+<script>
+    /**
+     * 实例化编辑器
+     */
+    var E = window.wangEditor;
+    var editor = new E('#editor');
+    editor.customConfig.uploadImgServer = 'noticeImageUpload.do';
+    // 默认限制图片大小是 5M,将图片大小限制为 3M
+    editor.customConfig.uploadImgMaxSize = 3 * 1024 * 1024;
+    // 限制一次最多上传 10 张图片
+    editor.customConfig.uploadImgMaxLength = 2;
+    editor.customConfig.uploadFileName = 'noticeImg';
 
+    editor.create();
+    //获取id
+    var thisURL = document.URL;
+    var parameters = window.location.search;
+    noticeId = decodeURI(parameters.substr(1).split('=')[1]);
+    console.log(parameters);
+    // 标示符  parameters非空则为true即编辑，否则为添加通知
+    var isEdit = parameters ? true : false;
 
-<!-- 实例化编辑器 -->
-<script type="text/javascript">
-    var um = UE.getEditor('container', {
-        toolbars: [
-            [
-                'undo', //撤销
-                'redo', //重做
-                '|',
-                'bold', //加粗
-                'indent', //首行缩进
-                'italic', //斜体
-                'underline', //下划线
-                // 'strikethrough', //删除线
-                'subscript', //下标
-                'superscript', //上标
-                'fontborder', //字符边框
-                'formatmatch', //格式刷
-                'fontfamily', //字体
-                'fontsize', //字号
-                'paragraph', //段落格式
-                // 'imageleft', //左浮动
-                // 'imageright', //右浮动
-                'forecolor', //字体颜色
-                'backcolor', //背景色
-                '|',
-                'horizontal', //分隔线
-                'removeformat', //清除格式
-                'justifyleft', //居左对齐
-                'justifyright', //居右对齐
-                'justifycenter', //居中对齐
-                'justifyjustify', //两端对齐
-                'lineheight', //行间距
-                // 'rowspacingtop', //段前距
-                // 'rowspacingbottom', //段后距
-                '|',
-                'insertorderedlist', //有序列表
-                'insertunorderedlist', //无序列表
-                'time', //时间
-                'date', //日期
-                'insertparagraphbeforetable', //"表格前插入行"
-                '|',
-                'simpleupload', //单图上传
-                'insertimage', //多图上传
-                'imagenone', //默认
-                'imagecenter', //居中
-                'wordimage', //图片转存
-                '|',
-                'inserttable', //插入表格
-                'edittable', //表格属性
-                'edittd', //单元格属性
-                '|',
-                'link', //超链接
-                'unlink', //取消链接
-                'emotion', //表情
-                'searchreplace', //查询替换
-                'fullscreen', //全屏
-                'attachment', //附件
-                'edittip ', //编辑提示
-                'autotypeset', //自动排版
-                // 'background', //背景
-                'template', //模板
-                'scrawl', //涂鸦
-                'drafts', // 从草稿箱加载
-                'charts', // 图表
-                'preview', //预览
-                'print' //打印
-            ]
-        ],
-        autoHeightEnabled: true,
-        autoFloatEnabled: true,
-        initialFrameWidth: '100%',
-        initialFrameHeight: 350
+    var addNoticeUrl = "addNotice.do";
+    var updateNoticeUrl = "updateNotice.do";
+    var getNoticeUrl = "getNoticeDetail.do";
 
+    // 通过标示符，确定调用的方法
+    if (isEdit) {
+        // 为true，则根据Id调用获取notice信息的方法
+        showEditNoticePage(noticeId);
+    }
+
+    /**
+     *编辑页面初始化
+     */
+    function showEditNoticePage(noticeId) {
+        $.ajax({
+            type: "post",
+            url: getNoticeUrl,
+            data: {"noticeId": noticeId},
+            dataType: "json",
+            success: function (data) {
+                var myData = data.data[0];
+                if (data.success) {
+                    editor.txt.html(myData.content);
+                    $("#myNotice").autofill(myData)
+
+                } else swal(myData.data, "", "fail");
+            }, error: function (data) {
+                swal("系统出错，请稍后再试", "", "error");
+            }
+
+        })
+    }
+
+    /**
+     * 去除标题和关键词的前后空格
+     */
+    $("[id^=notice_]").keyup(function () {
+        console.log(this.value);
+        this.value = this.value.replace(/^\s+|\s+$/g, '')
     });
+
+    /**
+     * 提交
+     */
+    function commitContent() {
+        var myNotice = $("#myNotice");
+        if (!myNotice.valid()) {
+            return;
+        }
+        var formData = new FormData(myNotice[0]);
+        // 如果是编辑操作,需要传入noticeId
+        if (isEdit) {
+            formData.append("noticeId", noticeId);
+        }
+        content = editor.txt.html();
+        console.log(content);
+        formData.append("content", content);
+        console.log(formData);
+        $.ajax({
+            processData: false,
+            contentType: false,
+            //必须指定post方式，否则无法发送参数
+            type: "post",
+            url: isEdit ? updateNoticeUrl : addNoticeUrl,
+            data: formData,
+            dataType: "json",
+            success: function (data) {
+                if (data.success) {
+                    swal(data.data, "", "success");
+                } else swal(data.data, "", "fail");
+            }, error: function (data) {
+                swal("系统出错，请稍后再试", "", "error");
+            }
+        })
+    }
+
+    /**
+     * 表单合法性验证
+     */
+    jQuery("#myNotice").validate({
+        errorClass: "invalid-feedback animated fadeIn",
+        errorElement: "div",
+        errorPlacement: function (e, n) {
+            jQuery(n).addClass("is-invalid");
+            jQuery(n).after(e)
+        },
+        highlight: function (e) {
+            jQuery(e).parents(".form-group").find(".is-invalid").removeClass("is-invalid").addClass("is-invalid")
+        },
+        success: function (e) {
+            jQuery(e).parents(".form-group").find(".is-invalid").removeClass("is-invalid").addClass("is-valid");
+            jQuery(e).remove()
+        },
+        rules: {
+            "title": {required: !0, maxlength: 45},
+            "keyword": {required: !0, maxlength: 45},
+        },
+        messages: {
+            "title": {
+                required: "标题不能为空",
+                maxlength: "标题最多不能超过45个字符"
+            },
+            "keyword": {
+                required: "关键词不能为空",
+                maxlength: "关键词最多不能超过45个字符"
+            },
+        }
+    })
 </script>
 </body>
-< /html>
+</html>

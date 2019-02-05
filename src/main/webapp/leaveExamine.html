@@ -1075,32 +1075,12 @@
 
             <!-- Horizontal -->
             <div class="block">
-                <!--  <div class="block-header">
-                      <h3 class="block-title">学生信息修改</h3>
-                  </div>-->
-
+                <div class="block-header font-size-sm" style="margin-bottom: -50px;min-height: 70px">
+                    <p class="badge badge-secondary" id="currentPage_total"></p>
+                </div>
                 <div class="block-content block-content-full">
-
                     <div class="row">
                         <div class="px-3"></div>
-                        <!-- <div class="col-lg-3">
-                             <div class="options-container fx-item-zoom-in fx-overlay-zoom-out col-lg-12"
-                                  style="min-height: 200px">
-                                 <img class="img-fluid options-item" id="faceImage" src="assets/media/photos/noimage.png"
-                                      alt="面部图像">
-                                 &lt;!&ndash;  <div class="options-overlay bg-black-75">
-                                       <div class="options-overlay-content">
-                                           <h3 class="h4 text-white mb-2">图像操作</h3>
-                                           <a class="btn btn-sm btn-light" href="javascript:void(0)">
-                                               <i class="fa fa-pencil-alt text-primary mr-1"></i> 修改
-                                           </a>
-                                           <a class="btn btn-sm btn-light" href="javascript:void(0)">
-                                               <i class="fa fa-times text-danger mr-1"></i> 删除
-                                           </a>
-                                       </div>
-                                   </div>&ndash;&gt;
-                             </div>
-                         </div>-->
                         <div>
                             <!-- Form Horizontal - Default Style -->
                             <form class="leave_detail col-lg-12" action="" method="POST"
@@ -1111,28 +1091,6 @@
                                     <!--<div class="px-5"></div>-->
                                     <div class="col-form-label">类&nbsp;型:</div>
                                     <input type="text" class="col-sm-2 form-control" id="category" name="category">
-
-                                    <!--  <div class="form-group col-sm-2" id="category"
-                                           style="padding-top: 8px">
-                                          <div class="custom-control custom-radio custom-control-inline" >
-                                              <input type="radio" class="custom-control-input"
-                                                     id="category_1" name="category" value="0">
-                                              <label class="custom-control-label"
-                                                     for="category_1">病假</label>
-                                          </div>
-                                          <div class="custom-control custom-radio custom-control-inline" hidden="hidden">
-                                              <input type="radio" class="custom-control-input"
-                                                     id="category_2" name="category" value="1">
-                                              <label class="custom-control-label"
-                                                     for="category_2">事假</label>
-                                          </div>
-                                          <div class="custom-control custom-radio custom-control-inline" hidden="hidden">
-                                              <input type="radio" class="custom-control-input"
-                                                     id="category_3" name="category" value="2">
-                                              <label class="custom-control-label"
-                                                     for="category_3">其它</label>
-                                          </div>
-                                      </div>-->
                                     <div class="col-form-label" for="applicationTime">申请时间:</div>
                                     <input type="text" class="col-sm-3 form-control" id="applicationTime"
                                            name="applicationTime" style="min-width:170px">
@@ -1161,7 +1119,8 @@
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label" for="comment">备注:</label>
                                     <textarea type="text" class="col-sm-10 form-control" id="comment"
-                                              name="comment" disabled="disabled"></textarea>
+                                              name="comment" disabled="disabled"
+                                              style="height: 65px;border:1px solid #e1e1e1;"></textarea>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label" for="auditStatus">审批状态:</label>
@@ -1174,19 +1133,29 @@
                                               name="refusalReason"></textarea>
                                 </div>
                                 <div class="form-group row ">
-                                    <div class="col-sm-4 ml-auto">
+                                    <div class="col-sm-3 ml-auto">
+                                        <button type="button" onclick="pageChange(-1)"
+                                                class="btn btn-outline-secondary" id="btn_prevPage">上一条
+                                        </button>
+                                    </div>
+                                    <div class="col-sm-2 ml-auto">
                                         <button disabled="disabled" type="button" onclick="audit(1)"
                                                 class="btn btn-success" id="btn_agree">同意申请
                                         </button>
                                     </div>
-                                    <div class="col-sm-4 ml-auto">
+                                    <div class="col-sm-2 ml-auto">
                                         <button type="button" onclick="window.location='leaveRecordList.html'"
                                                 class="btn btn-primary" id="btn_back">返回列表
                                         </button>
                                     </div>
-                                    <div class="col-sm-4 ml-auto">
+                                    <div class="col-sm-2 ml-auto">
                                         <button disabled="disabled" type="button" onclick="audit(2)"
                                                 class="btn btn-danger" id="btn_refuse">拒绝申请
+                                        </button>
+                                    </div>
+                                    <div class="col-sm-3 ml-auto" style="text-align: right">
+                                        <button type="button" onclick="pageChange(1)"
+                                                class="btn btn-outline-secondary" id="btn_nextPage">下一条
                                         </button>
                                     </div>
                                 </div>
@@ -1257,6 +1226,8 @@
 <script src="assets/js/plugins/baguetteBox.js/baguetteBox.min.js"></script>
 
 <script>
+    var currentPage;
+    var pageNo = 0;
     /**
      *禁用输入框
      */
@@ -1264,32 +1235,52 @@
         $('.leave_detail>div>input').attr("disabled", "disabled");
     });
 
-
     /**
-     * 页面加载时根据id获取请假记录
+     * 页面加载时获取请假记录
      *
      * */
     $(getInfo = function () {
         $.ajax({
             type: "post",
             url: "getNoExamineLeave.do",
-            data: {"leaveExamine": 0},
+            data: {"pageNo": pageNo},
             dataType: "json",
             success: function (data) {
+                //如果没查到数据
                 if (data.success) {
+                    if (data.data.list.length === 0) {
+                        One.helpers('notify', {
+                                type: 'success', align: 'center', delay: 6000,
+                                message: "<br><br><h3>暂无待审批的请假记录,过会再来看看吧!</h3><br>"
+                            }
+                        );
+                        setTimeout(function () {
+                            window.location = "leaveRecordList.html"
+                        }, 6000);
+                        return;
+                    }
+                    //分页返回的页面数据
+                    var pageData = data.data.list[0];
                     //使用formautofill插件自动填充表单
-                    $(".leave_detail").autofill(data.data);
-                    var img_title = data.data.attachment.split('\\').splice(-1, 1);
-                    $("#attachment").attr("src", data.data.attachment);
-                    $("#attachment_big").attr({"href": data.data.attachment, "data-caption": img_title});
+                    $(".leave_detail").autofill(pageData);
+                    //附件src及标题设置
+                    var img_title = pageData.attachment.split('\\').splice(-1, 1);
+                    $("#attachment").attr("src", pageData.attachment);
+                    $("#attachment_big").attr({"href": pageData.attachment, "data-caption": img_title});
                     $("#img_title").text(img_title);
+                    //设置当前条数/总条数
+                    currentPage = data.data.pageNum;
+                    $("#currentPage_total").text(currentPage + ' / ' + data.data.pages);
                     /**
                      * 弹出层显示图片baguetteBox插件初始化
                      */
                     baguetteBox.run('.gallery', {});
+                    /**
+                     * 表单内容自定义填充
+                     */
                     var cateSelector = $('#category');
                     var audiSelector = $('#auditStatus');
-                    switch (data.data.category) {
+                    switch (pageData.category) {
                         case 0:
                             cateSelector.val("事假");
                             break;
@@ -1299,7 +1290,7 @@
                         case 2:
                             cateSelector.val("其它");
                     }
-                    switch (data.data.auditStatus) {
+                    switch (pageData.auditStatus) {
                         case 0:
                             audiSelector.val("未审批");
                             $('#btn_agree,#btn_refuse').attr("disabled", false);
@@ -1343,12 +1334,26 @@
                     $('#refusalReason').attr("disabled", "disabled");
                 } else
                     One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: data.errMsg});
-                getInfo()
+                //直接显示下一条记录
+                pageChange(1);
             },
             error: function () {
                 One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: "未知错误，请重试或联系管理员！"});
             }
         })
+    }
+
+    /**
+     * 上一条。下一条的处理
+     * @param type
+     */
+    function pageChange(type) {
+        if (type === -1) {
+            pageNo = currentPage - 1;
+        } else {
+            pageNo = currentPage + 1;
+        }
+        getInfo();
     }
 </script>
 </body>

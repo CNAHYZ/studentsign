@@ -66,7 +66,7 @@ public class UserController {
             System.out.println(loginResult);
             if (loginResult.getData() == 1) {
                 // 学生类型
-                return new BaseResult<>(true, "student_index.html");
+                return new BaseResult<>(true, "student/index.html");
             } else if (loginResult.getData() == 3) {
                 // 管理员类型
                 return new BaseResult<>(true, "admin_index.html");

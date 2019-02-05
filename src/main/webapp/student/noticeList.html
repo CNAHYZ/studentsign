@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+    <title>OneUI - Bootstrap 4 Admin Template &amp; UI Framework</title>
+
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Open Graph Meta -->
+    <link rel="shortcut icon" href="/assets/media/favicons/favicon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/media/favicons/favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/media/favicons/apple-touch-icon-180x180.png">
+    <!-- END Icons -->
+
+    <!-- Stylesheets -->
+    <!-- Fonts and OneUI framework -->
+    <link rel="stylesheet" href="#">
+    <link rel="stylesheet" id="css-main" href="/assets/css/oneui.min.css">
+    <!-- Page JS Plugins CSS -->
+    <link rel="stylesheet" href="/assets/js/plugins/jquery-pagination_zh/lib/pagination.css">
+    <!-- END Stylesheets -->
+</head>
+<body>
+<!-- Page Container -->
+<div id="page-container" class="enable-page-overlay side-scroll page-header-fixed">
+    <!-- Header -->
+    <header id="page-header">
+        <!-- Header Content -->
+        <div class="content-header">
+            <!-- Left Section -->
+            <div class="d-flex align-items-center mt-3">
+                <h1>管理系统</h1>
+            </div>
+            <!-- END Left Section -->
+
+            <!-- Right Section -->
+            <div class="d-flex align-items-center">
+                <!-- User Dropdown -->
+                <div class="dropdown d-inline-block ml-2">
+                    <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img class="rounded" src="/assets/media/avatars/avatar0.jpg" alt="Header Avatar"
+                             style="width: 18px;">
+                        <span class="d-none d-sm-inline-block ml-1">Adam</span>
+                        <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right p-0 border-0 font-size-sm"
+                         aria-labelledby="page-header-user-dropdown">
+                        <div class="p-3 text-center bg-primary">
+                            <img class="img-avatar img-avatar48 img-avatar-thumb"
+                                 src="/assets/media/avatars/avatar0.jpg"
+                                 alt="">
+                        </div>
+                        <div class="p-2">
+                            <h5 class="dropdown-header text-uppercase">User Options</h5>
+                            <a class="dropdown-item d-flex align-items-center justify-content-between"
+                               href="be_pages_generic_inbox.html">
+                                <span>Inbox</span>
+                                <span>
+                                            <span class="badge badge-pill badge-primary">3</span>
+                                            <i class="si si-envelope-open ml-1"></i>
+                                        </span>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center justify-content-between"
+                               href="be_pages_generic_profile.html">
+                                <span>Profile</span>
+                                <span>
+                                            <span class="badge badge-pill badge-success">1</span>
+                                            <i class="si si-user ml-1"></i>
+                                        </span>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center justify-content-between"
+                               href="javascript:void(0)">
+                                <span>Settings</span>
+                                <i class="si si-settings"></i>
+                            </a>
+                            <div role="separator" class="dropdown-divider"></div>
+                            <h5 class="dropdown-header text-uppercase">Actions</h5>
+                            <a class="dropdown-item d-flex align-items-center justify-content-between"
+                               href="op_auth_lock.html">
+                                <span>Lock Account</span>
+                                <i class="si si-lock ml-1"></i>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center justify-content-between"
+                               href="userLogin.html">
+                                <span>Log Out</span>
+                                <i class="si si-logout ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- END User Dropdown -->
+
+
+                <!-- Options -->
+                <div>
+                    <!-- Color Variations -->
+                    <div class="dropdown d-inline-block ml-3">
+                        <a class="text-dual font-size-sm" id="sidebar-themes-dropdown" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false" href="#">
+                            <i class="si si-drop"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right font-size-sm smini-hide border-0"
+                             aria-labelledby="sidebar-themes-dropdown">
+                            <!-- Color Themes -->
+                            <!-- Layout API, functionality initialized in Template._uiHandleTheme() -->
+                            <a class="dropdown-item d-flex align-items-center justify-content-between"
+                               data-toggle="theme"
+                               data-theme="default" href="#">
+                                <span>Default</span>
+                                <i class="fa fa-circle text-default"></i>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center justify-content-between"
+                               data-toggle="theme"
+                               data-theme="/assets/css/themes/amethyst.min.css" href="#">
+                                <span>Amethyst</span>
+                                <i class="fa fa-circle text-amethyst"></i>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center justify-content-between"
+                               data-toggle="theme"
+                               data-theme="/assets/css/themes/city.min.css" href="#">
+                                <span>City</span>
+                                <i class="fa fa-circle text-city"></i>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center justify-content-between"
+                               data-toggle="theme"
+                               data-theme="/assets/css/themes/modern.min.css" href="#">
+                                <span>Modern</span>
+                                <i class="fa fa-circle text-modern"></i>
+                            </a>
+                            <!-- END Color Themes -->
+
+                            <div class="dropdown-divider"></div>
+
+                            <div class="dropdown-divider"></div>
+
+                            <!-- Header Styles -->
+                            <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                            <a class="dropdown-item" data-toggle="layout" data-action="header_style_light" href="#">
+                                <span>Header Light</span>
+                            </a>
+                            <a class="dropdown-item" data-toggle="layout" data-action="header_style_dark" href="#">
+                                <span>Header Dark</span>
+                            </a>
+                            <!-- Header Styles -->
+                        </div>
+                    </div>
+                    <!-- END Themes -->
+
+                    <!-- Close Sidebar, Visible only on mobile screens -->
+                    <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                    <a class="d-lg-none text-dual ml-3" data-toggle="layout" data-action="sidebar_close"
+                       href="javascript:void(0)">
+                        <i class="fa fa-times"></i>
+                    </a>
+                    <!-- END Close Sidebar -->
+                </div>
+                <!-- END Options -->
+
+            </div>
+            <!-- END Right Section -->
+        </div>
+        <!-- END Header Content -->
+
+        <!-- Header Loader -->
+        <!-- Please check out the Loaders page under Components category to see examples of showing/hiding it -->
+        <div id="page-header-loader" class="overlay-header bg-white">
+            <div class="content-header">
+                <div class="w-100 text-center">
+                    <i class="fa fa-fw fa-circle-notch fa-spin"></i>
+                </div>
+            </div>
+        </div>
+        <!-- END Header Loader -->
+    </header>
+    <!-- END Header -->
+
+    <!-- Main Container -->
+    <main id="main-container">
+
+        <!-- Hero -->
+        <div class="bg-body-light">
+            <div class="content content-full">
+                <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
+                    <h1 class="flex-sm-fill h3 my-2">
+                        通知列表
+                    </h1>
+                    <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
+                        <ol class="breadcrumb breadcrumb-alt">
+                            <li class="breadcrumb-item">通知列表</li>
+                            <li class="breadcrumb-item" aria-current="page">
+                                <a class="link-fx" href="index.html">首页</a>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- END Hero -->
+
+        <!-- Page Content -->
+        <div class="content">
+            <div class="block block-content ">
+                <div id="list" class="">
+
+                </div>
+            </div>
+            <div>
+                <nav aria-label="Navigation" class="float-right">
+                    <div id="pagination" class="pagination my-4">
+
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- END Page Content -->
+    </main>
+    <!-- END Main Container -->
+
+    <!-- Footer -->
+    <footer id="page-footer" class="bg-body-light">
+        <div class="content py-3">
+            <div class="row font-size-sm">
+                <div class="col-sm-6 order-sm-1 py-1 text-center text-sm-left">
+                    <a class="font-w600" href="https://1.envato.market/xWy" target="_blank">OneUI 4.0</a> &copy; <span
+                        data-toggle="year-copy">2018</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- END Footer -->
+</div>
+<!-- END Page Container -->
+<script src="/assets/js/oneui.core.min.js"></script>
+
+<script src="/assets/js/oneui.app.min.js"></script>
+<script src="/assets/js/plugins/jquery-pagination_zh/lib/jquery.pagination.js"></script>
+<script>
+
+    $(function () {
+        var isFirstLoad = true;
+        var pageSize = 5; // 每页显示多少条记录
+        var total;//总记录数
+        Init(0);
+        $("#pagination").pagination(total, {
+            items_per_page: pageSize,
+            callback: pageselectCallback,
+            prev_text: '上一页',
+            next_text: '下一页',
+            num_display_entries: 5, // 连续分页主体部分显示的分页条目数
+            num_edge_entries: 2, // 两侧显示的首尾分页的条目数
+        });
+
+        //点击上一页、下一页、页码的时候触发的事件
+        function pageselectCallback(index, jq) { // index表示当前点击的那个分页的页数索引值-1(基0)，
+            // 后一个参数表示装载容器。
+            isFirstLoad ? isFirstLoad = false : Init(index)
+        }
+
+        function Init(pageIndex) { // 参数就是点击的那个分页的页数索引值
+            $.ajax({
+                url: "/getNoticeForS.do",
+                type: "post",
+                async: false,
+                dataType: "json",
+                data: {
+                    "pageNo": pageIndex + 1,//基1
+                    "pageSize": pageSize
+                },
+                success: function (data) {
+                    // 赋值total，用于计算
+                    total = data.data.total;
+                    console.log(total);
+                    $("#list").empty();
+                    $.each(data.data.list, function (i, item) {
+                        //取内容的前130个字符，并且去除内容中的html标签
+                        if (item.content.length > 130)
+                            myContent = (item.content.replace(/<[^>]+>/g, "").substring(0, 130) + '...');
+                        else myContent = item.content.replace(/<[^>]+>/g, "");
+                        $("#list").append("<div>\n" +
+                            "                                    <h4 class=\"h4 mt-3 mb-2\" id=\"title\">\n" +
+                            "                                        <a href=\"noticeDetail.html?noticeId=" + item.noticeId + "\">" + item.title + "</a>\n" +
+                            "                                    </h4><span class='float-right'>" + item.createTime + "</span>\n" +
+                            "                                    <p class=\"d-none d-sm-block text-muted\" id=\"content\">\n" +
+                            myContent +
+                            "                                    </p>\n" +
+                            "                                </div>")
+                    });
+                },
+                error: function () {
+                    alert("请求超时，请重试！");
+                },
+            });
+        }
+    });
+
+
+</script>
+
+</body>
+</html>
