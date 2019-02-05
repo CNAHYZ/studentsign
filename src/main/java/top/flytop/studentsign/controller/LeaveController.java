@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import top.flytop.studentsign.dto.BaseResult;
 import top.flytop.studentsign.pojo.Leave;
@@ -104,8 +105,7 @@ public class LeaveController {
      */
     @RequestMapping("getNoExamineLeave")
     @ResponseBody
-    public BaseResult getNoExamineLeave() {
-        int pageNo = 1;
+    public BaseResult getNoExamineLeave(@RequestParam(defaultValue = "1") Integer pageNo) {
         int pageSize = 1;
         PageHelper.startPage(pageNo, pageSize);
         BaseResult filterResult = leaveService.getLeaveByStatus("0");
