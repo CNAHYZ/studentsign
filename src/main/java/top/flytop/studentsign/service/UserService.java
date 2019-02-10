@@ -16,7 +16,7 @@ public interface UserService {
 
     BaseResult loginByFace(String faceImage, String id);
 
-    BaseResult<Integer> loginByPwd(String username, String pwd);
+//    BaseResult<Integer> loginByPwd(String username, String pwd);
 
     BaseResult updateInfo(Student student);
 

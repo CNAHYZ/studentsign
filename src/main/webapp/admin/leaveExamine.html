@@ -22,79 +22,42 @@
 
     <!-- Icons -->
     <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
-    <link rel="shortcut icon" href="assets/media/favicons/favicon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="assets/media/favicons/favicon-192x192.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/media/favicons/apple-touch-icon-180x180.png">
+    <link rel="shortcut icon" href="../assets/media/favicons/favicon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/media/favicons/favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/media/favicons/apple-touch-icon-180x180.png">
     <!-- END Icons -->
 
     <!-- Stylesheets -->
     <!-- Fonts and OneUI framework -->
     <link rel="stylesheet" href="#">
-    <link rel="stylesheet" id="css-main" href="assets/css/oneui.min.css">
+    <link rel="stylesheet" id="css-main" href="../assets/css/oneui.min.css">
     <!-- Page JS Plugins CSS -->
-    <link rel="stylesheet" href="assets/js/plugins/sweetalert2/sweetalert2.min.css">
-    <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
-    <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/amethyst.min.css"> -->
+    <link rel="stylesheet" href="../assets/js/plugins/baguetteBox.js/baguetteBox.min.css">
     <!-- END Stylesheets -->
+    <style>
+        .leave_detail > div :disabled {
+            background: none;
+            border: 0
+        }
+
+        hr {
+            border-top: 2px solid #c4c4c4;
+        }
+
+        /*.leave_detail > div > label {*/
+        /*text-align: right*/
+        /*}*/
+    </style>
 </head>
 <body>
 <!-- Page Container -->
-<!--
-    Available classes for #page-container:
-
-GENERIC
-
-    'enable-cookies'                            Remembers active color theme between pages (when set through color theme helper Template._uiHandleTheme())
-
-SIDEBAR & SIDE OVERLAY
-
-    'sidebar-r'                                 Right Sidebar and left Side Overlay (default is left Sidebar and right Side Overlay)
-    'sidebar-mini'                              Mini hoverable Sidebar (screen width > 991px)
-    'sidebar-o'                                 Visible Sidebar by default (screen width > 991px)
-    'sidebar-o-xs'                              Visible Sidebar by default (screen width < 992px)
-    'sidebar-dark'                              Dark themed sidebar
-
-    'side-overlay-hover'                        Hoverable Side Overlay (screen width > 991px)
-    'side-overlay-o'                            Visible Side Overlay by default
-
-    'enable-page-overlay'                       Enables a visible clickable Page Overlay (closes Side Overlay on click) when Side Overlay opens
-
-    'side-scroll'                               Enables custom scrolling on Sidebar and Side Overlay instead of native scrolling (screen width > 991px)
-
-HEADER
-
-    ''                                          Static Header if no class is added
-    'page-header-fixed'                         Fixed Header
-
-HEADER STYLE
-
-    ''                                          Light themed Header
-    'page-header-dark'                          Dark themed Header
-
-MAIN CONTENT LAYOUT
-
-    ''                                          Full width Main Content if no class is added
-    'main-content-boxed'                        Full width Main Content with a specific maximum width (screen width > 1200px)
-    'main-content-narrow'                       Full width Main Content with a percentage width (screen width > 1200px)
--->
 <div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-fixed">
     <!-- Sidebar -->
-    <!--
-        Sidebar Mini Mode - Display Helper classes
-
-        Adding 'smini-hide' class to an element will make it invisible (opacity: 0) when the sidebar is in mini mode
-        Adding 'smini-show' class to an element will make it visible (opacity: 1) when the sidebar is in mini mode
-            If you would like to disable the transition animation, make sure to also add the 'no-transition' class to your element
-
-        Adding 'smini-hidden' to an element will hide it when the sidebar is in mini mode
-        Adding 'smini-visible' to an element will show it (display: inline-block) only when the sidebar is in mini mode
-        Adding 'smini-visible-block' to an element will show it (display: block) only when the sidebar is in mini mode
-    -->
     <nav id="sidebar" aria-label="Main Navigation">
         <!-- Side Header -->
         <div class="content-header bg-white-5">
             <!-- Logo -->
-            <a class="font-w600 text-dual" href="index.html">
+            <a class="font-w600 text-dual" href="../index.html">
                 <i class="fa fa-circle-notch text-primary"></i>
                 <span class="smini-hide">
                             <span class="font-w700 font-size-h5">ne</span> <span class="font-w400">4.0</span>
@@ -908,7 +871,7 @@ MAIN CONTENT LAYOUT
                 <div class="dropdown d-inline-block ml-2">
                     <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img class="rounded" src="assets/media/avatars/avatar0.jpg" alt="Header Avatar"
+                        <img class="rounded" src="../assets/media/avatars/avatar0.jpg" alt="Header Avatar"
                              style="width: 18px;">
                         <span class="d-none d-sm-inline-block ml-1">Adam</span>
                         <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block"></i>
@@ -917,7 +880,7 @@ MAIN CONTENT LAYOUT
                          aria-labelledby="page-header-user-dropdown">
                         <div class="p-3 text-center bg-primary">
                             <img class="img-avatar img-avatar48 img-avatar-thumb"
-                                 src="assets/media/avatars/avatar0.jpg" alt="">
+                                 src="../assets/media/avatars/avatar0.jpg" alt="">
                         </div>
                         <div class="p-2">
                             <h5 class="dropdown-header text-uppercase">User Options</h5>
@@ -1092,11 +1055,7 @@ MAIN CONTENT LAYOUT
         <div class="bg-body-light">
             <div class="content content-full">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-                    <h1 class="flex-sm-fill h3 my-2">
-                        学生信息修改
-                        <small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted">
-                            修改学生信息
-                        </small>
+                    <h1 class="flex-sm-fill h3 my-2">学生请假申请审批
                     </h1>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
@@ -1116,115 +1075,123 @@ MAIN CONTENT LAYOUT
 
             <!-- Horizontal -->
             <div class="block">
-                <!--  <div class="block-header">
-                      <h3 class="block-title">学生信息修改</h3>
-                  </div>-->
-
+                <div class="block-header font-size-sm" style="margin-bottom: -50px;min-height: 70px">
+                    <p class="badge badge-secondary" id="currentPage_total"></p>
+                </div>
                 <div class="block-content block-content-full">
-
                     <div class="row">
-                        <div class="col-lg-1"></div>
-                        <div class="col-lg-3">
-                            <div class="options-container fx-item-zoom-in fx-overlay-zoom-out col-lg-12"
-                                 style="min-height: 200px">
-                                <img class="img-fluid options-item" id="faceImage" src="assets/media/photos/noimage.png"
-                                     alt="面部图像">
-                                <!--  <div class="options-overlay bg-black-75">
-                                      <div class="options-overlay-content">
-                                          <h3 class="h4 text-white mb-2">图像操作</h3>
-                                          <a class="btn btn-sm btn-light" href="javascript:void(0)">
-                                              <i class="fa fa-pencil-alt text-primary mr-1"></i> 修改
-                                          </a>
-                                          <a class="btn btn-sm btn-light" href="javascript:void(0)">
-                                              <i class="fa fa-times text-danger mr-1"></i> 删除
-                                          </a>
-                                      </div>
-                                  </div>-->
-                            </div>
-                        </div>
-                        <div class="col-lg-8">
+                        <div class="px-3"></div>
+                        <div>
                             <!-- Form Horizontal - Default Style -->
-                            <form class="form_alter" enctype="multipart/form-data" action="" method="POST"
-                                  onsubmit="return false;">
+                            <form class="leave_detail col-lg-12" action="" method="POST"
+                                  autocomplete="off">
+                                <div class="form-group row  justify-content-center">
+                                    <div class="col-form-label">记录ID:</div>
+                                    <input type="text" class="col-sm-2 form-control" id="id" name="id">
+                                    <!--<div class="px-5"></div>-->
+                                    <div class="col-form-label">类&nbsp;型:</div>
+                                    <input type="text" class="col-sm-2 form-control" id="category" name="category">
+                                    <div class="col-form-label" for="applicationTime">申请时间:</div>
+                                    <input type="text" class="col-sm-3 form-control" id="applicationTime"
+                                           name="applicationTime" style="min-width:170px">
+                                </div>
+                                <div class="col-12">
+                                    <hr>
+                                </div>
+
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label" for="example-hf-email">学&nbsp;号</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" readonly="readonly" class="form-control"
-                                               id="example-hf-email" name="sNo" placeholder="学号">
-                                    </div>
+                                    <label class="col-sm-2 col-form-label" for="sNo">学&nbsp;号:</label>
+                                    <input type="text" class="col-sm-2 form-control" id="sNo" name="sNo">
+                                    <div class="px-6"></div>
+                                    <label class="col-sm-1 col-form-label" for="sName">姓&nbsp;名:</label>
+                                    <input type="text" class="col-sm-2 form-control" id="sName" name="sName">
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label" for="2">姓&nbsp;名</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="2" name="sName" placeholder="学生姓名">
-                                    </div>
+                                    <label class="col-sm-2 col-form-label" for="startTime">请假时间:</label>
+                                    <input type="text" class="col-sm-2 form-control" style="min-width:150px"
+                                           id="startTime" name="startTime">
+                                    <label class="col-sm-1 col-form-label"
+                                           for="endTime">&nbsp;&nbsp;&nbsp;&nbsp;--</label>
+                                    <input type="text" class="col-sm-3 form-control" id="endTime" name="endTime"
+                                           style="min-width:150px">
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label" for="comment">备注:</label>
+                                    <textarea type="text" class="col-sm-10 form-control" id="comment"
+                                              name="comment" disabled="disabled"
+                                              style="height: 65px;border:1px solid #e1e1e1;"></textarea>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label" for="3">性&nbsp;别</label>
-                                    <div class="form-group col-sm-6" id="3"
-                                         style="padding-top: 10px;margin-bottom: -10px">
-                                        <div class="custom-control custom-radio custom-control-inline custom-control-lg col-sm-3">
-                                            <input type="radio" class="custom-control-input"
-                                                   id="example-rd-custom-inline1" name="gender" value="男"
-                                                   checked="checked">
-                                            <label class="custom-control-label"
-                                                   for="example-rd-custom-inline1">男</label>
-                                        </div>
-                                        <div class="custom-control custom-radio custom-control-inline custom-control-lg">
-                                            <input type="radio" class="custom-control-input"
-                                                   id="example-rd-custom-inline2" name="gender" value="女">
-                                            <label class="custom-control-label"
-                                                   for="example-rd-custom-inline2">女</label>
-                                        </div>
-                                    </div>
+                                    <label class="col-sm-2 col-form-label" for="auditStatus">审批状态:</label>
+                                    <input type="text" class="col-sm-3 form-control" id="auditStatus"
+                                           name="auditStatus">
                                 </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label" for="4">楼&nbsp;号</label>
-                                    <div class="col-sm-6">
-                                        <input class="form-control" id="4" name="buildingNo" placeholder="宿舍楼号">
-                                    </div>
+                                <div class="form-group row refusalReasonAll">
+                                    <label class="col-sm-2 col-form-label" for="refusalReason">拒绝理由:</label>
+                                    <textarea type="text" class="col-sm-10 form-control" id="refusalReason"
+                                              name="refusalReason"></textarea>
                                 </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label" for="5">房&nbsp;间&nbsp;号</label>
-                                    <div class="col-sm-6">
-                                        <input class="form-control" id="5" name="roomNo" placeholder="宿舍房间号">
+                                <div class="form-group row ">
+                                    <div class="col-sm-3 ml-auto">
+                                        <button type="button" onclick="pageChange(-1)"
+                                                class="btn btn-outline-secondary" id="btn_prevPage">上一条
+                                        </button>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label" for="6">生&nbsp;日</label>
-                                    <div class="col-sm-6">
-                                        <input class="form-control" type="text-" id="6" name="birthday"
-                                               placeholder="出生日期">
+                                    <div class="col-sm-2 ml-auto">
+                                        <button disabled="disabled" type="button" onclick="audit(1)"
+                                                class="btn btn-success" id="btn_agree">同意申请
+                                        </button>
+                                    </div>
+                                    <div class="col-sm-2 ml-auto">
+                                        <button type="button" onclick="window.location='leaveRecordList.html'"
+                                                class="btn btn-primary" id="btn_back">返回列表
+                                        </button>
+                                    </div>
+                                    <div class="col-sm-2 ml-auto">
+                                        <button disabled="disabled" type="button" onclick="audit(2)"
+                                                class="btn btn-danger" id="btn_refuse">拒绝申请
+                                        </button>
+                                    </div>
+                                    <div class="col-sm-3 ml-auto" style="text-align: right">
+                                        <button type="button" onclick="pageChange(1)"
+                                                class="btn btn-outline-secondary" id="btn_nextPage">下一条
+                                        </button>
                                     </div>
                                 </div>
                             </form>
                             <!-- END Form Horizontal - Default Style -->
-                            <div class=" form-group row">
-                                <label class="col-sm-2 col-form-label" for="7">面&nbsp;部&nbsp;图&nbsp;像</label>
-                                <!-- Populating custom file input label with the selected filename (data-toggle="custom-file-input" is initialized in Helpers.coreBootstrapCustomFileInput()) -->
-                                <div class="col-sm-6">
-                                    <input type="file" class="custom-file-input"
-                                           data-toggle="custom-file-input" id="7"
-                                           name="faceImage">
-                                    <label class="custom-file-label" for="7"></label>
+                        </div>
+                        <div class="px-3"></div>
+                        <div class="col-md-12 col-lg-12 col-xl-3">
+                            <!-- Business Plan -->
+                            <div class="block block-link-shadow block-themed block-fx-shadow text-center">
+                                <div class="block-header">
+                                    <h3 class="block-title">
+                                        <i class="fa fa-file-archive mr-1"></i> 附件
+                                    </h3>
+                                </div>
+                                <div class="block-content bg-body-light">
+                                    <div class="py-2 gallery">
+                                        <a href="" id="attachment_big">
+                                            <img id="attachment" width="100px" src="" alt="无附件">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="block-content">
+                                    <div class="font-size-sm py-1">
+                                        <p id="img_title"></p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <div class="col-sm-10 ml-auto">
-                                    <button type="button" class="btn btn-primary" id="btn_submit">提交修改</button>
-                                </div>
-                            </div>
-
-
+                            <!-- END Business Plan -->
                         </div>
                     </div>
                 </div>
             </div>
             <!-- END Horizontal -->
-
         </div>
         <!-- END Page Content -->
-
     </main>
     <!-- END Main Container -->
 
@@ -1232,14 +1199,9 @@ MAIN CONTENT LAYOUT
     <footer id="page-footer" class="bg-body-light">
         <div class="content py-3">
             <div class="row font-size-sm">
-                <div class="col-sm-6 order-sm-2 py-1 text-center text-sm-right">
-                    Crafted with <i class="fa fa-heart text-danger"></i> by <a class="font-w600"
-                                                                               href="https://1.envato.market/ydb"
-                                                                               target="_blank">pixelcave</a>
-                </div>
                 <div class="col-sm-6 order-sm-1 py-1 text-center text-sm-left">
-                    <a class="font-w600" href="https://1.envato.market/xWy" target="_blank">OneUI 4.0</a> &copy; <span
-                        data-toggle="year-copy">2018</span>
+                    <a class="font-w600" href="https://1.envato.market/xWy" target="_blank">OneUI 4.0</a>
+                    &copy; <span data-toggle="year-copy">2018</span>
                 </div>
             </div>
         </div>
@@ -1251,46 +1213,94 @@ MAIN CONTENT LAYOUT
 <!--
     OneUI JS Core
 -->
-<script src="assets/js/oneui.core.min.js"></script>
+<script src="../assets/js/oneui.core.min.js"></script>
 
-<script src="assets/js/oneui.app.min.js"></script>
-<script src="assets/js/plugins/jquery.formautofill.js"></script>
+<script src="../assets/js/oneui.app.min.js"></script>
+<script src="../assets/js/plugins/jquery.formautofill.js"></script>
 <!-- Page JS Plugins  提醒-->
-<script src="assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js"></script>
+<script src="../assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js"></script>
 
-<script src="assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
-<script src="assets/js/plugins/jquery-validation/localization/messages_zh.js"></script>
+<script src="../assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="../assets/js/plugins/jquery-validation/localization/messages_zh.js"></script>
 
-<!-- Page JS Plugins 对话框-->
-<script src="assets/js/plugins/es6-promise/es6-promise.auto.min.js"></script>
-<script src="assets/js/plugins/sweetalert2/sweetalert2.min.js"></script>
+<script src="../assets/js/plugins/baguetteBox.js/baguetteBox.min.js"></script>
 
 <script>
+    var currentPage;
+    var pageNo = 0;
     /**
-     * 页面加载时根据学号获取学生信息
+     *禁用输入框
+     */
+    $(function () {
+        $('.leave_detail>div>input').attr("disabled", "disabled");
+    });
+
+    /**
+     * 页面加载时获取请假记录
      *
      * */
-    $(document).ready(getInfo = function () {
-        var thisURL = document.URL;
-        /*使用 window.location.search()方法获取地址栏要传递的参数。得到"?name&code"。
-        用perimeters.substr(1)取到'?'之后的值。
-        再把取到的值分割成包含一个一个值的数组，
-        如果传递的值是汉字就会出现乱码。这里就要用到decodeURI()方法来转换一下*/
-        var parameters = window.location.search;
-        sno = decodeURI(parameters.substr(1).split('&')[0]);
+    $(getInfo = function () {
         $.ajax({
             type: "post",
-            url: "studentInfoGet.do",
-            data: {"sNo": sno},
+            url: "getNoExamineLeave.do",
+            data: {"pageNo": pageNo},
             dataType: "json",
             success: function (data) {
+                //如果没查到数据
                 if (data.success) {
+                    if (data.data.list.length === 0) {
+                        One.helpers('notify', {
+                                type: 'success', align: 'center', delay: 6000,
+                                message: "<br><br><h3>暂无待审批的请假记录,过会再来看看吧!</h3><br>"
+                            }
+                        );
+                        setTimeout(function () {
+                            window.location = "leaveRecordList.html"
+                        }, 6000);
+                        return;
+                    }
+                    //分页返回的页面数据
+                    var pageData = data.data.list[0];
                     //使用formautofill插件自动填充表单
-                    $(".form_alter").autofill(data.data);
-                    var path = data.data.faceImage;
-                    if (path != '') {
-                        console.log(path);
-                        $("#faceImage").attr("src", path);
+                    $(".leave_detail").autofill(pageData);
+                    //附件src及标题设置
+                    var img_title = pageData.attachment.split('\\').splice(-1, 1);
+                    $("#attachment").attr("src", pageData.attachment);
+                    $("#attachment_big").attr({"href": pageData.attachment, "data-caption": img_title});
+                    $("#img_title").text(img_title);
+                    //设置当前条数/总条数
+                    currentPage = data.data.pageNum;
+                    $("#currentPage_total").text(currentPage + ' / ' + data.data.pages);
+                    /**
+                     * 弹出层显示图片baguetteBox插件初始化
+                     */
+                    baguetteBox.run('.gallery', {});
+                    /**
+                     * 表单内容自定义填充
+                     */
+                    var cateSelector = $('#category');
+                    var audiSelector = $('#auditStatus');
+                    switch (pageData.category) {
+                        case 0:
+                            cateSelector.val("事假");
+                            break;
+                        case 1:
+                            cateSelector.val("病假");
+                            break;
+                        case 2:
+                            cateSelector.val("其它");
+                    }
+                    switch (pageData.auditStatus) {
+                        case 0:
+                            audiSelector.val("未审批");
+                            $('#btn_agree,#btn_refuse').attr("disabled", false);
+                            break;
+                        case 1:
+                            audiSelector.val("已同意");
+                            $(".refusalReasonAll").hide();
+                            break;
+                        case 2:
+                            audiSelector.val("已拒绝");
                     }
                 } else
                     One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: data.errMsg});
@@ -1302,113 +1312,49 @@ MAIN CONTENT LAYOUT
     });
 
     /**
-     * 提交按钮点击事件
-     *
+     * 同意、拒绝按钮点击事件
      */
-    $("#btn_submit").click(function (e) {
-        swal({
-            title: "确认修改吗?",
-            text: "提交后将无法撤销",
-            type: "warning",
-            showCancelButton: !0,
-            confirmButtonClass: "btn btn-danger m-1",
-            cancelButtonClass: "btn btn-secondary m-1",
-            confirmButtonText: "确认提交",
-            cancelButtonText: "取消",
-            html: !1,
-            preConfirm: function (e) {
-                return new Promise(function (e) {
-
-                    setTimeout(function () {
-                        e()
-                    }, 50)
-                })
-            }
-        }).then(function (e) {
-            e.value ? convert($('#7')[0]) : "cancel" === e.dismiss /*&& swal("已取消", "", "error")*/
-        });
-
-        /**
-         * 图片转换为Base64编码
-         *
-         * */
-        function convert(input_file) {
-            /*input_file：文件按钮对象*/
-            /*get_data: 转换成功后执行的方法*/
-            if (typeof (FileReader) === 'undefined') {
-                alert("抱歉，你的浏览器不支持 FileReader，不能将图片转换为Base64，请使用现代浏览器操作！");
-            } else {
-                /*图片转Base64 核心代码*/
-                var file = input_file.files[0];
-                if (file != null) {
-                    //这里判断类型是不是是图片
-                    if (!/image\/\w+/.test(file.type)) {
-                        alert("请确保文件为图像类型");
-                        return false;
-                    }
-                    var reader = new FileReader();
-                    reader.readAsDataURL(file);
-                    reader.onload = function () {
-                        commitAlter(this.result.substring(23));
-                    };
-                } else commitAlter('');
-            }
-        }
-
-        /**
-         *发送ajax请求
-         * @param imgData
-         */
-        function commitAlter(imgData) {
-            console.log($('#7')[0].files[0]);
-            var upData = new FormData($('.form_alter')[0]);
-            console.log(imgData);
-            upData.append("faceImage", imgData);
-            $.ajax({
-                processData: false,
-                contentType: false,
-                type: "post",
-                url: "studentInfoAlter.do",
-                // data:$('.form_alter').serialize() ,
-                data: upData,
-                // contentType: "application/x-www-form-urlencoded; charset=UTF-8",//post请求的信息格式
-                dataType: "json",
-                success: function (data) {
-                    if (data.success) {
-                        swal(data.data, "", "success");
-                        getInfo();
-                    } else
-                        One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: data.errMsg});
-                },
-                error: function () {
-                    One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: "未知错误，请重试或联系管理员！"});
-                }
-            })
-        }
-    });
-    $(function () {
-        validator = $(".form_alter").validate({
-            errorClass: "invalid-feedback animated fadeIn",
-            errorElement: "div",
-            errorPlacement: function (e, r) {
-                jQuery(r).addClass("is-invalid");
-                jQuery(r).parents(".form-group").append(e)
+    function audit(status) {
+        id = $("#id").val();
+        refusalReason = $('#refusalReason').val();
+        sendData = {
+            "id": id,
+            "status": status,
+            "refusalReason": refusalReason
+        };
+        $.ajax({
+            type: "post",
+            url: "examineLeave.do",
+            data: sendData,
+            dataType: "json",
+            success: function (data) {
+                if (data.success) {
+                    One.helpers('notify', {type: 'success', icon: 'fa fa-check mr-1', message: data.data});
+                    $('#btn_agree,#btn_refuse').hide();
+                    $('#refusalReason').attr("disabled", "disabled");
+                } else
+                    One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: data.errMsg});
+                //直接显示下一条记录
+                pageChange(1);
             },
-            highlight: function (e) {
-                jQuery(e).parents(".form-group").find(".is-invalid").removeClass("is-invalid").addClass("is-invalid")
-            },
-            success: function (e) {
-                jQuery(e).parents(".form-group").find(".is-invalid").removeClass("is-invalid").addClass("is-valid");
-                jQuery(e).remove()
-            },
-            rules: {
-                "sName": {required: !0, maxlength: 10},
-                "roomNo": {digits: !0, minlength: 3, maxlength: 3},
-                "buildingNo": {range: [1, 18]},
-                "birthday": {dateISO: !0}
+            error: function () {
+                One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: "未知错误，请重试或联系管理员！"});
             }
         })
-    })
+    }
+
+    /**
+     * 上一条。下一条的处理
+     * @param type
+     */
+    function pageChange(type) {
+        if (type === -1) {
+            pageNo = currentPage - 1;
+        } else {
+            pageNo = currentPage + 1;
+        }
+        getInfo();
+    }
 </script>
 </body>
 </html>

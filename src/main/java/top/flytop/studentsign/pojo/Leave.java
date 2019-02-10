@@ -3,6 +3,7 @@ package top.flytop.studentsign.pojo;
 import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.ibatis.type.Alias;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Timestamp;
 
@@ -14,7 +15,7 @@ import java.sql.Timestamp;
  * @Version 1.0
  */
 @Alias("leave")
-public class Leave {
+public class Leave implements Serializable {
     private Integer id;
     private String sNo;
     private Timestamp applicationTime;

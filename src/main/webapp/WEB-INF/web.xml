@@ -21,11 +21,37 @@
     <!-- 加载spring容器 -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:spring/applicationContext.xml</param-value>
+        <param-value>classpath:spring/applicationContext*.xml</param-value>
     </context-param>
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+
+    <!-- shiro过滤器，DelegatingFilterProxy自动到spring容器查找名字为
+    shiroFilter（filter-name）的bean并把所有 Filter 的操作委托给它 -->
+    <filter>
+        <filter-name>shiroFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+        <!-- 设置true由servlet容器控制filter的生命周期 -->
+        <init-param>
+            <param-name>targetFilterLifecycle</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <!-- 设置spring容器filter的bean id，如果不设置则找与filter-name一致的bean-->
+        <init-param>
+            <param-name>targetBeanName</param-name>
+            <param-value>shiroFilter</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>shiroFilter</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>shiroFilter</filter-name>
+        <url-pattern>*.html</url-pattern>
+    </filter-mapping>
+
     <!--前端控制器-->
     <servlet>
         <servlet-name>springmvc</servlet-name>
@@ -48,6 +74,7 @@
         仍然会由DispatcherServlet解析jsp，不能根据jsp页面找到handler，会报错-->
         <url-pattern>*.do</url-pattern>
     </servlet-mapping>
+
     <!-- post乱码过滤器 -->
     <filter>
         <filter-name>CharacterEncodingFilter</filter-name>
@@ -61,11 +88,13 @@
         <filter-name>CharacterEncodingFilter</filter-name>
         <url-pattern>*.do</url-pattern>
     </filter-mapping>
+
     <!--会话超时配置（单位为分钟）-->
     <session-config>
         <!--如果某个会话在一定时间未被访问，则服务器可以扔掉以节约内存-->
         <session-timeout>120</session-timeout>
     </session-config>
+
     <!--MIME类型配置 -->
     <mime-mapping>
         <!--设定某种扩展名的文件用一种应用程序来打开的方式类型，
@@ -75,6 +104,7 @@
         <mime-type>application/mspowerpoint</mime-type>
         <!--MIME格式-->
     </mime-mapping>
+
     <!--配置错误页面-->
     <error-page>
         <!--将错误代码(Error Code)或异常(Exception)的种类对应到web应用资源路径.-->

@@ -24,6 +24,7 @@
         <servlet-api.version>3.1.0</servlet-api.version>
         <log4j2.version>2.8.2</log4j2.version>
         <baiduaip.version>4.9.0</baiduaip.version>
+        <shiro.version>1.4.0</shiro.version>
     </properties>
 
     <dependencies>
@@ -34,7 +35,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- spring -->
+        <!--============================ spring =======================-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
@@ -78,7 +79,7 @@
         </dependency>
 
 
-        <!-- mybatis 包 -->
+        <!-- =============================== mybatis ======================== -->
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
@@ -97,7 +98,7 @@
             <version>5.1.8</version>
         </dependency>
 
-        <!-- mysql连接 -->
+        <!-- ============================== 数据库相关 =============================== -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -116,7 +117,7 @@
             <version>1.9.2</version>
         </dependency>
 
-        <!-- log4j2 -->
+        <!-- ================================== 日志相关 ============================= -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
@@ -134,27 +135,52 @@
             <artifactId>log4j-1.2-api</artifactId>
             <version>${log4j2.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>1.7.25</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-nop -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-nop</artifactId>
             <version>1.7.25</version>
         </dependency>
 
-        <!-- servlet -->
+        <!-- ============================= shiro ================================ -->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-core</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-web</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-ehcache</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/net.sf.ehcache/ehcache-core -->
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache-core</artifactId>
+            <version>2.6.11</version>
+        </dependency>
+
+        <!-- =================================== servlet ================================= -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>${servlet-api.version}</version>
             <scope>provided</scope>
         </dependency>
-
         <!-- JSP相关 -->
         <!--       <dependency>
                    <groupId>jstl</groupId>
@@ -162,21 +188,21 @@
                    <version>${jstl.version}</version>
                </dependency>-->
 
-        <!-- fastjson -->
+        <!-- ============================ fastjson ========================== -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.56</version>
         </dependency>
 
-        <!--commons-codec,Apache提供的用于摘要运算、编码解码的包-->
+        <!--=============== commons-codec,Apache提供的用于摘要运算、编码解码的包 ====================-->
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
             <version>1.11</version>
         </dependency>
 
-        <!-- 文件上传 -->
+        <!-- ================================= 文件上传 ============================== -->
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
@@ -189,7 +215,7 @@
         </dependency>
 
 
-        <!--百度ai-->
+        <!--================================= 百度ai =================================-->
         <dependency>
             <groupId>com.baidu.aip</groupId>
             <artifactId>java-sdk</artifactId>

@@ -59,7 +59,7 @@ public class ImageUtil {
         /**获取文件的后缀**/
         String suffix = multipartFile.getOriginalFilename().substring(multipartFile.getOriginalFilename().lastIndexOf("."));
         /**拼成完整的文件保存路径加文件**/
-        String filePath = realPath + fileName + suffix;
+        String filePath = realPath + "/" + fileName + suffix;
         File file = new File(filePath);
         try {
             multipartFile.transferTo(file);

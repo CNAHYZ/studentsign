@@ -22,20 +22,17 @@
 
     <!-- Icons -->
     <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
-    <link rel="shortcut icon" href="assets/media/favicons/favicon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="assets/media/favicons/favicon-192x192.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/media/favicons/apple-touch-icon-180x180.png">
+    <link rel="shortcut icon" href="../assets/media/favicons/favicon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/media/favicons/favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/media/favicons/apple-touch-icon-180x180.png">
     <!-- END Icons -->
 
     <!-- Stylesheets -->
-    <!-- Page JS Plugins CSS -->
-    <link rel="stylesheet" href="assets/js/plugins/datatables/dataTables.bootstrap4.css">
-    <link rel="stylesheet" href="assets/js/plugins/datatables/buttons-bs4/buttons.bootstrap4.min.css">
-
     <!-- Fonts and OneUI framework -->
     <link rel="stylesheet" href="#">
-    <link rel="stylesheet" id="css-main" href="assets/css/oneui.min.css">
-
+    <link rel="stylesheet" id="css-main" href="../assets/css/oneui.min.css">
+    <!-- Page JS Plugins CSS -->
+    <link rel="stylesheet" href="../assets/js/plugins/sweetalert2/sweetalert2.min.css">
     <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
     <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/amethyst.min.css"> -->
     <!-- END Stylesheets -->
@@ -81,7 +78,6 @@ MAIN CONTENT LAYOUT
     'main-content-narrow'                       Full width Main Content with a percentage width (screen width > 1200px)
 -->
 <div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-fixed">
-
     <!-- Sidebar -->
     <!--
         Sidebar Mini Mode - Display Helper classes
@@ -98,7 +94,7 @@ MAIN CONTENT LAYOUT
         <!-- Side Header -->
         <div class="content-header bg-white-5">
             <!-- Logo -->
-            <a class="font-w600 text-dual" href="index.html">
+            <a class="font-w600 text-dual" href="../index.html">
                 <i class="fa fa-circle-notch text-primary"></i>
                 <span class="smini-hide">
                             <span class="font-w700 font-size-h5">ne</span> <span class="font-w400">4.0</span>
@@ -180,8 +176,6 @@ MAIN CONTENT LAYOUT
         <!-- END Side Header -->
 
         <!-- Side Navigation -->
-
-        <!-- Side Navigation -->
         <div class="content-side content-side-full">
             <ul class="nav-main">
                 <li class="nav-main-item">
@@ -195,7 +189,7 @@ MAIN CONTENT LAYOUT
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
                        aria-expanded="false" href="#">
                         <i class="nav-main-link-icon si si-energy"></i>
-                        <span class="nav-main-link-name">通知管理</span>
+                        <span class="nav-main-link-name">Blocks</span>
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
@@ -208,13 +202,28 @@ MAIN CONTENT LAYOUT
                                 <span class="nav-main-link-name">Options</span>
                             </a>
                         </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_blocks_forms.html">
+                                <span class="nav-main-link-name">Forms</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_blocks_themed.html">
+                                <span class="nav-main-link-name">Themed</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_blocks_api.html">
+                                <span class="nav-main-link-name">API</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="nav-main-item">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
                        aria-expanded="false" href="#">
                         <i class="nav-main-link-icon si si-badge"></i>
-                        <span class="nav-main-link-name">签到管理</span>
+                        <span class="nav-main-link-name">Elements</span>
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
@@ -232,13 +241,83 @@ MAIN CONTENT LAYOUT
                                 <span class="nav-main-link-name">Icons</span>
                             </a>
                         </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_ui_buttons.html">
+                                <span class="nav-main-link-name">Buttons</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_ui_buttons_groups.html">
+                                <span class="nav-main-link-name">Button Groups</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_ui_dropdowns.html">
+                                <span class="nav-main-link-name">Dropdowns</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_ui_tabs.html">
+                                <span class="nav-main-link-name">Tabs</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_ui_navigation.html">
+                                <span class="nav-main-link-name">Navigation</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_ui_progress.html">
+                                <span class="nav-main-link-name">Progress</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_ui_alerts.html">
+                                <span class="nav-main-link-name">Alerts</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_ui_tooltips.html">
+                                <span class="nav-main-link-name">Tooltips</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_ui_popovers.html">
+                                <span class="nav-main-link-name">Popovers</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_ui_modals.html">
+                                <span class="nav-main-link-name">Modals</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_ui_images.html">
+                                <span class="nav-main-link-name">Images Overlay</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_ui_timeline.html">
+                                <span class="nav-main-link-name">Timeline</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_ui_animations.html">
+                                <span class="nav-main-link-name">Animations</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_ui_color_themes.html">
+                                <span class="nav-main-link-name">Color Themes</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="nav-main-item">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
                        aria-expanded="false" href="#">
                         <i class="nav-main-link-icon si si-grid"></i>
-                        <span class="nav-main-link-name">请假管理</span>
+                        <span class="nav-main-link-name">Tables</span>
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
@@ -251,25 +330,68 @@ MAIN CONTENT LAYOUT
                                 <span class="nav-main-link-name">Responsive</span>
                             </a>
                         </li>
-                    </ul>
-                </li>
-                <li class="nav-main-item">
-                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
-                       aria-expanded="false" href="#">
-                        <i class="nav-main-link-icon si si-note"></i>
-                        <span class="nav-main-link-name">学生管理</span>
-                    </a>
-                    <ul class="nav-main-submenu">
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="studentList.html">
-                                <span class="nav-main-link-name">学生列表</span>
+                            <a class="nav-main-link" href="be_tables_helpers.html">
+                                <span class="nav-main-link-name">Helpers</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_tables_pricing.html">
+                                <span class="nav-main-link-name">Pricing</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_tables_datatables.html">
+                                <span class="nav-main-link-name">DataTables</span>
                             </a>
                         </li>
                     </ul>
+                </li>
+                <li class="nav-main-item open">
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
+                       aria-expanded="true" href="#">
+                        <i class="nav-main-link-icon si si-note"></i>
+                        <span class="nav-main-link-name">Forms</span>
+                    </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="studentAdd.html">
-                                <span class="nav-main-link-name">添加学生</span>
+                            <a class="nav-main-link" href="be_forms_elements.html">
+                                <span class="nav-main-link-name">Elements</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_forms_custom_controls.html">
+                                <span class="nav-main-link-name">Custom Controls</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link active" href="be_forms_layouts.html">
+                                <span class="nav-main-link-name">Layouts</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_forms_input_groups.html">
+                                <span class="nav-main-link-name">Input Groups</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="plugins.html">
+                                <span class="nav-main-link-name">Plugins</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_forms_editors.html">
+                                <span class="nav-main-link-name">Editors</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_forms_validation.html">
+                                <span class="nav-main-link-name">Validation</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_forms_wizard.html">
+                                <span class="nav-main-link-name">Wizard</span>
                             </a>
                         </li>
                     </ul>
@@ -279,7 +401,7 @@ MAIN CONTENT LAYOUT
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
                        aria-expanded="false" href="#">
                         <i class="nav-main-link-icon si si-wrench"></i>
-                        <span class="nav-main-link-name">系统设置</span>
+                        <span class="nav-main-link-name">Components</span>
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
@@ -290,6 +412,61 @@ MAIN CONTENT LAYOUT
                         <li class="nav-main-item">
                             <a class="nav-main-link" href="be_comp_image_cropper.html">
                                 <span class="nav-main-link-name">Image Cropper</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_comp_appear.html">
+                                <span class="nav-main-link-name">Appear</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_comp_charts.html">
+                                <span class="nav-main-link-name">Charts</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_comp_calendar.html">
+                                <span class="nav-main-link-name">Calendar</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_comp_sliders.html">
+                                <span class="nav-main-link-name">Sliders</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_comp_syntax_highlighting.html">
+                                <span class="nav-main-link-name">Syntax Highlighting</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_comp_rating.html">
+                                <span class="nav-main-link-name">Rating</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_comp_maps_google.html">
+                                <span class="nav-main-link-name">Google Maps</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_comp_maps_vector.html">
+                                <span class="nav-main-link-name">Vector Maps</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_comp_dialogs.html">
+                                <span class="nav-main-link-name">Dialogs</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_comp_notifications.html">
+                                <span class="nav-main-link-name">Notifications</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_comp_gallery.html">
+                                <span class="nav-main-link-name">Gallery</span>
                             </a>
                         </li>
                     </ul>
@@ -435,6 +612,116 @@ MAIN CONTENT LAYOUT
                         </li>
                     </ul>
                 </li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
+                       aria-expanded="false" href="#">
+                        <i class="nav-main-link-icon si si-puzzle"></i>
+                        <span class="nav-main-link-name">Multi Level Menu</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="#">
+                                <span class="nav-main-link-name">Link 1-1</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="#">
+                                <span class="nav-main-link-name">Link 1-2</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
+                               aria-expanded="false" href="#">
+                                <span class="nav-main-link-name">Sub Level 2</span>
+                            </a>
+                            <ul class="nav-main-submenu">
+                                <li class="nav-main-item">
+                                    <a class="nav-main-link" href="#">
+                                        <span class="nav-main-link-name">Link 2-1</span>
+                                    </a>
+                                </li>
+                                <li class="nav-main-item">
+                                    <a class="nav-main-link" href="#">
+                                        <span class="nav-main-link-name">Link 2-2</span>
+                                    </a>
+                                </li>
+                                <li class="nav-main-item">
+                                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu"
+                                       aria-haspopup="true" aria-expanded="false" href="#">
+                                        <span class="nav-main-link-name">Sub Level 3</span>
+                                    </a>
+                                    <ul class="nav-main-submenu">
+                                        <li class="nav-main-item">
+                                            <a class="nav-main-link" href="#">
+                                                <span class="nav-main-link-name">Link 3-1</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-main-item">
+                                            <a class="nav-main-link" href="#">
+                                                <span class="nav-main-link-name">Link 3-2</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-main-item">
+                                            <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu"
+                                               aria-haspopup="true" aria-expanded="false" href="#">
+                                                <span class="nav-main-link-name">Sub Level 4</span>
+                                            </a>
+                                            <ul class="nav-main-submenu">
+                                                <li class="nav-main-item">
+                                                    <a class="nav-main-link" href="#">
+                                                        <span class="nav-main-link-name">Link 4-1</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-main-item">
+                                                    <a class="nav-main-link" href="#">
+                                                        <span class="nav-main-link-name">Link 4-2</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-main-item">
+                                                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu"
+                                                       aria-haspopup="true" aria-expanded="false" href="#">
+                                                        <span class="nav-main-link-name">Sub Level 5</span>
+                                                    </a>
+                                                    <ul class="nav-main-submenu">
+                                                        <li class="nav-main-item">
+                                                            <a class="nav-main-link" href="#">
+                                                                <span class="nav-main-link-name">Link 5-1</span>
+                                                            </a>
+                                                        </li>
+                                                        <li class="nav-main-item">
+                                                            <a class="nav-main-link" href="#">
+                                                                <span class="nav-main-link-name">Link 5-2</span>
+                                                            </a>
+                                                        </li>
+                                                        <li class="nav-main-item">
+                                                            <a class="nav-main-link nav-main-link-submenu"
+                                                               data-toggle="submenu" aria-haspopup="true"
+                                                               aria-expanded="false" href="#">
+                                                                <span class="nav-main-link-name">Sub Level 6</span>
+                                                            </a>
+                                                            <ul class="nav-main-submenu">
+                                                                <li class="nav-main-item">
+                                                                    <a class="nav-main-link" href="#">
+                                                                        <span class="nav-main-link-name">Link 6-1</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="nav-main-item">
+                                                                    <a class="nav-main-link" href="#">
+                                                                        <span class="nav-main-link-name">Link 6-2</span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
                 <li class="nav-main-heading">Pages</li>
                 <li class="nav-main-item">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
@@ -485,20 +772,20 @@ MAIN CONTENT LAYOUT
                         </li>
                     </ul>
                 </li>
-                <li class="nav-main-item open">
+                <li class="nav-main-item">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
-                       aria-expanded="true" href="#">
+                       aria-expanded="false" href="#">
                         <i class="nav-main-link-icon si si-lock"></i>
                         <span class="nav-main-link-name">Authentication</span>
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
-                            <a class="nav-main-link active" href="admin_index.html">
+                            <a class="nav-main-link" href="be_pages_auth_all.html">
                                 <span class="nav-main-link-name">All</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="userLogin.html">
+                            <a class="nav-main-link" href="op_auth_signin.html">
                                 <span class="nav-main-link-name">Sign In</span>
                             </a>
                         </li>
@@ -515,6 +802,50 @@ MAIN CONTENT LAYOUT
                         <li class="nav-main-item">
                             <a class="nav-main-link" href="op_auth_reminder.html">
                                 <span class="nav-main-link-name">Pass Reminder</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
+                       aria-expanded="false" href="#">
+                        <i class="nav-main-link-icon si si-fire"></i>
+                        <span class="nav-main-link-name">Error Pages</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="be_pages_error_all.html">
+                                <span class="nav-main-link-name">All</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="op_error_400.html">
+                                <span class="nav-main-link-name">400</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="op_error_401.html">
+                                <span class="nav-main-link-name">401</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="op_error_403.html">
+                                <span class="nav-main-link-name">403</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="op_error_404.html">
+                                <span class="nav-main-link-name">404</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="op_error_500.html">
+                                <span class="nav-main-link-name">500</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="op_error_503.html">
+                                <span class="nav-main-link-name">503</span>
                             </a>
                         </li>
                     </ul>
@@ -577,7 +908,7 @@ MAIN CONTENT LAYOUT
                 <div class="dropdown d-inline-block ml-2">
                     <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img class="rounded" src="assets/media/avatars/avatar0.jpg" alt="Header Avatar"
+                        <img class="rounded" src="../assets/media/avatars/avatar0.jpg" alt="Header Avatar"
                              style="width: 18px;">
                         <span class="d-none d-sm-inline-block ml-1">Adam</span>
                         <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block"></i>
@@ -586,7 +917,7 @@ MAIN CONTENT LAYOUT
                          aria-labelledby="page-header-user-dropdown">
                         <div class="p-3 text-center bg-primary">
                             <img class="img-avatar img-avatar48 img-avatar-thumb"
-                                 src="assets/media/avatars/avatar0.jpg" alt="">
+                                 src="../assets/media/avatars/avatar0.jpg" alt="">
                         </div>
                         <div class="p-2">
                             <h5 class="dropdown-header text-uppercase">User Options</h5>
@@ -762,16 +1093,16 @@ MAIN CONTENT LAYOUT
             <div class="content content-full">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <h1 class="flex-sm-fill h3 my-2">
-                        学生列表
+                        学生信息修改
                         <small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted">
-                            显示所有学生，同时可进行修改和删除
+                            修改学生信息
                         </small>
                     </h1>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
                             <li class="breadcrumb-item">学生管理</li>
                             <li class="breadcrumb-item" aria-current="page">
-                                <a class="link-fx" href="">学生列表</a>
+                                <a class="link-fx" href="">信息修改</a>
                             </li>
                         </ol>
                     </nav>
@@ -783,34 +1114,113 @@ MAIN CONTENT LAYOUT
         <!-- Page Content -->
         <div class="content">
 
-            <!-- Dynamic Table with Export Buttons -->
+            <!-- Horizontal -->
             <div class="block">
-                <!--      <div class="block-header">
-                          <h3 class="block-title">Dynamic Table
-                              <small>Export Buttons</small>
-                          </h3>
-                      </div>-->
+                <!--  <div class="block-header">
+                      <h3 class="block-title">学生信息修改</h3>
+                  </div>-->
+
                 <div class="block-content block-content-full">
-                    <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons text-center"
-                           id="mydatatable">
-                        <thead>
-                        <tr>
-                            <th class="text-center" style="width: 40px;">ID</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">学号</th>
-                            <th class="d-none d-sm-table-cell" style="width: 12%;">姓名</th>
-                            <th class="d-none d-sm-table-cell" style="width: 10%;">性别</th>
-                            <th class="d-none d-sm-table-cell" style="width: 12%;">楼号</th>
-                            <th class="d-none d-sm-table-cell" style="width: 12%;">房间号</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">出生日期</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">操作</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
+
+                    <div class="row">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-3">
+                            <div class="options-container fx-item-zoom-in fx-overlay-zoom-out col-lg-12"
+                                 style="min-height: 200px">
+                                <img class="img-fluid options-item" id="faceImage"
+                                     src="../assets/media/photos/noimage.png"
+                                     alt="面部图像">
+                                <!--  <div class="options-overlay bg-black-75">
+                                      <div class="options-overlay-content">
+                                          <h3 class="h4 text-white mb-2">图像操作</h3>
+                                          <a class="btn btn-sm btn-light" href="javascript:void(0)">
+                                              <i class="fa fa-pencil-alt text-primary mr-1"></i> 修改
+                                          </a>
+                                          <a class="btn btn-sm btn-light" href="javascript:void(0)">
+                                              <i class="fa fa-times text-danger mr-1"></i> 删除
+                                          </a>
+                                      </div>
+                                  </div>-->
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <!-- Form Horizontal - Default Style -->
+                            <form class="form_alter" enctype="multipart/form-data" action="" method="POST"
+                                  onsubmit="return false;">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label" for="example-hf-email">学&nbsp;号</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" readonly="readonly" class="form-control"
+                                               id="example-hf-email" name="sNo" placeholder="学号">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label" for="2">姓&nbsp;名</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="2" name="sName" placeholder="学生姓名">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label" for="3">性&nbsp;别</label>
+                                    <div class="form-group col-sm-6" id="3"
+                                         style="padding-top: 10px;margin-bottom: -10px">
+                                        <div class="custom-control custom-radio custom-control-inline custom-control-lg col-sm-3">
+                                            <input type="radio" class="custom-control-input"
+                                                   id="example-rd-custom-inline1" name="gender" value="男"
+                                                   checked="checked">
+                                            <label class="custom-control-label"
+                                                   for="example-rd-custom-inline1">男</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline custom-control-lg">
+                                            <input type="radio" class="custom-control-input"
+                                                   id="example-rd-custom-inline2" name="gender" value="女">
+                                            <label class="custom-control-label"
+                                                   for="example-rd-custom-inline2">女</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label" for="4">楼&nbsp;号</label>
+                                    <div class="col-sm-6">
+                                        <input class="form-control" id="4" name="buildingNo" placeholder="宿舍楼号">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label" for="5">房&nbsp;间&nbsp;号</label>
+                                    <div class="col-sm-6">
+                                        <input class="form-control" id="5" name="roomNo" placeholder="宿舍房间号">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label" for="6">生&nbsp;日</label>
+                                    <div class="col-sm-6">
+                                        <input class="form-control" type="text-" id="6" name="birthday"
+                                               placeholder="出生日期">
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- END Form Horizontal - Default Style -->
+                            <div class=" form-group row">
+                                <label class="col-sm-2 col-form-label" for="7">面&nbsp;部&nbsp;图&nbsp;像</label>
+                                <!-- Populating custom file input label with the selected filename (data-toggle="custom-file-input" is initialized in Helpers.coreBootstrapCustomFileInput()) -->
+                                <div class="col-sm-6">
+                                    <input type="file" class="custom-file-input"
+                                           data-toggle="custom-file-input" id="7"
+                                           name="faceImage">
+                                    <label class="custom-file-label" for="7"></label>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-10 ml-auto">
+                                    <button type="button" class="btn btn-primary" id="btn_submit">提交修改</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <!-- END Dynamic Table with Export Buttons -->
+            <!-- END Horizontal -->
+
         </div>
         <!-- END Page Content -->
 
@@ -839,156 +1249,165 @@ MAIN CONTENT LAYOUT
 
 <!--
     OneUI JS Core
-
-    Vital libraries and plugins used in all pages. You can choose to not include this file if you would like
-    to handle those dependencies through webpack. Please check out assets/_es6/main/bootstrap.js for more info.
-
-    If you like, you could also include them separately directly from the assets/js/core folder in the following
-    order. That can come in handy if you would like to include a few of them (eg jQuery) from a CDN.
-
-    assets/js/core/jquery.min.js
-    assets/js/core/bootstrap.bundle.min.js
-    assets/js/core/simplebar.min.js
-    assets/js/core/jquery-scrollLock.min.js
-    assets/js/core/jquery.appear.min.js
-    assets/js/core/js.cookie.min.js
 -->
-<script src="assets/js/oneui.core.min.js"></script>
+<script src="../assets/js/oneui.core.min.js"></script>
 
-<!--
-    OneUI JS
+<script src="../assets/js/oneui.app.min.js"></script>
+<script src="../assets/js/plugins/jquery.formautofill.js"></script>
+<!-- Page JS Plugins  提醒-->
+<script src="../assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js"></script>
 
-    Custom functionality including Blocks/Layout API as well as other vital and optional helpers
-    webpack is putting everything together at assets/_es6/main/app.js
--->
-<script src="assets/js/oneui.app.min.js"></script>
+<script src="../assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="../assets/js/plugins/jquery-validation/localization/messages_zh.js"></script>
 
-<!-- Page JS Plugins -->
-<script src="assets/js/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="assets/js/plugins/datatables/dataTables.bootstrap4.min.js"></script>
-<script src="assets/js/plugins/datatables/buttons/dataTables.buttons.min.js"></script>
+<!-- Page JS Plugins 对话框-->
+<script src="assets/js/plugins/es6-promise/es6-promise.auto.min.js"></script>
+<script src="../assets/js/plugins/sweetalert2/sweetalert2.min.js"></script>
+
 <script>
-    var t = $('#mydatatable').DataTable(
-        {
-            "processing": true,
-            // "destroy": true,
-            "retrieve": true,
-            "bStateSave": true,
-            language: {
-                "sProcessing": "正在加载数据，请稍后...",
-                "sLengthMenu": "显示 _MENU_ 项结果",
-                "sZeroRecords": "没有匹配结果",
-                "sInfo": "显示第 _START_ 至 _END_ 条记录，共 _TOTAL_ 项",
-                "sInfoEmpty": "显示第 0 至 0 条记录，共 0 项",
-                "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
-                "sSearch": "搜索:",
-                "sEmptyTable": "表中数据为空",
-                "sLoadingRecords": "载入中...",
-                "sInfoThousands": ",",
-                "oPaginate": {
-                    "sFirst": "首页",
-                    "sPrevious": "上页",
-                    "sNext": "下页",
-                    "sLast": "末页"
-                }
-            },
-            ajax: {
-                type: "post",
-                url: "studentList.do"
-            },
-            //每页显示n条数据
-            pageLength: 10,
-            columns: [
-                {data: null},
-                {data: "sNo"},
-                {data: "sName"},
-                {
-                    data: "gender",
-                    defaultContent: "-"
-                },
-                {
-                    data: "buildingNO",
-                    defaultContent: "-"
-                },
-                {
-                    data: "roomNo",
-                    defaultContent: "-"
-                },
-                {
-                    data: "birthday",
-                    defaultContent: "-"
-                },
-                {
-                    "data": null,
-                    render: function (data, type, row) {
-                        return '<div class="btn-group">' +
-                            '<button type="button" class="btn btn-sm btn-primary js-tooltip-enabled"' +
-                            ' data-toggle="tooltip" title="编辑" onclick="editStudent(' + row.sNo + ')">' +
-                            '<i class="fa fa-fw fa-pencil-alt"></i>' +
-                            '</button>' +
-                            '<button type="button" class="btn btn-sm btn-primary js-tooltip-enabled" ' +
-                            'data-toggle="tooltip" title="删除" onclick="delStudent(' + row.sNo + ')">' +
-                            '<i class="fa fa-fw fa-times"></i>' +
-                            '</button>' +
-                            '</div>'
+    /**
+     * 页面加载时根据学号获取学生信息
+     *
+     * */
+    $(document).ready(getInfo = function () {
+        var thisURL = document.URL;
+        /*使用 window.location.search()方法获取地址栏要传递的参数。得到"?name&code"。
+        用perimeters.substr(1)取到'?'之后的值。
+        再把取到的值分割成包含一个一个值的数组，
+        如果传递的值是汉字就会出现乱码。这里就要用到decodeURI()方法来转换一下*/
+        var parameters = window.location.search;
+        sno = decodeURI(parameters.substr(1).split('&')[0]);
+        $.ajax({
+            type: "post",
+            url: "studentInfoGet.do",
+            data: {"sNo": sno},
+            dataType: "json",
+            success: function (data) {
+                if (data.success) {
+                    //使用formautofill插件自动填充表单
+                    $(".form_alter").autofill(data.data);
+                    var path = data.data.faceImage;
+                    if (path != '') {
+                        console.log(path);
+                        $("#faceImage").attr("src", path);
                     }
-                }
-            ],
-            "columnDefs": [
-                {//每列定义
-                    "orderable": false,
-                    "targets": [2, 5, -1]//第x列不排序
-                }]
-            /*,
-            {
-                targets: -1,
-
-            }]*/
-        });
-    //前台添加序号
-    t.on('order.dt search.dt', function () {
-        t.column(0, {
-            "search": 'applied',
-            "order": 'applied'
-        }).nodes().each(function (cell, i) {
-            cell.innerHTML = i + 1;
+                } else
+                    One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: data.errMsg});
+            },
+            error: function () {
+                One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: "未知错误，请重试或联系管理员！"});
+            }
         })
-    }).draw();
+    });
 
-    function editStudent(id) {
-        window.location.href = "studentInfo.html?" + id;
-    }
+    /**
+     * 提交按钮点击事件
+     *
+     */
+    $("#btn_submit").click(function (e) {
+        swal({
+            title: "确认修改吗?",
+            text: "提交后将无法撤销",
+            type: "warning",
+            showCancelButton: !0,
+            confirmButtonClass: "btn btn-danger m-1",
+            cancelButtonClass: "btn btn-secondary m-1",
+            confirmButtonText: "确认提交",
+            cancelButtonText: "取消",
+            html: !1,
+            preConfirm: function (e) {
+                return new Promise(function (e) {
 
-    function delStudent(id) {
-        $.ajax(
-            {
+                    setTimeout(function () {
+                        e()
+                    }, 50)
+                })
+            }
+        }).then(function (e) {
+            e.value ? convert($('#7')[0]) : "cancel" === e.dismiss /*&& swal("已取消", "", "error")*/
+        });
+
+        /**
+         * 图片转换为Base64编码
+         *
+         * */
+        function convert(input_file) {
+            /*input_file：文件按钮对象*/
+            /*get_data: 转换成功后执行的方法*/
+            if (typeof (FileReader) === 'undefined') {
+                alert("抱歉，你的浏览器不支持 FileReader，不能将图片转换为Base64，请使用现代浏览器操作！");
+            } else {
+                /*图片转Base64 核心代码*/
+                var file = input_file.files[0];
+                if (file != null) {
+                    //这里判断类型是不是是图片
+                    if (!/image\/\w+/.test(file.type)) {
+                        alert("请确保文件为图像类型");
+                        return false;
+                    }
+                    var reader = new FileReader();
+                    reader.readAsDataURL(file);
+                    reader.onload = function () {
+                        commitAlter(this.result.substring(23));
+                    };
+                } else commitAlter('');
+            }
+        }
+
+        /**
+         *发送ajax请求
+         * @param imgData
+         */
+        function commitAlter(imgData) {
+            console.log($('#7')[0].files[0]);
+            var upData = new FormData($('.form_alter')[0]);
+            console.log(imgData);
+            upData.append("faceImage", imgData);
+            $.ajax({
+                processData: false,
+                contentType: false,
                 type: "post",
-                url: "removeUser.do",
+                url: "studentInfoAlter.do",
+                // data:$('.form_alter').serialize() ,
+                data: upData,
+                // contentType: "application/x-www-form-urlencoded; charset=UTF-8",//post请求的信息格式
                 dataType: "json",
-                data: {
-                    "sNo": id
-                },
                 success: function (data) {
                     if (data.success) {
-                        $("#mydatatable").dataTable().fnDraw(false);
-                        //重新加载表格数据
-                        t.ajax.reload();
-                        alert(data.data)
-                    } else {
-                        alert(data.errMsg)
-                    }
-                }, error: function (data) {
-                    alert("未知错误")
+                        swal(data.data, "", "success");
+                        getInfo();
+                    } else
+                        One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: data.errMsg});
+                },
+                error: function () {
+                    One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: "未知错误，请重试或联系管理员！"});
                 }
+            })
+        }
+    });
+    $(function () {
+        validator = $(".form_alter").validate({
+            errorClass: "invalid-feedback animated fadeIn",
+            errorElement: "div",
+            errorPlacement: function (e, r) {
+                jQuery(r).addClass("is-invalid");
+                jQuery(r).parents(".form-group").append(e)
+            },
+            highlight: function (e) {
+                jQuery(e).parents(".form-group").find(".is-invalid").removeClass("is-invalid").addClass("is-invalid")
+            },
+            success: function (e) {
+                jQuery(e).parents(".form-group").find(".is-invalid").removeClass("is-invalid").addClass("is-valid");
+                jQuery(e).remove()
+            },
+            rules: {
+                "sName": {required: !0, maxlength: 10},
+                "roomNo": {digits: !0, minlength: 3, maxlength: 3},
+                "buildingNo": {range: [1, 18]},
+                "birthday": {dateISO: !0}
             }
-        )
-    }
+        })
+    })
 </script>
-
-<!-- Page JS Code -->
-<!--
-<script src="assets/js/pages/be_tables_datatables.min.js"></script>
--->
-
 </body>
 </html>

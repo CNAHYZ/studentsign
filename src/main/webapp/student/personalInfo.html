@@ -19,7 +19,6 @@
     <link rel="stylesheet" href="#">
     <link rel="stylesheet" id="css-main" href="/assets/css/oneui.min.css">
     <!-- Page JS Plugins CSS -->
-    <link rel="stylesheet" href="/assets/js/plugins/jquery-pagination_zh/lib/pagination.css">
     <!-- END Stylesheets -->
 </head>
 <body>
@@ -92,6 +91,7 @@
                     </div>
                 </div>
                 <!-- END User Dropdown -->
+
             </div>
             <!-- END Right Section -->
         </div>
@@ -118,11 +118,11 @@
             <div class="content content-full">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <h1 class="flex-sm-fill h3 my-2">
-                        通知列表
+                        个人信息
                     </h1>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
-                            <li class="breadcrumb-item">通知列表</li>
+                            <li class="breadcrumb-item">个人信息</li>
                             <li class="breadcrumb-item" aria-current="page">
                                 <a class="link-fx" href="index.html">首页</a>
                             </li>
@@ -135,20 +135,88 @@
 
         <!-- Page Content -->
         <div class="content">
-            <div class="block block-content ">
-                <div id="list" class="">
 
+            <!-- Horizontal -->
+            <div class="block">
+                <div class="block-content block-content-full">
+
+                    <div class="row  py-6">
+                        <div class="col-lg-2"></div>
+                        <div class="col-lg-3">
+                            <div class="options-container fx-item-zoom-in fx-overlay-zoom-out col-lg-12"
+                                 style="min-height: 200px">
+                                <img class="img-fluid options-item" id="faceImage"
+                                     src="../assets/media/photos/noimage.png"
+                                     alt="面部图像">
+                            </div>
+                        </div>
+                        <div class="col-lg-7">
+                            <div class="px-5"></div>
+                            <!-- Form Horizontal - Default Style -->
+                            <form class="form_alter" enctype="multipart/form-data" action="" method="POST"
+                                  onsubmit="return false;">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label" for="example-hf-email">学&nbsp;号</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" readonly="readonly" class="form-control"
+                                               id="example-hf-email" name="sNo" placeholder="学号">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label" for="2">姓&nbsp;名</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="2" name="sName" placeholder="学生姓名">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label" for="3">性&nbsp;别</label>
+                                    <div class="form-group col-sm-6" id="3"
+                                         style="padding-top: 10px;margin-bottom: -10px">
+                                        <div class="custom-control custom-radio custom-control-inline custom-control-lg col-sm-3">
+                                            <input type="radio" class="custom-control-input"
+                                                   id="example-rd-custom-inline1" name="gender" value="男"
+                                                   checked="checked">
+                                            <label class="custom-control-label"
+                                                   for="example-rd-custom-inline1">男</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline custom-control-lg">
+                                            <input type="radio" class="custom-control-input"
+                                                   id="example-rd-custom-inline2" name="gender" value="女">
+                                            <label class="custom-control-label"
+                                                   for="example-rd-custom-inline2">女</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label" for="4">楼&nbsp;号</label>
+                                    <div class="col-sm-6">
+                                        <input class="form-control" id="4" name="buildingNo" placeholder="宿舍楼号">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label" for="5">房&nbsp;间&nbsp;号</label>
+                                    <div class="col-sm-6">
+                                        <input class="form-control" id="5" name="roomNo" placeholder="宿舍房间号">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label" for="6">生&nbsp;日</label>
+                                    <div class="col-sm-6">
+                                        <input class="form-control" type="text-" id="6" name="birthday"
+                                               placeholder="出生日期">
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- END Form Horizontal - Default Style -->
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div>
-                <nav aria-label="Navigation" class="float-right">
-                    <div id="pagination" class="pagination my-4">
+            <!-- END Horizontal -->
 
-                    </div>
-                </nav>
-            </div>
         </div>
         <!-- END Page Content -->
+
     </main>
     <!-- END Main Container -->
 
@@ -166,71 +234,50 @@
     <!-- END Footer -->
 </div>
 <!-- END Page Container -->
-<script src="/assets/js/oneui.core.min.js"></script>
 
-<script src="/assets/js/oneui.app.min.js"></script>
-<script src="/assets/js/plugins/jquery-pagination_zh/lib/jquery.pagination.js"></script>
+<!--
+    OneUI JS Core
+-->
+<script src="../assets/js/oneui.core.min.js"></script>
+
+<script src="../assets/js/oneui.app.min.js"></script>
+<script src="../assets/js/plugins/jquery.formautofill.js"></script>
+<!-- Page JS Plugins  提醒-->
+<script src="../assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js"></script>
+
+<!-- Page JS Plugins 对话框-->
+
 <script>
-
-    $(function () {
-        var isFirstLoad = true;
-        var pageSize = 5; // 每页显示多少条记录
-        var total;//总记录数
-        Init(0);
-        $("#pagination").pagination(total, {
-            items_per_page: pageSize,
-            callback: pageselectCallback,
-            prev_text: '上一页',
-            next_text: '下一页',
-            num_display_entries: 5, // 连续分页主体部分显示的分页条目数
-            num_edge_entries: 2, // 两侧显示的首尾分页的条目数
-        });
-
-        //点击上一页、下一页、页码的时候触发的事件
-        function pageselectCallback(index, jq) { // index表示当前点击的那个分页的页数索引值-1(基0)，
-            // 后一个参数表示装载容器。
-            isFirstLoad ? isFirstLoad = false : Init(index)
-        }
-
-        function Init(pageIndex) { // 参数就是点击的那个分页的页数索引值
-            $.ajax({
-                url: "getNotice.do",
-                type: "post",
-                async: false,
-                dataType: "json",
-                data: {
-                    "pageNo": pageIndex + 1,//基1
-                    "pageSize": pageSize
-                },
-                success: function (data) {
-                    // 赋值total，用于计算
-                    total = data.data.total;
-                    console.log(total);
-                    $("#list").empty();
-                    $.each(data.data.list, function (i, item) {
-                        //取内容的前130个字符，并且去除内容中的html标签
-                        if (item.content.length > 130)
-                            myContent = (item.content.replace(/<[^>]+>/g, "").substring(0, 130) + '...');
-                        else myContent = item.content.replace(/<[^>]+>/g, "");
-                        $("#list").append("<div>\n" +
-                            "                                    <h4 class=\"h4 mt-3 mb-2\" id=\"title\">\n" +
-                            "                                        <a href=\"noticeDetail.html?noticeId=" + item.noticeId + "\">" + item.title + "</a>\n" +
-                            "                                    </h4><span class='float-right'>" + item.createTime + "</span>\n" +
-                            "                                    <p class=\"d-none d-sm-block text-muted\" id=\"content\">\n" +
-                            myContent +
-                            "                                    </p>\n" +
-                            "                                </div>")
-                    });
-                },
-                error: function () {
-                    alert("请求超时，请重试！");
-                },
-            });
-        }
+    /**
+     * 页面加载时根据学号获取学生信息
+     *
+     * */
+    $(document).ready(getInfo = function () {
+        $("input").attr("disabled", "disabled");
+        $("input").css("background", "none");
+        $.ajax({
+            type: "post",
+            url: "getStudentInfo.do",
+            data: {},
+            dataType: "json",
+            success: function (data) {
+                if (data.success) {
+                    //使用formautofill插件自动填充表单
+                    $(".form_alter").autofill(data.data);
+                    var path = data.data.faceImage;
+                    if (path != '') {
+                        console.log(path);
+                        $("#faceImage").attr("src", path);
+                    }
+                } else
+                    One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: data.errMsg});
+            },
+            error: function () {
+                One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: "未知错误，请重试或联系管理员！"});
+            }
+        })
     });
 
-
 </script>
-
 </body>
 </html>

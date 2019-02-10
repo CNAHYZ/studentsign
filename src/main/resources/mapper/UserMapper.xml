@@ -35,7 +35,7 @@
     </select>
     <!--根据用户名获取用户，用于在删除学生时，
     判断用户表中是否存在该学生的账号密码-->
-    <select id="getUser" resultType="user">
+    <select id="getUser" resultMap="userResultMap">
         select *
         from user
         where username = #{username};

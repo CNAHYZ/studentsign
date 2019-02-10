@@ -3,11 +3,12 @@ package top.flytop.studentsign.pojo;
 import org.apache.ibatis.type.Alias;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Alias(value = "admin")
 @Component("admin")
-public class Admin {
+public class Admin implements Serializable {
     Integer id;
     String username;
     Date lastLogin;

@@ -2,6 +2,8 @@ package top.flytop.studentsign.pojo;
 
 import org.apache.ibatis.type.Alias;
 
+import java.io.Serializable;
+
 /**
  * @ClassName User
  * @Description TODO
@@ -10,19 +12,21 @@ import org.apache.ibatis.type.Alias;
  * @Version 1.0
  */
 @Alias("user")
-public class User {
+public class User implements Serializable {
     private Integer id;
     private String username;
     private String pwd;
+    private String salt;
     private Integer typeId;
 
     public User() {
     }
 
-    public User(Integer id, String username, String pwd, Integer typeId) {
+    public User(Integer id, String username, String pwd, String salt, Integer typeId) {
         this.id = id;
         this.username = username;
         this.pwd = pwd;
+        this.salt = salt;
         this.typeId = typeId;
     }
 
@@ -58,12 +62,21 @@ public class User {
         this.typeId = typeId;
     }
 
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", pwd='" + pwd + '\'' +
+                ", salt='" + salt + '\'' +
                 ", typeId=" + typeId +
                 '}';
     }

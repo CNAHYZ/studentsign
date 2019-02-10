@@ -22,42 +22,83 @@
 
     <!-- Icons -->
     <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
-    <link rel="shortcut icon" href="assets/media/favicons/favicon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="assets/media/favicons/favicon-192x192.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/media/favicons/apple-touch-icon-180x180.png">
+    <link rel="shortcut icon" href="../assets/media/favicons/favicon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/media/favicons/favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/media/favicons/apple-touch-icon-180x180.png">
     <!-- END Icons -->
 
     <!-- Stylesheets -->
+    <!-- Page JS Plugins CSS -->
+    <link rel="stylesheet" href="../assets/js/plugins/datatables/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="../assets/js/plugins/datatables/buttons-bs4/buttons.bootstrap4.min.css">
+
     <!-- Fonts and OneUI framework -->
     <link rel="stylesheet" href="#">
-    <link rel="stylesheet" id="css-main" href="assets/css/oneui.min.css">
-    <!-- Page JS Plugins CSS -->
-    <link rel="stylesheet" href="assets/js/plugins/baguetteBox.js/baguetteBox.min.css">
+    <link rel="stylesheet" id="css-main" href="../assets/css/oneui.min.css">
+
+    <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
+    <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/amethyst.min.css"> -->
     <!-- END Stylesheets -->
-    <style>
-        .leave_detail > div :disabled {
-            background: none;
-            border: 0
-        }
-
-        hr {
-            border-top: 2px solid #c4c4c4;
-        }
-
-        /*.leave_detail > div > label {*/
-        /*text-align: right*/
-        /*}*/
-    </style>
 </head>
 <body>
 <!-- Page Container -->
+<!--
+    Available classes for #page-container:
+
+GENERIC
+
+    'enable-cookies'                            Remembers active color theme between pages (when set through color theme helper Template._uiHandleTheme())
+
+SIDEBAR & SIDE OVERLAY
+
+    'sidebar-r'                                 Right Sidebar and left Side Overlay (default is left Sidebar and right Side Overlay)
+    'sidebar-mini'                              Mini hoverable Sidebar (screen width > 991px)
+    'sidebar-o'                                 Visible Sidebar by default (screen width > 991px)
+    'sidebar-o-xs'                              Visible Sidebar by default (screen width < 992px)
+    'sidebar-dark'                              Dark themed sidebar
+
+    'side-overlay-hover'                        Hoverable Side Overlay (screen width > 991px)
+    'side-overlay-o'                            Visible Side Overlay by default
+
+    'enable-page-overlay'                       Enables a visible clickable Page Overlay (closes Side Overlay on click) when Side Overlay opens
+
+    'side-scroll'                               Enables custom scrolling on Sidebar and Side Overlay instead of native scrolling (screen width > 991px)
+
+HEADER
+
+    ''                                          Static Header if no class is added
+    'page-header-fixed'                         Fixed Header
+
+HEADER STYLE
+
+    ''                                          Light themed Header
+    'page-header-dark'                          Dark themed Header
+
+MAIN CONTENT LAYOUT
+
+    ''                                          Full width Main Content if no class is added
+    'main-content-boxed'                        Full width Main Content with a specific maximum width (screen width > 1200px)
+    'main-content-narrow'                       Full width Main Content with a percentage width (screen width > 1200px)
+-->
 <div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-fixed">
+
     <!-- Sidebar -->
+    <!--
+        Sidebar Mini Mode - Display Helper classes
+
+        Adding 'smini-hide' class to an element will make it invisible (opacity: 0) when the sidebar is in mini mode
+        Adding 'smini-show' class to an element will make it visible (opacity: 1) when the sidebar is in mini mode
+            If you would like to disable the transition animation, make sure to also add the 'no-transition' class to your element
+
+        Adding 'smini-hidden' to an element will hide it when the sidebar is in mini mode
+        Adding 'smini-visible' to an element will show it (display: inline-block) only when the sidebar is in mini mode
+        Adding 'smini-visible-block' to an element will show it (display: block) only when the sidebar is in mini mode
+    -->
     <nav id="sidebar" aria-label="Main Navigation">
         <!-- Side Header -->
         <div class="content-header bg-white-5">
             <!-- Logo -->
-            <a class="font-w600 text-dual" href="index.html">
+            <a class="font-w600 text-dual" href="../index.html">
                 <i class="fa fa-circle-notch text-primary"></i>
                 <span class="smini-hide">
                             <span class="font-w700 font-size-h5">ne</span> <span class="font-w400">4.0</span>
@@ -139,6 +180,8 @@
         <!-- END Side Header -->
 
         <!-- Side Navigation -->
+
+        <!-- Side Navigation -->
         <div class="content-side content-side-full">
             <ul class="nav-main">
                 <li class="nav-main-item">
@@ -152,7 +195,7 @@
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
                        aria-expanded="false" href="#">
                         <i class="nav-main-link-icon si si-energy"></i>
-                        <span class="nav-main-link-name">Blocks</span>
+                        <span class="nav-main-link-name">通知管理</span>
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
@@ -165,28 +208,13 @@
                                 <span class="nav-main-link-name">Options</span>
                             </a>
                         </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_blocks_forms.html">
-                                <span class="nav-main-link-name">Forms</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_blocks_themed.html">
-                                <span class="nav-main-link-name">Themed</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_blocks_api.html">
-                                <span class="nav-main-link-name">API</span>
-                            </a>
-                        </li>
                     </ul>
                 </li>
                 <li class="nav-main-item">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
                        aria-expanded="false" href="#">
                         <i class="nav-main-link-icon si si-badge"></i>
-                        <span class="nav-main-link-name">Elements</span>
+                        <span class="nav-main-link-name">签到管理</span>
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
@@ -204,83 +232,13 @@
                                 <span class="nav-main-link-name">Icons</span>
                             </a>
                         </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_ui_buttons.html">
-                                <span class="nav-main-link-name">Buttons</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_ui_buttons_groups.html">
-                                <span class="nav-main-link-name">Button Groups</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_ui_dropdowns.html">
-                                <span class="nav-main-link-name">Dropdowns</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_ui_tabs.html">
-                                <span class="nav-main-link-name">Tabs</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_ui_navigation.html">
-                                <span class="nav-main-link-name">Navigation</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_ui_progress.html">
-                                <span class="nav-main-link-name">Progress</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_ui_alerts.html">
-                                <span class="nav-main-link-name">Alerts</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_ui_tooltips.html">
-                                <span class="nav-main-link-name">Tooltips</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_ui_popovers.html">
-                                <span class="nav-main-link-name">Popovers</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_ui_modals.html">
-                                <span class="nav-main-link-name">Modals</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_ui_images.html">
-                                <span class="nav-main-link-name">Images Overlay</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_ui_timeline.html">
-                                <span class="nav-main-link-name">Timeline</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_ui_animations.html">
-                                <span class="nav-main-link-name">Animations</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_ui_color_themes.html">
-                                <span class="nav-main-link-name">Color Themes</span>
-                            </a>
-                        </li>
                     </ul>
                 </li>
                 <li class="nav-main-item">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
                        aria-expanded="false" href="#">
                         <i class="nav-main-link-icon si si-grid"></i>
-                        <span class="nav-main-link-name">Tables</span>
+                        <span class="nav-main-link-name">请假管理</span>
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
@@ -293,68 +251,25 @@
                                 <span class="nav-main-link-name">Responsive</span>
                             </a>
                         </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_tables_helpers.html">
-                                <span class="nav-main-link-name">Helpers</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_tables_pricing.html">
-                                <span class="nav-main-link-name">Pricing</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_tables_datatables.html">
-                                <span class="nav-main-link-name">DataTables</span>
-                            </a>
-                        </li>
                     </ul>
                 </li>
-                <li class="nav-main-item open">
+                <li class="nav-main-item">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
-                       aria-expanded="true" href="#">
+                       aria-expanded="false" href="#">
                         <i class="nav-main-link-icon si si-note"></i>
-                        <span class="nav-main-link-name">Forms</span>
+                        <span class="nav-main-link-name">学生管理</span>
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_forms_elements.html">
-                                <span class="nav-main-link-name">Elements</span>
+                            <a class="nav-main-link" href="studentList.html">
+                                <span class="nav-main-link-name">学生列表</span>
                             </a>
                         </li>
+                    </ul>
+                    <ul class="nav-main-submenu">
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_forms_custom_controls.html">
-                                <span class="nav-main-link-name">Custom Controls</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link active" href="be_forms_layouts.html">
-                                <span class="nav-main-link-name">Layouts</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_forms_input_groups.html">
-                                <span class="nav-main-link-name">Input Groups</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="plugins.html">
-                                <span class="nav-main-link-name">Plugins</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_forms_editors.html">
-                                <span class="nav-main-link-name">Editors</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_forms_validation.html">
-                                <span class="nav-main-link-name">Validation</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_forms_wizard.html">
-                                <span class="nav-main-link-name">Wizard</span>
+                            <a class="nav-main-link" href="studentAdd.html">
+                                <span class="nav-main-link-name">添加学生</span>
                             </a>
                         </li>
                     </ul>
@@ -364,7 +279,7 @@
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
                        aria-expanded="false" href="#">
                         <i class="nav-main-link-icon si si-wrench"></i>
-                        <span class="nav-main-link-name">Components</span>
+                        <span class="nav-main-link-name">系统设置</span>
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
@@ -375,61 +290,6 @@
                         <li class="nav-main-item">
                             <a class="nav-main-link" href="be_comp_image_cropper.html">
                                 <span class="nav-main-link-name">Image Cropper</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_comp_appear.html">
-                                <span class="nav-main-link-name">Appear</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_comp_charts.html">
-                                <span class="nav-main-link-name">Charts</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_comp_calendar.html">
-                                <span class="nav-main-link-name">Calendar</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_comp_sliders.html">
-                                <span class="nav-main-link-name">Sliders</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_comp_syntax_highlighting.html">
-                                <span class="nav-main-link-name">Syntax Highlighting</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_comp_rating.html">
-                                <span class="nav-main-link-name">Rating</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_comp_maps_google.html">
-                                <span class="nav-main-link-name">Google Maps</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_comp_maps_vector.html">
-                                <span class="nav-main-link-name">Vector Maps</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_comp_dialogs.html">
-                                <span class="nav-main-link-name">Dialogs</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_comp_notifications.html">
-                                <span class="nav-main-link-name">Notifications</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_comp_gallery.html">
-                                <span class="nav-main-link-name">Gallery</span>
                             </a>
                         </li>
                     </ul>
@@ -575,116 +435,6 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-main-item">
-                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
-                       aria-expanded="false" href="#">
-                        <i class="nav-main-link-icon si si-puzzle"></i>
-                        <span class="nav-main-link-name">Multi Level Menu</span>
-                    </a>
-                    <ul class="nav-main-submenu">
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="#">
-                                <span class="nav-main-link-name">Link 1-1</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="#">
-                                <span class="nav-main-link-name">Link 1-2</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
-                               aria-expanded="false" href="#">
-                                <span class="nav-main-link-name">Sub Level 2</span>
-                            </a>
-                            <ul class="nav-main-submenu">
-                                <li class="nav-main-item">
-                                    <a class="nav-main-link" href="#">
-                                        <span class="nav-main-link-name">Link 2-1</span>
-                                    </a>
-                                </li>
-                                <li class="nav-main-item">
-                                    <a class="nav-main-link" href="#">
-                                        <span class="nav-main-link-name">Link 2-2</span>
-                                    </a>
-                                </li>
-                                <li class="nav-main-item">
-                                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu"
-                                       aria-haspopup="true" aria-expanded="false" href="#">
-                                        <span class="nav-main-link-name">Sub Level 3</span>
-                                    </a>
-                                    <ul class="nav-main-submenu">
-                                        <li class="nav-main-item">
-                                            <a class="nav-main-link" href="#">
-                                                <span class="nav-main-link-name">Link 3-1</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-main-item">
-                                            <a class="nav-main-link" href="#">
-                                                <span class="nav-main-link-name">Link 3-2</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-main-item">
-                                            <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu"
-                                               aria-haspopup="true" aria-expanded="false" href="#">
-                                                <span class="nav-main-link-name">Sub Level 4</span>
-                                            </a>
-                                            <ul class="nav-main-submenu">
-                                                <li class="nav-main-item">
-                                                    <a class="nav-main-link" href="#">
-                                                        <span class="nav-main-link-name">Link 4-1</span>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-main-item">
-                                                    <a class="nav-main-link" href="#">
-                                                        <span class="nav-main-link-name">Link 4-2</span>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-main-item">
-                                                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu"
-                                                       aria-haspopup="true" aria-expanded="false" href="#">
-                                                        <span class="nav-main-link-name">Sub Level 5</span>
-                                                    </a>
-                                                    <ul class="nav-main-submenu">
-                                                        <li class="nav-main-item">
-                                                            <a class="nav-main-link" href="#">
-                                                                <span class="nav-main-link-name">Link 5-1</span>
-                                                            </a>
-                                                        </li>
-                                                        <li class="nav-main-item">
-                                                            <a class="nav-main-link" href="#">
-                                                                <span class="nav-main-link-name">Link 5-2</span>
-                                                            </a>
-                                                        </li>
-                                                        <li class="nav-main-item">
-                                                            <a class="nav-main-link nav-main-link-submenu"
-                                                               data-toggle="submenu" aria-haspopup="true"
-                                                               aria-expanded="false" href="#">
-                                                                <span class="nav-main-link-name">Sub Level 6</span>
-                                                            </a>
-                                                            <ul class="nav-main-submenu">
-                                                                <li class="nav-main-item">
-                                                                    <a class="nav-main-link" href="#">
-                                                                        <span class="nav-main-link-name">Link 6-1</span>
-                                                                    </a>
-                                                                </li>
-                                                                <li class="nav-main-item">
-                                                                    <a class="nav-main-link" href="#">
-                                                                        <span class="nav-main-link-name">Link 6-2</span>
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
                 <li class="nav-main-heading">Pages</li>
                 <li class="nav-main-item">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
@@ -735,20 +485,20 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-main-item">
+                <li class="nav-main-item open">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
-                       aria-expanded="false" href="#">
+                       aria-expanded="true" href="#">
                         <i class="nav-main-link-icon si si-lock"></i>
                         <span class="nav-main-link-name">Authentication</span>
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_pages_auth_all.html">
+                            <a class="nav-main-link active" href="index.html">
                                 <span class="nav-main-link-name">All</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="op_auth_signin.html">
+                            <a class="nav-main-link" href="../userLogin.html">
                                 <span class="nav-main-link-name">Sign In</span>
                             </a>
                         </li>
@@ -765,50 +515,6 @@
                         <li class="nav-main-item">
                             <a class="nav-main-link" href="op_auth_reminder.html">
                                 <span class="nav-main-link-name">Pass Reminder</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-main-item">
-                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
-                       aria-expanded="false" href="#">
-                        <i class="nav-main-link-icon si si-fire"></i>
-                        <span class="nav-main-link-name">Error Pages</span>
-                    </a>
-                    <ul class="nav-main-submenu">
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_pages_error_all.html">
-                                <span class="nav-main-link-name">All</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="op_error_400.html">
-                                <span class="nav-main-link-name">400</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="op_error_401.html">
-                                <span class="nav-main-link-name">401</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="op_error_403.html">
-                                <span class="nav-main-link-name">403</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="op_error_404.html">
-                                <span class="nav-main-link-name">404</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="op_error_500.html">
-                                <span class="nav-main-link-name">500</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="op_error_503.html">
-                                <span class="nav-main-link-name">503</span>
                             </a>
                         </li>
                     </ul>
@@ -871,7 +577,7 @@
                 <div class="dropdown d-inline-block ml-2">
                     <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img class="rounded" src="assets/media/avatars/avatar0.jpg" alt="Header Avatar"
+                        <img class="rounded" src="../assets/media/avatars/avatar0.jpg" alt="Header Avatar"
                              style="width: 18px;">
                         <span class="d-none d-sm-inline-block ml-1">Adam</span>
                         <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block"></i>
@@ -880,7 +586,7 @@
                          aria-labelledby="page-header-user-dropdown">
                         <div class="p-3 text-center bg-primary">
                             <img class="img-avatar img-avatar48 img-avatar-thumb"
-                                 src="assets/media/avatars/avatar0.jpg" alt="">
+                                 src="../assets/media/avatars/avatar0.jpg" alt="">
                         </div>
                         <div class="p-2">
                             <h5 class="dropdown-header text-uppercase">User Options</h5>
@@ -1055,13 +761,17 @@
         <div class="bg-body-light">
             <div class="content content-full">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-                    <h1 class="flex-sm-fill h3 my-2">学生请假申请审批
+                    <h1 class="flex-sm-fill h3 my-2">
+                        学生列表
+                        <small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted">
+                            显示所有学生，同时可进行修改和删除
+                        </small>
                     </h1>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
                             <li class="breadcrumb-item">学生管理</li>
                             <li class="breadcrumb-item" aria-current="page">
-                                <a class="link-fx" href="">信息修改</a>
+                                <a class="link-fx" href="">学生列表</a>
                             </li>
                         </ol>
                     </nav>
@@ -1073,125 +783,37 @@
         <!-- Page Content -->
         <div class="content">
 
-            <!-- Horizontal -->
+            <!-- Dynamic Table with Export Buttons -->
             <div class="block">
-                <div class="block-header font-size-sm" style="margin-bottom: -50px;min-height: 70px">
-                    <p class="badge badge-secondary" id="currentPage_total"></p>
-                </div>
+                <!--      <div class="block-header">
+                          <h3 class="block-title">Dynamic Table
+                              <small>Export Buttons</small>
+                          </h3>
+                      </div>-->
                 <div class="block-content block-content-full">
-                    <div class="row">
-                        <div class="px-3"></div>
-                        <div>
-                            <!-- Form Horizontal - Default Style -->
-                            <form class="leave_detail col-lg-12" action="" method="POST"
-                                  autocomplete="off">
-                                <div class="form-group row  justify-content-center">
-                                    <div class="col-form-label">记录ID:</div>
-                                    <input type="text" class="col-sm-2 form-control" id="id" name="id">
-                                    <!--<div class="px-5"></div>-->
-                                    <div class="col-form-label">类&nbsp;型:</div>
-                                    <input type="text" class="col-sm-2 form-control" id="category" name="category">
-                                    <div class="col-form-label" for="applicationTime">申请时间:</div>
-                                    <input type="text" class="col-sm-3 form-control" id="applicationTime"
-                                           name="applicationTime" style="min-width:170px">
-                                </div>
-                                <div class="col-12">
-                                    <hr>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label" for="sNo">学&nbsp;号:</label>
-                                    <input type="text" class="col-sm-2 form-control" id="sNo" name="sNo">
-                                    <div class="px-6"></div>
-                                    <label class="col-sm-1 col-form-label" for="sName">姓&nbsp;名:</label>
-                                    <input type="text" class="col-sm-2 form-control" id="sName" name="sName">
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label" for="startTime">请假时间:</label>
-                                    <input type="text" class="col-sm-2 form-control" style="min-width:150px"
-                                           id="startTime" name="startTime">
-                                    <label class="col-sm-1 col-form-label"
-                                           for="endTime">&nbsp;&nbsp;&nbsp;&nbsp;--</label>
-                                    <input type="text" class="col-sm-3 form-control" id="endTime" name="endTime"
-                                           style="min-width:150px">
-                                </div>
-
-                                <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label" for="comment">备注:</label>
-                                    <textarea type="text" class="col-sm-10 form-control" id="comment"
-                                              name="comment" disabled="disabled"
-                                              style="height: 65px;border:1px solid #e1e1e1;"></textarea>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label" for="auditStatus">审批状态:</label>
-                                    <input type="text" class="col-sm-3 form-control" id="auditStatus"
-                                           name="auditStatus">
-                                </div>
-                                <div class="form-group row refusalReasonAll">
-                                    <label class="col-sm-2 col-form-label" for="refusalReason">拒绝理由:</label>
-                                    <textarea type="text" class="col-sm-10 form-control" id="refusalReason"
-                                              name="refusalReason"></textarea>
-                                </div>
-                                <div class="form-group row ">
-                                    <div class="col-sm-3 ml-auto">
-                                        <button type="button" onclick="pageChange(-1)"
-                                                class="btn btn-outline-secondary" id="btn_prevPage">上一条
-                                        </button>
-                                    </div>
-                                    <div class="col-sm-2 ml-auto">
-                                        <button disabled="disabled" type="button" onclick="audit(1)"
-                                                class="btn btn-success" id="btn_agree">同意申请
-                                        </button>
-                                    </div>
-                                    <div class="col-sm-2 ml-auto">
-                                        <button type="button" onclick="window.location='leaveRecordList.html'"
-                                                class="btn btn-primary" id="btn_back">返回列表
-                                        </button>
-                                    </div>
-                                    <div class="col-sm-2 ml-auto">
-                                        <button disabled="disabled" type="button" onclick="audit(2)"
-                                                class="btn btn-danger" id="btn_refuse">拒绝申请
-                                        </button>
-                                    </div>
-                                    <div class="col-sm-3 ml-auto" style="text-align: right">
-                                        <button type="button" onclick="pageChange(1)"
-                                                class="btn btn-outline-secondary" id="btn_nextPage">下一条
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                            <!-- END Form Horizontal - Default Style -->
-                        </div>
-                        <div class="px-3"></div>
-                        <div class="col-md-12 col-lg-12 col-xl-3">
-                            <!-- Business Plan -->
-                            <div class="block block-link-shadow block-themed block-fx-shadow text-center">
-                                <div class="block-header">
-                                    <h3 class="block-title">
-                                        <i class="fa fa-file-archive mr-1"></i> 附件
-                                    </h3>
-                                </div>
-                                <div class="block-content bg-body-light">
-                                    <div class="py-2 gallery">
-                                        <a href="" id="attachment_big">
-                                            <img id="attachment" width="100px" src="" alt="无附件">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="block-content">
-                                    <div class="font-size-sm py-1">
-                                        <p id="img_title"></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- END Business Plan -->
-                        </div>
-                    </div>
+                    <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons text-center"
+                           id="mydatatable">
+                        <thead>
+                        <tr>
+                            <th class="text-center" style="width: 40px;">ID</th>
+                            <th class="d-none d-sm-table-cell" style="width: 15%;">学号</th>
+                            <th class="d-none d-sm-table-cell" style="width: 12%;">姓名</th>
+                            <th class="d-none d-sm-table-cell" style="width: 10%;">性别</th>
+                            <th class="d-none d-sm-table-cell" style="width: 12%;">楼号</th>
+                            <th class="d-none d-sm-table-cell" style="width: 12%;">房间号</th>
+                            <th class="d-none d-sm-table-cell" style="width: 15%;">出生日期</th>
+                            <th class="d-none d-sm-table-cell" style="width: 15%;">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <!-- END Horizontal -->
+            <!-- END Dynamic Table with Export Buttons -->
         </div>
         <!-- END Page Content -->
+
     </main>
     <!-- END Main Container -->
 
@@ -1199,9 +821,14 @@
     <footer id="page-footer" class="bg-body-light">
         <div class="content py-3">
             <div class="row font-size-sm">
+                <div class="col-sm-6 order-sm-2 py-1 text-center text-sm-right">
+                    Crafted with <i class="fa fa-heart text-danger"></i> by <a class="font-w600"
+                                                                               href="https://1.envato.market/ydb"
+                                                                               target="_blank">pixelcave</a>
+                </div>
                 <div class="col-sm-6 order-sm-1 py-1 text-center text-sm-left">
-                    <a class="font-w600" href="https://1.envato.market/xWy" target="_blank">OneUI 4.0</a>
-                    &copy; <span data-toggle="year-copy">2018</span>
+                    <a class="font-w600" href="https://1.envato.market/xWy" target="_blank">OneUI 4.0</a> &copy; <span
+                        data-toggle="year-copy">2018</span>
                 </div>
             </div>
         </div>
@@ -1212,149 +839,156 @@
 
 <!--
     OneUI JS Core
+
+    Vital libraries and plugins used in all pages. You can choose to not include this file if you would like
+    to handle those dependencies through webpack. Please check out assets/_es6/main/bootstrap.js for more info.
+
+    If you like, you could also include them separately directly from the assets/js/core folder in the following
+    order. That can come in handy if you would like to include a few of them (eg jQuery) from a CDN.
+
+    assets/js/core/jquery.min.js
+    assets/js/core/bootstrap.bundle.min.js
+    assets/js/core/simplebar.min.js
+    assets/js/core/jquery-scrollLock.min.js
+    assets/js/core/jquery.appear.min.js
+    assets/js/core/js.cookie.min.js
 -->
-<script src="assets/js/oneui.core.min.js"></script>
+<script src="../assets/js/oneui.core.min.js"></script>
 
-<script src="assets/js/oneui.app.min.js"></script>
-<script src="assets/js/plugins/jquery.formautofill.js"></script>
-<!-- Page JS Plugins  提醒-->
-<script src="assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js"></script>
+<!--
+    OneUI JS
 
-<script src="assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
-<script src="assets/js/plugins/jquery-validation/localization/messages_zh.js"></script>
+    Custom functionality including Blocks/Layout API as well as other vital and optional helpers
+    webpack is putting everything together at assets/_es6/main/app.js
+-->
+<script src="../assets/js/oneui.app.min.js"></script>
 
-<script src="assets/js/plugins/baguetteBox.js/baguetteBox.min.js"></script>
-
+<!-- Page JS Plugins -->
+<script src="../assets/js/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../assets/js/plugins/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="../assets/js/plugins/datatables/buttons/dataTables.buttons.min.js"></script>
 <script>
-    var currentPage;
-    var pageNo = 0;
-    /**
-     *禁用输入框
-     */
-    $(function () {
-        $('.leave_detail>div>input').attr("disabled", "disabled");
-    });
-
-    /**
-     * 页面加载时获取请假记录
-     *
-     * */
-    $(getInfo = function () {
-        $.ajax({
-            type: "post",
-            url: "getNoExamineLeave.do",
-            data: {"pageNo": pageNo},
-            dataType: "json",
-            success: function (data) {
-                //如果没查到数据
-                if (data.success) {
-                    if (data.data.list.length === 0) {
-                        One.helpers('notify', {
-                                type: 'success', align: 'center', delay: 6000,
-                                message: "<br><br><h3>暂无待审批的请假记录,过会再来看看吧!</h3><br>"
-                            }
-                        );
-                        setTimeout(function () {
-                            window.location = "leaveRecordList.html"
-                        }, 6000);
-                        return;
-                    }
-                    //分页返回的页面数据
-                    var pageData = data.data.list[0];
-                    //使用formautofill插件自动填充表单
-                    $(".leave_detail").autofill(pageData);
-                    //附件src及标题设置
-                    var img_title = pageData.attachment.split('\\').splice(-1, 1);
-                    $("#attachment").attr("src", pageData.attachment);
-                    $("#attachment_big").attr({"href": pageData.attachment, "data-caption": img_title});
-                    $("#img_title").text(img_title);
-                    //设置当前条数/总条数
-                    currentPage = data.data.pageNum;
-                    $("#currentPage_total").text(currentPage + ' / ' + data.data.pages);
-                    /**
-                     * 弹出层显示图片baguetteBox插件初始化
-                     */
-                    baguetteBox.run('.gallery', {});
-                    /**
-                     * 表单内容自定义填充
-                     */
-                    var cateSelector = $('#category');
-                    var audiSelector = $('#auditStatus');
-                    switch (pageData.category) {
-                        case 0:
-                            cateSelector.val("事假");
-                            break;
-                        case 1:
-                            cateSelector.val("病假");
-                            break;
-                        case 2:
-                            cateSelector.val("其它");
-                    }
-                    switch (pageData.auditStatus) {
-                        case 0:
-                            audiSelector.val("未审批");
-                            $('#btn_agree,#btn_refuse').attr("disabled", false);
-                            break;
-                        case 1:
-                            audiSelector.val("已同意");
-                            $(".refusalReasonAll").hide();
-                            break;
-                        case 2:
-                            audiSelector.val("已拒绝");
-                    }
-                } else
-                    One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: data.errMsg});
+    var t = $('#mydatatable').DataTable(
+        {
+            "processing": true,
+            // "destroy": true,
+            "retrieve": true,
+            "bStateSave": true,
+            language: {
+                "sProcessing": "正在加载数据，请稍后...",
+                "sLengthMenu": "显示 _MENU_ 项结果",
+                "sZeroRecords": "没有匹配结果",
+                "sInfo": "显示第 _START_ 至 _END_ 条记录，共 _TOTAL_ 项",
+                "sInfoEmpty": "显示第 0 至 0 条记录，共 0 项",
+                "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+                "sSearch": "搜索:",
+                "sEmptyTable": "表中数据为空",
+                "sLoadingRecords": "载入中...",
+                "sInfoThousands": ",",
+                "oPaginate": {
+                    "sFirst": "首页",
+                    "sPrevious": "上页",
+                    "sNext": "下页",
+                    "sLast": "末页"
+                }
             },
-            error: function () {
-                One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: "未知错误，请重试或联系管理员！"});
-            }
-        })
-    });
-
-    /**
-     * 同意、拒绝按钮点击事件
-     */
-    function audit(status) {
-        id = $("#id").val();
-        refusalReason = $('#refusalReason').val();
-        sendData = {
-            "id": id,
-            "status": status,
-            "refusalReason": refusalReason
-        };
-        $.ajax({
-            type: "post",
-            url: "examineLeave.do",
-            data: sendData,
-            dataType: "json",
-            success: function (data) {
-                if (data.success) {
-                    One.helpers('notify', {type: 'success', icon: 'fa fa-check mr-1', message: data.data});
-                    $('#btn_agree,#btn_refuse').hide();
-                    $('#refusalReason').attr("disabled", "disabled");
-                } else
-                    One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: data.errMsg});
-                //直接显示下一条记录
-                pageChange(1);
+            ajax: {
+                type: "post",
+                url: "studentList.do"
             },
-            error: function () {
-                One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: "未知错误，请重试或联系管理员！"});
-            }
+            //每页显示n条数据
+            pageLength: 10,
+            columns: [
+                {data: null},
+                {data: "sNo"},
+                {data: "sName"},
+                {
+                    data: "gender",
+                    defaultContent: "-"
+                },
+                {
+                    data: "buildingNO",
+                    defaultContent: "-"
+                },
+                {
+                    data: "roomNo",
+                    defaultContent: "-"
+                },
+                {
+                    data: "birthday",
+                    defaultContent: "-"
+                },
+                {
+                    "data": null,
+                    render: function (data, type, row) {
+                        return '<div class="btn-group">' +
+                            '<button type="button" class="btn btn-sm btn-primary js-tooltip-enabled"' +
+                            ' data-toggle="tooltip" title="编辑" onclick="editStudent(' + row.sNo + ')">' +
+                            '<i class="fa fa-fw fa-pencil-alt"></i>' +
+                            '</button>' +
+                            '<button type="button" class="btn btn-sm btn-primary js-tooltip-enabled" ' +
+                            'data-toggle="tooltip" title="删除" onclick="delStudent(' + row.sNo + ')">' +
+                            '<i class="fa fa-fw fa-times"></i>' +
+                            '</button>' +
+                            '</div>'
+                    }
+                }
+            ],
+            "columnDefs": [
+                {//每列定义
+                    "orderable": false,
+                    "targets": [2, 5, -1]//第x列不排序
+                }]
+            /*,
+            {
+                targets: -1,
+
+            }]*/
+        });
+    //前台添加序号
+    t.on('order.dt search.dt', function () {
+        t.column(0, {
+            "search": 'applied',
+            "order": 'applied'
+        }).nodes().each(function (cell, i) {
+            cell.innerHTML = i + 1;
         })
+    }).draw();
+
+    function editStudent(id) {
+        window.location.href = "studentInfo.html?" + id;
     }
 
-    /**
-     * 上一条。下一条的处理
-     * @param type
-     */
-    function pageChange(type) {
-        if (type === -1) {
-            pageNo = currentPage - 1;
-        } else {
-            pageNo = currentPage + 1;
-        }
-        getInfo();
+    function delStudent(id) {
+        $.ajax(
+            {
+                type: "post",
+                url: "removeUser.do",
+                dataType: "json",
+                data: {
+                    "sNo": id
+                },
+                success: function (data) {
+                    if (data.success) {
+                        $("#mydatatable").dataTable().fnDraw(false);
+                        //重新加载表格数据
+                        t.ajax.reload();
+                        alert(data.data)
+                    } else {
+                        alert(data.errMsg)
+                    }
+                }, error: function (data) {
+                    alert("未知错误")
+                }
+            }
+        )
     }
 </script>
+
+<!-- Page JS Code -->
+<!--
+<script src="assets/js/pages/be_tables_datatables.min.js"></script>
+-->
+
 </body>
 </html>

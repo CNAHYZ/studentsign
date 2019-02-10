@@ -2,6 +2,7 @@ package top.flytop.studentsign.pojo;
 
 import org.apache.ibatis.type.Alias;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
@@ -12,7 +13,7 @@ import java.sql.Timestamp;
  * @Version 1.0
  */
 @Alias("notice")
-public class Notice {
+public class Notice implements Serializable {
     private Integer noticeId;
     private String title;
     private String keyword;

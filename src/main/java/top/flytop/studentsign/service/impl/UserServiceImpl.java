@@ -6,7 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 import top.flytop.studentsign.dto.BaseResult;
 import top.flytop.studentsign.mapper.UserMapper;
 import top.flytop.studentsign.pojo.Student;
-import top.flytop.studentsign.pojo.User;
 import top.flytop.studentsign.service.UserService;
 import top.flytop.studentsign.utils.FaceUtil;
 import top.flytop.studentsign.utils.ImageUtil;
@@ -118,13 +117,13 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    /**
+    /*    *//**
      * @param username
      * @param pwd
      * @return top.flytop.studentsign.dto.BaseResult<java.lang.Integer>
      * @Description TODO
      * @date 2019/1/20 16:37
-     */
+     *//*
     @Override
     public BaseResult<Integer> loginByPwd(String username, String pwd) {
         User user = userMapper.userLogin(username, pwd);
@@ -132,8 +131,7 @@ public class UserServiceImpl implements UserService {
             return new BaseResult<>(true, user.getTypeId());
         else
             return new BaseResult<>(false, 1, "用户名或密码错误，请重试！");
-
-    }
+    }*/
 
     /**
      * @param student

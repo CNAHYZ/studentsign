@@ -60,11 +60,11 @@ public class UserTest {
         System.out.println(userServiceImpl.loginByFace(im, "23"));
     }
 
-    @Test
+ /*   @Test
     public void testLoginByPwd() {
         BaseResult s = userServiceImpl.loginByPwd("admin", "123");
         System.out.println(s);
-    }
+    }*/
 
     @Test
     public void testRemoveUser() throws Exception {

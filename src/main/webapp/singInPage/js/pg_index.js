@@ -83,7 +83,7 @@ function upload() {
     console.log(data);
     $.ajax({
         type: "post",
-        url: "stuSign.do",
+        url: "student/stuSign.do",
         data: {
             "faceImage": data
         },

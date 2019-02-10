@@ -1,4 +1,4 @@
-package top.flytop.studentsign.controller;
+package top.flytop.studentsign.controller.student;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -21,7 +21,8 @@ import java.util.List;
  * @Version 1.0
  */
 @Controller
-public class LeaveController {
+@RequestMapping("student/")
+public class StuLeaveController {
     private LeaveService leaveService;
 
     @Autowired

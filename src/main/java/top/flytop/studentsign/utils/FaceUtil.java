@@ -44,7 +44,7 @@ public class FaceUtil {
                 return new BaseResult<>(true, null);
             case 222202:
                 //pic not has face
-                return new BaseResult<>(false, errCode, "图片中没有人脸信息，请重试！");
+                return temp = new BaseResult<>(false, errCode, "图片中没有人脸信息，请重试！");
             default:
                 // 状态异常
                 String errMsg = res.getString("error_msg");
@@ -83,7 +83,7 @@ public class FaceUtil {
         // 人脸完整度，0或1, 0为人脸溢出图像边界，1为人脸都在图像边界内
         int completeness;
         // 人脸置信度，范围【0~1】，代表这是一张人脸的概率，0最小、1最大。
-        Double faceProbability;
+        double faceProbability;
         // 传入可选参数调用接口
         HashMap<String, String> options = new HashMap<String, String>();
         options.put("face_field", "quality");
@@ -132,7 +132,7 @@ public class FaceUtil {
         System.out.println(res.toString(2));
         if (isNormal(res).isSuccess())
             // 注册成功
-            return new BaseResult(true, null);
+            return new BaseResult<>(true, null);
         else
 
             return new BaseResult(false, 1, "上传失败：" + res.getString("error_msg"));

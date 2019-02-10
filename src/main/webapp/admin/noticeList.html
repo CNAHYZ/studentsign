@@ -12,26 +12,21 @@
 
     <!-- Icons -->
     <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
-    <link rel="shortcut icon" href="assets/media/favicons/favicon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="assets/media/favicons/favicon-192x192.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/media/favicons/apple-touch-icon-180x180.png">
+    <link rel="shortcut icon" href="../assets/media/favicons/favicon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/media/favicons/favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/media/favicons/apple-touch-icon-180x180.png">
     <!-- END Icons -->
 
     <!-- Stylesheets -->
     <!-- Fonts and OneUI framework -->
     <link rel="stylesheet" href="#">
-    <link rel="stylesheet" id="css-main" href="assets/css/oneui.min.css">
-
-    <link rel="stylesheet" href="assets/js/plugins/sweetalert2/sweetalert2.min.css">
+    <link rel="stylesheet" id="css-main" href="../assets/css/oneui.min.css">
+    <!-- Page JS Plugins CSS -->
+    <link rel="stylesheet" href="../assets/js/plugins/datatables/dataTables.bootstrap4.css">
     <!-- END Stylesheets -->
-    //解决wangeditor的z-index过大
     <style>
-        .w-e-menu {
-            z-index: 2 !important;
-        }
-
-        .w-e-text-container {
-            z-index: 1 !important;
+        .pull {
+            margin-top: -60px;
         }
     </style>
 </head>
@@ -44,7 +39,7 @@
         <!-- Side Header -->
         <div class="content-header bg-white-5">
             <!-- Logo -->
-            <a class="font-w600 text-dual" href="index.html">
+            <a class="font-w600 text-dual" href="../index.html">
                 <i class="fa fa-circle-notch text-primary"></i>
                 <span class="smini-hide">
                             <span class="font-w700 font-size-h5">ne</span> <span class="font-w400">4.0</span>
@@ -135,7 +130,7 @@
                     </a>
                 </li>
                 <li class="nav-main-heading">System Management</li>
-                <li class="nav-main-item">
+                <li class="nav-main-item open">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
                        aria-expanded="false" href="#">
                         <i class="nav-main-link-icon si si-speech"></i>
@@ -143,18 +138,20 @@
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="noticeList.html">
+                            <a class="nav-main-link  active" href="noticeList.html">
+                                <i class="nav-main-link-icon fa fa-comments"></i>
                                 <span class="nav-main-link-name">所有通知</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link" href="noticeOperation.html">
+                                <i class="nav-main-link-icon fa fa-edit"></i>
                                 <span class="nav-main-link-name">添加通知</span>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-main-item open">
+                <li class="nav-main-item">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
                        aria-expanded="false" href="#">
                         <i class="nav-main-link-icon si si-users"></i>
@@ -162,7 +159,7 @@
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
-                            <a class="nav-main-link  active" href="studentList.html">
+                            <a class="nav-main-link" href="studentList.html">
                                 <i class="nav-main-link-icon fa fa-address-book"></i>
                                 <span class="nav-main-link-name">学生列表</span>
                             </a>
@@ -186,18 +183,15 @@
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_ui_grid.html">
-                                <span class="nav-main-link-name">Grid</span>
+                            <a class="nav-main-link" href="signRecordList.html">
+                                <i class="nav-main-link-icon fa fa-signature"></i>
+                                <span class="nav-main-link-name">签到记录</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_ui_typography.html">
-                                <span class="nav-main-link-name">Typography</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_ui_icons.html">
-                                <span class="nav-main-link-name">Icons</span>
+                            <a class="nav-main-link" href="">
+                                <i class="nav-main-link-icon fa fa-bars"></i>
+                                <span class="nav-main-link-name">签到概况</span>
                             </a>
                         </li>
                     </ul>
@@ -210,13 +204,15 @@
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_tables_styles.html">
-                                <span class="nav-main-link-name">Styles</span>
+                            <a class="nav-main-link " href="leaveExamine.html">
+                                <i class="nav-main-link-icon fa fa-check-circle"></i>
+                                <span class="nav-main-link-name">请假审批</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_tables_responsive.html">
-                                <span class="nav-main-link-name">Responsive</span>
+                            <a class="nav-main-link" href="leaveRecordList.html">
+                                <i class="nav-main-link-icon fa fa-calendar-alt"></i>
+                                <span class="nav-main-link-name">请假记录</span>
                             </a>
                         </li>
                     </ul>
@@ -243,7 +239,7 @@
                 </li>
                 <li class="nav-main-heading">About Me</li>
                 <li class="nav-main-item">
-                    <a class="nav-main-link" href="admin_index.html">
+                    <a class="nav-main-link" href="index.html">
                         <i class="nav-main-link-icon si si-info"></i>
                         <span class="nav-main-link-name">系统介绍</span>
                     </a>
@@ -307,7 +303,7 @@
                 <div class="dropdown d-inline-block ml-2">
                     <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img class="rounded" src="assets/media/avatars/avatar0.jpg" alt="Header Avatar"
+                        <img class="rounded" src="../assets/media/avatars/avatar0.jpg" alt="Header Avatar"
                              style="width: 18px;">
                         <span class="d-none d-sm-inline-block ml-1">Adam</span>
                         <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block"></i>
@@ -315,7 +311,8 @@
                     <div class="dropdown-menu dropdown-menu-right p-0 border-0 font-size-sm"
                          aria-labelledby="page-header-user-dropdown">
                         <div class="p-3 text-center bg-primary">
-                            <img class="img-avatar img-avatar48 img-avatar-thumb" src="assets/media/avatars/avatar0.jpg"
+                            <img class="img-avatar img-avatar48 img-avatar-thumb"
+                                 src="../assets/media/avatars/avatar0.jpg"
                                  alt="">
                         </div>
                         <div class="p-2">
@@ -349,7 +346,7 @@
                                 <i class="si si-lock ml-1"></i>
                             </a>
                             <a class="dropdown-item d-flex align-items-center justify-content-between"
-                               href="userLogin.html">
+                               href="../userLogin.html">
                                 <span>Log Out</span>
                                 <i class="si si-logout ml-1"></i>
                             </a>
@@ -492,14 +489,14 @@
             <div class="content content-full">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <h1 class="flex-sm-fill h3 my-2">
-                        Authentication
-                        <small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted">All
-                            pages in one spot!
-                        </small>
+                        所有通知
+                        <!--<small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted">
+                        显示所有通知
+                        </small>-->
                     </h1>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
-                            <li class="breadcrumb-item">Authentication</li>
+                            <li class="breadcrumb-item">所有通知</li>
                             <li class="breadcrumb-item" aria-current="page">
                                 <a class="link-fx" href="">All</a>
                             </li>
@@ -511,68 +508,49 @@
         <!-- END Hero -->
 
         <!-- Page Content -->
+        <!-- Search -->
         <div class="content">
+            <form action="javascript:commitSearch()" method="POST">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="输入关键词或者标题以搜索" id="ipt_search">
+                    <div class="input-group-append">
+                            <span class="input-group-text" onclick="commitSearch()">
+                                <i class="fa fa-fw fa-search"></i>
+                            </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- END Search -->
+
+        <!-- Page Content -->
+        <div class="content">
+            <!-- Results -->
             <div class="block">
-                <div class="block-content block-content-full ">
-                    <form id="myNotice">
-                        <!-- 加载编辑器的容器 -->
-                        <div id="editor">
-                            <p></p>
-                        </div>
-                        <div class="py-2"></div>
-                        <div>
-                            <div class="input-group mx-0 form-group">
-                                <div class=" input-group-prepend" style="width: 80px;">
-                                    <span class="input-group-text">标&nbsp;&nbsp;&nbsp; 题
-                                    <span class="text-danger">*</span>
-                                    </span>
-                                </div>
-                                <input id="notice_title" name="title" class="col-sm-4 col-lg-5 form-control"
-                                       maxlength="50">
-                            </div>
-                            <!--<div class="px-lg-6 px-sm-5"></div>-->
-                            <div class="form-group input-group mx-0">
-                                <div class=" input-group-prepend">
-                                    <span class="input-group-text">关键词
-                                    <span class="text-danger">*</span>
-                                    </span>
-                                </div>
-                                <input id="notice_keyword" name="keyword"
-                                       class="col-sm-4 col-lg-5 form-control"
-                                       maxlength="50" placeholder="多个关键词时，以英文逗号“,”隔开">
-                            </div>
-                            <div class="row mx-0 form-group" id="status">
-                                <label class="d-block">展示状态：</label>
-                                <div class="custom-control custom-radio custom-control-inline custom-control-lg">
-                                    <input type="radio" class="custom-control-input" id="lg1" name="status" value="1">
-                                    <label class="custom-control-label" for="lg1">取消展示</label>
-                                </div>
-                                <div class="custom-control custom-radio custom-control-inline custom-control-lg">
-                                    <input type="radio" class="custom-control-input" id="lg2" name="status" value="0"
-                                           checked="checked">
-                                    <label class="custom-control-label" for="lg2">普通展示</label>
-                                </div>
-                                <div class="custom-control custom-radio custom-control-inline custom-control-lg">
-                                    <input type="radio" class="custom-control-input" id="lg3" value="2" name="status">
-                                    <label class="custom-control-label" for="lg3">置顶展示</label>
-                                </div>
-                            </div>
-                            <div style="margin: 20px 0;text-align: right;padding: 0 -50px;">
-                                <button class="btn btn-outline-danger mr-1 mb-3" type="reset">
-                                    <i class="fa fa-fw fa-times mr-1"></i>重置
-                                </button>
-                                <button class="btn btn-outline-success mr-1 mb-3" type="button"
-                                        onclick="commitContent()">
-                                    <i class="fa fa-fw fa-plus mr-1"></i>确认提交
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                <div class="block-content tab-content overflow-hidden">
+                    <!-- Projects -->
+                    <div class="font-size-h4 font-w600 p-2 mb-4 border-left border-4x border-primary bg-body-light">
+                        <mark class="text-danger" id="search_word"></mark>
+                        共有<span class="text-primary font-w700" id="total_count">0</span> 条通知
+                    </div>
+                    <table class="table table-hover table-vcenter text-center "
+                           id="result">
+                        <thead>
+                        <tr>
+                            <th class="" style="width: 10%">ID</th>
+                            <th class="d-none d-lg-table-cell" style="width: 47%;">通知内容</th>
+                            <th class="d-none d-lg-table-cell" style="width: 13%;">状态</th>
+                            <th class="d-none d-lg-table-cell" style="width: 15%;">创建时间</th>
+                            <th class="d-none d-lg-table-cell" style="width: 20%;">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody class="">
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
         <!-- END Page Content -->
-
     </main>
     <!-- END Main Container -->
 
@@ -590,144 +568,208 @@
     <!-- END Footer -->
 </div>
 <!-- END Page Container -->
-<script src="assets/js/oneui.core.min.js"></script>
+<script src="../assets/js/oneui.core.min.js"></script>
 
-<script src="assets/js/oneui.app.min.js"></script>
-<script src="assets/js/plugins/jquery.formautofill.js"></script>
-<script src="assets/js/plugins/wangEditor/wangEditor.min.js"></script>
-<script src="assets/js/plugins/sweetalert2/sweetalert2.min.js"></script>
-<script src="assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="../assets/js/oneui.app.min.js"></script>
+<script src="../assets/js/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../assets/js/plugins/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="../assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js"></script>
 
 <script>
+    var removeNoticeUrl = "removeNotice.do";
+    var changeNoticeStatusUrl = "changeNoticeStatus.do";
+    var getNoticeUrl = "getAllNotice.do";
+    var searchNoticeStatusUrl = "searchNotice.do";
+
     /**
-     * 实例化编辑器
+     * 搜索
      */
-    var E = window.wangEditor;
-    var editor = new E('#editor');
-    editor.customConfig.uploadImgServer = 'noticeImageUpload.do';
-    // 默认限制图片大小是 5M,将图片大小限制为 3M
-    editor.customConfig.uploadImgMaxSize = 3 * 1024 * 1024;
-    // 限制一次最多上传 10 张图片
-    editor.customConfig.uploadImgMaxLength = 2;
-    editor.customConfig.uploadFileName = 'noticeImg';
-
-    editor.create();
-    //获取id
-    var thisURL = document.URL;
-    var parameters = window.location.search;
-    noticeId = decodeURI(parameters.substr(1).split('=')[1]);
-    console.log(parameters);
-    // 标示符  parameters非空则为true即编辑，否则为添加通知
-    var isEdit = parameters ? true : false;
-
-    var addNoticeUrl = "addNotice.do";
-    var updateNoticeUrl = "updateNotice.do";
-    var getNoticeUrl = "getNoticeDetail.do";
-
-    // 通过标示符，确定调用的方法
-    if (isEdit) {
-        // 为true，则根据Id调用获取notice信息的方法
-        showEditNoticePage(noticeId);
+    function commitSearch() {
+        searchWord = $("#ipt_search").val();
+        $("#search_word").text(searchWord);
+        console.log(searchWord);
+        t.search(searchWord).draw();
     }
 
     /**
-     *编辑页面初始化
+     *跳转到通知编辑页面
+     * @param noticeId
      */
-    function showEditNoticePage(noticeId) {
+    function noticeDetail(noticeId) {
+        window.location = "noticeOperation.html?noticeId=" + noticeId;
+    }
+
+    /**
+     * 编辑、更改状态操作
+     * @param noticeId
+     * @param status
+     */
+    function operation(noticeId, status) {
+        upData = {"noticeId": noticeId};
+        upUrl = null;
+        if (status === '' || status === undefined) {
+            upUrl = removeNoticeUrl
+        } else {
+            //修改状态操作，向数据中添加status
+            upData["status"] = status;
+            upUrl = changeNoticeStatusUrl
+        }
+        console.log(upData);
         $.ajax({
+            url: upUrl,
+            data: upData,
             type: "post",
-            url: getNoticeUrl,
-            data: {"noticeId": noticeId},
             dataType: "json",
             success: function (data) {
-                var myData = data.data[0];
-                if (data.success) {
-                    editor.txt.html(myData.content);
-                    $("#myNotice").autofill(myData)
-
-                } else swal(myData.data, "", "fail");
+                if (data.success)
+                    One.helpers('notify', {
+                        type: 'success', align: 'center', delay: 6000,
+                        icon: 'fa fa-check mr-1', message: data.data
+                    });
+                else
+                    One.helpers('notify', {
+                        type: 'danger', align: 'center', icon: 'fa fa-times mr-1',
+                        message: data.errMsg
+                    });
+                $("#mydatatable").dataTable().fnDraw(false);
+                //重新加载表格数据
+                t.ajax.reload();
             }, error: function (data) {
-                swal("系统出错，请稍后再试", "", "error");
+                One.helpers('notify', {
+                    type: 'danger', align: 'center', icon: 'fa fa-times mr-1',
+                    message: data.errMsg
+                });
             }
-
         })
     }
 
-    /**
-     * 去除标题和关键词的前后空格
-     */
-    $("[id^=notice_]").keyup(function () {
-        console.log(this.value);
-        this.value = this.value.replace(/^\s+|\s+$/g, '')
+    /*============================================================================*/
+    var t = $('#result').DataTable(
+        {
+            // "bStateSave": true,
+            dom: '<"text-right pull"l>rt<"row"<"col-6"i><"col-6"p>>',//隐藏搜索框
+            // "lengthChange": false,
+            // "retrieve": true,
+            "serverSide": true,
+            "pagingType": "full_numbers",//显示完整的首页、末页、页码等按钮
+            "lengthMenu": [10, 25, 50, 75, 100],
+            "ordering": false,
+            "autoWidth": false,//自动调整宽度
+            "processing": true,
+            "searching": true,//调用search()方法，此处必须为true
+            language: {
+                "sProcessing": "正在加载数据，请稍后...",
+                "sZeroRecords": "没有匹配结果",
+                "sInfo": "显示第 _START_ 至 _END_ 条记录，共 _TOTAL_ 项",
+                "sInfoEmpty": "显示第 0 至 0 条记录，共 0 项",
+                "sSearch": "搜索:",
+                "sEmptyTable": "没有找到记录",
+                "sLoadingRecords": "载入中...",
+                "sInfoThousands": ",",
+                "sLengthMenu": "显示 _MENU_ 条记录",
+                "oPaginate": {
+                    "sFirst": "<<",
+                    "sPrevious": "<",
+                    "sNext": ">",
+                    "sLast": ">>"
+                }
+            },
+            ajax: {
+                type: "post",
+                url: getNoticeUrl,
+                data: {},
+                beforeSend: function () {
+                    // console.log(sendData)
+                }
+            },
+            //每页显示n条数据
+            pageLength: 5,
+            columns: [
+                {data: "noticeId"},
+                {
+                    data: "content",
+                    defaultContent: "-",
+                },
+                {
+                    data: "status",
+                    render: function (data) {
+                        var myStatus;
+                        switch (data) {
+                            case 0:
+                                myStatus = "<span class=\"badge badge-success\"> 普通展示</span>\n";
+                                break;
+                            case 1:
+                                myStatus = "<span class=\"badge badge-danger\"> 取消展示</span>\n";
+                                break;
+                            case 2:
+                                myStatus = "<span class=\"badge badge-info\"> 置顶展示</span>\n";
+                        }
+                        return myStatus;
+                    }
+                },
+                {
+                    data: "createTime",
+                },
+                {
+                    data: null
+                }
+            ],
+            "columnDefs": [
+                {
+                    "targets": [1],
+                    className: "text-left",
+                    render: function (data, type, full) {
+                        //取内容的前80个字符，并且去除内容中的html标签
+                        if (data.length > 80)
+                            myContent = (data.replace(/<[^>]+>/g, "").substring(0, 80) + '...');
+                        else myContent = data.replace(/<[^>]+>/g, "");
+                        return "<td>\n" +
+                            "                                    <h4 class=\"h5 mt-3 mb-2\" id=\"title\">\n" +
+                            "                                        <a href=\"javascript:noticeDetail(" + full.noticeId + ")\">" + full.title + "</a>\n" +
+                            "                                    </h4>\n" +
+                            "                                    <p class=\"d-none d-sm-block text-muted\" id=\"content\">\n" +
+                            myContent +
+                            "                                    </p>\n" +
+                            "                                    <div class=\"row mx-0\">\n" +
+                            "                                        <span class=\"font-size-sm font-w600\">关键词：</span>\n" +
+                            "                                        <span class=\"font-size-sm text-muted\" id=\"keyword\">\n" +
+                            full.keyword + "</span>\n" +
+                            "                                    </div>\n" +
+                            "                                </td>";
+                    }
+                },
+                {
+                    "targets": [-1],
+                    render: function (data, type, row) {
+                        return "<div class=\"btn-group btn-group-lg\" role=\"group\" aria-label=\"Large Horizontal Primary\">\n" +
+                            "            <div class=\"dropdown\">\n" +
+                            "                <button type=\"button\" class=\"btn btn-lg btn-outline-primary dropdown-toggle\" id=\"btn_time\"\n" +
+                            "                        data-toggle=\"dropdown\" title=\"修改展示状态\" style=\"border-radius:.25rem 0 0 .25rem\">\n" +
+                            "                    状态\n" +
+                            "                </button>\n" +
+                            "                <div class=\"dropdown-menu font-size-lg\" aria-labelledby=\"dropdown-default-outline-primary\"\n" +
+                            "                     style=\"min-width:100px\">\n" +
+                            "                    <a class=\"dropdown-item\" onclick=\"operation(" + row.noticeId + ",1)\">下线</a>\n" +
+                            "                    <a class=\"dropdown-item\" onclick=\"operation(" + row.noticeId + ",0)\">展示</a>\n" +
+                            "                    <a class=\"dropdown-item\" onclick=\"operation(" + row.noticeId + ",2)\">置顶</a>\n" +
+                            "                </div>\n" +
+                            "            </div>\n" +
+                            "            <button type=\"button\" class=\"btn btn-primary\" data-toggle=\"tooltip\" " +
+                            "               title=\"编辑\" onclick=\"noticeDetail(" + row.noticeId + ")\">" +
+                            "               <i class=\"fa fa-fw fa-pencil-alt\"></i></button>\n" +
+                            "            <button type=\"button\" class=\"btn btn-primary\" data-toggle=\"tooltip\" " +
+                            "               title=\"删除\" onclick=\"operation(" + row.noticeId + "," + '' + ")\">" +
+                            "               <i class=\"fa fa-fw fa-times\"></i></button>\n" +
+                            "        </div>"
+                    }
+                }
+            ]
+        });
+    t.on('xhr', function () {
+        //获取最终的json数据
+        var json = t.ajax.json();
+        $("#total_count").text(json.recordsTotal);
     });
-
-    /**
-     * 提交
-     */
-    function commitContent() {
-        var myNotice = $("#myNotice");
-        if (!myNotice.valid()) {
-            return;
-        }
-        var formData = new FormData(myNotice[0]);
-        // 如果是编辑操作,需要传入noticeId
-        if (isEdit) {
-            formData.append("noticeId", noticeId);
-        }
-        content = editor.txt.html();
-        console.log(content);
-        formData.append("content", content);
-        console.log(formData);
-        $.ajax({
-            processData: false,
-            contentType: false,
-            //必须指定post方式，否则无法发送参数
-            type: "post",
-            url: isEdit ? updateNoticeUrl : addNoticeUrl,
-            data: formData,
-            dataType: "json",
-            success: function (data) {
-                if (data.success) {
-                    swal(data.data, "", "success");
-                } else swal(data.data, "", "fail");
-            }, error: function (data) {
-                swal("系统出错，请稍后再试", "", "error");
-            }
-        })
-    }
-
-    /**
-     * 表单合法性验证
-     */
-    jQuery("#myNotice").validate({
-        errorClass: "invalid-feedback animated fadeIn",
-        errorElement: "div",
-        errorPlacement: function (e, n) {
-            jQuery(n).addClass("is-invalid");
-            jQuery(n).after(e)
-        },
-        highlight: function (e) {
-            jQuery(e).parents(".form-group").find(".is-invalid").removeClass("is-invalid").addClass("is-invalid")
-        },
-        success: function (e) {
-            jQuery(e).parents(".form-group").find(".is-invalid").removeClass("is-invalid").addClass("is-valid");
-            jQuery(e).remove()
-        },
-        rules: {
-            "title": {required: !0, maxlength: 45},
-            "keyword": {required: !0, maxlength: 45},
-        },
-        messages: {
-            "title": {
-                required: "标题不能为空",
-                maxlength: "标题最多不能超过45个字符"
-            },
-            "keyword": {
-                required: "关键词不能为空",
-                maxlength: "关键词最多不能超过45个字符"
-            },
-        }
-    })
 </script>
 </body>
 </html>

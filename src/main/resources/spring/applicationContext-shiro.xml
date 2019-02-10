@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+    <!-- web.xml中shiro的filter对应的bean -->
+    <!-- Shiro 的Web过滤器 -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <!-- Shiro的核心安全接口,这个属性是必须的 -->
+        <property name="securityManager" ref="securityManager"/>
+        <!-- loginUrl认证地址，如果没有认证将会请求此地址进行认证，请求此地址将由formAuthenticationFilter进行认证-->
+        <property name="loginUrl" value="/userLogin.html"/>
+        <!-- 通过unauthorizedUrl指定没有权限操作时跳转页面-->
+        <property name="unauthorizedUrl" value="/403.html"/>
+        <!-- 过滤器链定义，从上向下顺序执行，一般将/**放在最下边 -->
+        <property name="filterChainDefinitions">
+            <value>
+                <!-- /**=authc ,所有url都必须认证通过才可以访问-->
+                <!--/** = user 表示访问该地址的用户是身份验证通过或 RememberMe登录的都可以-->
+                /*VCode.do=anon
+                /userLogin*=anon
+                /student/stuSign.do=anon
+                /*/logOut.do=logout
+                /student/*=roles[student]
+                /admin/*=roles[admin]
+                /** = user
+            </value>
+        </property>
+    </bean>
+
+    <!-- securityManager安全管理器 -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="userRealm"/>
+        <property name="cacheManager" ref="cacheManager"/>
+        <property name="sessionManager" ref="sessionManager"/>
+        <!--记住我-->
+        <property name="rememberMeManager" ref="rememberMeManager"/>
+    </bean>
+    <!-- realm -->
+    <bean id="userRealm" class="top.flytop.studentsign.utils.GlobalRealm">
+        <!-- 将凭证匹配器设置到realm中，realm按照凭证匹配器的要求进行散列 -->
+        <property name="credentialsMatcher" ref="credentialsMatcher"/>
+    </bean>
+    <!-- 凭证匹配器 -->
+    <bean id="credentialsMatcher"
+          class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+        <property name="hashAlgorithmName" value="md5"/>
+        <property name="hashIterations" value="2"/>
+    </bean>
+    <!-- 注册缓存管理器 -->
+    <bean id="cacheManager"
+          class="org.apache.shiro.cache.ehcache.EhCacheManager">
+        <!-- 注入ehcache配置文件 -->
+        <property name="cacheManagerConfigFile" value="classpath:properties/ehcache.xml"/>
+    </bean>
+    <!--会话管理器-->
+    <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+        <!--session的失效时长，毫秒-->
+        <property name="globalSessionTimeout" value="6000000"/>
+        <!--删除失效的session-->
+        <property name="deleteInvalidSessions" value="true"/>
+    </bean>
+
+    <!--rememberMe cookie-->
+    <bean id="rememberMe" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <constructor-arg value="rememberMe"/>
+        <property name="httpOnly" value="true"/>
+        <!--cookie 的最大失效时间 3天, maxAge=-1 表示关闭浏览器cookie失效-->
+        <property name="maxAge" value="100000000"/>
+    </bean>
+    <!--rememberMe 管理器, cipherKey表示设置cookie的加密算法，采用的是base64的加密-->
+    <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+        <property name="cipherKey"
+                  value=" #{T(org.apache.shiro.codec.Base64).decode('4AvVhmFLUs0KTA3Kprsdag==')}"/>
+        <property name="cookie" ref="rememberMe"/>
+    </bean>
+</beans>

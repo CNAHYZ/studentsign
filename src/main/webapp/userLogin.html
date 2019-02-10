@@ -62,7 +62,7 @@
                                         <!-- Sign In Form -->
                                         <!-- jQuery Validation (.js-validation-signin class is initialized in js/pages/op_auth_signin.min.js which was auto compiled from _es6/pages/op_auth_signin.js) -->
                                         <!-- For more info and examples you can check out https://github.com/jzaefferer/jquery-validation -->
-                                        <form class="js-validation-signin" action="#" method="POST">
+                                        <form class="form_login" action="#" method="POST">
                                             <div class="py-3">
                                                 <div class="form-group">
                                                     <div class="input-group">
@@ -72,7 +72,7 @@
                                                     </span>
                                                         </div>
                                                         <input type="text" class="form-control  form-control-lg"
-                                                               id="login-username" name="login-username"
+                                                               id="login-username" name="username"
                                                                placeholder="请输入账号">
                                                     </div>
                                                 </div>
@@ -84,7 +84,7 @@
                                                     </span>
                                                         </div>
                                                         <input type="password" class="form-control  form-control-lg"
-                                                               id="login-password" name="login-password"
+                                                               id="login-password" name="password"
                                                                placeholder="请输入密码">
                                                     </div>
                                                 </div>
@@ -96,19 +96,19 @@
                                                             </span>
                                                         </div>
                                                         <input type="text" class="form-control  form-control-lg"
-                                                               id="login-validation" name="login-validation"
+                                                               id="login-validation" name="validation"
                                                                placeholder="请输入验证码" maxlength="4">
                                                         <img id="vCode" class="input-group-append"
-                                                             src="getVerifyCode.do" alt="验证码">
+                                                             src="getVCode.do" onclick="changeCode()" alt="验证码">
                                                     </div>
                                                 </div>
                                                 <div class="py-2">
                                                     <div class="form-group">
                                                         <div class="custom-control custom-checkbox">
                                                             <input type="checkbox" class="custom-control-input"
-                                                                   id="login-remember" name="login-remember">
+                                                                   id="login-remember" name="rememberMe">
                                                             <label class="custom-control-label font-w400"
-                                                                   for="login-remember">记住密码</label>
+                                                                   for="login-remember">七天之内免登录</label>
                                                         </div>
                                                     </div>
 
@@ -121,6 +121,7 @@
                                                         </button>
                                                     </div>
                                                 </div>
+                                            </div>
                                         </form>
                                         <!-- END Sign In Form -->
                                     </div>
@@ -152,35 +153,33 @@
 <script src="assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
 <script src="assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js"></script>
 <!-- Page JS Code -->
-<!--<script src="assets/js/pages/signin.min.js"></script>-->
 <script>
     /**
      *登录按钮点击事件
      */
     $("#signin").click(function () {
-        var t = $(".js-validation-signin").valid();
+        var t = $(".form_login").valid();
         if (!t) return;
         console.log(t);
-        var username = $("#login-username").val();
-        var pwd = $("#login-password").val();
-        var vCode = $("#login-validation").val();
+        form = new FormData($(".form_login")[0]);
         $.ajax({
+            processData: false,
+            contentType: false,
             type: "post",
-            url: "loginbypwd.do",
-            data: {
-                "username": username,
-                "pwd": pwd,
-                "vCode": vCode
-            },
+            url: "userLogin.do",
+            data: form,
             dataType: "json",
             success: function (result) {
                 if (result.success) {
                     window.location.href = result.data;
-                } else
+                } else {
                     One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: result.errMsg});
+                    changeCode();
+                }
             },
             error: function (data) {
                 One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: "未知错误，请重试!"});
+                changeCode();
             }
         });
     });
@@ -188,16 +187,16 @@
     /**
      * 验证码点击更换
      */
-    $('#vCode').click(function () {
+    function changeCode() {
         var ts = new Date();
         console.log(ts);
-        $('#vCode').attr('src', 'getVerifyCode.do?' + ts);
-    });
+        $('#vCode').attr('src', 'getVCode.do?' + ts);
+    }
 
     /**
      * 表单合法性验证
      */
-    jQuery(".js-validation-signin").validate({
+    jQuery(".form_login").validate({
         errorClass: "invalid-feedback animated fadeIn",
         errorElement: "div",
         errorPlacement: function (e, n) {

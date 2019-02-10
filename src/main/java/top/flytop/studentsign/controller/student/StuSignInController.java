@@ -1,4 +1,4 @@
-package top.flytop.studentsign.controller;
+package top.flytop.studentsign.controller.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +16,8 @@ import top.flytop.studentsign.service.SignInService;
  * @Version 1.0
  */
 @Controller
-public class SignInController {
+@RequestMapping("student/")
+public class StuSignInController {
     @Autowired
     private SignInService signInService;
 
