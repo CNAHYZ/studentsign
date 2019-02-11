@@ -211,9 +211,9 @@
             jQuery(e).remove()
         },
         rules: {
-            "login-username": {required: !0, minlength: 3},
-            "login-password": {required: !0, minlength: 3},
-            "login-validation": {
+            "username": {required: !0, minlength: 3},
+            "password": {required: !0, minlength: 3},
+            "validation": {
                 required: !0, remote: {
                     url: "checkVCode.do",
                     type: "post",
@@ -227,15 +227,15 @@
             }
         },
         messages: {
-            "login-username": {
+            "username": {
                 required: "用户名不能为空！",
                 minlength: "用户名不能少于5个字符"
             },
-            "login-password": {
+            "password": {
                 required: "密码不能为空！",
                 minlength: "密码不能少于6个字符！"
             },
-            "login-validation": {
+            "validation": {
                 required: "验证码不能为空！",
                 remote: "验证码错误，请检查！"
             }

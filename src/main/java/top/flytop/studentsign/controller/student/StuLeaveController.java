@@ -1,17 +1,18 @@
 package top.flytop.studentsign.controller.student;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.HandlerExceptionResolver;
+import org.springframework.web.servlet.ModelAndView;
 import top.flytop.studentsign.dto.BaseResult;
-import top.flytop.studentsign.pojo.Leave;
 import top.flytop.studentsign.service.LeaveService;
 
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @ClassName LeaveController
@@ -22,7 +23,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("student/")
-public class StuLeaveController {
+public class StuLeaveController implements HandlerExceptionResolver {
     private LeaveService leaveService;
 
     @Autowired
@@ -31,28 +32,42 @@ public class StuLeaveController {
     }
 
     /**
-     * @param param
+     * @param request
      * @return top.flytop.studentsign.dto.BaseResult
      * @Description TODO
-     * @date 2019/1/27 19:52
+     * @Date 2019/2/11 16:25
      */
-    @RequestMapping("getLeave")
+    @RequestMapping(value = "askForLeave", method = RequestMethod.POST)
     @ResponseBody
-    public BaseResult getLeave(String param) {
-        return leaveService.getLeave(param);
+    public BaseResult askForLeave(HttpServletRequest request) {
+        try {
+            return leaveService.askForLeave(request) ? new BaseResult<>(true, "申请成功，请等待审核！")
+                    : new BaseResult<>(false, 1, "申请失败，请稍后重试！");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new BaseResult<>(false, 1, "申请失败，请稍后重试！");
+        }
     }
 
     /**
-     * @param param
-     * @return top.flytop.studentsign.dto.BaseResult
      * @Description TODO
-     * @date 2019/1/27 19:52
+     * @param auditStatus
+     * @param request
+     * @return top.flytop.studentsign.dto.BaseResult
+     * @Date 2019/2/11 21:34
      */
-    @RequestMapping("leaveStatusFilter")
+    @RequestMapping("getLeave")
     @ResponseBody
-    public BaseResult leaveStatusFilter(String param) {
-        return leaveService.getLeaveByStatus(param);
+    public BaseResult getLeave(@RequestParam(defaultValue = "") Integer auditStatus, HttpServletRequest request) {
+//       try {
+        String sNo = String.valueOf(request.getSession().getAttribute("currentUser"));
+        return new BaseResult<>(true, leaveService.getLeaveBySNo(sNo, auditStatus));
+       /*}catch (Exception e){
+           e.printStackTrace();
+           return null;
+       }*/
     }
+
 
     /**
      * @param id
@@ -78,44 +93,11 @@ public class StuLeaveController {
         return leaveService.getLeaveDetailById(id);
     }
 
-    /**
-     * @param id
-     * @param status
-     * @param refusalReason
-     * @return top.flytop.studentsign.dto.BaseResult
-     * @Description TODO
-     * @date 2019/1/28 21:58
-     */
-    @RequestMapping("examineLeave")
-    @ResponseBody
-    public BaseResult examineLeave(Integer id, Integer status, String refusalReason) {
-        Leave leave = new Leave();
-        leave.setId(id);
-        leave.setAuditStatus(status);
-        if (status == 2)
-            leave.setRefusalReason(refusalReason);
-        System.out.println(leave);
-        return leaveService.examineLeave(leave);
-    }
 
-    /**
-     * @param
-     * @return top.flytop.studentsign.dto.BaseResult
-     * @Description TODO
-     * @date 2019/1/28 21:58
-     */
-    @RequestMapping("getNoExamineLeave")
-    @ResponseBody
-    public BaseResult getNoExamineLeave(@RequestParam(defaultValue = "1") Integer pageNo) {
-        int pageSize = 1;
-        PageHelper.startPage(pageNo, pageSize);
-        BaseResult filterResult = leaveService.getLeaveByStatus("0");
-        if (filterResult.isSuccess()) {
-            List<Leave> leaveList = (List) filterResult.getData();
-            PageInfo<Leave> page = new PageInfo<>(leaveList);
-            return new BaseResult<>(true, page);
-        } else
-            return new BaseResult(false, 1, "暂无信息");
+    @Override
+    public ModelAndView resolveException(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) {
+        e.printStackTrace();
+        System.out.println("异常");
+        return null;
     }
-
 }

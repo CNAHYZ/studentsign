@@ -3,6 +3,9 @@ package top.flytop.studentsign.service;
 import top.flytop.studentsign.dto.BaseResult;
 import top.flytop.studentsign.pojo.Leave;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
 /**
  * @ClassName LeaveService
  * @Description TODO
@@ -21,4 +24,8 @@ public interface LeaveService {
     BaseResult getLeaveDetailById(Integer id);
 
     BaseResult examineLeave(Leave leave);
+
+    Boolean askForLeave(HttpServletRequest request);
+
+    List<Leave> getLeaveBySNo(String sNo, Integer auditStatus);
 }

@@ -1,6 +1,7 @@
 package top.flytop.studentsign.controller;
 
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
@@ -63,7 +64,9 @@ public class LoginController {
             } else
                 // 备用
                 return null;
-
+        } catch (UnknownAccountException e) {
+            e.printStackTrace();
+            return new BaseResult(false, 1, "用户名不存在！");
         } catch (Exception e) {
             e.printStackTrace();
             return new BaseResult(false, 1, "用户名或密码错误！");

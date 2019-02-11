@@ -4,7 +4,6 @@ import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.ibatis.type.Alias;
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.sql.Timestamp;
 
 /**
@@ -21,9 +20,9 @@ public class Leave implements Serializable {
     private Timestamp applicationTime;
     private Integer category;
     @JSONField(format = "yyyy-MM-dd HH:mm")
-    private Date startTime;
+    private Timestamp startTime;
     @JSONField(format = "yyyy-MM-dd HH:mm")
-    private Date endTime;
+    private Timestamp endTime;
     private String comment;
     private String attachment;
     private Integer auditStatus;
@@ -33,7 +32,7 @@ public class Leave implements Serializable {
     public Leave() {
     }
 
-    public Leave(Integer id, String sNo, Timestamp applicationTime, Integer category, Date startTime, Date endTime, String comment, String attachment, Integer auditStatus, String refusalReason, String sName) {
+    public Leave(Integer id, String sNo, Timestamp applicationTime, Integer category, Timestamp startTime, Timestamp endTime, String comment, String attachment, Integer auditStatus, String refusalReason, String sName) {
         this.id = id;
         this.sNo = sNo;
         this.applicationTime = applicationTime;
@@ -71,19 +70,27 @@ public class Leave implements Serializable {
         this.applicationTime = applicationTime;
     }
 
-    public Date getStartTime() {
+    public Integer getCategory() {
+        return category;
+    }
+
+    public void setCategory(Integer category) {
+        this.category = category;
+    }
+
+    public Timestamp getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(Timestamp startTime) {
         this.startTime = startTime;
     }
 
-    public Date getEndTime() {
+    public Timestamp getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(Timestamp endTime) {
         this.endTime = endTime;
     }
 
@@ -125,14 +132,6 @@ public class Leave implements Serializable {
 
     public void setsName(String sName) {
         this.sName = sName;
-    }
-
-    public Integer getCategory() {
-        return category;
-    }
-
-    public void setCategory(Integer category) {
-        this.category = category;
     }
 
     @Override

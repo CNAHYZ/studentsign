@@ -13,25 +13,38 @@
         <result property="refusalReason" column="refusal_reason"></result>
     </resultMap>
     <!--===========================查询=============================-->
-    <!--查询所有用户今天、昨天、近7天、近30天及所有时间的请假记录-->
-    <select id="getLeaveByStatus" resultMap="leaveResultMap">
-        select a.*,b.sname
-        from sleave a,
-        student b
-        where a.sno = b.sno
-        <if test="_parameter != null">
-            and audit_status = #{auditStatus}
-        </if>
-
-    </select>
 
     <!--按照审批状态筛选请假记录-->
-    <select id="getLeave" resultMap="leaveResultMap">
-        select a.*,b.sname from sleave a,student b
-        where a.sno = b.sno
-        <if test="_parameter != null and _parameter != ''">
-            and to_days(now()) - to_days(application_time) &lt;= #{dayNum};
+    <select id="getLeaveByStatus" resultMap="leaveResultMap">
+        select a.*,b.sname
+        from sleave a left join
+        student b
+        on a.sno = b.sno
+        <if test="_parameter != null">
+            where audit_status = #{auditStatus}
         </if>
+        order by application_time desc
+    </select>
+
+    <!--查询所有用户今天、昨天、近7天、近30天及所有时间的请假记录-->
+    <select id="getLeave" resultMap="leaveResultMap">
+        select a.*,b.sname from sleave a left join student b
+        on a.sno = b.sno
+        <if test="_parameter != null and _parameter != ''">
+            where to_days(now()) - to_days(application_time) &lt;= #{dayNum};
+        </if>
+        order by application_time desc
+    </select>
+
+    <!--根据学号获取某个学生的请假记录/状态筛选-->
+    <select id="getLeaveBySNo" resultMap="leaveResultMap">
+        select *
+        from sleave
+        where sno =#{sNo}
+        <if test="_parameter != null and _parameter != ''">
+            where audit_status = #{auditStatus}
+        </if>
+        order by application_time desc
     </select>
 
     <!--根据id获取请假详情-->
@@ -54,7 +67,7 @@
     <!--===========================插入=============================-->
     <!--记录学生请假-->
     <insert id="addLeave" parameterType="leave">
-        insert sleave (sno, application_time, start_time, end_time, comment, attachment)
+        insert sleave (sno, application_time, category, start_time, end_time, comment, attachment)
         values (#{sNo}, #{applicationTime}, #{category}, #{startTime},
                 #{endTime}, #{comment}, #{attachment})
     </insert>

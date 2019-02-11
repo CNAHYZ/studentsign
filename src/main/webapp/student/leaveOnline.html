@@ -20,6 +20,7 @@
     <link rel="stylesheet" id="css-main" href="/assets/css/oneui.min.css">
     <!-- Page JS Plugins CSS -->
     <link rel="stylesheet" href="/assets/js/plugins/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.css">
+    <link rel="stylesheet" href="/assets/js/plugins/sweetalert2/sweetalert2.min.css">
 
     <!-- END Stylesheets -->
 </head>
@@ -143,38 +144,35 @@
                 <div class="block-content block-content-full">
 
                     <div class="row  py-3">
-                        <div class="col-lg-2"></div>
+                        <div class="col-lg-1"></div>
                         <div class="col-lg-3">
-                            <div class="options-container fx-item-zoom-in fx-overlay-zoom-out col-lg-12"
+                            <div class="options-container fx-item-zoom-in fx-overlay-zoom-out"
                                  style="min-height: 200px">
-                                <img class="img-fluid options-item" id="faceImage"
-                                     src="../assets/media/photos/noimage.png"
-                                     alt="面部图像">
+                                <img class="img-fluid options-item" id="attachment_img"
+                                     src="" alt="">
                             </div>
                         </div>
-                        <div class="col-lg-7">
-                            <div class="px-5"></div>
+                        <div class="col-lg-7 col-md-9">
                             <!-- Form Horizontal - Default Style -->
-                            <form class="form_alter " enctype="multipart/form-data" action="" method="POST"
-                                  onsubmit="return false;">
+                            <form class="askLeave" enctype="multipart/form-data" method="POST">
                                 <div class="form-group row py-2">
                                     <label class="col-sm-2 col-form-label" for="3">请假类别</label>
-                                    <div class="form-group col-sm-6" id="3"
+                                    <div class="form-group col-sm-8" id="3"
                                          style="padding-top: 10px;margin-bottom: -10px">
-                                        <div class="custom-control custom-radio custom-control-inline custom-control-lg col-3">
+                                        <div class="custom-control custom-radio custom-control-inline custom-control-lg col-4">
                                             <input type="radio" class="custom-control-input"
                                                    id="inline1" name="category" value="0"
                                                    checked="checked">
                                             <label class="custom-control-label"
                                                    for="inline1">事假</label>
                                         </div>
-                                        <div class="custom-control custom-radio custom-control-inline custom-control-lg col-3">
+                                        <div class="custom-control custom-radio custom-control-inline custom-control-lg col-4">
                                             <input type="radio" class="custom-control-input"
                                                    id="inline2" name="category" value="1">
                                             <label class="custom-control-label"
                                                    for="inline2">病假</label>
                                         </div>
-                                        <div class="custom-control custom-radio custom-control-inline custom-control-lg col-3">
+                                        <div class="custom-control custom-radio custom-control-inline custom-control-lg">
                                             <input type="radio" class="custom-control-input"
                                                    id="inline3" name="category" value="2">
                                             <label class="custom-control-label"
@@ -184,31 +182,31 @@
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">起止时间</label>
-                                    <div class="input-daterange input-group  col-sm-6">
-                                        <input type="text" class="form-control" id="start_time"
-                                               name="start_time" placeholder="开始日期" readonly>
+                                    <div class="input-daterange time input-group col-md-8 col-lg-7">
+                                        <input type="text" class="form-control" id="startTime"
+                                               name="startTime" placeholder="开始时间" readonly>
                                         <div class="input-group-prepend input-group-append">
                                     <span class="input-group-text font-w600">
                                         <i class="fa fa-fw fa-arrow-right"></i>
                                     </span>
                                         </div>
-                                        <input type="text" class="form-control " id="end_time"
-                                               name="end_time" placeholder="结束日期" readonly>
+                                        <input type="text" class="form-control " id="endTime"
+                                               name="endTime" placeholder="结束时间" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group row py-2">
                                     <label class="col-sm-2 col-form-label" for="comment">备注</label>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-7">
                                         <textarea class="form-control" type="text" id="comment" name="comment"
                                                   placeholder="备注"></textarea>
                                     </div>
                                 </div>
                                 <div class=" form-group row py-2">
                                     <label class="col-sm-2 col-form-label" for="attachment">附件</label>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-7">
                                         <input type="file" class="custom-file-input"
                                                data-toggle="custom-file-input" id="attachment"
-                                               name="attachment">
+                                               name="attachment" onchange="changImg(event)" required>
                                         <label class="custom-file-label" for="attachment"></label>
                                     </div>
                                 </div>
@@ -217,7 +215,7 @@
                                         <button type="button" class="btn btn-primary" id="btn_submit">提交申请</button>
                                     </div>
                                 </div>
-                                <hr class="col-8 ml-0">
+                                <hr class="col-9 ml-0">
                                 <div>
                                     <h5>注意：</h5>
                                     <ol>
@@ -261,61 +259,122 @@
 <script src="../assets/js/oneui.core.min.js"></script>
 
 <script src="../assets/js/oneui.app.min.js"></script>
-<script src="../assets/js/plugins/jquery.formautofill.js"></script>
-<!-- Page JS Plugins  提醒-->
-<script src="../assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js"></script>
 
 <!-- Page JS Plugins 对话框-->
+<script src="../assets/js/plugins/sweetalert2/sweetalert2.min.js"></script>
+
 <script src="/assets/js/plugins/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.js"></script>
 <script src="/assets/js/plugins/bootstrap-datetimepicker-master/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
-<!-- Page JS Helpers (BS Datepicker + BS Maxlength + Select2 ) -->
 
+<script src="/assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="/assets/js/plugins/jquery-validation/localization/messages_zh.js"></script>
 <script>
-
     /**
      * 初始化datepicker
      */
-    $('#start_time,#end_time').datetimepicker({
+    $('#startTime,#endTime').datetimepicker({
         startDate: '-20d',
-        // endDate: '30d',//最大能选择的日期
-        initDate: new Date(),
+        endDate: '+30d',//最大能选择的日期
+        // initDate: new Date(),
         language: "zh-CN",
         weekStart: "1",
         autoclose: "true",
         todayHighlight: "true",
-        format: 'yyyy-mm-dd hh:ii:ss',
-        minuteStep: 30,
+        format: 'yyyy-mm-dd hh:00:00',
         todayBtn: "linked",
-        maxViewMode: "month"
+        maxView: "year",
+        minView: "day"
     });
 
-    /**
-     * 页面加载时根据学号获取学生信息
-     *
-     * */
-    /*$(document).ready(getInfo = function () {
+    $("#btn_submit").click(function () {
+        if (!$(".askLeave").valid())
+            return;
+        form = new FormData($('.askLeave')[0]);
         $.ajax({
+            processData: false,
+            contentType: false,
             type: "post",
-            url: "getStudentInfo.do",
-            data: {},
+            url: "askForLeave.do",
+            data: form,
             dataType: "json",
             success: function (data) {
                 if (data.success) {
-                    //使用formautofill插件自动填充表单
-                    $(".form_alter").autofill(data.data);
-                    var path = data.data.faceImage;
-                    if (path != '') {
-                        console.log(path);
-                        $("#faceImage").attr("src", path);
-                    }
+                    Swal({
+                        title: data.data,
+                        type: "success",
+                        confirmButtonText: '确定',
+                        onAfterClose: function () {
+                            window.location.href = "index.html"
+                        }
+                    })
                 } else
-                    One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: data.errMsg});
+                    swal(data.errMsg, "", "error");
             },
             error: function () {
-                One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: "未知错误，请重试或联系管理员！"});
+                swal("未知错误，请重试或联系管理员！", "", "error");
             }
         })
-    });*/
+    });
+
+    function changImg(e) {
+        for (var i = 0; i < e.target.files.length; i++) {
+            var file = e.target.files.item(i);
+            if (!(/^image\/.*$/i.test(file.type))) {
+                continue; //不是图片 就跳出这一次循环
+            }
+            //实例化FileReader API
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function (e) {
+                $("#attachment_img").attr("src", e.target.result);
+            }
+        }
+    }
+
+    /**
+     * 表单合法性验证
+     */
+    $(".askLeave").validate({
+        errorClass: "invalid-feedback animated fadeIn",
+        errorElement: "div",
+        errorPlacement: function (e, n) {
+            jQuery(n).addClass("is-invalid");
+            jQuery(n).parents(".form-group").append(e)
+        },
+        highlight: function (e) {
+            jQuery(e).parents(".form-group").find(".is-invalid").removeClass("is-invalid").addClass("is-invalid")
+        },
+        success: function (e) {
+            jQuery(e).parents(".form-group").find(".is-invalid").removeClass("is-invalid");
+            jQuery(e).remove()
+        },
+        rules: {
+            "category": {required: !0},
+            "startTime": {required: !0, timeCheck: "#endTime"},
+            "endTime": {required: !0},
+            "comment": {comment: true},
+            "attachment": {required: !0}
+        },
+        messages: {
+            "category": {required: "类别必填！",},
+            "startTime": {required: "开始时间不能为空！",},
+            "endTime": {required: "结束时间不能为空！",},
+            "attachment": {required: "必须上传附件！",}
+        }
+    });
+    jQuery.validator.addMethod("timeCheck", function (value, element, param) {
+        //value为当前标签的值 param为传入此方法的参数
+        if (value !== '' && $(param).val() !== '')
+        //都不为空时才进行校验
+            return !($(param).val() <= value);
+        else return true;
+    }, "起止时间不合法，请检查！");
+
+    jQuery.validator.addMethod("comment", function (value, element) {
+        t = !($('input:radio[name="category"]:checked').val() === '2' && value === '');
+        console.log(t);
+        return t
+    }, "请假类别为其它时，备注必填");
 
 </script>
 </body>

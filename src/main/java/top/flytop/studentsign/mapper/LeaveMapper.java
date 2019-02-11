@@ -1,5 +1,6 @@
 package top.flytop.studentsign.mapper;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import top.flytop.studentsign.pojo.Leave;
 
@@ -25,4 +26,6 @@ public interface LeaveMapper {
     Leave getLeaveDetailById(Integer id);
 
     Boolean updateAuditStatus(Leave leave);
+
+    List<Leave> getLeaveBySNo(@Param("sNo") String sNo, @Param("auditStatus") Integer auditStatus);
 }

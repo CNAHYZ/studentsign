@@ -121,7 +121,7 @@
     <error-page>
         <exception-type>java.lang.Exception</exception-type>
         <!--设置可能会发生的java异常类型,例如:java.lang.Exception-->
-        <location>/ExceptionError.html</location>
+        <location>/500.html</location>
         <!--用来设置发生错误或异常时要显示的页面-->
     </error-page>
 </web-app>

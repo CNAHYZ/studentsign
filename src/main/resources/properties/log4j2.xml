@@ -35,7 +35,7 @@
                 %L : 日志输出所在行数
                 %M : 日志输出所在方法名
             -->
-            <PatternLayout pattern="[%d{HH:mm:ss:SSS}] [%-5p] %c{1}:%L - %msg [%t]%n "/>
+            <PatternLayout pattern="[%d{HH:mm:ss:SSS}] [%-5p] %c{1}:%L - %msg [%t]%n"/>
         </console>
 
         <!-- 打印出所有的info及以下级别的信息，每次大小超过size，
