@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>OneUI - Bootstrap 4 Admin Template &amp; UI Framework</title>
+    <meta name="robots" content="noindex, nofollow">
+    <!-- Open Graph Meta -->
+
+    <!-- Icons -->
+    <link rel="shortcut icon" href="../assets/media/favicons/favicon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/media/favicons/favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/media/favicons/apple-touch-icon-180x180.png">
+    <!-- END Icons -->
+
+    <!-- Stylesheets -->
+    <!-- Fonts and OneUI framework -->
+    <link rel="stylesheet" href="#">
+    <link rel="stylesheet" id="css-main" href="../assets/css/oneui.min.css">
+
+    <link rel="stylesheet" href="../assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css">
+    <!-- END Stylesheets -->
+</head>
+<body>
+<!-- Page Container -->
+<div id="page-container" class="enable-page-overlay side-scroll page-header-fixed">
+    <!-- Header -->
+    <header id="page-header">
+        <!-- Header Content -->
+        <div class="content-header">
+            <!-- Left Section -->
+            <div class="d-flex align-items-center mt-3">
+                <h1>管理系统</h1>
+            </div>
+            <!-- END Left Section -->
+
+            <!-- Right Section -->
+            <div class="d-flex align-items-center">
+                <!-- User Dropdown -->
+                <div class="dropdown d-inline-block ml-2">
+                    <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img class="rounded" src="/assets/media/avatars/avatar0.jpg" alt="Header Avatar"
+                             style="width: 18px;">
+                        <span class="d-none d-sm-inline-block ml-1">Adam</span>
+                        <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right p-0 border-0 font-size-sm"
+                         aria-labelledby="page-header-user-dropdown">
+                        <div class="p-3 text-center bg-primary">
+                            <img class="img-avatar img-avatar48 img-avatar-thumb"
+                                 src="/assets/media/avatars/avatar0.jpg"
+                                 alt="">
+                        </div>
+                        <div class="p-2">
+                            <h5 class="dropdown-header text-uppercase">User Options</h5>
+                            <a class="dropdown-item d-flex align-items-center justify-content-between"
+                               href="be_pages_generic_inbox.html">
+                                <span>Inbox</span>
+                                <span>
+                                            <span class="badge badge-pill badge-primary">3</span>
+                                            <i class="si si-envelope-open ml-1"></i>
+                                        </span>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center justify-content-between"
+                               href="be_pages_generic_profile.html">
+                                <span>Profile</span>
+                                <span>
+                                            <span class="badge badge-pill badge-success">1</span>
+                                            <i class="si si-user ml-1"></i>
+                                        </span>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center justify-content-between"
+                               href="javascript:void(0)">
+                                <span>Settings</span>
+                                <i class="si si-settings"></i>
+                            </a>
+                            <div role="separator" class="dropdown-divider"></div>
+                            <h5 class="dropdown-header text-uppercase">Actions</h5>
+                            <a class="dropdown-item d-flex align-items-center justify-content-between"
+                               href="op_auth_lock.html">
+                                <span>Lock Account</span>
+                                <i class="si si-lock ml-1"></i>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center justify-content-between"
+                               href="userLogin.html">
+                                <span>Log Out</span>
+                                <i class="si si-logout ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- END User Dropdown -->
+
+            </div>
+            <!-- END Right Section -->
+        </div>
+        <!-- END Header Content -->
+
+        <!-- Header Loader -->
+        <!-- Please check out the Loaders page under Components category to see examples of showing/hiding it -->
+        <div id="page-header-loader" class="overlay-header bg-white">
+            <div class="content-header">
+                <div class="w-100 text-center">
+                    <i class="fa fa-fw fa-circle-notch fa-spin"></i>
+                </div>
+            </div>
+        </div>
+        <!-- END Header Loader -->
+    </header>
+    <!-- END Header -->
+
+    <!-- Main Container -->
+    <main id="main-container">
+
+        <!-- Hero -->
+        <div class="bg-body-light">
+            <div class="content content-full">
+                <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
+                    <h1 class="flex-sm-fill h3 my-2">
+                        签到记录
+                    </h1>
+                    <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
+                        <ol class="breadcrumb breadcrumb-alt">
+                            <li class="breadcrumb-item">签到记录</li>
+                            <li class="breadcrumb-item" aria-current="page">
+                                <a class="link-fx" href="index.html">首页</a>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- END Hero -->
+        <!-- Page Content -->
+        <div class="content">
+            <!-- Dynamic Table with Export Buttons -->
+            <div class="block">
+                <div class="block-content block-content-full">
+                    <div class="">
+                        <div class="px-lg-2"></div>
+                        <div class="px-lg-3"></div>
+                        <div class="col-lg-8 col-xl-6 row ">
+                            <form class="input-daterange input-group" id="dateFilter">
+                                <label class="" style="margin: auto">指定日期筛选：</label>
+                                <input type="text" class="form-control" id="daterange1"
+                                       name="daterange1" placeholder="开始日期">
+                                <div class="input-group-prepend input-group-append">
+                                    <span class="input-group-text font-w600">
+                                        <i class="fa fa-fw fa-arrow-right"></i>
+                                    </span>
+                                </div>
+                                <input type="text" class="form-control" id="daterange2"
+                                       name="daterange2" placeholder="结束日期">
+                            </form>
+                            <div class="">
+                                <input type="reset" class="btn btn-block btn-info" onclick="formReset()">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="py-2"></div>
+                    <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons text-center"
+                           id="datatable">
+                        <thead>
+                        <tr>
+                            <th class="text-center" style="width: 40px;">ID</th>
+                            <th class="d-none d-sm-table-cell" style="width: 15%;">学号</th>
+                            <th class="d-none d-sm-table-cell" style="width: 15%;">姓名</th>
+                            <th class="d-none d-sm-table-cell" style="width: 12%;">签到状态</th>
+                            <th class="d-none d-sm-table-cell" style="width: 20%;">签到时间</th>
+                            <th class="d-none d-sm-table-cell" style="width: 15%;">签到次数</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- END Dynamic Table with Export Buttons -->
+        </div>
+        <!-- END Page Content -->
+
+    </main>
+    <!-- END Main Container -->
+
+    <!-- Footer -->
+    <footer id="page-footer" class="bg-body-light">
+        <div class="content py-3">
+            <div class="row font-size-sm">
+                <div class="col-sm-6 order-sm-1 py-1 text-center text-sm-left">
+                    <a class="font-w600" href="https://1.envato.market/xWy" target="_blank">OneUI 4.0</a> &copy; <span
+                        data-toggle="year-copy">2018</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- END Footer -->
+</div>
+<!-- END Page Container -->
+
+<script src="../assets/js/oneui.core.min.js"></script>
+
+<!--
+    OneUI JS
+-->
+<script src="../assets/js/oneui.app.min.js"></script>
+
+<!-- Page JS Plugins -->
+<script src="../assets/js/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../assets/js/plugins/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="../assets/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+<script src="../assets/js/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+
+<script src="/assets/js/common/dataTable.js"></script>
+<script>
+    jQuery(function () {
+        One.helpers(['datepicker']);
+    });
+</script>
+
+<script>
+    var options2 = {
+        lengthChange: false,
+        "searching": false,
+        ajax: {
+            type: "post",
+            url: "signList.do",
+            data: {},
+            /* beforeSend: function () {
+                 console.log(sendData)
+             }*/
+        },
+        //每页显示n条数据
+        pageLength: 10,
+        columns: [
+            {data: "id"},
+            {data: "sNo"},
+            {
+                data: "sName",
+                defaultContent: "-"
+            },
+            {
+                data: "signStatus",
+                defaultContent: "-"
+            },
+            {
+                data: "signTime",
+                defaultContent: "-"
+            },
+            {
+                data: "signTimes",
+                defaultContent: "-"
+            }
+        ],
+        "columnDefs": [
+            {}]
+    };
+    /**
+     * 初始化datatable
+     */
+    var t = $('#datatable').DataTable(Object.assign(options2, serverSideOptions));
+
+
+    /**
+     * 初始化datepicker
+     */
+    $('.input-daterange').datepicker({
+        endDate: '0d',//最大只能选择到今天
+        language: "zh-CN",
+        weekStart: "1",
+        autoclose: "true",
+        todayHighlight: "true",
+        format: "yyyy-mm-dd",
+        todayBtn: "linked",
+        maxViewMode: "years"
+    })
+    /**
+     * 日期改变后的事件
+     */
+        .on('changeDate', function (e) {
+            var startTime = $('#daterange1').val();
+            var endTime = $('#daterange2').val();
+            console.log(startTime);
+            sendData = {
+                "startTime": startTime,
+                "endTime": endTime
+            };
+            //修改ajax传递的参数
+            t.settings()[0].ajax.data = sendData;
+            t.ajax.reload();
+        });
+
+    /**
+     * 清空筛选条件
+     */
+    function formReset() {
+        document.getElementById("dateFilter").reset();
+        t.settings()[0].ajax.data = {};
+        t.ajax.reload();
+    }
+</script>
+</body>
+</html>

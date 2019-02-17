@@ -28,4 +28,6 @@ public interface LeaveService {
     Boolean askForLeave(HttpServletRequest request);
 
     List<Leave> getLeaveBySNo(String sNo, Integer auditStatus);
+
+    BaseResult removeLeaveForS(Integer id);
 }

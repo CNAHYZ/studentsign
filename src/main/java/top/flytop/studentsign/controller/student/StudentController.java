@@ -58,6 +58,12 @@ public class StudentController {
         }
     }
 
+    @RequestMapping(value = "changePwd", method = RequestMethod.POST)
+    @ResponseBody
+    public BaseResult changePwd(HttpServletRequest request) {
+        return userService.changePwd(request);
+    }
+
     /**
      * @param request
      * @return top.flytop.studentsign.dto.BaseResult

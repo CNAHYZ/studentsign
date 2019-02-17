@@ -42,10 +42,23 @@ public class SignInServiceImpl implements SignInService {
      * @date 2019/1/12 16:17
      */
     @Override
-    public BaseResult getSignRecord(String dayNum) {
+    public List<SignIn> getSignRecord(String dayNum) {
         List<SignIn> signList = signInMapper.signRecord(dayNum);
         System.out.println(signList);
-        return new BaseResult<>(true, signList);
+        return signList;
+    }
+
+    /**
+     * @param sNo
+     * @param startTime
+     * @param endTime
+     * @return java.util.List<top.flytop.studentsign.pojo.SignIn>
+     * @Description TODO 查询某个人的签到记录
+     * @Date 2019/2/17 21:28
+     */
+    @Override
+    public List<SignIn> getPersonalSignRecord(String sNo, String startTime, String endTime) {
+        return signInMapper.getSignBySNo(sNo, startTime, endTime);
     }
 
     /**
@@ -56,10 +69,10 @@ public class SignInServiceImpl implements SignInService {
      * @date 2019/1/26 16:44
      */
     @Override
-    public BaseResult getSignRecordFilter(String startTime, String endTime) {
+    public List<SignIn> getSignRecordFilter(String startTime, String endTime) {
         List<SignIn> signList = signInMapper.signRecordTime(startTime, endTime);
         System.out.println(signList);
-        return new BaseResult<>(true, signList);
+        return signList;
     }
 
     /**
@@ -68,10 +81,10 @@ public class SignInServiceImpl implements SignInService {
      * @Description TODO 根据关键字查询签到记录
      * @date 2019/1/26 16:47
      */
-    public BaseResult getSignRecordByKeyword(String keyword) {
+    public List<SignIn> getSignRecordByKeyword(String keyword) {
         List<SignIn> signList = signInMapper.findSignRecordByKeyword(keyword);
         System.out.println(signList);
-        return new BaseResult<>(true, signList);
+        return signList;
     }
 
 
@@ -89,8 +102,11 @@ public class SignInServiceImpl implements SignInService {
             return searResult;
         }
         Map data = searResult.getData();
-        if (data.get("score") != null && (Double) data.get("score") >= 80) {
+        if (data.get("score") != null && (Double) data.get("score") >= 75) {
             String sno = (String) data.get("sNo");
+            if (!signInMapper.personalSignRecord(sno).isEmpty()) {
+                return BaseResult.fail(1, sno + " 今天已签到，请勿重复签到");
+            }
             // 记录签到数据
             SignIn signIn = new SignIn();
             signIn.setsNo(sno);

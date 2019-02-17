@@ -20,10 +20,6 @@ public class BaseResult<T> {
     // 错误信息
     private String errMsg;
 
-    /**
-     * @Title:BaseResult
-     * @Description:空的构造函数
-     */
     public BaseResult() {
         super();
     }
@@ -51,6 +47,27 @@ public class BaseResult<T> {
         this.errCode = errCode;
         this.errMsg = errMsg;
 
+    }
+
+    /**
+     * @param errCode
+     * @param errMsg
+     * @return top.flytop.studentsign.dto.BaseResult
+     * @Description TODO 失败
+     * @Date 2019/2/12 21:35
+     */
+    public static BaseResult fail(int errCode, String errMsg) {
+        return new BaseResult(false, errCode, errMsg);
+    }
+
+    /**
+     * @param data
+     * @return top.flytop.studentsign.dto.BaseResult
+     * @Description TODO 成功
+     * @Date 2019/2/12 21:22
+     */
+    public static <T> BaseResult success(T data) {
+        return new BaseResult<>(true, data);
     }
 
     public boolean isSuccess() {

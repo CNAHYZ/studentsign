@@ -8,6 +8,7 @@
     <resultMap id="userResultMap" type="user">
         <result property="typeId" column="type_id"/>
     </resultMap>
+
     <resultMap id="studentResultMap" type="student">
         <result property="buildingNo" column="building_no"/>
         <result property="roomNo" column="room_no"/>
@@ -22,17 +23,20 @@
         WHERE username = #{username}
           and pwd = #{pwd}
     </select>
+
     <!--获取学生信息-->
     <select id="getStuGeneralInfo" resultMap="studentResultMap">
         select *
         FROM student
         WHERE sno = #{sNo}
     </select>
+
     <!--获取学生列表-->
     <select id="getAllStudent" resultMap="studentResultMap">
         select *
         from student;
     </select>
+
     <!--根据用户名获取用户，用于在删除学生时，
     判断用户表中是否存在该学生的账号密码-->
     <select id="getUser" resultMap="userResultMap">
@@ -55,10 +59,16 @@
         </trim>
     </update>
 
+    <update id="changePwdBySNo">
+        <if test="sNo != null and sNo != ''">
+            update user set pwd = #{pwd} where username = #{sNo}
+        </if>
+    </update>
+
     <!--===========================插入=============================-->
     <!--添加学生-->
     <insert id="addStudent" parameterType="student">
-        <if test="sNo!='' and sNo != null and sName != null and sName != ''">
+        <if test="sNo != null and sNo!='' and sName != null and sName != ''">
             insert student
             values (#{id}, #{sNo},
             #{sName}, #{gender}, #{birthday},

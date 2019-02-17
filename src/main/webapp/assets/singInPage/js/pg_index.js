@@ -1,4 +1,4 @@
-/*Popup弹窗*/
+/*/!*Popup弹窗*!/
 $(document).ready(function () {
     $('.w3_play_icon,.w3_play_icon1,.w3_play_icon2').magnificPopup({
         type: 'inline',
@@ -13,9 +13,9 @@ $(document).ready(function () {
         callbacks: {
             close: function () {
                 //获取获取到视频流
-                /*     if (stream != undefined)
+                /!*     if (stream != undefined)
                      //停止播放轨道对应的源，源与轨道将脱离关联，同时轨道状态将设为“ended”。
-                         stream.getVideoTracks()[0].stop();*/
+                         stream.getVideoTracks()[0].stop();*!/
             }
             //open: function() {
             //giv.modal.mp = this;
@@ -25,21 +25,63 @@ $(document).ready(function () {
             //						},
         }
     });
-});
+});*/
+
+var stream;
+/**
+ * 超时未操作，自动关闭摄像头
+ * @type {number}
+ */
+var lastTime = new Date().getTime();
+var currentTime = new Date().getTime();
+//设置超时时间： 5分
+var timeOut = 1000 * 60 * 5;
+var quitTime;
+window.onload = function () {
+    /* 检测鼠标点击事件 */
+    document.addEventListener('click', function () {
+        // 更新最后的操作时间
+        console.log('鼠标点击了');
+        lastTime = new Date().getTime();
+        /* 定时器  间隔2分钟，检测是否长时间未操作页面  */
+        quitTime = window.setInterval(testTime, 120000);
+    })
+};
+
+// 超时函数
+function testTime() {
+    //更新当前时间
+    currentTime = new Date().getTime();
+    console.log('currentTime', currentTime);
+    //判断是否超时
+    if (currentTime - lastTime > timeOut) {
+        // 超时操作
+        console.log('超时操作');
+        //获取获取到视频流
+        if (stream !== undefined) {
+            //停止播放轨道对应的源，源与轨道将脱离关联，同时轨道状态将设为“ended”。
+            stream.getVideoTracks()[0].stop();
+            window.location.reload();
+        }
+        // 清除掉定时器
+        window.clearInterval(quitTime)
+    }
+}
 
 /*作者：1564340114@qq.com
 时间：2018-12-15
 描述：拍照处理*/
 
-var stream;
 /**
  * 主页面签到按钮点击事件
  */
 $("#signin").click(function () {
+    $(".w3l-signin").hide();
+    $("#form").show();
     var constraints = {
         audio: false,
         video: {
-            width: 640,
+            width: 490,
             height: 360
         }
     };
@@ -68,7 +110,7 @@ $("#takephoto").click(function () {
        //从MediaStream中删除视频轨的MediaStreamTrack对象。
        //stream.removeTrack(stream.getVideoTracks()[0]);*/
     var context = document.getElementById("canvas").getContext("2d");
-    context.drawImage(video, 0, 0, 640, 360);
+    context.drawImage(video, 0, 0, 490, 360);
     $("[id^=area]").toggle(); //切换area1和area2的显示与隐藏
     upload();
 });
@@ -101,14 +143,14 @@ function upload() {
             if (result.success) {
                 swal({
                     title: result.data,
-                    text: "对话框将在5S内关闭",
+                    text: "对话框将在3S内关闭",
                     type: "success",
                     showConfirmButton: false,
-                    timer: 5000
+                    timer: 3500
                 })
             } else
                 swal({
-                    text: result.errCode + ':' + result.errMsg,
+                    text: result.errMsg,
                     type: "error",
                     confirmButtonText: '确认',
                     confirmButtonColor: '#f27474'
@@ -116,7 +158,7 @@ function upload() {
         },
         error: function (data) {
             swal({
-                text: "未知错误，请重试!",
+                text: "系统错误，请重试!",
                 type: "error",
                 confirmButtonText: '确认',
                 confirmButtonColor: '#f27474'

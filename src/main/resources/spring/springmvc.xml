@@ -2,13 +2,12 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns="http://www.springframework.org/schema/beans"
-       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-3.1.xsd
         http://www.springframework.org/schema/mvc
-        http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+        http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
 
     <!--这里扫描controller注解，指定controller的包-->
     <context:component-scan base-package="top.flytop.studentsign.controller"/>
@@ -53,25 +52,6 @@
             </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>
-
-    <!-- 使用xml配置aop ,引入AOP的命名空间-->
-    <!-- 强制使用cglib代理，如果不设置，将默认使用jdk的代理，但是jdk的代理是基于接口的 -->
-    <aop:config proxy-target-class="true"/>
-    <aop:config>
-        <!--定义切面-->
-        <aop:aspect id="logAspect" ref="logInterceptor">
-            <!--定义切入点-->
-            <!--第一个*代表任意返回值，第二个和第三个*代表controller包下的任意类的任意方法-->
-            <!-- ..表示方法可以有0个或多个参数 -->
-            <aop:pointcut expression="execution(* top.flytop.studentsign.controller.*.*(..))" id="logPointCut"/>
-            <!--方法执行之前被调用执行的-->
-            <!--<aop:before method="before" pointcut-ref="logPointCut"/>&lt;!&ndash;一个切入点的引用&ndash;&gt;-->
-            <!--<aop:after method="after" pointcut-ref="logPointCut"/>&lt;!&ndash;一个切入点的引用&ndash;&gt;-->
-            <!--<aop:after-throwing method="afterThrowing" pointcut-ref="logPointCut" />-->
-            <!--<aop:after-returning method="afterReturn" pointcut-ref="logPointCut" />-->
-            <aop:around method="around" pointcut-ref="logPointCut"/>
-        </aop:aspect>
-    </aop:config>
 
     <!-- 拦截器 -->
     <!--    <mvc:interceptors>

@@ -79,6 +79,7 @@ public class LogInterceptor {
             logger.error("===执行{}类的{}()方法的{}行", className, methodName, stackTraceElement.getLineNumber());
             logger.error("===异常信息为：{}  ", e.fillInStackTrace().toString());
             logger.error("===参数信息为：{}  ", args);
+            e.printStackTrace();
             throw e;
         } finally {
             //相当于最终通知

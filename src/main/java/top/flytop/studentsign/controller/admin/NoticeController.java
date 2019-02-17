@@ -14,15 +14,13 @@ import top.flytop.studentsign.dto.BaseResult;
 import top.flytop.studentsign.dto.DataTablePageUtil;
 import top.flytop.studentsign.pojo.Notice;
 import top.flytop.studentsign.service.NoticeService;
+import top.flytop.studentsign.utils.ImageUtil;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * @ClassName NoticeController
@@ -53,20 +51,10 @@ public class NoticeController {
     @ResponseBody
     public JSONObject noticeImageUpload(MultipartFile noticeImg, HttpServletRequest request) {
         String realName = "";
+        String dir = "userUpload/noticeImg/";
         if (noticeImg != null) {
-            String fileName = noticeImg.getOriginalFilename();
-            String fileNameExtension = fileName.substring(fileName.lastIndexOf("."));
-            // 生成实际存储的真实文件名
-            realName = UUID.randomUUID().toString() + fileNameExtension;
-            // 自己定义上传目录
-            String realPath = request.getSession().getServletContext().getRealPath("/temp");
-            File uploadFile = new File(realPath, realName);
-            try {
-                noticeImg.transferTo(uploadFile);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            String filePath = "/temp/" + realName;
+            BaseResult saveResult = ImageUtil.saveImgByReq(request, null, "noticeImg", dir);
+            String filePath = String.valueOf(saveResult.getData());
             String result = "{\"errno\":0, \"data\":[\"" + filePath + "\"]}";
             System.out.println(result);
             //将路径中的\换成/，否则json转换会报错
@@ -109,7 +97,6 @@ public class NoticeController {
         List<Notice> result = noticeService.getNotice(paraMap);
         PageInfo<Notice> pageInfo = new PageInfo<>(result);
         //封装数据给DataTables
-        dataTable.setDraw(dataTable.getDraw());
         dataTable.setData(pageInfo.getList());
         dataTable.setRecordsTotal((int) pageInfo.getTotal());
         dataTable.setRecordsFiltered(dataTable.getRecordsTotal());

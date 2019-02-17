@@ -575,6 +575,10 @@
 <script src="../assets/js/plugins/datatables/dataTables.bootstrap4.min.js"></script>
 <script src="../assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js"></script>
 
+<script src="/assets/js/common/dataTable.js"></script>
+
+</body>
+</html>
 <script>
     var removeNoticeUrl = "removeNotice.do";
     var changeNoticeStatusUrl = "changeNoticeStatus.do";
@@ -642,134 +646,111 @@
             }
         })
     }
-
     /*============================================================================*/
+    var options2 = {
+        // "bStateSave": true,
+        // "lengthChange": false,
+        // "retrieve": true,
+        dom: '<"text-right pull"l>rt<"row"<"col-6"i><"col-6"p>>',//隐藏搜索框
+        "searching": true,//调用search()方法，此处必须为true
+        ajax: {
+            type: "post",
+            url: getNoticeUrl,
+            data: {},
+            beforeSend: function () {
+                // console.log(sendData)
+            }
+        },
+        //每页显示n条数据
+        pageLength: 5,
+        columns: [
+            {data: "noticeId"},
+            {
+                data: "content",
+                defaultContent: "-",
+            },
+            {
+                data: "status",
+                render: function (data) {
+                    var myStatus;
+                    switch (data) {
+                        case 0:
+                            myStatus = "<span class=\"badge badge-success\"> 普通展示</span>\n";
+                            break;
+                        case 1:
+                            myStatus = "<span class=\"badge badge-danger\"> 取消展示</span>\n";
+                            break;
+                        case 2:
+                            myStatus = "<span class=\"badge badge-info\"> 置顶展示</span>\n";
+                    }
+                    return myStatus;
+                }
+            },
+            {
+                data: "createTime",
+            },
+            {
+                data: null
+            }
+        ],
+        "columnDefs": [
+            {
+                "targets": [1],
+                className: "text-left",
+                render: function (data, type, full) {
+                    //取内容的前80个字符，并且去除内容中的html标签
+                    if (data.length > 80)
+                        myContent = (data.replace(/<[^>]+>/g, "").substring(0, 80) + '...');
+                    else myContent = data.replace(/<[^>]+>/g, "");
+                    return "<td>\n" +
+                        "                                    <h4 class=\"h5 mt-3 mb-2\" id=\"title\">\n" +
+                        "                                        <a href=\"javascript:noticeDetail(" + full.noticeId + ")\">" + full.title + "</a>\n" +
+                        "                                    </h4>\n" +
+                        "                                    <p class=\"d-none d-sm-block text-muted\" id=\"content\">\n" +
+                        myContent +
+                        "                                    </p>\n" +
+                        "                                    <div class=\"row mx-0\">\n" +
+                        "                                        <span class=\"font-size-sm font-w600\">关键词：</span>\n" +
+                        "                                        <span class=\"font-size-sm text-muted\" id=\"keyword\">\n" +
+                        full.keyword + "</span>\n" +
+                        "                                    </div>\n" +
+                        "                                </td>";
+                }
+            },
+            {
+                "targets": [-1],
+                render: function (data, type, row) {
+                    return "<div class=\"btn-group btn-group-lg\" role=\"group\" aria-label=\"Large Horizontal Primary\">\n" +
+                        "            <div class=\"dropdown\">\n" +
+                        "                <button type=\"button\" class=\"btn btn-lg btn-outline-primary dropdown-toggle\" id=\"btn_time\"\n" +
+                        "                        data-toggle=\"dropdown\" title=\"修改展示状态\" style=\"border-radius:.25rem 0 0 .25rem\">\n" +
+                        "                    状态\n" +
+                        "                </button>\n" +
+                        "                <div class=\"dropdown-menu font-size-lg\" aria-labelledby=\"dropdown-default-outline-primary\"\n" +
+                        "                     style=\"min-width:100px\">\n" +
+                        "                    <a class=\"dropdown-item\" onclick=\"operation(" + row.noticeId + ",1)\">下线</a>\n" +
+                        "                    <a class=\"dropdown-item\" onclick=\"operation(" + row.noticeId + ",0)\">展示</a>\n" +
+                        "                    <a class=\"dropdown-item\" onclick=\"operation(" + row.noticeId + ",2)\">置顶</a>\n" +
+                        "                </div>\n" +
+                        "            </div>\n" +
+                        "            <button type=\"button\" class=\"btn btn-primary\" data-toggle=\"tooltip\" " +
+                        "               title=\"编辑\" onclick=\"noticeDetail(" + row.noticeId + ")\">" +
+                        "               <i class=\"fa fa-fw fa-pencil-alt\"></i></button>\n" +
+                        "            <button type=\"button\" class=\"btn btn-primary\" data-toggle=\"tooltip\" " +
+                        "               title=\"删除\" onclick=\"operation(" + row.noticeId + "," + '' + ")\">" +
+                        "               <i class=\"fa fa-fw fa-times\"></i></button>\n" +
+                        "        </div>"
+                }
+            }
+        ]
+    };
+
     var t = $('#result').DataTable(
-        {
-            // "bStateSave": true,
-            dom: '<"text-right pull"l>rt<"row"<"col-6"i><"col-6"p>>',//隐藏搜索框
-            // "lengthChange": false,
-            // "retrieve": true,
-            "serverSide": true,
-            "pagingType": "full_numbers",//显示完整的首页、末页、页码等按钮
-            "lengthMenu": [10, 25, 50, 75, 100],
-            "ordering": false,
-            "autoWidth": false,//自动调整宽度
-            "processing": true,
-            "searching": true,//调用search()方法，此处必须为true
-            language: {
-                "sProcessing": "正在加载数据，请稍后...",
-                "sZeroRecords": "没有匹配结果",
-                "sInfo": "显示第 _START_ 至 _END_ 条记录，共 _TOTAL_ 项",
-                "sInfoEmpty": "显示第 0 至 0 条记录，共 0 项",
-                "sSearch": "搜索:",
-                "sEmptyTable": "没有找到记录",
-                "sLoadingRecords": "载入中...",
-                "sInfoThousands": ",",
-                "sLengthMenu": "显示 _MENU_ 条记录",
-                "oPaginate": {
-                    "sFirst": "<<",
-                    "sPrevious": "<",
-                    "sNext": ">",
-                    "sLast": ">>"
-                }
-            },
-            ajax: {
-                type: "post",
-                url: getNoticeUrl,
-                data: {},
-                beforeSend: function () {
-                    // console.log(sendData)
-                }
-            },
-            //每页显示n条数据
-            pageLength: 5,
-            columns: [
-                {data: "noticeId"},
-                {
-                    data: "content",
-                    defaultContent: "-",
-                },
-                {
-                    data: "status",
-                    render: function (data) {
-                        var myStatus;
-                        switch (data) {
-                            case 0:
-                                myStatus = "<span class=\"badge badge-success\"> 普通展示</span>\n";
-                                break;
-                            case 1:
-                                myStatus = "<span class=\"badge badge-danger\"> 取消展示</span>\n";
-                                break;
-                            case 2:
-                                myStatus = "<span class=\"badge badge-info\"> 置顶展示</span>\n";
-                        }
-                        return myStatus;
-                    }
-                },
-                {
-                    data: "createTime",
-                },
-                {
-                    data: null
-                }
-            ],
-            "columnDefs": [
-                {
-                    "targets": [1],
-                    className: "text-left",
-                    render: function (data, type, full) {
-                        //取内容的前80个字符，并且去除内容中的html标签
-                        if (data.length > 80)
-                            myContent = (data.replace(/<[^>]+>/g, "").substring(0, 80) + '...');
-                        else myContent = data.replace(/<[^>]+>/g, "");
-                        return "<td>\n" +
-                            "                                    <h4 class=\"h5 mt-3 mb-2\" id=\"title\">\n" +
-                            "                                        <a href=\"javascript:noticeDetail(" + full.noticeId + ")\">" + full.title + "</a>\n" +
-                            "                                    </h4>\n" +
-                            "                                    <p class=\"d-none d-sm-block text-muted\" id=\"content\">\n" +
-                            myContent +
-                            "                                    </p>\n" +
-                            "                                    <div class=\"row mx-0\">\n" +
-                            "                                        <span class=\"font-size-sm font-w600\">关键词：</span>\n" +
-                            "                                        <span class=\"font-size-sm text-muted\" id=\"keyword\">\n" +
-                            full.keyword + "</span>\n" +
-                            "                                    </div>\n" +
-                            "                                </td>";
-                    }
-                },
-                {
-                    "targets": [-1],
-                    render: function (data, type, row) {
-                        return "<div class=\"btn-group btn-group-lg\" role=\"group\" aria-label=\"Large Horizontal Primary\">\n" +
-                            "            <div class=\"dropdown\">\n" +
-                            "                <button type=\"button\" class=\"btn btn-lg btn-outline-primary dropdown-toggle\" id=\"btn_time\"\n" +
-                            "                        data-toggle=\"dropdown\" title=\"修改展示状态\" style=\"border-radius:.25rem 0 0 .25rem\">\n" +
-                            "                    状态\n" +
-                            "                </button>\n" +
-                            "                <div class=\"dropdown-menu font-size-lg\" aria-labelledby=\"dropdown-default-outline-primary\"\n" +
-                            "                     style=\"min-width:100px\">\n" +
-                            "                    <a class=\"dropdown-item\" onclick=\"operation(" + row.noticeId + ",1)\">下线</a>\n" +
-                            "                    <a class=\"dropdown-item\" onclick=\"operation(" + row.noticeId + ",0)\">展示</a>\n" +
-                            "                    <a class=\"dropdown-item\" onclick=\"operation(" + row.noticeId + ",2)\">置顶</a>\n" +
-                            "                </div>\n" +
-                            "            </div>\n" +
-                            "            <button type=\"button\" class=\"btn btn-primary\" data-toggle=\"tooltip\" " +
-                            "               title=\"编辑\" onclick=\"noticeDetail(" + row.noticeId + ")\">" +
-                            "               <i class=\"fa fa-fw fa-pencil-alt\"></i></button>\n" +
-                            "            <button type=\"button\" class=\"btn btn-primary\" data-toggle=\"tooltip\" " +
-                            "               title=\"删除\" onclick=\"operation(" + row.noticeId + "," + '' + ")\">" +
-                            "               <i class=\"fa fa-fw fa-times\"></i></button>\n" +
-                            "        </div>"
-                    }
-                }
-            ]
-        });
+        Object.assign(options2, serverSideOptions)
+    );
     t.on('xhr', function () {
         //获取最终的json数据
         var json = t.ajax.json();
         $("#total_count").text(json.recordsTotal);
     });
 </script>
-</body>
-</html>

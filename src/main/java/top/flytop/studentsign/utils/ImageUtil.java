@@ -48,21 +48,23 @@ public class ImageUtil {
             fileName = UUID.randomUUID().toString();
         //获取绝对路径
         String realPath = request.getSession().getServletContext().getRealPath(dir);
-        System.out.println(realPath);
+        System.out.println("realPath:" + realPath);
+        if (!realPath.endsWith("\\"))
+            realPath += "\\";
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
         /*页面控件的文件流**/
         MultipartFile multipartFile = multipartRequest.getFile(paraName);
         try {
             /*根据真实路径创建目录**/
             File saveDir = new File(realPath);
-            System.out.println(saveDir);
             if (!saveDir.exists())
                 saveDir.mkdirs();
             /*获取文件的后缀**/
             String suffix = multipartFile.getOriginalFilename().substring(multipartFile.getOriginalFilename().lastIndexOf("."));
             /*拼成完整的文件保存路径**/
             String filePath = realPath + fileName + suffix;
-            System.out.println(filePath);
+            System.out.println("filePath:" + filePath);
+
             File file = new File(filePath);
             multipartFile.transferTo(file);
             //相对Web项目的路径

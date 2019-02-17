@@ -33,6 +33,7 @@
     <link rel="stylesheet" id="css-main" href="/assets/css/oneui.min.css">
     <!-- Page JS Plugins CSS -->
     <link rel="stylesheet" href="/assets/js/plugins/baguetteBox.js/baguetteBox.min.css">
+    <link rel="stylesheet" href="/assets/js/plugins/sweetalert2/sweetalert2.min.css">
     <!-- END Stylesheets -->
     <style>
         .leave_detail > div :disabled {
@@ -143,11 +144,11 @@
             <div class="content content-full">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <h1 class="flex-sm-fill h3 my-2">
-                        个人信息
+                        请假详情
                     </h1>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
-                            <li class="breadcrumb-item">个人信息</li>
+                            <li class="breadcrumb-item">请假详情</li>
                             <li class="breadcrumb-item" aria-current="page">
                                 <a class="link-fx" href="index.html">首页</a>
                             </li>
@@ -157,7 +158,6 @@
             </div>
         </div>
         <!-- END Hero -->
-
         <!-- Page Content -->
         <div class="content">
 
@@ -170,26 +170,8 @@
                 <div class="block-content block-content-full">
 
                     <div class="row">
-                        <div class="px-3"></div>
-                        <!-- <div class="col-lg-3">
-                             <div class="options-container fx-item-zoom-in fx-overlay-zoom-out col-lg-12"
-                                  style="min-height: 200px">
-                                 <img class="img-fluid options-item" id="faceImage" src="assets/media/photos/noimage.png"
-                                      alt="面部图像">
-                                 &lt;!&ndash;  <div class="options-overlay bg-black-75">
-                                       <div class="options-overlay-content">
-                                           <h3 class="h4 text-white mb-2">图像操作</h3>
-                                           <a class="btn btn-sm btn-light" href="javascript:void(0)">
-                                               <i class="fa fa-pencil-alt text-primary mr-1"></i> 修改
-                                           </a>
-                                           <a class="btn btn-sm btn-light" href="javascript:void(0)">
-                                               <i class="fa fa-times text-danger mr-1"></i> 删除
-                                           </a>
-                                       </div>
-                                   </div>&ndash;&gt;
-                             </div>
-                         </div>-->
-                        <div>
+                        <div class="col-1"></div>
+                        <div class="my-5">
                             <!-- Form Horizontal - Default Style -->
                             <form class="leave_detail col-lg-12" action="" method="POST"
                                   autocomplete="off">
@@ -200,27 +182,6 @@
                                     <div class="col-form-label">类&nbsp;型:</div>
                                     <input type="text" class="col-sm-2 form-control" id="category" name="category">
 
-                                    <!--  <div class="form-group col-sm-2" id="category"
-                                           style="padding-top: 8px">
-                                          <div class="custom-control custom-radio custom-control-inline" >
-                                              <input type="radio" class="custom-control-input"
-                                                     id="category_1" name="category" value="0">
-                                              <label class="custom-control-label"
-                                                     for="category_1">病假</label>
-                                          </div>
-                                          <div class="custom-control custom-radio custom-control-inline" hidden="hidden">
-                                              <input type="radio" class="custom-control-input"
-                                                     id="category_2" name="category" value="1">
-                                              <label class="custom-control-label"
-                                                     for="category_2">事假</label>
-                                          </div>
-                                          <div class="custom-control custom-radio custom-control-inline" hidden="hidden">
-                                              <input type="radio" class="custom-control-input"
-                                                     id="category_3" name="category" value="2">
-                                              <label class="custom-control-label"
-                                                     for="category_3">其它</label>
-                                          </div>
-                                      </div>-->
                                     <div class="col-form-label" for="applicationTime">申请时间:</div>
                                     <input type="text" class="col-sm-3 form-control" id="applicationTime"
                                            name="applicationTime" style="min-width:170px">
@@ -261,28 +222,16 @@
                                     <textarea type="text" class="col-sm-10 form-control" id="refusalReason"
                                               name="refusalReason"></textarea>
                                 </div>
-                                <div class="form-group row ">
-                                    <div class="col-sm-4 ml-auto">
-                                        <button disabled="disabled" type="button" onclick="audit(1)"
-                                                class="btn btn-success" id="btn_agree">同意申请
-                                        </button>
-                                    </div>
-                                    <div class="col-sm-4 ml-auto">
-                                        <button type="button" onclick="window.location='leaveRecordList.html'"
-                                                class="btn btn-primary" id="btn_back">返回列表
-                                        </button>
-                                    </div>
-                                    <div class="col-sm-4 ml-auto">
-                                        <button disabled="disabled" type="button" onclick="audit(2)"
-                                                class="btn btn-danger" id="btn_refuse">拒绝申请
-                                        </button>
-                                    </div>
+                                <div class="form-group row float-right pt-4">
+                                    <button type="button" class="btn btn-danger font-size-h4" id="btn_delete">
+                                        删除申请
+                                    </button>
                                 </div>
                             </form>
                             <!-- END Form Horizontal - Default Style -->
                         </div>
                         <div class="px-3"></div>
-                        <div class="col-md-12 col-lg-12 col-xl-3">
+                        <div class="col-md-12 col-lg-12 col-xl-3 mt-5">
                             <!-- Business Plan -->
                             <div class="block block-link-shadow block-themed block-fx-shadow text-center">
                                 <div class="block-header">
@@ -329,13 +278,14 @@
 </div>
 <!-- END Page Container -->
 
-<script src="../assets/js/oneui.core.min.js"></script>
+<script src="/assets/js/oneui.core.min.js"></script>
 
-<script src="../assets/js/oneui.app.min.js"></script>
-<script src="../assets/js/plugins/jquery.formautofill.js"></script>
+<script src="/assets/js/oneui.app.min.js"></script>
+<script src="/assets/js/plugins/jquery.formautofill.js"></script>
 <!-- Page JS Plugins -->
 
-<script src="../assets/js/plugins/baguetteBox.js/baguetteBox.min.js"></script>
+<script src="/assets/js/plugins/baguetteBox.js/baguetteBox.min.js"></script>
+<script src="/assets/js/plugins/sweetalert2/sweetalert2.min.js"></script>
 
 <script>
     /**
@@ -401,44 +351,67 @@
                             audiSelector.val("已拒绝");
                     }
                 } else
-                    One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: data.errMsg});
+                    Swal({
+                        title: data.errMsg,
+                        type: "error",
+                        confirmButtonText: '确定',
+                        onAfterClose: function () {
+                            window.location.href = "leaveRecordList.html"
+                        }
+                    })
             },
             error: function () {
-                One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: "未知错误，请重试或联系管理员！"});
+                Swal({
+                    title: "系统错误，请稍后再试或联系管理员！",
+                    type: "error",
+                    confirmButtonText: '确定',
+                    onAfterClose: function () {
+                        window.location.href = "leaveRecordList.html"
+                    }
+                })
             }
         })
     });
 
     /**
-     * 同意、拒绝按钮点击事件
+     * 删除按钮点击事件
      */
-    function audit(status) {
-        id = $("#id").val();
-        refusalReason = $('#refusalReason').val();
-        sendData = {
-            "id": id,
-            "status": status,
-            "refusalReason": refusalReason
-        };
-        $.ajax({
-            type: "post",
-            url: "examineLeave.do",
-            data: sendData,
-            dataType: "json",
-            success: function (data) {
-                if (data.success) {
-                    One.helpers('notify', {type: 'success', icon: 'fa fa-check mr-1', message: data.data});
-                    $('#btn_agree,#btn_refuse').hide();
-                    $('#refusalReason').attr("disabled", "disabled");
-                } else
-                    One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: data.errMsg});
-                getInfo()
-            },
-            error: function () {
-                One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: "未知错误，请重试或联系管理员！"});
-            }
-        })
-    }
+    $("#btn_delete").click(
+        function delLeave() {
+            id = $("#id").val();
+            $.ajax({
+                type: "post",
+                url: "removeLeave.do",
+                data: {"id": id},
+                dataType: "json",
+                success: function (data) {
+                    if (data.success) {
+                        Swal({
+                            title: data.data,
+                            type: "success",
+                            confirmButtonText: '确定',
+                            onAfterClose: function () {
+                                window.location.href = "leaveRecordList.html"
+                            }
+                        })
+                    } else {
+                        Swal({
+                            title: data.errMsg,
+                            type: "error",
+                            confirmButtonText: '确定',
+                            onAfterClose: function () {
+                                getInfo()
+                            }
+                        })
+                    }
+                },
+                error: function () {
+                    swal("系统错误，请稍后再试或联系管理员！", "", "error");
+                }
+            })
+        }
+    )
+
 </script>
 </body>
 </html>

@@ -31,69 +31,18 @@
     <!-- Page JS Plugins CSS -->
     <link rel="stylesheet" href="../assets/js/plugins/datatables/dataTables.bootstrap4.css">
     <link rel="stylesheet" href="../assets/js/plugins/datatables/buttons-bs4/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="/assets/js/plugins/sweetalert2/sweetalert2.min.css">
 
     <!-- Fonts and OneUI framework -->
     <link rel="stylesheet" href="#">
     <link rel="stylesheet" id="css-main" href="../assets/css/oneui.min.css">
 
-    <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
-    <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/amethyst.min.css"> -->
-    <!-- END Stylesheets -->
 </head>
 <body>
 <!-- Page Container -->
-<!--
-    Available classes for #page-container:
-
-GENERIC
-
-    'enable-cookies'                            Remembers active color theme between pages (when set through color theme helper Template._uiHandleTheme())
-
-SIDEBAR & SIDE OVERLAY
-
-    'sidebar-r'                                 Right Sidebar and left Side Overlay (default is left Sidebar and right Side Overlay)
-    'sidebar-mini'                              Mini hoverable Sidebar (screen width > 991px)
-    'sidebar-o'                                 Visible Sidebar by default (screen width > 991px)
-    'sidebar-o-xs'                              Visible Sidebar by default (screen width < 992px)
-    'sidebar-dark'                              Dark themed sidebar
-
-    'side-overlay-hover'                        Hoverable Side Overlay (screen width > 991px)
-    'side-overlay-o'                            Visible Side Overlay by default
-
-    'enable-page-overlay'                       Enables a visible clickable Page Overlay (closes Side Overlay on click) when Side Overlay opens
-
-    'side-scroll'                               Enables custom scrolling on Sidebar and Side Overlay instead of native scrolling (screen width > 991px)
-
-HEADER
-
-    ''                                          Static Header if no class is added
-    'page-header-fixed'                         Fixed Header
-
-HEADER STYLE
-
-    ''                                          Light themed Header
-    'page-header-dark'                          Dark themed Header
-
-MAIN CONTENT LAYOUT
-
-    ''                                          Full width Main Content if no class is added
-    'main-content-boxed'                        Full width Main Content with a specific maximum width (screen width > 1200px)
-    'main-content-narrow'                       Full width Main Content with a percentage width (screen width > 1200px)
--->
 <div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-fixed">
 
     <!-- Sidebar -->
-    <!--
-        Sidebar Mini Mode - Display Helper classes
-
-        Adding 'smini-hide' class to an element will make it invisible (opacity: 0) when the sidebar is in mini mode
-        Adding 'smini-show' class to an element will make it visible (opacity: 1) when the sidebar is in mini mode
-            If you would like to disable the transition animation, make sure to also add the 'no-transition' class to your element
-
-        Adding 'smini-hidden' to an element will hide it when the sidebar is in mini mode
-        Adding 'smini-visible' to an element will show it (display: inline-block) only when the sidebar is in mini mode
-        Adding 'smini-visible-block' to an element will show it (display: block) only when the sidebar is in mini mode
-    -->
     <nav id="sidebar" aria-label="Main Navigation">
         <!-- Side Header -->
         <div class="content-header bg-white-5">
@@ -763,9 +712,6 @@ MAIN CONTENT LAYOUT
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <h1 class="flex-sm-fill h3 my-2">
                         学生列表
-                        <small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted">
-                            显示所有学生，同时可进行修改和删除
-                        </small>
                     </h1>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
@@ -785,22 +731,16 @@ MAIN CONTENT LAYOUT
 
             <!-- Dynamic Table with Export Buttons -->
             <div class="block">
-                <!--      <div class="block-header">
-                          <h3 class="block-title">Dynamic Table
-                              <small>Export Buttons</small>
-                          </h3>
-                      </div>-->
                 <div class="block-content block-content-full">
                     <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons text-center"
-                           id="mydatatable">
+                           id="datatable">
                         <thead>
                         <tr>
-                            <th class="text-center" style="width: 40px;">ID</th>
+                            <th class="text-center" style="width: 10%;">ID</th>
                             <th class="d-none d-sm-table-cell" style="width: 15%;">学号</th>
                             <th class="d-none d-sm-table-cell" style="width: 12%;">姓名</th>
                             <th class="d-none d-sm-table-cell" style="width: 10%;">性别</th>
-                            <th class="d-none d-sm-table-cell" style="width: 12%;">楼号</th>
-                            <th class="d-none d-sm-table-cell" style="width: 12%;">房间号</th>
+                            <th class="d-none d-sm-table-cell" style="width: 15%;">宿舍号</th>
                             <th class="d-none d-sm-table-cell" style="width: 15%;">出生日期</th>
                             <th class="d-none d-sm-table-cell" style="width: 15%;">操作</th>
                         </tr>
@@ -820,16 +760,9 @@ MAIN CONTENT LAYOUT
     <!-- Footer -->
     <footer id="page-footer" class="bg-body-light">
         <div class="content py-3">
-            <div class="row font-size-sm">
-                <div class="col-sm-6 order-sm-2 py-1 text-center text-sm-right">
-                    Crafted with <i class="fa fa-heart text-danger"></i> by <a class="font-w600"
-                                                                               href="https://1.envato.market/ydb"
-                                                                               target="_blank">pixelcave</a>
-                </div>
-                <div class="col-sm-6 order-sm-1 py-1 text-center text-sm-left">
-                    <a class="font-w600" href="https://1.envato.market/xWy" target="_blank">OneUI 4.0</a> &copy; <span
-                        data-toggle="year-copy">2018</span>
-                </div>
+            <div class="col-sm-6 order-sm-1 py-1 text-center text-sm-left">
+                <a class="font-w600" href="https://1.envato.market/xWy" target="_blank">OneUI 4.0</a> &copy; <span
+                    data-toggle="year-copy">2018</span>
             </div>
         </div>
     </footer>
@@ -837,158 +770,133 @@ MAIN CONTENT LAYOUT
 </div>
 <!-- END Page Container -->
 
-<!--
-    OneUI JS Core
-
-    Vital libraries and plugins used in all pages. You can choose to not include this file if you would like
-    to handle those dependencies through webpack. Please check out assets/_es6/main/bootstrap.js for more info.
-
-    If you like, you could also include them separately directly from the assets/js/core folder in the following
-    order. That can come in handy if you would like to include a few of them (eg jQuery) from a CDN.
-
-    assets/js/core/jquery.min.js
-    assets/js/core/bootstrap.bundle.min.js
-    assets/js/core/simplebar.min.js
-    assets/js/core/jquery-scrollLock.min.js
-    assets/js/core/jquery.appear.min.js
-    assets/js/core/js.cookie.min.js
--->
 <script src="../assets/js/oneui.core.min.js"></script>
 
-<!--
-    OneUI JS
-
-    Custom functionality including Blocks/Layout API as well as other vital and optional helpers
-    webpack is putting everything together at assets/_es6/main/app.js
--->
 <script src="../assets/js/oneui.app.min.js"></script>
 
 <!-- Page JS Plugins -->
-<script src="../assets/js/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="../assets/js/plugins/datatables/dataTables.bootstrap4.min.js"></script>
-<script src="../assets/js/plugins/datatables/buttons/dataTables.buttons.min.js"></script>
+<script src="/assets/js/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/assets/js/plugins/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="/assets/js/plugins/datatables/buttons/dataTables.buttons.min.js"></script>
+<script src="/assets/js/plugins/sweetalert2/sweetalert2.min.js"></script>
+
+<script src="/assets/js/common/dataTable.js"></script>
+
 <script>
-    var t = $('#mydatatable').DataTable(
-        {
-            "processing": true,
-            // "destroy": true,
-            "retrieve": true,
-            "bStateSave": true,
-            language: {
-                "sProcessing": "正在加载数据，请稍后...",
-                "sLengthMenu": "显示 _MENU_ 项结果",
-                "sZeroRecords": "没有匹配结果",
-                "sInfo": "显示第 _START_ 至 _END_ 条记录，共 _TOTAL_ 项",
-                "sInfoEmpty": "显示第 0 至 0 条记录，共 0 项",
-                "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
-                "sSearch": "搜索:",
-                "sEmptyTable": "表中数据为空",
-                "sLoadingRecords": "载入中...",
-                "sInfoThousands": ",",
-                "oPaginate": {
-                    "sFirst": "首页",
-                    "sPrevious": "上页",
-                    "sNext": "下页",
-                    "sLast": "末页"
-                }
-            },
-            ajax: {
-                type: "post",
-                url: "studentList.do"
-            },
-            //每页显示n条数据
-            pageLength: 10,
-            columns: [
-                {data: null},
-                {data: "sNo"},
-                {data: "sName"},
-                {
-                    data: "gender",
-                    defaultContent: "-"
-                },
-                {
-                    data: "buildingNO",
-                    defaultContent: "-"
-                },
-                {
-                    data: "roomNo",
-                    defaultContent: "-"
-                },
-                {
-                    data: "birthday",
-                    defaultContent: "-"
-                },
-                {
-                    "data": null,
-                    render: function (data, type, row) {
-                        return '<div class="btn-group">' +
-                            '<button type="button" class="btn btn-sm btn-primary js-tooltip-enabled"' +
-                            ' data-toggle="tooltip" title="编辑" onclick="editStudent(' + row.sNo + ')">' +
-                            '<i class="fa fa-fw fa-pencil-alt"></i>' +
-                            '</button>' +
-                            '<button type="button" class="btn btn-sm btn-primary js-tooltip-enabled" ' +
-                            'data-toggle="tooltip" title="删除" onclick="delStudent(' + row.sNo + ')">' +
-                            '<i class="fa fa-fw fa-times"></i>' +
-                            '</button>' +
-                            '</div>'
-                    }
-                }
-            ],
-            "columnDefs": [
-                {//每列定义
-                    "orderable": false,
-                    "targets": [2, 5, -1]//第x列不排序
-                }]
-            /*,
+    /**
+     * datatable的配置选项
+     */
+    var options2 = {
+        ajax: {
+            type: "post",
+            url: "studentList.do"
+        },
+        columns: [
+            {data: "id"},
+            {data: "sNo"},
+            {data: "sName"},
             {
-                targets: -1,
+                data: "gender",
+                defaultContent: "-"
+            },
+            {
+                data: null
+            },
+            {
+                data: "birthday",
+                defaultContent: "-"
+            },
+            {
+                "data": null,
+                render: function (data, type, row) {
+                    return '<div class="btn-group">' +
+                        '<button type="button" class="btn btn-sm btn-primary js-tooltip-enabled"' +
+                        ' data-toggle="tooltip" title="编辑" onclick="editStudent(' + row.sNo + ')">' +
+                        '<i class="fa fa-fw fa-pencil-alt"></i>' +
+                        '</button>' +
+                        '<button type="button" class="btn btn-sm btn-primary js-tooltip-enabled" ' +
+                        'data-toggle="tooltip" title="删除" onclick="delStudent(' + row.sNo + ')">' +
+                        '<i class="fa fa-fw fa-times"></i>' +
+                        '</button>' +
+                        '</div>'
+                }
+            }
+        ],
+        "columnDefs": [
+            {//每列定义
+                "orderable": false,
+                "targets": [2, 5, -1]//第x列不排序
+            },
+            {
+                "targets": [4],//第x列不排序
+                defaultContent: "-",
+                render: function (data, type, full) {
+                    return full.buildingNo + "#" + full.roomNo
+                }
+            }
+        ]
 
-            }]*/
-        });
-    //前台添加序号
-    t.on('order.dt search.dt', function () {
-        t.column(0, {
-            "search": 'applied',
-            "order": 'applied'
-        }).nodes().each(function (cell, i) {
-            cell.innerHTML = i + 1;
-        })
-    }).draw();
+    };
+    /**
+     * 初始化dataTable
+     * @type {jQuery|*}
+     */
+    var t = $('#datatable').DataTable(
+        Object.assign(options2, generalOptions));
 
+    /**
+     * 修改学生信息
+     * @param id
+     */
     function editStudent(id) {
         window.location.href = "studentInfo.html?" + id;
     }
 
+    /**
+     * 删除学生
+     * @param id
+     */
     function delStudent(id) {
-        $.ajax(
-            {
-                type: "post",
-                url: "removeUser.do",
-                dataType: "json",
-                data: {
-                    "sNo": id
-                },
-                success: function (data) {
-                    if (data.success) {
-                        $("#mydatatable").dataTable().fnDraw(false);
-                        //重新加载表格数据
-                        t.ajax.reload();
-                        alert(data.data)
-                    } else {
-                        alert(data.errMsg)
+        swal({
+            title: "确认删除吗?",
+            text: "删除后将无法恢复",
+            type: "warning",
+            showCancelButton: !0,
+            confirmButtonClass: "btn btn-danger m-1",
+            cancelButtonClass: "btn btn-secondary m-1",
+            confirmButtonText: "确认删除",
+            cancelButtonText: "取消",
+            html: !1,
+        }).then(function (e) {
+            e.value ? del() : "cancel" === e.dismiss
+        });
+
+        function del() {
+            $.ajax(
+                {
+                    type: "post",
+                    url: "removeUser.do",
+                    dataType: "json",
+                    data: {
+                        "sNo": id
+                    },
+                    success: function (data) {
+                        if (data.success) {
+                            $("#datatable").dataTable().fnDraw(false);
+                            //重新加载表格数据
+                            t.ajax.reload();
+                            swal(data.data, '', "success");
+                        } else {
+                            swal(data.errMsg, '', "error");
+                        }
+                    }, error: function (data) {
+                        swal('系统错误，请稍后再试或联系管理员', '', "error");
                     }
-                }, error: function (data) {
-                    alert("未知错误")
                 }
-            }
-        )
+            )
+        }
     }
 </script>
-
-<!-- Page JS Code -->
-<!--
-<script src="assets/js/pages/be_tables_datatables.min.js"></script>
--->
 
 </body>
 </html>

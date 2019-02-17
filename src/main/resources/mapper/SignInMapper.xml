@@ -5,53 +5,58 @@
 <mapper namespace="top.flytop.studentsign.mapper.SignInMapper">
 
     <!--=========================resultMap===========================-->
+
     <!--===========================查询=============================-->
     <!--查询所有用户今天、昨天、近7天、近30天及所有时间的签到记录-->
     <select id="signRecord" resultType="signIn">
-        select a.*,b.sname from sign_in a,student b
-        where a.sno = b.sno
+        select a.*,b.sname from sign_in a left join student b
+        on a.sno = b.sno
         <if test="_parameter != null and _parameter != ''">
-            and to_days(now()) - to_days(signtime) &lt;= #{dayNum};
+            where to_days(now()) - to_days(signtime) &lt;= #{dayNum}
         </if>
+        order by signtime desc
     </select>
 
     <!--查询所有用户指定时间段内的签到记录-->
     <select id="signRecordTime" resultType="signIn">
-        select a.*,b.sname from sign_in a,student b
-        where a.sno = b.sno
+        select a.*,b.sname from sign_in a left join student b
+        on a.sno = b.sno
+        # 解决日期between...and...不包含右边界的问题
         <if test="_parameter != null">
-            # 解决日期between...and...不包含右边界的问题
-            and signtime between #{startTime} and DATE_ADD(#{endTime},INTERVAL 1 DAY);
+            where signtime between #{startTime} and DATE_ADD(#{endTime},INTERVAL 1 DAY)
         </if>
-    </select>
-
-    <!--查询个人用户当天的签到记录-->
-    <select id="personalSignRecord" resultType="signIn">
-        select *
-        from sign_in
-        where date(signtime) = curdate()
-          and sno = #{sNo};
-    </select>
-
-    <!--查询个人用户指定时间段内及所有时间的签到记录-->
-    <select id="personalSignRecordTime" resultType="signIn">
-        select * from sign_in
-        <if test="_parameter != null">
-            where signtime between #{startTime} and #{endTime} and sno = #{sNo};
-        </if>
+        order by signtime desc
     </select>
 
     <!--根据学号或姓名查询签到记录-->
     <!--bind标签（动态SQL）可以使用OGNL表达式创建一个变量并将其绑定到上下文中-->
     <select id="findSignRecordByKeyword" resultType="signIn">
         select * from(
-        select a.*,b.sname from sign_in a,student b where a.sno = b.sno
+        select a.*,b.sname from sign_in a left join student b on a.sno = b.sno
         ) c
         <if test="_parameter != null">
             <bind name="pattern" value="'%'+keyword+'%'"></bind>
-            where sname like #{pattern} or sno like #{pattern};
+            where sname like #{pattern} or sno like #{pattern}
         </if>
     </select>
+
+    <!--查询某生当天的签到记录-->
+    <select id="personalSignRecord" resultType="signIn">
+        select *
+        from sign_in
+        where date(signtime) = curdate()
+          and sno = #{sNo}
+    </select>
+
+    <!--查询个人用户指定时间段内及所有时间的签到记录-->
+    <select id="getSignBySNo" resultType="signIn">
+        select * from sign_in where sno = #{sNo}
+        <if test="startTime != null and endTime != null">
+            and signtime between #{startTime} and DATE_ADD(#{endTime},INTERVAL 1 DAY)
+        </if>
+        order by signtime desc
+    </select>
+
 
     <!--===========================修改=============================-->
 

@@ -136,9 +136,33 @@ public class LeaveServiceImpl implements LeaveService {
         return leaveMapper.addLeave(leave);
     }
 
+    /**
+     * @param sNo
+     * @param auditStatus
+     * @return java.util.List<top.flytop.studentsign.pojo.Leave>
+     * @Description TODO
+     * @Date 2019/2/13 18:59
+     */
     @Override
     public List<Leave> getLeaveBySNo(String sNo, Integer auditStatus) {
         return leaveMapper.getLeaveBySNo(sNo, auditStatus);
+    }
+
+    /**
+     * @param id
+     * @return top.flytop.studentsign.dto.BaseResult
+     * @Description TODO 学生删除请假操作，需检查是否已审批
+     * @Date 2019/2/13 18:58
+     */
+    @Override
+    public BaseResult removeLeaveForS(Integer id) {
+        Leave leave = leaveMapper.getLeaveDetailById(id);
+        if (leave.getAuditStatus() != 0)
+            return BaseResult.fail(1, "删除失败，仅能删除未审批的申请！");
+        Boolean delResult = leaveMapper.removeLeaveById(id);
+        if (delResult)
+            return BaseResult.success("删除成功！");
+        else return BaseResult.fail(1, "删除失败，请重试！");
     }
 
 }

@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-cn">
 <head>
     <title>宿舍签到系统</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link href="singInPage/css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="singInPage/css/style.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="assets/singInPage/css/style.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="assets/js/plugins/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="singInPage/css/flexslider.css" rel="stylesheet" type="text/css" media="screen" property=""/>
+    <link href="assets/singInPage/css/flexslider.css" rel="stylesheet" type="text/css" media="screen" property=""/>
 </head>
 
 <body>
@@ -18,62 +17,54 @@
     <div class="w3l-left-side">
         <div class="flexslider">
             <ul class="slides">
-                <li><img src="singInPage/images/g5.jpg" alt="image"/></li>
-                <li><img src="singInPage/images/g2.jpg" alt="image"/></li>
-                <li><img src="singInPage/images/g1.jpg" alt="image"/></li>
+                <li><img src="assets/singInPage/images/g5.jpg" alt="image"/></li>
+                <li><img src="assets/singInPage/images/g2.jpg" alt="image"/></li>
+                <li><img src="assets/singInPage/images/g1.jpg" alt="image"/></li>
             </ul>
         </div>
     </div>
 
-    <div class="w3l-rigt-side">
-        <form action="#" method="post">
-            <div class="w3l-signin">
-                <a class="w3_play_icon1" href="#small-dialog1" ID="signin"> 签&nbsp;&nbsp;到</a>
-            </div>
-            <div class="clear"></div>
-        </form>
-    </div>
-    <div class="clear"></div>
-</div>
+    <div class="w3l-rigt-side" style="padding-top: 20px;margin-top: 0">
+        <div class="w3l-signin">
+            <a class="w3_play_icon1" ID="signin"> 签&nbsp;&nbsp;到</a>
+        </div>
 
-<div id="small-dialog1" class="mfp-hide">
-    <div class="wthree-container">
-        <div class="wthree-form">
-            <div class="agileits-2">
-                <h2>面部识别签到</h2>
-            </div>
+        <div id="form" hidden>
+            <!--     <div class="">
+                     <h2>面部识别签到</h2>
+                 </div>-->
 
             <div id="contentHolder">
                 <div id="area1">
-                    <video id="video" width="640" height="360" autoplay style="margin: 22px 0 -4px 0;"></video>
+                    <video id="video" width="490" height="360" autoplay></video>
                 </div>
                 <div id="area2" style="display:none">
-                    <canvas id="canvas" width="640" height="360" style="margin: 22px 0 -4px 0;"></canvas>
+                    <canvas id="canvas" width="490" height="360"></canvas>
                 </div>
                 <br/>
             </div>
             <form action="#" method="post">
-                <div class="clear"></div>
                 <div class="signin">
-                    <input id="takephoto" type="button" value="立&nbsp;即&nbsp;签&nbsp;到">
+                    <input id="takephoto" type="button" value="立&nbsp;即&nbsp;签&nbsp;到" style="margin-left: 98px">
                 </div>
-                <div class="clear"></div>
             </form>
         </div>
-    </div>
-</div>
-<footer>Copyright &copy; 2018... All rights reserved.</footer>
 
-<script src="singInPage/js/jquery-2.1.4.min.js"></script>
-<script src="singInPage/js/jquery.magnific-popup.js" type="text/javascript"></script>
+    </div>
+    <div class="clear"></div>
+</div>
+
+<footer>Copyright &copy; 2018 All rights reserved.</footer>
+
+<script src="assets/js/core/jquery.min.js"></script>
 <script src="assets/js/plugins/sweetalert2/sweetalert2.min.js" type="text/javascript"></script>
 <!--页面JS-->
-<script src="singInPage/js/pg_index.js" type="text/javascript"></script>
+<script src="assets/singInPage/js/pg_index.js" type="text/javascript"></script>
 <!-- flexSlider -->
-<script defer src="singInPage/js/jquery.flexslider.js"></script>
+<script defer src="assets/singInPage/js/jquery.flexslider.js"></script>
 
 <script type="text/javascript">
-    $(window).load(function () {
+    $(function () {
         $('.flexslider').flexslider({
             animation: "slide",
             start: function (slider) {
@@ -81,7 +72,7 @@
             }
         });
     });
+
 </script>
-<!-- //flexSlider -->
 </body>
 </html>

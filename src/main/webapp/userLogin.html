@@ -102,17 +102,17 @@
                                                              src="getVCode.do" onclick="changeCode()" alt="验证码">
                                                     </div>
                                                 </div>
-                                                <div class="py-2">
-                                                    <div class="form-group">
-                                                        <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input"
-                                                                   id="login-remember" name="rememberMe">
-                                                            <label class="custom-control-label font-w400"
-                                                                   for="login-remember">七天之内免登录</label>
-                                                        </div>
-                                                    </div>
+                                                <!--       <div class="py-2">
+                                                           <div class="form-group">
+                                                               <div class="custom-control custom-checkbox">
+                                                                   <input type="checkbox" class="custom-control-input"
+                                                                          id="login-remember" name="rememberMe">
+                                                                   <label class="custom-control-label font-w400"
+                                                                          for="login-remember">七天之内免登录</label>
+                                                               </div>
+                                                           </div>
 
-                                                </div>
+                                                       </div>-->
                                                 <div class="form-group row">
                                                     <div class="col-md-6 col-xl-5">
                                                         <button type="button" class="btn btn-block btn-primary"
@@ -173,12 +173,20 @@
                 if (result.success) {
                     window.location.href = result.data;
                 } else {
-                    One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: result.errMsg});
+                    One.helpers('notify', {
+                        type: 'danger',
+                        icon: 'fa fa-times mr-1',
+                        message: "<h3 class='d-inline-block mb-0'>" + result.errMsg + "</h3>"
+                    });
                     changeCode();
                 }
             },
             error: function (data) {
-                One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: "未知错误，请重试!"});
+                One.helpers('notify', {
+                    type: 'danger',
+                    icon: 'fa fa-times mr-1',
+                    message: "<h3 class='d-inline-block mb-0'>系统错误，请稍后重试!</h3>"
+                });
                 changeCode();
             }
         });

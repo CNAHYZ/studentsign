@@ -191,8 +191,7 @@ ul.dropdown-menu6 li a {
 
 /*-- //Slider range --*/
 .w3l-rigt-side {
-    flex-basis: 500px;
-    flex-basis: 500px;
+    flex-basis: 490px;
     background: url(../images/bg_cr.jpg) 0px 0px no-repeat;
     background-size: cover;
     background-position: 50% 50%;
@@ -219,7 +218,7 @@ ul.dropdown-menu6 li a {
 
 .w3l-signin, .w3l-signup {
     width: 45%;
-    margin: 65px auto;
+    margin: 43% auto;
     padding: 10px 0;
     background: #0f86bb;
     text-align: center;
@@ -371,8 +370,8 @@ span a {
     font-size: 30px;
     font-weight: 500;
     text-align: center;
-    padding: 18px 10px;
-    width: 60%;
+    padding: 13px 8px;
+    width: 55%;
     display: inline-block;
     border-top-left-radius: 200px;
     border-bottom-right-radius: 200px;
@@ -417,7 +416,7 @@ span a {
 .wthree-form {
     flex-basis: 400px;
     padding: 3em 20px 5em 20px;
-    background: url(../images/86022.jpg) no-repeat 0px -27px;
+    /*background: url(../images/86022.jpg) no-repeat 0px -27px;*/
     background-size: cover;
 }
 

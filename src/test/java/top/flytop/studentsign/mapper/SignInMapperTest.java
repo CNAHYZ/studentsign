@@ -23,7 +23,7 @@ public class SignInMapperTest {
 
     @Test
     public void testPersonalSignRecordTime() {
-        List<SignIn> list = signInMapper.personalSignRecordTime("234", "2018-01-01", "2019-02-01");
+        List<SignIn> list = signInMapper.getSignBySNo("234", "2018-01-01", "2019-02-01");
         System.out.println(list);
     }
 }

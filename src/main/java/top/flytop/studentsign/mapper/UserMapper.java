@@ -25,4 +25,6 @@ public interface UserMapper {
     Integer deleteUser(String username);
 
     Boolean addStudent(Student student);
+
+    Boolean changePwdBySNo(@Param("pwd") String pwd, @Param("sNo") String sNo);
 }

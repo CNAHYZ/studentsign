@@ -33,9 +33,17 @@ public interface SignInMapper {
     List<SignIn> signRecordTime(@Param("startTime") String startTime, @Param("endTime") String endTime);
 
     /**
+     * @param keyword
+     * @return java.util.List<top.flytop.studentsign.pojo.SignIn>
+     * @Description TODO 通过关键字查询签到记录
+     * @date 2019/1/26 16:42
+     */
+    List<SignIn> findSignRecordByKeyword(@Param("keyword") String keyword);
+
+    /**
      * @param sNo
      * @return java.util.List<top.flytop.studentsign.pojo.SignIn>
-     * @Description TODO 查询个人用户当天的签到记录
+     * @Description TODO 查询个人用户当天的签到记录,判断是否签到
      * @date 2019/1/20 17:39
      */
     List<SignIn> personalSignRecord(String sNo);
@@ -48,16 +56,8 @@ public interface SignInMapper {
      * @Description TODO 查询个人用户指定时间段内及所有时间的签到记录
      * @date 2019/1/20 17:54
      */
-    List<SignIn> personalSignRecordTime(@Param("sNo") String sNo, @Param("startTime")
+    List<SignIn> getSignBySNo(@Param("sNo") String sNo, @Param("startTime")
             String startTime, @Param("endTime") String endTime);
-
-    /**
-     * @param keyword
-     * @return java.util.List<top.flytop.studentsign.pojo.SignIn>
-     * @Description TODO 通过关键字查询签到记录
-     * @date 2019/1/26 16:42
-     */
-    List<SignIn> findSignRecordByKeyword(@Param("keyword") String keyword);
 
     /**
      * @param signIn

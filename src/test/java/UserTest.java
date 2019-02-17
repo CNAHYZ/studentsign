@@ -68,7 +68,7 @@ public class UserTest {
 
     @Test
     public void testRemoveUser() throws Exception {
-        System.out.println(userServiceImpl.removeUser("25"));
+        System.out.println(userServiceImpl.removeUser("23"));
     }
 
     @Test

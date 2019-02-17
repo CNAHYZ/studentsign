@@ -1,6 +1,9 @@
 package top.flytop.studentsign.service;
 
 import top.flytop.studentsign.dto.BaseResult;
+import top.flytop.studentsign.pojo.SignIn;
+
+import java.util.List;
 
 /**
  * @ClassName SignRecordService
@@ -12,9 +15,11 @@ import top.flytop.studentsign.dto.BaseResult;
 public interface SignInService {
     BaseResult studentSign(String faceImage);
 
-    BaseResult getSignRecord(String dayNum);
+    List<SignIn> getSignRecord(String dayNum);
 
-    BaseResult getSignRecordFilter(String startTime, String endTime);
+    List<SignIn> getPersonalSignRecord(String sNo, String startTime, String endTime);
 
-    BaseResult getSignRecordByKeyword(String keyword);
+    List<SignIn> getSignRecordFilter(String startTime, String endTime);
+
+    List<SignIn> getSignRecordByKeyword(String keyword);
 }

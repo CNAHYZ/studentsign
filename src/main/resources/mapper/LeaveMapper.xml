@@ -41,8 +41,8 @@
         select *
         from sleave
         where sno =#{sNo}
-        <if test="_parameter != null and _parameter != ''">
-            where audit_status = #{auditStatus}
+        <if test="auditStatus != null and auditStatus != ''">
+            and audit_status = #{auditStatus}
         </if>
         order by application_time desc
     </select>

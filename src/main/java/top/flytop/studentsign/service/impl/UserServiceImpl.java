@@ -6,10 +6,14 @@ import org.springframework.transaction.annotation.Transactional;
 import top.flytop.studentsign.dto.BaseResult;
 import top.flytop.studentsign.mapper.UserMapper;
 import top.flytop.studentsign.pojo.Student;
+import top.flytop.studentsign.pojo.User;
 import top.flytop.studentsign.service.UserService;
 import top.flytop.studentsign.utils.FaceUtil;
 import top.flytop.studentsign.utils.ImageUtil;
+import top.flytop.studentsign.utils.ShiroMd5;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -179,6 +183,25 @@ public class UserServiceImpl implements UserService {
     @Override
     public BaseResult faceChecker(String image) {
         return faceUtil.faceChecker(image);
+    }
+
+    @Override
+    public BaseResult changePwd(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        String oldPwd = request.getParameter("oldPwd");
+        String newPwd = request.getParameter("newPwd_1");
+        String sNo = String.valueOf(session.getAttribute("currentUser"));
+        User user = userMapper.getUser(sNo);
+        String oldPwdEncrypt = ShiroMd5.md5Encrypt(oldPwd, user.getSalt());
+        //原密码输入不正确
+        if (!user.getPwd().equals(oldPwdEncrypt)) {
+            return BaseResult.fail(1, "身份验证失败，旧密码不正确");
+        }
+        /*对新密码加密*/
+        String newPwdEncrypt = ShiroMd5.md5Encrypt(newPwd, user.getSalt());
+        return userMapper.changePwdBySNo(newPwdEncrypt, sNo) ? BaseResult.success("修改成功，请牢记")
+                : BaseResult.fail(1, "修改失败，请稍后再试！");
+
     }
 
 }

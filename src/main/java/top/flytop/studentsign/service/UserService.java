@@ -3,6 +3,7 @@ package top.flytop.studentsign.service;
 import top.flytop.studentsign.dto.BaseResult;
 import top.flytop.studentsign.pojo.Student;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public interface UserService {
@@ -23,4 +24,6 @@ public interface UserService {
     BaseResult removeUser(String sNo) throws Exception;
 
     BaseResult faceChecker(String image);
+
+    BaseResult changePwd(HttpServletRequest request);
 }

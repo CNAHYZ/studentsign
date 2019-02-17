@@ -6,13 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.HandlerExceptionResolver;
-import org.springframework.web.servlet.ModelAndView;
 import top.flytop.studentsign.dto.BaseResult;
 import top.flytop.studentsign.service.LeaveService;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * @ClassName LeaveController
@@ -23,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Controller
 @RequestMapping("student/")
-public class StuLeaveController implements HandlerExceptionResolver {
+public class StuLeaveController {
     private LeaveService leaveService;
 
     @Autowired
@@ -59,13 +56,8 @@ public class StuLeaveController implements HandlerExceptionResolver {
     @RequestMapping("getLeave")
     @ResponseBody
     public BaseResult getLeave(@RequestParam(defaultValue = "") Integer auditStatus, HttpServletRequest request) {
-//       try {
         String sNo = String.valueOf(request.getSession().getAttribute("currentUser"));
         return new BaseResult<>(true, leaveService.getLeaveBySNo(sNo, auditStatus));
-       /*}catch (Exception e){
-           e.printStackTrace();
-           return null;
-       }*/
     }
 
 
@@ -75,10 +67,10 @@ public class StuLeaveController implements HandlerExceptionResolver {
      * @Description TODO
      * @date 2019/1/27 20:30
      */
-    @RequestMapping("removeLeave")
+    @RequestMapping(value = "removeLeave", method = RequestMethod.POST)
     @ResponseBody
     public BaseResult removeLeave(Integer id) {
-        return leaveService.removeLeave(id);
+        return leaveService.removeLeaveForS(id);
     }
 
     /**
@@ -94,10 +86,4 @@ public class StuLeaveController implements HandlerExceptionResolver {
     }
 
 
-    @Override
-    public ModelAndView resolveException(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) {
-        e.printStackTrace();
-        System.out.println("异常");
-        return null;
-    }
 }

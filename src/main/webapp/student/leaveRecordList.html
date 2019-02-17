@@ -119,11 +119,11 @@
             <div class="content content-full">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <h1 class="flex-sm-fill h3 my-2">
-                        个人信息
+                        请假记录
                     </h1>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
-                            <li class="breadcrumb-item">个人信息</li>
+                            <li class="breadcrumb-item">请假记录</li>
                             <li class="breadcrumb-item" aria-current="page">
                                 <a class="link-fx" href="index.html">首页</a>
                             </li>
@@ -137,43 +137,38 @@
         <div class="content">
             <!-- Dynamic Table with Export Buttons -->
             <div class="block">
-                <!--      <div class="block-header">
-                          <h3 class="block-title">Dynamic Table
-                              <small>Export Buttons</small>
-                          </h3>
-                      </div>-->
                 <div class="block-content block-content-full">
-                    <div class="row">
-                        <div class="dropdown ml-4">
-                            <label style="vertical-align: bottom;">快速筛选：</label>
-                            <button type="button" class="btn btn-outline-primary dropdown-toggle" id="btn_status"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                全部状态
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdown-default-outline-primary"
-                                 style="min-width:110px">
-                                <a class="dropdown-item" onclick="dropSelect(this,null,'status')">全部状态</a>
-                                <a class="dropdown-item" onclick="dropSelect(this,0,'status')">未审批</a>
-                                <a class="dropdown-item" onclick="dropSelect(this,1,'status')">已同意</a>
-                                <a class="dropdown-item" onclick="dropSelect(this,2,'status')">已拒绝</a>
-                            </div>
-                        </div>
-                        <div class="px-lg-3"></div>
-                        <div class="col-lg-7 col-xl-5 row">
-                            <div class="input-daterange input-group">
-                                <label class="" style="margin: auto">指定日期筛选：</label>
-                                <input type="text" class="form-control" id="daterange1"
-                                       name="daterange1" placeholder="开始日期">
-                                <div class="input-group-prepend input-group-append">
-                                    <span class="input-group-text font-w600">
-                                        <i class="fa fa-fw fa-arrow-right"></i>
-                                    </span>
-                                </div>
-                                <input type="text" class="form-control" id="daterange2"
-                                       name="daterange2" placeholder="结束日期">
-                            </div>
-                        </div>
-                    </div>
+                    <!-- <div class="row">
+                         <div class="dropdown ml-4">
+                             <label style="vertical-align: bottom;">快速筛选：</label>
+                             <button type="button" class="btn btn-outline-primary dropdown-toggle" id="btn_status"
+                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                 全部状态
+                             </button>
+                             <div class="dropdown-menu" aria-labelledby="dropdown-default-outline-primary"
+                                  style="min-width:110px">
+                                 <a class="dropdown-item" onclick="dropSelect(this,null,'status')">全部状态</a>
+                                 <a class="dropdown-item" onclick="dropSelect(this,0,'status')">未审批</a>
+                                 <a class="dropdown-item" onclick="dropSelect(this,1,'status')">已同意</a>
+                                 <a class="dropdown-item" onclick="dropSelect(this,2,'status')">已拒绝</a>
+                             </div>
+                         </div>
+                         <div class="px-lg-3"></div>
+                         <div class="col-lg-7 col-xl-5 row">
+                             <div class="input-daterange input-group">
+                                 <label class="" style="margin: auto">指定日期筛选：</label>
+                                 <input type="text" class="form-control" id="daterange1"
+                                        name="daterange1" placeholder="开始日期">
+                                 <div class="input-group-prepend input-group-append">
+                                     <span class="input-group-text font-w600">
+                                         <i class="fa fa-fw fa-arrow-right"></i>
+                                     </span>
+                                 </div>
+                                 <input type="text" class="form-control" id="daterange2"
+                                        name="daterange2" placeholder="结束日期">
+                             </div>
+                         </div>
+                     </div>-->
                     <div class="py-2"></div>
                     <div class="col-sm-12">
                         <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons text-center "
@@ -182,12 +177,12 @@
                             <tr>
                                 <th class="text-center" style="width: 8%;">ID</th>
                                 <th class="d-none d-sm-table-cell" style="width: 12%;">学号</th>
-                                <th class="d-none d-sm-table-cell" style="width: 10%;">姓名</th>
-                                <th class="d-none d-sm-table-cell" style="width: 18%;">申请时间</th>
+                                <!--<th class="d-none d-sm-table-cell" style="width: 10%;">姓名</th>-->
+                                <th class="d-none d-sm-table-cell" style="width: 15%;">申请时间</th>
                                 <th class="d-none d-sm-table-cell" style="width: 10%;">类别</th>
-                                <th class="d-none d-sm-table-cell" style="width: 20%;">请假时间</th>
+                                <th class="d-none d-sm-table-cell" style="width: 22%;">请假时间</th>
                                 <th class="d-none d-sm-table-cell" style="width: 10%;">审批状态</th>
-                                <th class="d-none d-sm-table-cell" style="width: 15%;">操作</th>
+                                <th class="d-none d-sm-table-cell" style="width: 10%;">操作</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -278,10 +273,10 @@
             columns: [
                 {data: "id"},
                 {data: "sNo"},
-                {
-                    data: "sName",
-                    defaultContent: "-"
-                },
+                /* {
+                     data: "sName",
+                     defaultContent: "-"
+                 },*/
                 {
                     data: "applicationTime",
                     defaultContent: "-"
@@ -307,17 +302,13 @@
                             'onclick="window.location.href=\'leaveDetail.html?id=' + row.id + '\'">' +
                             '<i class="fa fa-fw fa-ellipsis-h"></i>' +
                             '</button>' +
-                            '<button type="button" class="btn btn-sm btn-primary js-tooltip-enabled" ' +
-                            'data-toggle="tooltip" title="删除" onclick="delLeave(' + row.id + ')">' +
-                            '<i class="fa fa-fw fa-times"></i>' +
-                            '</button>' +
                             '</div>'
                     }
                 }
             ],
             "columnDefs": [
                 {
-                    "targets": [4], // 目标列位置，下标从0开始
+                    "targets": [3], // 目标列位置，下标从0开始
                     // "data": "salary", // 数据列名
                     "render": function (data, type, full) { // 返回自定义内容
                         if (data === 0)
@@ -330,50 +321,26 @@
                 {
                     "targets": [-2], // 目标列位置，下标从0开始
                     "render": function (data, type, full) { // 返回自定义内容
-                        if (data === 0)
-                            return "<span class=\"badge badge-primary\">待审批</span>";
-                        else if (data === 1)
-                            return "<span class=\"badge badge-success\">已同意</span>";
-                        else return "<span class=\"badge badge-danger\">已拒绝</span>";
+                        switch (data) {
+                            case 0:
+                                return "<span class=\"badge badge-primary\">待审批</span>";
+                            case 1:
+                                return "<span class=\"badge badge-success\">已同意</span>";
+                            case 2:
+                                return "<span class=\"badge badge-danger\">已拒绝</span>";
+                        }
                     }
                 },
                 {
                     "targets": [-3], // 目标列位置，下标从0开始
                     "render": function (data, type, full) { // 返回自定义内容
-                        return full.startTime.substring(5) +
-                            "<span style='color: #0f86bb'> 至 </span>" + full.endTime.substring(5);
+                        return full.startTime +
+                            "<span style='color: #0f86bb'> 至 </span>" + full.endTime;
                     }
                 }
             ]
         });
 
-    /**
-     *
-     */
-    function delLeave(id) {
-        $.ajax(
-            {
-                type: "post",
-                url: "removeLeave.do",
-                dataType: "json",
-                data: {
-                    "id": id
-                },
-                success: function (data) {
-                    if (data.success) {
-                        $("#mydatatable").dataTable().fnDraw(false);
-                        //重新加载表格数据
-                        t.ajax.reload();
-                        alert(data.data)
-                    } else {
-                        alert(data.errMsg)
-                    }
-                }, error: function (data) {
-                    alert("未知错误")
-                }
-            }
-        )
-    }
 
     /**
      *筛选按钮的操作
