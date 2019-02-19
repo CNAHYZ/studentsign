@@ -69,17 +69,6 @@ MAIN CONTENT LAYOUT
 <div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-fixed">
 
     <!-- Sidebar -->
-    <!--
-        Sidebar Mini Mode - Display Helper classes
-
-        Adding 'smini-hide' class to an element will make it invisible (opacity: 0) when the sidebar is in mini mode
-        Adding 'smini-show' class to an element will make it visible (opacity: 1) when the sidebar is in mini mode
-            If you would like to disable the transition animation, make sure to also add the 'no-transition' class to your element
-
-        Adding 'smini-hidden' to an element will hide it when the sidebar is in mini mode
-        Adding 'smini-visible' to an element will show it (display: inline-block) only when the sidebar is in mini mode
-        Adding 'smini-visible-block' to an element will show it (display: block) only when the sidebar is in mini mode
-    -->
     <nav id="sidebar" aria-label="Main Navigation">
         <!-- Side Header -->
         <div class="content-header bg-white-5">
@@ -175,7 +164,7 @@ MAIN CONTENT LAYOUT
                     </a>
                 </li>
                 <li class="nav-main-heading">System Management</li>
-                <li class="nav-main-item">
+                <li class="nav-main-item open">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
                        aria-expanded="false" href="#">
                         <i class="nav-main-link-icon si si-speech"></i>
@@ -183,18 +172,20 @@ MAIN CONTENT LAYOUT
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_blocks_styles.html">
-                                <span class="nav-main-link-name">Styles</span>
+                            <a class="nav-main-link  active" href="noticeList.html">
+                                <i class="nav-main-link-icon fa fa-comments"></i>
+                                <span class="nav-main-link-name">所有通知</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_blocks_options.html">
-                                <span class="nav-main-link-name">Options</span>
+                            <a class="nav-main-link" href="noticeOperation.html">
+                                <i class="nav-main-link-icon fa fa-edit"></i>
+                                <span class="nav-main-link-name">添加通知</span>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-main-item open">
+                <li class="nav-main-item">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
                        aria-expanded="false" href="#">
                         <i class="nav-main-link-icon si si-users"></i>
@@ -202,18 +193,21 @@ MAIN CONTENT LAYOUT
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
-                            <a class="nav-main-link  active" href="studentList.html">
+                            <a class="nav-main-link" href="studentList.html">
                                 <i class="nav-main-link-icon fa fa-address-book"></i>
                                 <span class="nav-main-link-name">学生列表</span>
                             </a>
                         </li>
-                    </ul>
-
-                    <ul class="nav-main-submenu">
                         <li class="nav-main-item">
                             <a class="nav-main-link" href="studentAdd.html">
                                 <i class="nav-main-link-icon fa fa-user-plus"></i>
                                 <span class="nav-main-link-name">添加学生</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="batchImport.html">
+                                <i class="nav-main-link-icon fa fa-file-import"></i>
+                                <span class="nav-main-link-name">批量导入</span>
                             </a>
                         </li>
                     </ul>
@@ -227,11 +221,13 @@ MAIN CONTENT LAYOUT
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
                             <a class="nav-main-link" href="signRecordList.html">
+                                <i class="nav-main-link-icon fa fa-signature"></i>
                                 <span class="nav-main-link-name">签到记录</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_ui_typography.html">
+                            <a class="nav-main-link" href="">
+                                <i class="nav-main-link-icon fa fa-bars"></i>
                                 <span class="nav-main-link-name">签到概况</span>
                             </a>
                         </li>
@@ -245,13 +241,15 @@ MAIN CONTENT LAYOUT
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_tables_styles.html">
-                                <span class="nav-main-link-name">Styles</span>
+                            <a class="nav-main-link " href="leaveExamine.html">
+                                <i class="nav-main-link-icon fa fa-check-circle"></i>
+                                <span class="nav-main-link-name">请假审批</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_tables_responsive.html">
-                                <span class="nav-main-link-name">Responsive</span>
+                            <a class="nav-main-link" href="leaveRecordList.html">
+                                <i class="nav-main-link-icon fa fa-calendar-alt"></i>
+                                <span class="nav-main-link-name">请假记录</span>
                             </a>
                         </li>
                     </ul>
@@ -265,8 +263,9 @@ MAIN CONTENT LAYOUT
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_comp_loaders.html">
-                                <span class="nav-main-link-name">Loaders</span>
+                            <a class="nav-main-link" href="changePwd.html">
+                                <i class="nav-main-link-icon fa fa-lock"></i>
+                                <span class="nav-main-link-name">密码修改</span>
                             </a>
                         </li>
                         <li class="nav-main-item">

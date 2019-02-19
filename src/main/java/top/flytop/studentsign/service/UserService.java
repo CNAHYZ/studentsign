@@ -1,9 +1,11 @@
 package top.flytop.studentsign.service;
 
+import org.springframework.web.multipart.MultipartFile;
 import top.flytop.studentsign.dto.BaseResult;
 import top.flytop.studentsign.pojo.Student;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.InputStream;
 import java.util.List;
 
 public interface UserService {
@@ -26,4 +28,10 @@ public interface UserService {
     BaseResult faceChecker(String image);
 
     BaseResult changePwd(HttpServletRequest request);
+
+    BaseResult importStuInfo(InputStream in, MultipartFile uploadFile) throws Exception;
+
+    BaseResult initialUser() throws Exception;
+
+    BaseResult resetStudentPwd(String username) throws Exception;
 }

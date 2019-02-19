@@ -59,23 +59,49 @@
         </trim>
     </update>
 
-    <update id="changePwdBySNo">
-        <if test="sNo != null and sNo != ''">
-            update user set pwd = #{pwd} where username = #{sNo}
+    <!--修改密码-->
+    <update id="changePwdByUsername">
+        <if test="username != null and username != ''">
+            update user set pwd = #{pwd} where username = #{username}
         </if>
     </update>
 
+    <!--重置学生密码-->
+    <update id="resetStudentPwd">
+        update user
+        set pwd=#{pwd},salt=#{salt} where type_id = 1
+        <if test="username!=null and username !=''">
+            and username = #{username}
+        </if>
+    </update>
     <!--===========================插入=============================-->
     <!--添加学生-->
     <insert id="addStudent" parameterType="student">
         <if test="sNo != null and sNo!='' and sName != null and sName != ''">
-            insert student
-            values (#{id}, #{sNo},
-            #{sName}, #{gender}, #{birthday},
+            insert student (sno,sname,gender,birthday,building_no,room_no)
+            values (#{sNo},#{sName}, #{gender}, #{birthday},
             #{buildingNo}, #{roomNo}, #{faceImage})
         </if>
     </insert>
 
+    <!--批量插入学生信息-->
+    <insert id="batchAddStudent">
+        insert student (sno,sname,gender,birthday,building_no,room_no)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.sNo},#{item.sName}, #{item.gender}, #{item.birthday},
+            #{item.buildingNo}, #{item.roomNo})
+        </foreach>
+    </insert>
+
+    <!--初始化学生用户的账号，密码-->
+    <insert id="initialUser">
+        insert into user(username, pwd, salt)
+        select sno as username, #{pwd},#{salt}
+        from student a
+        where not exists(
+                select username from user b where a.sno = b.username)
+    </insert>
     <!--===========================删除=============================-->
     <!--删除学生-->
     <delete id="deleteStudent">
@@ -84,6 +110,7 @@
         where
         <if test="_parameter!=null">sno = #{sNo}</if>;
     </delete>
+
     <!--删除用户-->
     <delete id="deleteUser">
         delete

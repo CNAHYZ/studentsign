@@ -1,11 +1,14 @@
 package top.flytop.studentsign.controller.admin;
 
 import com.alibaba.fastjson.JSON;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import top.flytop.studentsign.dto.BaseResult;
 import top.flytop.studentsign.pojo.Student;
 import top.flytop.studentsign.service.UserService;
@@ -13,6 +16,9 @@ import top.flytop.studentsign.utils.FileUtil;
 import top.flytop.studentsign.utils.ImageUtil;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
@@ -24,6 +30,7 @@ import java.util.Map;
 //与initBinder配合使用
 @ControllerAdvice("top.flytop.studentsign.controller")
 public class UserController {
+    private static final Logger log = LoggerFactory.getLogger(UserController.class);
     @Autowired
     private UserService userService;
     @Autowired
@@ -180,5 +187,107 @@ public class UserController {
             } else return checkResult;
         }
         return saveResult;
+    }
+
+    /**
+     * @param filename
+     * @param request
+     * @param response
+     * @return void
+     * @Description TODO 文件下载
+     * @Date 2019/2/18 18:15
+     */
+    @RequestMapping(value = "/download", method = RequestMethod.GET)
+
+    public void download(String filename, HttpServletRequest request,
+                         HttpServletResponse response) throws IOException {
+        System.out.println(filename);
+        //需要下载的文件
+        String path = request.getSession().getServletContext().getRealPath("/download") + "\\" + filename;
+        //获取输入流
+        InputStream bis = new BufferedInputStream(new FileInputStream(new File(path)));
+        //转码，免得文件名中文乱码
+        filename = new String(filename.getBytes(StandardCharsets.UTF_8), "ISO8859-1");
+        //设置文件下载头
+        response.addHeader("Content-Disposition", "attachment;filename=" + filename);
+        //设置文件ContentType类型，这样设置，会自动判断下载文件类型
+        response.setContentType("multipart/form-data");
+        BufferedOutputStream out = new BufferedOutputStream(response.getOutputStream());
+        int len = 0;
+        while ((len = bis.read()) != -1) {
+            out.write(len);
+            out.flush();
+        }
+        out.close();
+    }
+
+    /**
+     * @param uploadFile 用户上传的文件
+     * @return top.flytop.studentsign.dto.BaseResult
+     * @Description TODO 批量导入学生信息
+     * @Date 2019/2/19 17:27
+     */
+    @RequestMapping(value = "importStuInfo", method = RequestMethod.POST)
+    @ResponseBody
+    public BaseResult importStuInfo(MultipartFile uploadFile) {
+        InputStream in = null;
+        log.info("文件名：{} ", uploadFile.getOriginalFilename());
+        try {
+            in = uploadFile.getInputStream();
+            //数据导入
+            BaseResult result = userService.importStuInfo(in, uploadFile);
+            in.close();
+            return result;
+        } catch (Exception e) {
+//            log.error("上传excel导入数据 发生异常：",e.fillInStackTrace());
+            e.printStackTrace();
+            return BaseResult.fail(1, "导入失败！请检查格式是否正确，学号是否有重复");
+        }
+    }
+
+    /**
+     * @param request
+     * @return top.flytop.studentsign.dto.BaseResult
+     * @Description TODO 管理员修改密码的方法
+     * @Date 2019/2/19 17:20
+     */
+    @RequestMapping(value = "changePwd", method = RequestMethod.POST)
+    @ResponseBody
+    public BaseResult changePwd(HttpServletRequest request) {
+        return userService.changePwd(request);
+    }
+
+    /**
+     * @param
+     * @return top.flytop.studentsign.dto.BaseResult
+     * @Description TODO 初始化学生用户（student ----> user）
+     * @Date 2019/2/19 22:10
+     */
+    @RequestMapping(value = "initialUser", method = RequestMethod.GET)
+    @ResponseBody
+    public BaseResult initialUser() {
+        try {
+            return userService.initialUser();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return BaseResult.fail(1, "初始化失败");
+        }
+    }
+
+    /**
+     * @param
+     * @return top.flytop.studentsign.dto.BaseResult
+     * @Description TODO  重置学生用户密码
+     * @Date 2019/2/19 22:10
+     */
+    @RequestMapping(value = "resetStudentPwd", method = RequestMethod.POST)
+    @ResponseBody
+    public BaseResult resetStudentPwd(String username) {
+        try {
+            return userService.resetStudentPwd(username);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return BaseResult.fail(1, "操作失败");
+        }
     }
 }

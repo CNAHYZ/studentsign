@@ -3,8 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
     <title>OneUI - Bootstrap 4 Admin Template &amp; UI Framework</title>
+
     <meta name="robots" content="noindex, nofollow">
+
     <!-- Open Graph Meta -->
 
     <!-- Icons -->
@@ -18,12 +21,15 @@
     <!-- Fonts and OneUI framework -->
     <link rel="stylesheet" href="#">
     <link rel="stylesheet" id="css-main" href="../assets/css/oneui.min.css">
+    <link rel="stylesheet" href="../assets/js/plugins/sweetalert2/sweetalert2.min.css">
 
-    <link rel="stylesheet" href="../assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css">
+    <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
+    <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/amethyst.min.css"> -->
     <!-- END Stylesheets -->
 </head>
 <body>
 <!-- Page Container -->
+
 <div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-fixed">
 
     <!-- Sidebar -->
@@ -243,7 +249,9 @@
         </div>
         <!-- END Side Navigation -->
     </nav>
+
     <!-- END Sidebar -->
+
     <!-- Header -->
     <header id="page-header">
         <!-- Header Content -->
@@ -340,7 +348,7 @@
                                 <i class="si si-lock ml-1"></i>
                             </a>
                             <a class="dropdown-item d-flex align-items-center justify-content-between"
-                               href="../userLogin.html">
+                               href="logOut.do">
                                 <span>Log Out</span>
                                 <i class="si si-logout ml-1"></i>
                             </a>
@@ -445,7 +453,7 @@
         <!-- Header Search -->
         <div id="page-header-search" class="overlay-header bg-white">
             <div class="content-header">
-                <form class="w-100" action="" method="POST">
+                <form class="w-100" action="be_pages_generic_search.html" method="POST">
                     <div class="input-group input-group-sm">
                         <div class="input-group-prepend">
                             <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
@@ -483,13 +491,13 @@
             <div class="content content-full">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <h1 class="flex-sm-fill h3 my-2">
-                        学生请假记录
+                        批量导入
                     </h1>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
-                            <li class="breadcrumb-item">请假记录</li>
+                            <li class="breadcrumb-item">批量导入</li>
                             <li class="breadcrumb-item" aria-current="page">
-                                <a class="link-fx" href="">请假管理</a>
+                                <a class="link-fx" href="index.html">首页</a>
                             </li>
                         </ol>
                     </nav>
@@ -500,96 +508,38 @@
 
         <!-- Page Content -->
         <div class="content">
-            <!-- Dynamic Table with Export Buttons -->
-            <div class="block">
-                <!--      <div class="block-header">
-                          <h3 class="block-title">Dynamic Table
-                              <small>Export Buttons</small>
-                          </h3>
-                      </div>-->
-                <div class="block-content block-content-full">
-                    <div class="row">
-                        <div class="px-lg-2"></div>
-                        <div class="dropdown" style="">
-                            <label style="vertical-align: bottom;">快速筛选：</label>
-                            <button type="button" class="btn btn-outline-primary dropdown-toggle" id="btn_time"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                今天
-                            </button>
-                            <div class="dropdown-menu font-size-sm" aria-labelledby="dropdown-default-outline-primary"
-                                 style="min-width:77px">
-                                <a class="dropdown-item" onclick="dropSelect(this,0,'time')">今天</a>
-                                <a class="dropdown-item" onclick="dropSelect(this,2,'time')">近3天</a>
-                                <!--<div class="dropdown-divider"></div>-->
-                                <a class="dropdown-item" onclick="dropSelect(this,6,'time')">近7天</a>
-                                <a class="dropdown-item" onclick="dropSelect(this,29,'time')">近30天</a>
-                            </div>
-                        </div>
-                        <div class="px-lg-1"></div>
-                        <div class="dropdown">
-
-                            <button type="button" class="btn btn-outline-primary dropdown-toggle" id="btn_status"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                全部状态
-                            </button>
-                            <div class="dropdown-menu font-size-sm" aria-labelledby="dropdown-default-outline-primary"
-                                 style="min-width:110px">
-                                <a class="dropdown-item" onclick="dropSelect(this,null,'status')">全部状态</a>
-                                <a class="dropdown-item" onclick="dropSelect(this,0,'status')">未审批</a>
-                                <a class="dropdown-item" onclick="dropSelect(this,1,'status')">已同意</a>
-                                <!--<div class="dropdown-divider"></div>-->
-                                <a class="dropdown-item" onclick="dropSelect(this,2,'status')">已拒绝</a>
-                            </div>
-                        </div>
-                        <div class="px-lg-3"></div>
-                        <div class="col-lg-7 col-xl-5 row">
-                            <div class="input-daterange input-group">
-                                <label class="" style="margin: auto">指定日期筛选：</label>
-                                <input type="text" class="form-control" id="daterange1"
-                                       name="daterange1" placeholder="开始日期">
-                                <div class="input-group-prepend input-group-append">
-                                    <span class="input-group-text font-w600">
-                                        <i class="fa fa-fw fa-arrow-right"></i>
-                                    </span>
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- Sign In -->
+                    <a class="block block-rounded" href="/admin/download.do?filename=学生信息导入模板.xlsx">
+                        <div class="block-content text-center">
+                            <div class="py-3">
+                                <div class="mb-3">
+                                    <i class="si si-docs fa-2x text-default"></i>
                                 </div>
-                                <input type="text" class="form-control" id="daterange2"
-                                       name="daterange2" placeholder="结束日期">
+                                <p class="font-size-lg">模板下载
+                                <p>
                             </div>
                         </div>
-                        <div class="px-lg-3"></div>
-                        <div class="input-group col-lg-3 col-xl-3">
-                            <input type="text" class="form-control" id="ipt_search"
-                                   name="keyword" placeholder="学号、姓名">
-                            <div class="input-group-prepend">
-                                <button type="button" class="btn btn-primary" id="btn_search">
-                                    <i class="fa fa-search mr-1"></i> 搜索
-                                </button>
+                    </a>
+                    <!-- END Sign In -->
+                </div>
+                <div class="col-md-6">
+                    <!-- Sign Up -->
+                    <a class="block block-rounded " href="javascript:upload()">
+                        <div class="block-content  text-center">
+                            <div class="py-3">
+                                <div class="mb-3">
+                                    <i class="si si-action-redo fa-2x text-success"></i>
+                                </div>
+                                <p class="font-size-lg">批量导入
+                                <p>
                             </div>
                         </div>
-                    </div>
-                    <div class="py-2"></div>
-                    <div class="col-sm-12">
-                        <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons text-center "
-                               id="mydatatable">
-                            <thead>
-                            <tr>
-                                <th class="text-center" style="width: 8%;">ID</th>
-                                <th class="d-none d-sm-table-cell" style="width: 12%;">学号</th>
-                                <th class="d-none d-sm-table-cell" style="width: 10%;">姓名</th>
-                                <th class="d-none d-sm-table-cell" style="width: 18%;">申请时间</th>
-                                <th class="d-none d-sm-table-cell" style="width: 10%;">类别</th>
-                                <th class="d-none d-sm-table-cell" style="width: 20%;">请假时间</th>
-                                <th class="d-none d-sm-table-cell" style="width: 10%;">审批状态</th>
-                                <th class="d-none d-sm-table-cell" style="width: 15%;">操作</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
+                    </a>
+                    <!-- END Sign Up -->
                 </div>
             </div>
-            <!-- END Dynamic Table with Export Buttons -->
         </div>
         <!-- END Page Content -->
 
@@ -598,6 +548,7 @@
 
     <!-- Footer -->
     <footer id="page-footer" class="bg-body-light">
+
         <div class="content py-3">
             <div class="row font-size-sm">
                 <div class="col-sm-6 order-sm-1 py-1 text-center text-sm-left">
@@ -613,223 +564,52 @@
 
 <script src="../assets/js/oneui.core.min.js"></script>
 
-<!--
-    OneUI JS
--->
 <script src="../assets/js/oneui.app.min.js"></script>
-
-<!-- Page JS Plugins -->
-<script src="../assets/js/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="../assets/js/plugins/datatables/dataTables.bootstrap4.min.js"></script>
-<script src="../assets/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
-<script src="../assets/js/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js"></script>
-<!-- Page JS Helpers (BS Datepicker + BS Maxlength + Select2 ) -->
+<script src="../assets/js/plugins/sweetalert2/sweetalert2.min.js"></script>
 <script>
-    jQuery(function () {
-        One.helpers(['datepicker']);
-    });
-</script>
-
-<script>
-    var t = $('#mydatatable').DataTable(
-        {
-            "autoWidth": false,
-            "processing": true,
-            "retrieve": true,
-            "bStateSave": true,
-            "lengthChange": false,
-            "searching": false,
-            language: {
-                "sProcessing": "正在加载数据，请稍后...",
-                // "sLengthMenu": "显示 _MENU_ 项结果",
-                "sZeroRecords": "没有匹配结果",
-                "sInfo": "显示第 _START_ 至 _END_ 条记录，共 _TOTAL_ 项",
-                "sInfoEmpty": "显示第 0 至 0 条记录，共 0 项",
-                "sSearch": "搜索:",
-                "sEmptyTable": "没有找到记录",
-                "sLoadingRecords": "载入中...",
-                "sInfoThousands": ",",
-                "oPaginate": {
-                    "sFirst": "首页",
-                    "sPrevious": "上页",
-                    "sNext": "下页",
-                    "sLast": "末页"
-                }
+    function upload() {
+        Swal({
+            title: '请上传要导入的Excel文件',
+            input: 'file',
+            inputClass: 'form-control pb-5',
+            inputAttributes: {
+                'name': 'uploadFile',
+                'accept': "application/vnd.ms-excel," +
+                    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             },
-            ajax: {
-                type: "post",
-                url: "getLeave.do",
-                //注意：直接写成{"dayNum": d}不可行，dayNum会一直为0
-                data:
-                    function () {
-                        sendData = {"dayNum": 0};//这里可以调用一个方法，获取sendData
-                        return sendData;
-                    },
-                beforeSend: function () {
-                    console.log(sendData)
-                }
+            showCancelButton: true,
+            showCloseButton: false,
+            confirmButtonText: '导入',
+            cancelButtonText: '取消',
+            showLoaderOnConfirm: true,
+            preConfirm: function (file) {
+                console.log(file);
+                var data = new FormData();
+                data.append('uploadFile', file);
+                $.ajax({
+                    processData: false,
+                    contentType: false,
+                    type: 'post',
+                    data: data,
+                    dataType: 'json',
+                    url: 'importStuInfo.do',
+                    success: function (result) {
+                        console.log(result.errMsg);
+                        if (result.success) {
+                            Swal({
+                                title: result.data, type: "success",
+                                onAfterClose: function () {
+                                    window.location.href = "studentList.html"
+                                },
+                            })
+                        } else Swal(result.errMsg, '', "error")
+                    }
+                })
             },
-            //每页显示n条数据
-            pageLength: 10,
-            columns: [
-                {data: "id"},
-                {data: "sNo"},
-                {
-                    data: "sName",
-                    defaultContent: "-"
-                },
-                {
-                    data: "applicationTime",
-                    defaultContent: "-"
-                },
-                {
-                    data: "category",
-                    defaultContent: "-"
-                },
-                {
-                    data: "startTime",
-                    defaultContent: "-"
-                },
-                {
-                    data: "auditStatus",
-                    defaultContent: "-"
-                },
-                {
-                    "data": null,
-                    render: function (data, type, row) {
-                        return '<div class="btn-group">' +
-                            '<button type="button" class="btn btn-sm btn-primary js-tooltip-enabled"' +
-                            ' data-toggle="tooltip" title="审批" ' +
-                            'onclick="window.location.href=\'leaveDetail.html?id=' + row.id + '\'">' +
-                            '<i class="fa fa-fw fa-wrench"></i>' +
-                            '</button>' +
-                            '<button type="button" class="btn btn-sm btn-primary js-tooltip-enabled" ' +
-                            'data-toggle="tooltip" title="删除" onclick="delLeave(' + row.id + ')">' +
-                            '<i class="fa fa-fw fa-times"></i>' +
-                            '</button>' +
-                            '</div>'
-                    }
-                }
-            ],
-            "columnDefs": [
-                {//每列定义
-                    "orderable": false,
-                    "targets": [2, 4, -1]//第x列不排序
-                },
-                {
-                    "targets": [4], // 目标列位置，下标从0开始
-                    // "data": "salary", // 数据列名
-                    "render": function (data, type, full) { // 返回自定义内容
-                        if (data === 0)
-                            return "事假";
-                        else if (data === 1)
-                            return "病假";
-                        else return "其它";
-                    }
-                },
-                {
-                    "targets": [-2], // 目标列位置，下标从0开始
-                    "render": function (data, type, full) { // 返回自定义内容
-                        if (data === 0)
-                            return "<span class=\"badge badge-primary\">待审批</span>";
-                        else if (data === 1)
-                            return "<span class=\"badge badge-success\">已同意</span>";
-                        else return "<span class=\"badge badge-danger\">已拒绝</span>";
-                    }
-                },
-                {
-                    "targets": [-3], // 目标列位置，下标从0开始
-                    "render": function (data, type, full) { // 返回自定义内容
-                        return full.startTime.substring(5) +
-                            "<span style='color: #0f86bb'> 至 </span>" + full.endTime.substring(5);
-                    }
-                }
-            ]
-        });
-
-    /**
-     *
-     */
-    function delLeave(id) {
-        $.ajax(
-            {
-                type: "post",
-                url: "removeLeave.do",
-                dataType: "json",
-                data: {
-                    "id": id
-                },
-                success: function (data) {
-                    if (data.success) {
-                        $("#mydatatable").dataTable().fnDraw(false);
-                        //重新加载表格数据
-                        t.ajax.reload();
-                        alert(data.data)
-                    } else {
-                        alert(data.errMsg)
-                    }
-                }, error: function (data) {
-                    alert("未知错误")
-                }
-            }
-        )
+            allowOutsideClick: false
+            // allowOutsideClick: () => !Swal.isLoading()
+        })
     }
-
-    /**
-     *筛选按钮的操作
-     * @type {number}
-     */
-    function dropSelect(option, param, type) {
-        sendData = {'param': param};
-        t.settings()[0].ajax.data = sendData;
-        if (type === 'time') {
-            $("#btn_time").text($(option).text());
-            t.ajax.url('getLeave.do').load();
-        } else {
-            $("#btn_status").text($(option).text());
-            t.ajax.url('leaveStatusFilter.do').load();
-        }
-    }
-
-    /**
-     * 初始化datepicker
-     */
-    $('.input-daterange').datepicker({
-        endDate: '0d',//最大只能选择到今天
-        language: "zh-CN",
-        weekStart: "1",
-        autoclose: "true",
-        todayHighlight: "true",
-        format: "yyyy-mm-dd",
-        todayBtn: "linked",
-        maxViewMode: "years"
-    })
-    /**
-     * 日期改变后的事件
-     */
-        .on('changeDate', function (e) {
-            var startTime = $('#daterange1').val();
-            var endTime = $('#daterange2').val();
-            sendData = {
-                "startTime": startTime,
-                "endTime": endTime
-            };
-            //修改ajax传递的参数
-            t.settings()[0].ajax.data = sendData;
-            t.ajax.url('signListFilter.do').load();
-            // t.settings()[0].ajax.error = ;
-        });
-    /**
-     * 搜索点击事件
-     */
-    $('#btn_search').click(function () {
-        var keyword = $('#ipt_search').val();
-        if (keyword === '') return false;
-        sendData = {'keyword': keyword};
-        //修改ajax传递的参数
-        t.settings()[0].ajax.data = sendData;
-        t.ajax.url('searchSignList.do').load();
-    })
 
 </script>
 </body>

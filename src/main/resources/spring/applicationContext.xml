@@ -86,13 +86,35 @@
         </aop:aspect>
     </aop:config>
 
-    <!--开启基于注解的事务，使用xml配置形式的事务（必要主要的都是使用配置式）  -->
-    <!--    <aop:config>
-            &lt;!&ndash; 切入点表达式 &ndash;&gt;
-            <aop:pointcut expression="execution(* com.qihang.service..*(..))" id="txPoint"/>
-            &lt;!&ndash; 配置事务增强 &ndash;&gt;
-            <aop:advisor advice-ref="txAdvice" pointcut-ref="txPoint"/>
-        </aop:config>-->
+    <!--    &lt;!&ndash; 配置事务通知属性 &ndash;&gt;
+        <tx:advice id="txAdvice" transaction-manager="transactionManager">
+            &lt;!&ndash; 定义事务传播属性 &ndash;&gt;
+            <tx:attributes>
+                <tx:method name="insert*" propagation="REQUIRED" />
+                <tx:method name="update*" propagation="REQUIRED" />
+                <tx:method name="edit*" propagation="REQUIRED" />
+                <tx:method name="save*" propagation="REQUIRED" />
+                <tx:method name="add*" propagation="REQUIRED" />
+                <tx:method name="new*" propagation="REQUIRED" />
+                <tx:method name="set*" propagation="REQUIRED" />
+                <tx:method name="remove*" propagation="REQUIRED" />
+                <tx:method name="delete*" propagation="REQUIRED" />
+                <tx:method name="change*" propagation="REQUIRED" />
+                <tx:method name="check*" propagation="REQUIRED" />
+                <tx:method name="get*" propagation="REQUIRED" read-only="true" />
+                <tx:method name="find*" propagation="REQUIRED" read-only="true" />
+                <tx:method name="load*" propagation="REQUIRED" read-only="true" />
+                <tx:method name="*" propagation="REQUIRED" read-only="true" />
+            </tx:attributes>
+        </tx:advice>
+
+        &lt;!&ndash; 配置事务切面,并关联事务的传播属性 使用xml配置形式的事务（必要主要的都是使用配置式）  &ndash;&gt;
+            <aop:config>
+                &lt;!&ndash; 切入点表达式 &ndash;&gt;
+                <aop:pointcut expression="execution(* com.qihang.service..*(..))" id="txPoint"/>
+                &lt;!&ndash; 配置事务增强 &ndash;&gt;
+                <aop:advisor advice-ref="txAdvice" pointcut-ref="txPoint"/>
+            </aop:config>-->
 
     <!-- 配置视图解析器 -->
     <!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

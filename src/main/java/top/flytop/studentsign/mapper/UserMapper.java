@@ -26,5 +26,11 @@ public interface UserMapper {
 
     Boolean addStudent(Student student);
 
-    Boolean changePwdBySNo(@Param("pwd") String pwd, @Param("sNo") String sNo);
+    Boolean changePwdByUsername(@Param("pwd") String pwd, @Param("username") String username);
+
+    Integer batchAddStudent(List<Student> students);
+
+    Integer initialUser(@Param("pwd") String pwd, @Param("salt") String salt);
+
+    Integer resetStudentPwd(@Param("pwd") String pwd, @Param("salt") String salt, @Param("username") String username);
 }

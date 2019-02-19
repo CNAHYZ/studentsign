@@ -1,25 +1,36 @@
 package top.flytop.studentsign.service.impl;
 
+import org.junit.platform.commons.util.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 import top.flytop.studentsign.dto.BaseResult;
 import top.flytop.studentsign.mapper.UserMapper;
 import top.flytop.studentsign.pojo.Student;
 import top.flytop.studentsign.pojo.User;
 import top.flytop.studentsign.service.UserService;
+import top.flytop.studentsign.utils.ExcelUtil;
 import top.flytop.studentsign.utils.FaceUtil;
 import top.flytop.studentsign.utils.ImageUtil;
 import top.flytop.studentsign.utils.ShiroMd5;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.InputStream;
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService {
-
+    private static final Logger log = LoggerFactory.getLogger(UserService.class);
+    private static final String salt = "flytop";
+    private static final String initialPwd = "123456";
+    private static final String initialEncryptPwd = ShiroMd5.md5Encrypt(initialPwd, salt);
     private UserMapper userMapper;
     private FaceUtil faceUtil;
     private ImageUtil imageUtil;
@@ -185,13 +196,19 @@ public class UserServiceImpl implements UserService {
         return faceUtil.faceChecker(image);
     }
 
+    /**
+     * @param request
+     * @return top.flytop.studentsign.dto.BaseResult
+     * @Description TODO
+     * @Date 2019/2/19 17:23
+     */
     @Override
     public BaseResult changePwd(HttpServletRequest request) {
         HttpSession session = request.getSession();
         String oldPwd = request.getParameter("oldPwd");
         String newPwd = request.getParameter("newPwd_1");
-        String sNo = String.valueOf(session.getAttribute("currentUser"));
-        User user = userMapper.getUser(sNo);
+        String username = String.valueOf(session.getAttribute("currentUser"));
+        User user = userMapper.getUser(username);
         String oldPwdEncrypt = ShiroMd5.md5Encrypt(oldPwd, user.getSalt());
         //原密码输入不正确
         if (!user.getPwd().equals(oldPwdEncrypt)) {
@@ -199,9 +216,69 @@ public class UserServiceImpl implements UserService {
         }
         /*对新密码加密*/
         String newPwdEncrypt = ShiroMd5.md5Encrypt(newPwd, user.getSalt());
-        return userMapper.changePwdBySNo(newPwdEncrypt, sNo) ? BaseResult.success("修改成功，请牢记")
+        return userMapper.changePwdByUsername(newPwdEncrypt, username) ? BaseResult.success("修改成功，请牢记")
                 : BaseResult.fail(1, "修改失败，请稍后再试！");
 
+    }
+
+    /**
+     * @param in         输入流
+     * @param uploadFile Excel文件
+     * @return top.flytop.studentsign.dto.BaseResult
+     * @Description TODO 批量导入学生信息
+     * @Date 2019/2/19 17:21
+     */
+    @Override
+    public BaseResult importStuInfo(InputStream in, MultipartFile uploadFile) throws Exception {
+        String filename = uploadFile.getOriginalFilename();
+        List<Student> students = new ArrayList<Student>();
+        List<List<Object>> list = ExcelUtil.getListByExcel(in, filename);
+        System.out.println(list);
+        String sName = null;
+        String gender = null;
+        Date birthday = null;
+        String buildingNo = null;
+        String roomNo = null;
+        for (List row : list) {
+            String sNo = String.valueOf(row.get(0));
+            sName = String.valueOf(row.get(1));
+            gender = String.valueOf(row.get(2));
+            System.out.println(String.valueOf(row.get(3)));
+            if (StringUtils.isNotBlank(String.valueOf(row.get(3))))
+                birthday = Date.valueOf(String.valueOf(row.get(3)));
+            buildingNo = String.valueOf(row.get(4));
+            roomNo = String.valueOf(row.get(5));
+
+            Student student = new Student(sNo, sName, gender, birthday, buildingNo, roomNo);
+            students.add(student);
+
+            log.debug("导入的列表：{}", students);
+        }
+        int count = userMapper.batchAddStudent(students);
+        return BaseResult.success("执行成功，共导入 " + count + " 条数据");
+    }
+
+    /**
+     * @param
+     * @return top.flytop.studentsign.dto.BaseResult
+     * @Description TODO
+     * @Date 2019/2/19 21:20
+     */
+    @Override
+    public BaseResult initialUser() throws Exception {
+        Integer count = userMapper.initialUser(initialEncryptPwd, salt);
+        return BaseResult.success("操作完成，共新增 " + count + " 名用户");
+    }
+
+    /**
+     * @param username
+     * @return top.flytop.studentsign.dto.BaseResult
+     * @Description TODO
+     * @Date 2019/2/19 22:11
+     */
+    public BaseResult resetStudentPwd(String username) throws Exception {
+        Integer count = userMapper.resetStudentPwd(initialEncryptPwd, salt, username);
+        return BaseResult.success("操作完成，共重置 " + count + " 条密码");
     }
 
 }

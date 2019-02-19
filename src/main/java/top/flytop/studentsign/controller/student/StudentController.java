@@ -58,6 +58,12 @@ public class StudentController {
         }
     }
 
+    /**
+     * @param request
+     * @return top.flytop.studentsign.dto.BaseResult
+     * @Description TODO 学生修改密码的方法
+     * @Date 2019/2/19 17:20
+     */
     @RequestMapping(value = "changePwd", method = RequestMethod.POST)
     @ResponseBody
     public BaseResult changePwd(HttpServletRequest request) {

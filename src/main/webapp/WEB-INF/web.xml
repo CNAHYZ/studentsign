@@ -75,7 +75,7 @@
         <url-pattern>*.do</url-pattern>
     </servlet-mapping>
 
-    <!-- post乱码过滤器 -->
+    <!-- post编码过滤器，前后端通信走http协议进行数据交互时进行编码的限制  -->
     <filter>
         <filter-name>CharacterEncodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>

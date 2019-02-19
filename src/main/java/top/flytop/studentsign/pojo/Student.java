@@ -23,15 +23,13 @@ public class Student implements Serializable {
     public Student() {
     }
 
-    public Student(Integer id, String sNo, String sName, String gender, Date birthday, String buildingNo, String roomNo, String faceImage) {
-        this.id = id;
+    public Student(String sNo, String sName, String gender, Date birthday, String buildingNo, String roomNo) {
         this.sNo = sNo;
         this.sName = sName;
         this.gender = gender;
         this.birthday = birthday;
         this.buildingNo = buildingNo;
         this.roomNo = roomNo;
-        this.faceImage = faceImage;
     }
 
     public Integer getId() {
@@ -108,7 +106,6 @@ public class Student implements Serializable {
                 ", birthday=" + birthday +
                 ", buildingNo='" + buildingNo + '\'' +
                 ", roomNo='" + roomNo + '\'' +
-                ", faceImage='" + faceImage + '\'' +
                 '}';
     }
 }
