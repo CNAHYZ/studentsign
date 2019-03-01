@@ -523,7 +523,7 @@
                            id="datatable">
                         <thead>
                         <tr>
-                            <th class="text-center" style="width: 10%;">ID</th>
+                            <!--<th class="text-center" style="width: 10%;">ID</th>-->
                             <th class="d-none d-sm-table-cell" style="width: 15%;">学号</th>
                             <th class="d-none d-sm-table-cell" style="width: 12%;">姓名</th>
                             <th class="d-none d-sm-table-cell" style="width: 10%;">性别</th>
@@ -579,7 +579,6 @@
             url: "studentList.do"
         },
         columns: [
-            {data: "id"},
             {data: "sNo"},
             {data: "sName"},
             {
@@ -616,10 +615,10 @@
         "columnDefs": [
             {//每列定义
                 "orderable": false,
-                "targets": [2, 5, -1]//第x列不排序
+                "targets": [1, 4, -1]//第x列不排序
             },
             {
-                "targets": [4],//第x列不排序
+                "targets": [3],//第x列不排序
                 defaultContent: "-",
                 render: function (data, type, full) {
                     return full.buildingNo + "#" + full.roomNo

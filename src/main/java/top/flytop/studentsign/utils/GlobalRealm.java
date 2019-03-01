@@ -68,7 +68,7 @@ class GlobalRealm extends AuthorizingRealm {
             return null;
         }
         // 用户授权
-        switch (user.getTypeId()) {
+        switch (user.getType()) {
             case 1:
                 authorizationInfo.addRole("student");
                 break;

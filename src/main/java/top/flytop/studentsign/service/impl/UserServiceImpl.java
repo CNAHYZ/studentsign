@@ -143,7 +143,7 @@ public class UserServiceImpl implements UserService {
     public BaseResult<Integer> loginByPwd(String username, String pwd) {
         User user = userMapper.userLogin(username, pwd);
         if (user != null)
-            return new BaseResult<>(true, user.getTypeId());
+            return new BaseResult<>(true, user.getType());
         else
             return new BaseResult<>(false, 1, "用户名或密码错误，请重试！");
     }*/

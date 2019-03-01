@@ -10,7 +10,6 @@ import java.sql.Date;
 @Component("student")
 @Alias(value = "student")
 public class Student implements Serializable {
-    Integer id;
     String sNo;
     String sName;
     String gender;
@@ -32,13 +31,6 @@ public class Student implements Serializable {
         this.roomNo = roomNo;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getsNo() {
         return sNo;
@@ -99,8 +91,7 @@ public class Student implements Serializable {
     @Override
     public String toString() {
         return "Student{" +
-                "id=" + id +
-                ", sNo='" + sNo + '\'' +
+                "sNo='" + sNo + '\'' +
                 ", sName='" + sName + '\'' +
                 ", gender='" + gender + '\'' +
                 ", birthday=" + birthday +

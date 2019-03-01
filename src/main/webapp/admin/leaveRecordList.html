@@ -508,7 +508,7 @@
                           </h3>
                       </div>-->
                 <div class="block-content block-content-full">
-                    <div class="row">
+                    <div class="row ml-0">
                         <div class="px-lg-2"></div>
                         <div class="dropdown" style="">
                             <label style="vertical-align: bottom;">快速筛选：</label>
@@ -541,8 +541,8 @@
                                 <a class="dropdown-item" onclick="dropSelect(this,2,'status')">已拒绝</a>
                             </div>
                         </div>
-                        <div class="px-lg-3"></div>
-                        <div class="col-lg-7 col-xl-5 row">
+                        <div class="px-lg-4"></div>
+                        <div class="col-lg-7 col-xl-5 row ml-0">
                             <div class="input-daterange input-group">
                                 <label class="" style="margin: auto">指定日期筛选：</label>
                                 <input type="text" class="form-control" id="daterange1"
@@ -556,10 +556,10 @@
                                        name="daterange2" placeholder="结束日期">
                             </div>
                         </div>
-                        <div class="px-lg-3"></div>
+                        <div class="px-lg-4"></div>
                         <div class="input-group col-lg-3 col-xl-3">
                             <input type="text" class="form-control" id="ipt_search"
-                                   name="keyword" placeholder="学号、姓名">
+                                   name="keyword" placeholder="学号、姓名" style="min-width: 60px">
                             <div class="input-group-prepend">
                                 <button type="button" class="btn btn-primary" id="btn_search">
                                     <i class="fa fa-search mr-1"></i> 搜索
@@ -659,10 +659,10 @@
             ajax: {
                 type: "post",
                 url: "getLeave.do",
-                //注意：直接写成{"dayNum": d}不可行，dayNum会一直为0
+                //注意：直接写成{"param": 0}不可行，param会一直为0
                 data:
                     function () {
-                        sendData = {"dayNum": 0};//这里可以调用一个方法，获取sendData
+                        sendData = {"param": 0};//这里可以调用一个方法，获取sendData
                         return sendData;
                     },
                 beforeSend: function () {

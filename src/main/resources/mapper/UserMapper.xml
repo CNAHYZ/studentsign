@@ -5,10 +5,6 @@
 <mapper namespace="top.flytop.studentsign.mapper.UserMapper">
 
     <!--=========================resultMap===========================-->
-    <resultMap id="userResultMap" type="user">
-        <result property="typeId" column="type_id"/>
-    </resultMap>
-
     <resultMap id="studentResultMap" type="student">
         <result property="buildingNo" column="building_no"/>
         <result property="roomNo" column="room_no"/>
@@ -17,7 +13,7 @@
 
     <!--===========================查询=============================-->
     <!--用户登录-->
-    <select id="userLogin" resultMap="userResultMap">
+    <select id="userLogin" resultType="user">
         select *
         FROM user
         WHERE username = #{username}
@@ -39,7 +35,7 @@
 
     <!--根据用户名获取用户，用于在删除学生时，
     判断用户表中是否存在该学生的账号密码-->
-    <select id="getUser" resultMap="userResultMap">
+    <select id="getUser" resultType="user">
         select *
         from user
         where username = #{username};
@@ -69,7 +65,7 @@
     <!--重置学生密码-->
     <update id="resetStudentPwd">
         update user
-        set pwd=#{pwd},salt=#{salt} where type_id = 1
+        set pwd=#{pwd},salt=#{salt} where type = 1
         <if test="username!=null and username !=''">
             and username = #{username}
         </if>

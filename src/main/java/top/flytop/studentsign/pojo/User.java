@@ -13,29 +13,19 @@ import java.io.Serializable;
  */
 @Alias("user")
 public class User implements Serializable {
-    private Integer id;
     private String username;
     private String pwd;
     private String salt;
-    private Integer typeId;
+    private Integer type;
 
     public User() {
     }
 
-    public User(Integer id, String username, String pwd, String salt, Integer typeId) {
-        this.id = id;
+    public User(String username, String pwd, String salt, Integer type) {
         this.username = username;
         this.pwd = pwd;
         this.salt = salt;
-        this.typeId = typeId;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+        this.type = type;
     }
 
     public String getUsername() {
@@ -54,12 +44,12 @@ public class User implements Serializable {
         this.pwd = pwd;
     }
 
-    public Integer getTypeId() {
-        return typeId;
+    public Integer getType() {
+        return type;
     }
 
-    public void setTypeId(Integer typeId) {
-        this.typeId = typeId;
+    public void setType(Integer type) {
+        this.type = type;
     }
 
     public String getSalt() {
@@ -73,11 +63,10 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
+                "username='" + username + '\'' +
                 ", pwd='" + pwd + '\'' +
                 ", salt='" + salt + '\'' +
-                ", typeId=" + typeId +
+                ", type=" + type +
                 '}';
     }
 }

@@ -9,6 +9,7 @@
         <result property="createTime" column="create_time"></result>
         <result property="noticeId" column="notice_id"></result>
     </resultMap>
+
     <!--===========================查询=============================-->
     <!--获取所有通知或以id获取-->
     <select id="getNoticeById" resultMap="noticeResultMap">
@@ -17,6 +18,7 @@
         <if test="_parameter!='' and _parameter!=null">
             where notice_id = #{noticeId}
         </if>
+        order by create_time desc
     </select>
 
     <!--以关键词搜素通知-->
@@ -25,7 +27,7 @@
         select *
         from notice
         where title like #{searchWord}
-        or keyword like #{searchWord}
+        or keyword like #{searchWord} order by create_time desc
     </select>
 
     <!--以状态搜素通知，以状态、时间降序-->
@@ -55,6 +57,7 @@
             status  = #{status}
         where notice_id = #{noticeId}
     </update>
+
     <!--根据id改变通知展示状态-->
     <update id="changeNoticeStatus">
         update notice
@@ -70,7 +73,7 @@
     </insert>
 
     <!--===========================删除=============================-->
-    <!--根据记录id删除通知-->
+    <!--根据id删除通知-->
     <delete id="removeNoticeById">
         delete
         from notice

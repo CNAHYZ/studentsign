@@ -28,10 +28,12 @@
 
     <!--查询所有用户今天、昨天、近7天、近30天及所有时间的请假记录-->
     <select id="getLeave" resultMap="leaveResultMap">
-        select a.*,b.sname from sleave a left join student b
+        select a.*,b.sname
+        from sleave a left join
+        student b
         on a.sno = b.sno
         <if test="_parameter != null and _parameter != ''">
-            where to_days(now()) - to_days(application_time) &lt;= #{dayNum};
+            where to_days(now()) - to_days(application_time) &lt;= #{dayNum}
         </if>
         order by application_time desc
     </select>
@@ -50,10 +52,11 @@
     <!--根据id获取请假详情-->
     <select id="getLeaveDetailById" resultMap="leaveResultMap">
         select a.*,b.sname
-        from sleave a,
+        from sleave a
+                 left join
              student b
-        where a.sno = b.sno
-          and a.id = #{id}
+             on a.sno = b.sno
+        where a.id = #{id}
     </select>
 
     <!--===========================修改=============================-->
