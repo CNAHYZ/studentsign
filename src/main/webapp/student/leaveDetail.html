@@ -36,11 +36,6 @@
     <link rel="stylesheet" href="/assets/js/plugins/sweetalert2/sweetalert2.min.css">
     <!-- END Stylesheets -->
     <style>
-        .leave_detail > div :disabled {
-            background: none;
-            border: 0
-        }
-
         hr {
             border-top: 2px solid #c4c4c4;
         }
@@ -160,105 +155,91 @@
         <!-- END Hero -->
         <!-- Page Content -->
         <div class="content">
-
             <!-- Horizontal -->
             <div class="block">
-                <!--  <div class="block-header">
-                      <h3 class="block-title">学生信息修改</h3>
-                  </div>-->
+                <div class="block-content block-content-full row">
+                    <div class="col-1 col-sm-0"></div>
+                    <!-- Form Horizontal - Default Style -->
+                    <div class="col-lg-7 my-4 col-sm-12">
+                        <table class="table table-borderless">
+                            <tr class="font-w600 table-info">
+                                <th width="20%">记录ID</th>
+                                <th width="20%">类型</th>
+                                <th width="20%">状态</th>
+                                <th width="40%">申请时间</th>
+                            </tr>
+                            <tbody class="">
+                            <tr>
+                                <td id="id"></td>
+                                <td id="category"></td>
+                                <td id="auditStatus" class="font-w600 text-danger"></td>
+                                <td id="applicationTime"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <hr class="mt-0">
+                        <div class="">
+                            <div class="row ml-0 py-2">
+                                <p class="font-weight-bold pr-3">学&nbsp;号:</p>
+                                <p id="sNo"></p>
+                                <div class="col-3"></div>
+                                <p class="font-weight-bold pr-3">姓&nbsp;名:</p>
+                                <p id="sName"></p>
+                                <div class="col-2"></div>
+                            </div>
 
-                <div class="block-content block-content-full">
+                            <div class="row ml-0 py-2">
+                                <p class="font-weight-bold pr-3">请假时间:</p>
+                                <p id="startTime"></p>
+                                <p>&nbsp;&nbsp;--&nbsp;&nbsp;</p>
+                                <p id="endTime"></p>
+                            </div>
 
-                    <div class="row">
-                        <div class="col-1"></div>
-                        <div class="my-5">
-                            <!-- Form Horizontal - Default Style -->
-                            <form class="leave_detail col-lg-12" action="" method="POST"
-                                  autocomplete="off">
-                                <div class="form-group row  justify-content-center">
-                                    <div class="col-form-label">记录ID:</div>
-                                    <input type="text" class="col-sm-2 form-control" id="id" name="id">
-                                    <!--<div class="px-5"></div>-->
-                                    <div class="col-form-label">类&nbsp;型:</div>
-                                    <input type="text" class="col-sm-2 form-control" id="category" name="category">
-
-                                    <div class="col-form-label" for="applicationTime">申请时间:</div>
-                                    <input type="text" class="col-sm-3 form-control" id="applicationTime"
-                                           name="applicationTime" style="min-width:170px">
-                                </div>
-                                <div class="col-12">
-                                    <hr>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label" for="sNo">学&nbsp;号:</label>
-                                    <input type="text" class="col-sm-2 form-control" id="sNo" name="sNo">
-                                    <div class="px-6"></div>
-                                    <label class="col-sm-1 col-form-label" for="sName">姓&nbsp;名:</label>
-                                    <input type="text" class="col-sm-2 form-control" id="sName" name="sName">
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label" for="startTime">请假时间:</label>
-                                    <input type="text" class="col-sm-2 form-control" style="min-width:150px"
-                                           id="startTime" name="startTime">
-                                    <label class="col-sm-1 col-form-label"
-                                           for="endTime">&nbsp;&nbsp;&nbsp;&nbsp;--</label>
-                                    <input type="text" class="col-sm-3 form-control" id="endTime" name="endTime"
-                                           style="min-width:150px">
-                                </div>
-
-                                <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label" for="comment">备注:</label>
-                                    <textarea type="text" class="col-sm-10 form-control" id="comment"
-                                              name="comment" disabled="disabled" style="height: 65px"></textarea>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label" for="auditStatus">审批状态:</label>
-                                    <input type="text" class="col-sm-3 form-control" id="auditStatus"
-                                           name="auditStatus">
-                                </div>
-                                <div class="form-group row refusalReasonAll">
-                                    <label class="col-sm-2 col-form-label" for="refusalReason">拒绝理由:</label>
-                                    <textarea type="text" class="col-sm-10 form-control" id="refusalReason"
-                                              name="refusalReason"></textarea>
-                                </div>
-                                <div class="form-group row float-right pt-4">
-                                    <button type="button" class="btn btn-danger font-size-h4" id="btn_delete">
-                                        删除申请
-                                    </button>
-                                </div>
-                            </form>
-                            <!-- END Form Horizontal - Default Style -->
+                            <div class="row ml-0">
+                                <p class="font-weight-bold pr-3">备注:</p>
+                                <p id="comment"></p>
+                            </div>
+                            <div class="row ml-0 py-2">
+                                <p class="font-weight-bold pr-3">拒绝理由:</p>
+                                <p id="refusalReason"></p>
+                            </div>
                         </div>
-                        <div class="px-3"></div>
-                        <div class="col-md-12 col-lg-12 col-xl-3 mt-5">
-                            <!-- Business Plan -->
-                            <div class="block block-link-shadow block-themed block-fx-shadow text-center">
-                                <div class="block-header">
-                                    <h3 class="block-title">
-                                        <i class="fa fa-file-archive mr-1"></i> 附件
-                                    </h3>
-                                </div>
-                                <div class="block-content bg-body-light">
-                                    <div class="py-2 gallery">
-                                        <a href="" id="attachment_big">
-                                            <img id="attachment" width="100px" src="" alt="无附件">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="block-content">
-                                    <div class="font-size-sm py-1">
-                                        <p id="img_title"></p>
-                                    </div>
+                        <div class="form-group row float-right pt-4">
+                            <button type="button" class="btn btn-danger font-size-h4" id="btn_delete">
+                                删除申请
+                            </button>
+                        </div>
+                    </div>
+                    <!--<div class="px-3"></div>-->
+                    <div class="col-md-3 col-lg-3 col-xl-3 mt-4">
+                        <!-- Business Plan -->
+                        <div class="block block-link-shadow block-themed block-fx-shadow text-center">
+                            <div class="block-header">
+                                <h3 class="block-title">
+                                    <i class="fa fa-file-archive mr-1"></i> 附件
+                                </h3>
+                            </div>
+                            <div class="block-content bg-body-light">
+                                <div class="py-2 gallery">
+                                    <a href="" id="attachment_big">
+                                        <img id="attachment" width="100px" src="/assets/media/photos/attachment.jpg"
+                                             alt="">
+                                    </a>
                                 </div>
                             </div>
-                            <!-- END Business Plan -->
+                            <div class="block-content">
+                                <div class="font-size-sm pb-3">
+                                    <a id="title"></a>
+                                </div>
+                            </div>
                         </div>
+                        <!-- END Business Plan -->
                     </div>
                 </div>
             </div>
             <!-- END Horizontal -->
         </div>
+
         <!-- END Page Content -->
     </main>
     <!-- END Main Container -->
@@ -281,20 +262,12 @@
 <script src="/assets/js/oneui.core.min.js"></script>
 
 <script src="/assets/js/oneui.app.min.js"></script>
-<script src="/assets/js/plugins/jquery.formautofill.js"></script>
 <!-- Page JS Plugins -->
 
 <script src="/assets/js/plugins/baguetteBox.js/baguetteBox.min.js"></script>
 <script src="/assets/js/plugins/sweetalert2/sweetalert2.min.js"></script>
 
 <script>
-    /**
-     *禁用输入框
-     */
-    $(function () {
-        $('.leave_detail>div>input').attr("disabled", "disabled");
-    });
-
 
     /**
      * 页面加载时根据id获取请假记录
@@ -315,40 +288,51 @@
             data: {"id": id},
             dataType: "json",
             success: function (data) {
+                var res = data.data;
                 if (data.success) {
-                    //使用formautofill插件自动填充表单
-                    $(".leave_detail").autofill(data.data);
-                    var img_title = data.data.attachment.split('\\').splice(-1, 1);
-                    $("#attachment").attr("src", data.data.attachment);
-                    $("#attachment_big").attr({"href": data.data.attachment, "data-caption": img_title});
-                    $("#img_title").text(img_title);
+                    $.each(res, function (item) {
+                        var t = item.toString();
+                        //此处不能使用res.item
+                        $("#" + item).text(res[item]);
+                    });
+
+                    var title = res.attachment.split('/').splice(-1, 1);
+                    if (isImg(res.attachment)) {
+                        $("#attachment").attr("src", res.attachment)
+                    } else {
+                        // $("#attachment_big").attr("href", v.attachment)
+                    }
+                    $("#attachment_big,#title").attr({"href": res.attachment, "data-caption": title});
+
+                    $("#title").text(title);
                     /**
                      * 弹出层显示图片baguetteBox插件初始化
                      */
                     baguetteBox.run('.gallery', {});
+
                     var cateSelector = $('#category');
                     var audiSelector = $('#auditStatus');
-                    switch (data.data.category) {
+                    switch (res.category) {
                         case 0:
-                            cateSelector.val("事假");
+                            cateSelector.text("事假");
                             break;
                         case 1:
-                            cateSelector.val("病假");
+                            cateSelector.text("病假");
                             break;
                         case 2:
-                            cateSelector.val("其它");
+                            cateSelector.text("其它");
                     }
-                    switch (data.data.auditStatus) {
+                    switch (res.auditStatus) {
                         case 0:
-                            audiSelector.val("未审批");
+                            audiSelector.text("未审批");
                             $('#btn_agree,#btn_refuse').attr("disabled", false);
                             break;
                         case 1:
-                            audiSelector.val("已同意");
+                            audiSelector.text("已同意");
                             $(".refusalReasonAll").hide();
                             break;
                         case 2:
-                            audiSelector.val("已拒绝");
+                            audiSelector.text("已拒绝");
                     }
                 } else
                     Swal({
@@ -410,7 +394,25 @@
                 }
             })
         }
-    )
+    );
+
+    /**
+     * 判断是否为图片类型
+     * @param filePath
+     * @returns {boolean}
+     */
+    function isImg(filePath) {
+        function getFileType(filePath) {
+            var startIndex = filePath.lastIndexOf(".");
+            if (startIndex !== -1)
+                return filePath.substring(startIndex + 1, filePath.length).toLowerCase();
+            else return "";
+        }
+
+        let fileType = getFileType(filePath);
+        console.log(fileType);
+        return fileType === "bmp" || fileType === "png" || fileType === "jpg" || fileType === "jpeg"
+    }
 
 </script>
 </body>

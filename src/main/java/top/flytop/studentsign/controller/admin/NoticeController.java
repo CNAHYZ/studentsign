@@ -14,7 +14,7 @@ import top.flytop.studentsign.dto.BaseResult;
 import top.flytop.studentsign.dto.DataTablePageUtil;
 import top.flytop.studentsign.pojo.Notice;
 import top.flytop.studentsign.service.NoticeService;
-import top.flytop.studentsign.utils.ImageUtil;
+import top.flytop.studentsign.utils.FileUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
@@ -53,7 +53,7 @@ public class NoticeController {
         String realName = "";
         String dir = "userUpload/noticeImg/";
         if (noticeImg != null) {
-            BaseResult saveResult = ImageUtil.saveImgByReq(request, null, "noticeImg", dir);
+            BaseResult saveResult = FileUtil.saveFileByReq(request, null, "noticeImg", dir);
             String filePath = String.valueOf(saveResult.getData());
             String result = "{\"errno\":0, \"data\":[\"" + filePath + "\"]}";
             System.out.println(result);

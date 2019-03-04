@@ -6,7 +6,7 @@ import top.flytop.studentsign.dto.BaseResult;
 import top.flytop.studentsign.mapper.LeaveMapper;
 import top.flytop.studentsign.pojo.Leave;
 import top.flytop.studentsign.service.LeaveService;
-import top.flytop.studentsign.utils.ImageUtil;
+import top.flytop.studentsign.utils.FileUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -110,7 +110,7 @@ public class LeaveServiceImpl implements LeaveService {
     public Boolean askForLeave(HttpServletRequest request) {
         HttpSession session = request.getSession();
         BaseResult saveResult =
-                ImageUtil.saveImgByReq(request, null, "attachment", "userUpload/leaveFile/");
+                FileUtil.saveFileByReq(request, null, "attachment", "userUpload/leaveFile/");
         String attachment = null;
         if (saveResult.isSuccess()) {
             attachment = String.valueOf(saveResult.getData());

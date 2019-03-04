@@ -33,6 +33,8 @@
     <link rel="stylesheet" id="css-main" href="../assets/css/oneui.min.css">
     <!-- Page JS Plugins CSS -->
     <link rel="stylesheet" href="../assets/js/plugins/baguetteBox.js/baguetteBox.min.css">
+    <link rel="stylesheet" href="/assets/js/plugins/sweetalert2/sweetalert2.min.css">
+
     <!-- END Stylesheets -->
     <style>
         .leave_detail > div :disabled {
@@ -532,85 +534,79 @@
                 </div>
                 <div class="block-content block-content-full">
                     <div class="row">
-                        <div class="px-3"></div>
-                        <div>
+                        <div class="px-lg-3 px-md-1"></div>
+                        <div class="col-lg-8 my-4 col-sm-12">
                             <!-- Form Horizontal - Default Style -->
-                            <form class="leave_detail col-lg-12" action="" method="POST"
-                                  autocomplete="off">
-                                <div class="form-group row  justify-content-center">
-                                    <div class="col-form-label">记录ID:</div>
-                                    <input type="text" class="col-sm-2 form-control" id="id" name="id">
-                                    <!--<div class="px-5"></div>-->
-                                    <div class="col-form-label">类&nbsp;型:</div>
-                                    <input type="text" class="col-sm-2 form-control" id="category" name="category">
-                                    <div class="col-form-label" for="applicationTime">申请时间:</div>
-                                    <input type="text" class="col-sm-3 form-control" id="applicationTime"
-                                           name="applicationTime" style="min-width:170px">
-                                </div>
-                                <div class="col-12">
-                                    <hr>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label" for="sNo">学&nbsp;号:</label>
-                                    <input type="text" class="col-sm-2 form-control" id="sNo" name="sNo">
-                                    <div class="px-6"></div>
-                                    <label class="col-sm-1 col-form-label" for="sName">姓&nbsp;名:</label>
-                                    <input type="text" class="col-sm-2 form-control" id="sName" name="sName">
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label" for="startTime">请假时间:</label>
-                                    <input type="text" class="col-sm-2 form-control" style="min-width:150px"
-                                           id="startTime" name="startTime">
-                                    <label class="col-sm-1 col-form-label"
-                                           for="endTime">&nbsp;&nbsp;&nbsp;&nbsp;--</label>
-                                    <input type="text" class="col-sm-3 form-control" id="endTime" name="endTime"
-                                           style="min-width:150px">
+                            <table class="table table-borderless">
+                                <tr class="font-w600 table-info">
+                                    <th width="20%">记录ID</th>
+                                    <th width="20%">类型</th>
+                                    <th width="20%">状态</th>
+                                    <th width="40%">申请时间</th>
+                                </tr>
+                                <tbody class="">
+                                <tr>
+                                    <td id="id"></td>
+                                    <td id="category"></td>
+                                    <td id="auditStatus" class="font-w600 text-danger"></td>
+                                    <td id="applicationTime"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <hr class="mt-0">
+                            <div class="">
+                                <div class="row ml-0 py-2">
+                                    <p class="font-weight-bold pr-3">学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号:</p>
+                                    <p id="sNo"></p>
+                                    <div class="col-3"></div>
+                                    <p class="font-weight-bold pr-3">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名:</p>
+                                    <p id="sName"></p>
+                                    <div class="col-2"></div>
                                 </div>
 
-                                <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label" for="comment">备注:</label>
-                                    <textarea type="text" class="col-sm-10 form-control" id="comment"
-                                              name="comment" disabled="disabled"
-                                              style="height: 65px;border:1px solid #e1e1e1;"></textarea>
+                                <div class="row ml-0 py-2">
+                                    <p class="font-weight-bold pr-3">请假时间:</p>
+                                    <p id="startTime"></p>
+                                    <p>&nbsp;&nbsp;--&nbsp;&nbsp;</p>
+                                    <p id="endTime"></p>
                                 </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label" for="auditStatus">审批状态:</label>
-                                    <input type="text" class="col-sm-3 form-control" id="auditStatus"
-                                           name="auditStatus">
+
+                                <div class="row ml-0">
+                                    <p class="font-weight-bold pr-3">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注:</p>
+                                    <p id="comment"></p>
                                 </div>
-                                <div class="form-group row refusalReasonAll">
-                                    <label class="col-sm-2 col-form-label" for="refusalReason">拒绝理由:</label>
-                                    <textarea type="text" class="col-sm-10 form-control" id="refusalReason"
-                                              name="refusalReason"></textarea>
+                                <div class="row ml-0 py-2">
+                                    <p class="font-weight-bold pr-3">拒绝理由:</p>
+                                    <p id="refusalReason"></p>
                                 </div>
-                                <div class="form-group row ">
-                                    <div class="col-sm-3 ml-auto">
-                                        <button type="button" onclick="pageChange(-1)"
-                                                class="btn btn-outline-secondary" id="btn_prevPage">上一条
-                                        </button>
-                                    </div>
-                                    <div class="col-sm-2 ml-auto">
-                                        <button disabled="disabled" type="button" onclick="audit(1)"
-                                                class="btn btn-success" id="btn_agree">同意申请
-                                        </button>
-                                    </div>
-                                    <div class="col-sm-2 ml-auto">
-                                        <button type="button" onclick="window.location='leaveRecordList.html'"
-                                                class="btn btn-primary" id="btn_back">返回列表
-                                        </button>
-                                    </div>
-                                    <div class="col-sm-2 ml-auto">
-                                        <button disabled="disabled" type="button" onclick="audit(2)"
-                                                class="btn btn-danger" id="btn_refuse">拒绝申请
-                                        </button>
-                                    </div>
-                                    <div class="col-sm-3 ml-auto" style="text-align: right">
-                                        <button type="button" onclick="pageChange(1)"
-                                                class="btn btn-outline-secondary" id="btn_nextPage">下一条
-                                        </button>
-                                    </div>
+                            </div>
+                            <div class="form-group row ">
+                                <div class="col-sm-3 ml-auto">
+                                    <button type="button" onclick="pageChange(-1)"
+                                            class="btn btn-outline-secondary" id="btn_prevPage">上一条
+                                    </button>
                                 </div>
+                                <div class="col-sm-2 ml-auto">
+                                    <button type="button" onclick="audit(1)"
+                                            class="btn btn-success" id="btn_agree">同意申请
+                                    </button>
+                                </div>
+                                <div class="col-sm-2 ml-auto">
+                                    <button type="button" onclick="window.location='leaveRecordList.html'"
+                                            class="btn btn-primary" id="btn_back">返回列表
+                                    </button>
+                                </div>
+                                <div class="col-sm-2 ml-auto">
+                                    <button type="button" onclick="audit(2)"
+                                            class="btn btn-danger" id="btn_refuse">拒绝申请
+                                    </button>
+                                </div>
+                                <div class="col-sm-3 ml-auto" style="text-align: right">
+                                    <button type="button" onclick="pageChange(1)"
+                                            class="btn btn-outline-secondary" id="btn_nextPage">下一条
+                                    </button>
+                                </div>
+                            </div>
                             </form>
                             <!-- END Form Horizontal - Default Style -->
                         </div>
@@ -626,13 +622,14 @@
                                 <div class="block-content bg-body-light">
                                     <div class="py-2 gallery">
                                         <a href="" id="attachment_big">
-                                            <img id="attachment" width="100px" src="" alt="无附件">
+                                            <img id="attachment" width="100px" src="/assets/media/photos/attachment.jpg"
+                                                 alt="">
                                         </a>
                                     </div>
                                 </div>
                                 <div class="block-content">
-                                    <div class="font-size-sm py-1">
-                                        <p id="img_title"></p>
+                                    <div class="font-size-sm pb-3">
+                                        <a id="title"></a>
                                     </div>
                                 </div>
                             </div>
@@ -668,21 +665,15 @@
 <script src="../assets/js/oneui.core.min.js"></script>
 
 <script src="../assets/js/oneui.app.min.js"></script>
-<script src="../assets/js/plugins/jquery.formautofill.js"></script>
 <!-- Page JS Plugins  提醒-->
 <script src="../assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js"></script>
+<script src="../assets/js/plugins/sweetalert2/sweetalert2.min.js"></script>
 
 <script src="../assets/js/plugins/baguetteBox.js/baguetteBox.min.js"></script>
 
 <script>
     var currentPage;
     var pageNo = 0;
-    /**
-     *禁用输入框
-     */
-    $(function () {
-        $('.leave_detail>div>input').attr("disabled", "disabled");
-    });
 
     /**
      * 页面加载时获取请假记录
@@ -698,25 +689,30 @@
                 //如果没查到数据
                 if (data.success) {
                     if (data.data.list.length === 0) {
-                        One.helpers('notify', {
-                                type: 'success', align: 'center', delay: 6000,
-                                message: "<br><br><h3>暂无待审批的请假记录,过会再来看看吧!</h3><br>"
+                        Swal.mixin({
+                            toast: true, position: 'top', showConfirmButton: false, timer: 7000,
+                            onAfterClose: function () {
+                                window.location = "leaveRecordList.html"
                             }
-                        );
-                        setTimeout(function () {
-                            window.location = "leaveRecordList.html"
-                        }, 6000);
+                        }).fire({type: 'error', title: '<h4>暂无待审批的请假记录,过会再来看看吧!</h4>'});
                         return;
                     }
                     //分页返回的页面数据
-                    var pageData = data.data.list[0];
-                    //使用formautofill插件自动填充表单
-                    $(".leave_detail").autofill(pageData);
-                    //附件src及标题设置
-                    var img_title = pageData.attachment.split('\\').splice(-1, 1);
-                    $("#attachment").attr("src", pageData.attachment);
-                    $("#attachment_big").attr({"href": pageData.attachment, "data-caption": img_title});
-                    $("#img_title").text(img_title);
+                    var res = data.data.list[0];
+                    $.each(res, function (item) {
+                        //此处不能使用res.item
+                        $("#" + item).text(res[item]);
+                    });
+
+                    var title = res.attachment.split('/').splice(-1, 1);
+                    if (isImg(res.attachment)) {
+                        $("#attachment").attr("src", res.attachment)
+                    } else {
+                        // $("#attachment_big").attr("href", v.attachment)
+                    }
+                    $("#attachment_big,#title").attr({"href": res.attachment, "data-caption": title});
+
+                    $("#title").text(title);
                     //设置当前条数/总条数
                     currentPage = data.data.pageNum;
                     $("#currentPage_total").text(currentPage + ' / ' + data.data.pages);
@@ -729,33 +725,35 @@
                      */
                     var cateSelector = $('#category');
                     var audiSelector = $('#auditStatus');
-                    switch (pageData.category) {
+                    switch (res.category) {
                         case 0:
-                            cateSelector.val("事假");
+                            cateSelector.text("事假");
                             break;
                         case 1:
-                            cateSelector.val("病假");
+                            cateSelector.text("病假");
                             break;
                         case 2:
-                            cateSelector.val("其它");
+                            cateSelector.text("其它");
                     }
-                    switch (pageData.auditStatus) {
+                    switch (res.auditStatus) {
                         case 0:
-                            audiSelector.val("未审批");
-                            $('#btn_agree,#btn_refuse').attr("disabled", false);
+                            audiSelector.text("未审批");
                             break;
                         case 1:
-                            audiSelector.val("已同意");
-                            $(".refusalReasonAll").hide();
+                            audiSelector.text("已同意");
                             break;
                         case 2:
-                            audiSelector.val("已拒绝");
+                            audiSelector.text("已拒绝");
                     }
                 } else
-                    One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: data.errMsg});
+                    Swal.mixin({
+                        toast: true, position: 'top', showConfirmButton: false, timer: 5000
+                    }).fire({type: 'error', title: data.errMsg});
             },
             error: function () {
-                One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: "未知错误，请重试或联系管理员！"});
+                Swal.mixin({
+                    toast: true, position: 'top', showConfirmButton: false, timer: 5000
+                }).fire({type: 'error', title: '未知错误，请重试或联系管理员！'});
             }
         })
     });
@@ -763,9 +761,27 @@
     /**
      * 同意、拒绝按钮点击事件
      */
-    function audit(status) {
-        id = $("#id").val();
-        refusalReason = $('#refusalReason').val();
+    async function audit(status) {
+        var stop = false;
+        var refusalReason = '';
+        id = $("#id").text();
+        if (status === 2) {
+            await swal({
+                input: 'textarea',
+                inputPlaceholder: '请输入拒绝理由...',
+                inputAttributes: {maxLength: 100},
+                showCancelButton: true,
+                confirmButtonText: '提交',
+                cancelButtonText: '取消',
+                preConfirm: function (input) {
+                    refusalReason = input;
+                    console.log(refusalReason);
+                },
+            }).then(function (e) {
+                if (!e.value) stop = true;
+            });
+        }
+        if (stop) return;
         sendData = {
             "id": id,
             "status": status,
@@ -778,18 +794,39 @@
             dataType: "json",
             success: function (data) {
                 if (data.success) {
-                    One.helpers('notify', {type: 'success', icon: 'fa fa-check mr-1', message: data.data});
-                    $('#btn_agree,#btn_refuse').hide();
-                    $('#refusalReason').attr("disabled", "disabled");
+                    Swal.mixin({
+                        toast: true, position: 'top', showConfirmButton: false, timer: 5000
+                    }).fire({type: 'success', title: data.data})
                 } else
-                    One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: data.errMsg});
-                //直接显示下一条记录
-                pageChange(1);
+                    Swal.mixin({
+                        toast: true, position: 'top', showConfirmButton: false, timer: 5000
+                    }).fire({type: 'error', title: data.errMsg});
+                getInfo()
             },
             error: function () {
-                One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: "未知错误，请重试或联系管理员！"});
+                Swal.mixin({
+                    toast: true, position: 'top', showConfirmButton: false, timer: 5000
+                }).fire({type: 'error', title: '未知错误，请重试或联系管理员！'});
             }
         })
+    }
+
+    /**
+     * 判断是否为图片类型
+     * @param filePath
+     * @returns {boolean}
+     */
+    function isImg(filePath) {
+        function getFileType(filePath) {
+            var startIndex = filePath.lastIndexOf(".");
+            if (startIndex !== -1)
+                return filePath.substring(startIndex + 1, filePath.length).toLowerCase();
+            else return "";
+        }
+
+        let fileType = getFileType(filePath);
+        console.log(fileType);
+        return fileType === "bmp" || fileType === "png" || fileType === "jpg" || fileType === "jpeg"
     }
 
     /**

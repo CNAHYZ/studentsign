@@ -74,7 +74,7 @@ public class UserController {
             //获取绝对路径
             String realPath = request.getSession().getServletContext().getRealPath("stu_pic/");
             // 本地保存面部图像
-            String imagePath = (String) new ImageUtil().saveImage(student.getsNo(), student.getFaceImage(), realPath).getData();
+            String imagePath = (String) new FileUtil().saveImage(student.getsNo(), student.getFaceImage(), realPath).getData();
             // 将图像路径保存至数据库
             student.setFaceImage(imagePath);
         }
@@ -170,7 +170,7 @@ public class UserController {
     @RequestMapping(value = "faceChecker", method = RequestMethod.POST)
     @ResponseBody
     public BaseResult faceChecker(HttpServletRequest request) {
-        BaseResult<String> saveResult = imageUtil.saveImgByReq(request, null, "file", "temp/");
+        BaseResult<String> saveResult = FileUtil.saveFileByReq(request, null, "file", "temp/");
         System.out.println(saveResult);
         if (saveResult.isSuccess()) {
             //保存成功

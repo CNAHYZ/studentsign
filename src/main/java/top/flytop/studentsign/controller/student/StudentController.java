@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import top.flytop.studentsign.dto.BaseResult;
 import top.flytop.studentsign.pojo.Student;
 import top.flytop.studentsign.service.UserService;
+import top.flytop.studentsign.utils.FileUtil;
 import top.flytop.studentsign.utils.ImageUtil;
 
 import javax.servlet.http.HttpServletRequest;
@@ -79,7 +80,7 @@ public class StudentController {
     @RequestMapping(value = "faceChecker", method = RequestMethod.POST)
     @ResponseBody
     public BaseResult faceChecker(HttpServletRequest request) {
-        BaseResult<String> saveResult = imageUtil.saveImgByReq(request, null, "file", "temp/");
+        BaseResult<String> saveResult = FileUtil.saveFileByReq(request, null, "file", "temp/");
         System.out.println(saveResult);
         if (saveResult.isSuccess()) {
             //保存成功

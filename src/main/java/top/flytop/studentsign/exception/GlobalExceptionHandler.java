@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import top.flytop.studentsign.dto.BaseResult;
 
 @ControllerAdvice
@@ -55,6 +56,9 @@ public class GlobalExceptionHandler {
     public BaseResult handleException(Exception e) {
         if (e instanceof BusinessException) {
             return BaseResult.fail(1, "BUSINESS_ERROR" + e.getMessage());
+        } else if (e instanceof MaxUploadSizeExceededException) {
+            System.out.println("文件大小超过限制");
+            return BaseResult.fail(1, "文件大小超过限制：5MB");
         }
 
         logger.error("服务运行异常", e);
