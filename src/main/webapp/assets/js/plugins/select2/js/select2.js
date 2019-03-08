@@ -1,5 +1,5 @@
 /*!
- * Select2 4.0.6-rc.1
+ * Select2 4.0.6-rc.0
  * https://select2.github.io
  *
  * Released under the MIT license
@@ -1188,8 +1188,7 @@
                     var currentIndex = $options.index($highlighted);
 
                     // If we are already at te top, don't move further
-                    // If no options, currentIndex will be -1
-                    if (currentIndex <= 0) {
+                    if (currentIndex === 0) {
                         return;
                     }
 
@@ -1479,9 +1478,6 @@
                     self.$selection.removeAttr('aria-owns');
 
                     self.$selection.focus();
-                    window.setTimeout(function () {
-                        self.$selection.focus();
-                    }, 0);
 
                     self._detachCloseHandler(container);
                 });
@@ -2110,13 +2106,7 @@
 
                 this.resizeSearch();
                 if (searchHadFocus) {
-                    var isTagInput = this.$element.find('[data-select2-tag]').length;
-                    if (isTagInput) {
-                        // fix IE11 bug where tag input lost focus
-                        this.$element.focus();
-                    } else {
-                        this.$search.focus();
-                    }
+                    this.$search.focus();
                 }
             };
 
@@ -5220,9 +5210,6 @@
                 this._syncAttributes();
 
                 Utils.StoreData($element[0], 'select2', this);
-
-                // Ensure backwards compatibility with $element.data('select2').
-                $element.data('select2', this);
             };
 
             Utils.Extend(Select2, Utils.Observable);
@@ -5718,7 +5705,6 @@
                 this.$element.removeClass('select2-hidden-accessible');
                 this.$element.attr('aria-hidden', 'false');
                 Utils.RemoveData(this.$element[0]);
-                this.$element.removeData('select2');
 
                 this.dataAdapter.destroy();
                 this.selection.destroy();

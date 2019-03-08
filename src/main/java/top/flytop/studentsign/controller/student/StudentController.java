@@ -9,14 +9,11 @@ import org.springframework.web.bind.annotation.*;
 import top.flytop.studentsign.dto.BaseResult;
 import top.flytop.studentsign.pojo.Student;
 import top.flytop.studentsign.service.UserService;
-import top.flytop.studentsign.utils.FileUtil;
 import top.flytop.studentsign.utils.ImageUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
-import java.util.Map;
 
 @Controller
 @RequestMapping("student/")
@@ -69,32 +66,5 @@ public class StudentController {
     @ResponseBody
     public BaseResult changePwd(HttpServletRequest request) {
         return userService.changePwd(request);
-    }
-
-    /**
-     * @param request
-     * @return top.flytop.studentsign.dto.BaseResult
-     * @Description TODO 人脸检测方法，检测成功进行临时存储
-     * @date 2019/1/8 17:41
-     */
-    @RequestMapping(value = "faceChecker", method = RequestMethod.POST)
-    @ResponseBody
-    public BaseResult faceChecker(HttpServletRequest request) {
-        BaseResult<String> saveResult = FileUtil.saveFileByReq(request, null, "file", "temp/");
-        System.out.println(saveResult);
-        if (saveResult.isSuccess()) {
-            //保存成功
-            String image = imageUtil.imageToBase64(saveResult.getData());
-            BaseResult<String> checkResult = userService.faceChecker(image);
-            if (checkResult.isSuccess()) {
-                //人脸检测成功
-                //返回保存路径
-                Map<String, String> map = new HashMap<>();
-                map.put("fileSavePath", saveResult.getData());
-                map.put("faceToken", checkResult.getData());
-                return new BaseResult<Map>(true, map);
-            } else return checkResult;
-        }
-        return saveResult;
     }
 }

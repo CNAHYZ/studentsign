@@ -2,6 +2,7 @@ package top.flytop.studentsign.mapper;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+import top.flytop.studentsign.pojo.SClass;
 import top.flytop.studentsign.pojo.Student;
 import top.flytop.studentsign.pojo.User;
 
@@ -13,6 +14,8 @@ public interface UserMapper {
     Student getStuGeneralInfo(String id);
 
     List<Student> getAllStudent();
+
+    List<SClass> getAllSClass();
 
     User getUser(String username);
 

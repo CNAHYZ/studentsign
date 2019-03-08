@@ -21,13 +21,15 @@ public class FaceUtilTest {
 
     @Test
     public void getUserFace() {
+        BaseResult result = faceUtil.getUserFace("23");
+        System.out.println(result);
     }
 
     @Test
     public void faceChecker() {
         String im = imageUtil.imageToBase64("D://3.jpg");
-        BaseResult Result = faceUtil.faceChecker(im);
-        System.out.println(Result);
+        BaseResult result = faceUtil.faceChecker(im);
+        System.out.println(result);
     }
 
     @Test
@@ -46,5 +48,7 @@ public class FaceUtilTest {
 
     @Test
     public void faceRemove() {
+        faceUtil.faceRemove("23", "e85705ce61411198848ec96d22a37c8c");
     }
+
 }

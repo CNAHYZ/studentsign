@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import top.flytop.studentsign.dto.BaseResult;
 import top.flytop.studentsign.pojo.Student;
+import top.flytop.studentsign.service.FaceService;
 import top.flytop.studentsign.service.UserService;
 import top.flytop.studentsign.utils.FileUtil;
 import top.flytop.studentsign.utils.ImageUtil;
@@ -22,7 +23,6 @@ import java.nio.charset.StandardCharsets;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -35,6 +35,8 @@ public class UserController {
     private UserService userService;
     @Autowired
     private ImageUtil imageUtil;
+    @Autowired
+    private FaceService faceService;
 
     /**
      * @param binder
@@ -56,8 +58,20 @@ public class UserController {
      */
     @RequestMapping(value = "studentList", method = RequestMethod.POST)
     @ResponseBody
-    public BaseResult<List> studentList() {
-        return new BaseResult(true, userService.getAllStudent());
+    public BaseResult studentList() {
+        return BaseResult.success(userService.getAllStudent());
+    }
+
+    /**
+     * @param
+     * @return top.flytop.studentsign.dto.BaseResult
+     * @Description TODO 获取班级列表
+     * @Date 2019/3/6 17:22
+     */
+    @RequestMapping(value = "classList", method = RequestMethod.POST)
+    @ResponseBody
+    public BaseResult classList() {
+        return BaseResult.success(userService.getAllSClass());
     }
 
     /**
@@ -70,14 +84,14 @@ public class UserController {
     @RequestMapping(value = "studentInfoAlter", method = RequestMethod.POST)
     @ResponseBody
     public BaseResult studentInfoAlter(HttpServletRequest request, Student student) {
-        if (!student.getFaceImage().equals("")) {
+       /* if (!student.getFaceImage().equals("")) {
             //获取绝对路径
             String realPath = request.getSession().getServletContext().getRealPath("stu_pic/");
             // 本地保存面部图像
             String imagePath = (String) new FileUtil().saveImage(student.getsNo(), student.getFaceImage(), realPath).getData();
             // 将图像路径保存至数据库
             student.setFaceImage(imagePath);
-        }
+        }*/
         System.out.println(student);
         return userService.updateInfo(student);
     }
@@ -145,13 +159,13 @@ public class UserController {
                 String newPath = request.getServletContext().getRealPath(dir) + fileName;
                 System.out.println(newPath);
                 //人脸库注册成功
-                if (userService.addFace(student, faceToken).isSuccess()) {
+                /*if (userService.addFace(student, faceToken).isSuccess()) {
                     //将图片从临时文件夹移入人脸文件夹，并以学号命名
                     if (FileUtil.MoveRename(oldPath, newPath, true)) {
                         //本地数据库中添加学生信息
                         student.setFaceImage(dir + fileName);
                     }
-                }
+                }*/
             }
             if (userService.addStudent(student).isSuccess())
                 return new BaseResult<String>(true, student.getsNo() + " 添加成功");
@@ -175,14 +189,14 @@ public class UserController {
         if (saveResult.isSuccess()) {
             //保存成功
             String image = imageUtil.imageToBase64(saveResult.getData());
-            BaseResult<String> checkResult = userService.faceChecker(image);
+            BaseResult checkResult = faceService.faceChecker(image);
             System.out.println("=====checkResult:" + checkResult);
             if (checkResult.isSuccess()) {
                 //人脸检测成功
                 //返回保存路径
                 Map<String, String> map = new HashMap<>();
                 map.put("fileSavePath", saveResult.getData());
-                map.put("faceToken", checkResult.getData());
+                map.put("faceToken", String.valueOf(checkResult.getData()));
                 return new BaseResult<Map>(true, map);
             } else return checkResult;
         }

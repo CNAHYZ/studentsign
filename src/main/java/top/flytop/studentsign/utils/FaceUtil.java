@@ -1,10 +1,12 @@
 package top.flytop.studentsign.utils;
 
 import com.baidu.aip.face.AipFace;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 import top.flytop.studentsign.dto.BaseResult;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,18 +39,18 @@ public class FaceUtil {
      * @date 2019/1/11 15:52
      */
     private BaseResult isNormal(JSONObject res) {
-        Integer errCode = res.getInt("error_code");
+        int errCode = res.getInt("error_code");
         switch (errCode) {
             case 0:
                 //状态正常
-                return new BaseResult<>(true, null);
+                return BaseResult.success(null);
             case 222202:
                 //pic not has face
-                return temp = new BaseResult<>(false, errCode, "图片中没有人脸信息，请重试！");
+                return temp = BaseResult.fail(errCode, "图片中没有人脸信息，请重试！");
             default:
                 // 状态异常
                 String errMsg = res.getString("error_msg");
-                return temp = new BaseResult(false, errCode, errMsg);
+                return temp = BaseResult.fail(errCode, "操作失败！  " + errMsg);
         }
     }
 
@@ -58,18 +60,41 @@ public class FaceUtil {
      * @Description TODO 用于获取一个用户的全部人脸列表。
      * @date 2019/1/11 15:54
      */
-    public void getUserFace(String uid) {
+    public BaseResult getUserFace(String uid) {
         // 传入可选参数调用接口
         HashMap<String, String> options = new HashMap<String, String>();
-
-        String userId = "user1";
-        String groupId = "group1";
-
+        String groupId = "user";
         // 获取用户人脸列表
-        res = client.faceGetlist(userId, groupId, options);
-        System.out.println("=====================获取人脸列表结果=====================");
-        System.out.println(res.toString(2));
+        res = client.faceGetlist(uid, groupId, options);
+        if (!isNormal(res).isSuccess())
+            // errCode不为0，直接返回错误信息
+            return temp;
+        else {
+            System.out.println("=====================获取人脸列表结果=====================");
+            String a = res.toString(2);
+            System.out.println(a);
+            JSONArray faceList = res.getJSONObject("result").getJSONArray("face_list");
+            Map<String, Object> faceMap = new HashMap<>();
+            ArrayList<Map> faceMapList = new ArrayList<>();
+            for (int i = 0; i < faceList.length(); i++) {
+                String ctime = faceList.getJSONObject(i).getString("ctime");
+                String faceToken = faceList.getJSONObject(i).getString("face_token");
+               /*拼接图像显示的URL
+                https://console.bce.baidu.com/ai/s/facelib/face?appId=665453&groupId=user
+                &uid=admin&faceId=85186c7ec1dc5c951e92203fa19ac26a
+                */
+                String prefix = "https://console.bce.baidu.com/ai/s/facelib/face?" +
+                        "appId=665453&groupId=user&";
+                String faceUrl = prefix + "uid=" + uid + "&faceId=" + faceToken;
 
+                faceMap.put("ctime", ctime);
+                faceMap.put("faceToken", faceToken);
+                faceMap.put("faceUrl", faceUrl);
+                faceMapList.add(faceMap);
+            }
+            System.out.println(faceMapList);
+            return BaseResult.success(faceMapList);
+        }
     }
 
     /**
@@ -78,7 +103,7 @@ public class FaceUtil {
      * @Description TODO 人脸检测方法
      * @date 2019/1/11 15:55
      */
-    public BaseResult<String> faceChecker(String image) {
+    public BaseResult faceChecker(String image) {
         String imageType = "BASE64";
         // 人脸完整度，0或1, 0为人脸溢出图像边界，1为人脸都在图像边界内
         int completeness;
@@ -100,12 +125,12 @@ public class FaceUtil {
             completeness = faceList0.getJSONObject("quality").getInt("completeness");
             faceProbability = faceList0.getDouble("face_probability");
             if (faceProbability < 0.8) {
-                return new BaseResult<>(false, 1, "无法检测到人脸");
+                return BaseResult.fail(1, "无法检测到人脸");
             } else if (completeness == 0) {
-                return new BaseResult<>(false, 1, "面部图像不完整");
+                return BaseResult.fail(1, "面部图像不完整");
             } else {
                 faceToken = faceList0.getString("face_token");
-                return new BaseResult<>(true, faceToken);
+                return BaseResult.success(faceToken);
             }
         }
     }
@@ -132,7 +157,7 @@ public class FaceUtil {
         System.out.println(res.toString(2));
         if (isNormal(res).isSuccess())
             // 注册成功
-            return new BaseResult<>(true, null);
+            return BaseResult.success(null);
         else
 
             return new BaseResult(false, 1, "上传失败：" + res.getString("error_msg"));
@@ -176,21 +201,21 @@ public class FaceUtil {
      * @param uid
      * @param faceToken
      * @return void
-     * @Description TODO 人脸删除 删除的内容，包括用户所有图像和身份信息
+     * @Description TODO 人脸删除
      * @date 2019/1/11 15:56
      */
-    public void faceRemove(String uid, String faceToken) {
+    public BaseResult faceRemove(String uid, String faceToken) {
         // 传入可选参数调用接口
         HashMap<String, String> options = new HashMap<String, String>();
-
-        String userId = uid;
-        String groupId = "group1";
-        faceToken = faceToken;
+        String groupId = "user";
 
         // 人脸删除
-        res = client.faceDelete(userId, groupId, faceToken, options);
+        res = client.faceDelete(uid, groupId, faceToken, options);
         System.out.println("=====================删除返回结果=====================");
         System.out.println(res.toString(2));
-
+        if (!isNormal(res).isSuccess()) {
+            return isNormal(res);
+        }
+        return BaseResult.success("删除成功!");
     }
 }

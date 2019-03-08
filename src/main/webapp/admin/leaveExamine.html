@@ -690,7 +690,7 @@
                 if (data.success) {
                     if (data.data.list.length === 0) {
                         Swal.mixin({
-                            toast: true, position: 'top', showConfirmButton: false, timer: 7000,
+                            toast: true, position: 'top', showConfirmButton: false, timer: 6000,
                             onAfterClose: function () {
                                 window.location = "leaveRecordList.html"
                             }
@@ -721,7 +721,7 @@
                      */
                     baguetteBox.run('.gallery', {});
                     /**
-                     * 表单内容自定义填充
+                     * 内容自定义填充
                      */
                     var cateSelector = $('#category');
                     var audiSelector = $('#auditStatus');
@@ -762,9 +762,13 @@
      * 同意、拒绝按钮点击事件
      */
     async function audit(status) {
-        var stop = false;
         var refusalReason = '';
         id = $("#id").text();
+        sendData = {
+            "id": id,
+            "status": status,
+            "refusalReason": refusalReason
+        };
         if (status === 2) {
             await swal({
                 input: 'textarea',
@@ -774,19 +778,18 @@
                 confirmButtonText: '提交',
                 cancelButtonText: '取消',
                 preConfirm: function (input) {
-                    refusalReason = input;
-                    console.log(refusalReason);
+                    sendData.refusalReason = input;
+                    console.log(sendData);
+                    sendAjax(sendData);
                 },
-            }).then(function (e) {
-                if (!e.value) stop = true;
             });
-        }
-        if (stop) return;
-        sendData = {
-            "id": id,
-            "status": status,
-            "refusalReason": refusalReason
-        };
+        } else sendAjax(sendData);
+    }
+
+    /**
+     *发送ajax方法
+     */
+    function sendAjax(sendData) {
         $.ajax({
             type: "post",
             url: "examineLeave.do",

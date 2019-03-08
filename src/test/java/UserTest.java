@@ -1,10 +1,8 @@
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import top.flytop.studentsign.dto.BaseResult;
 import top.flytop.studentsign.mapper.UserMapper;
 import top.flytop.studentsign.pojo.Student;
 import top.flytop.studentsign.service.impl.UserServiceImpl;
@@ -50,8 +48,8 @@ public class UserTest {
         stu.setsNo("27");
         stu.setsName("yyyy");
         String im = imageUtil.imageToBase64("D://2.jpg");
-        BaseResult res = userServiceImpl.addFace(stu, im);
-        System.out.println(res);
+//        BaseResult res = userServiceImpl.addFace(stu, im);
+//        System.out.println(res);
     }
 
     @Test

@@ -10,27 +10,39 @@ import java.sql.Date;
 @Component("student")
 @Alias(value = "student")
 public class Student implements Serializable {
-    String sNo;
-    String sName;
-    String gender;
+    private String sNo;
+    private String sName;
+    private String cNo;
+    private String gender;
     @JSONField(format = "yyyy-MM-dd")//自定义json转换日期的格式
-            Date birthday;
-    String buildingNo;
-    String roomNo;
-    String faceImage;
+    private Date birthday;
+    private String buildingNo;
+    private String roomNo;
+    private String phoneNum;
+
+    private SClass sClass;
 
     public Student() {
     }
 
-    public Student(String sNo, String sName, String gender, Date birthday, String buildingNo, String roomNo) {
+    public Student(String sNo, String sName, String cNo, String gender, Date birthday, String buildingNo, String roomNo, String phoneNum) {
         this.sNo = sNo;
         this.sName = sName;
+        this.cNo = cNo;
         this.gender = gender;
         this.birthday = birthday;
         this.buildingNo = buildingNo;
         this.roomNo = roomNo;
+        this.phoneNum = phoneNum;
     }
 
+    public SClass getsClass() {
+        return sClass;
+    }
+
+    public void setsClass(SClass sClass) {
+        this.sClass = sClass;
+    }
 
     public String getsNo() {
         return sNo;
@@ -46,6 +58,14 @@ public class Student implements Serializable {
 
     public void setsName(String sName) {
         this.sName = sName;
+    }
+
+    public String getcNo() {
+        return cNo;
+    }
+
+    public void setcNo(String cNo) {
+        this.cNo = cNo;
     }
 
     public String getGender() {
@@ -80,12 +100,12 @@ public class Student implements Serializable {
         this.roomNo = roomNo;
     }
 
-    public String getFaceImage() {
-        return faceImage;
+    public String getPhoneNum() {
+        return phoneNum;
     }
 
-    public void setFaceImage(String faceImage) {
-        this.faceImage = faceImage;
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
     }
 
     @Override
@@ -93,10 +113,13 @@ public class Student implements Serializable {
         return "Student{" +
                 "sNo='" + sNo + '\'' +
                 ", sName='" + sName + '\'' +
+                ", cNo='" + cNo + '\'' +
                 ", gender='" + gender + '\'' +
                 ", birthday=" + birthday +
                 ", buildingNo='" + buildingNo + '\'' +
                 ", roomNo='" + roomNo + '\'' +
+                ", phoneNum='" + phoneNum + '\'' +
+                ", sClass=" + sClass +
                 '}';
     }
 }

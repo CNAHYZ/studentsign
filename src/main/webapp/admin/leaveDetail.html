@@ -655,8 +655,7 @@
 
     /**
      * 页面加载时根据id获取请假记录
-     *
-     * */
+     **/
     $(getInfo = function () {
         var thisURL = document.URL;
         /*使用 window.location.search()方法获取地址栏要传递的参数。得到"?id=1"。
@@ -692,6 +691,9 @@
                      * 弹出层显示图片baguetteBox插件初始化
                      */
                     baguetteBox.run('.gallery', {});
+                    /**
+                     * 内容自定义填充
+                     */
                     var cateSelector = $('#category');
                     var audiSelector = $('#auditStatus');
                     switch (res.category) {
@@ -731,9 +733,13 @@
      * 同意、拒绝按钮点击事件
      */
     async function audit(status) {
-        var stop = false;
         var refusalReason = '';
         id = $("#id").text();
+        sendData = {
+            "id": id,
+            "status": status,
+            "refusalReason": refusalReason
+        };
         if (status === 2) {
             await swal({
                 input: 'textarea',
@@ -741,20 +747,20 @@
                 inputAttributes: {maxLength: 100},
                 showCancelButton: true,
                 confirmButtonText: '提交',
-                cancelButtonText: '取消', preConfirm: function (input) {
-                    refusalReason = input;
-                    console.log(refusalReason);
+                cancelButtonText: '取消',
+                preConfirm: function (input) {
+                    sendData.refusalReason = input;
+                    console.log(sendData);
+                    sendAjax(sendData);
                 },
-            }).then(function (e) {
-                if (!e.value) stop = true;
             });
-        }
-        if (stop) return;
-        sendData = {
-            "id": id,
-            "status": status,
-            "refusalReason": refusalReason
-        };
+        } else sendAjax(sendData);
+    }
+
+    /**
+     *发送ajax方法
+     */
+    function sendAjax(sendData) {
         $.ajax({
             type: "post",
             url: "examineLeave.do",

@@ -9,12 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import top.flytop.studentsign.dto.BaseResult;
 import top.flytop.studentsign.mapper.UserMapper;
+import top.flytop.studentsign.pojo.SClass;
 import top.flytop.studentsign.pojo.Student;
 import top.flytop.studentsign.pojo.User;
 import top.flytop.studentsign.service.UserService;
 import top.flytop.studentsign.utils.ExcelUtil;
-import top.flytop.studentsign.utils.FaceUtil;
-import top.flytop.studentsign.utils.ImageUtil;
 import top.flytop.studentsign.utils.ShiroMd5;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +22,6 @@ import java.io.InputStream;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -32,22 +30,10 @@ public class UserServiceImpl implements UserService {
     private static final String initialPwd = "123456";
     private static final String initialEncryptPwd = ShiroMd5.md5Encrypt(initialPwd, salt);
     private UserMapper userMapper;
-    private FaceUtil faceUtil;
-    private ImageUtil imageUtil;
 
     @Autowired
     private void UserMapper(UserMapper userMapper) {
         this.userMapper = userMapper;
-    }
-
-    @Autowired
-    private void FaceUtil(FaceUtil faceUtil) {
-        this.faceUtil = faceUtil;
-    }
-
-    @Autowired
-    private void ImageUtil(ImageUtil imageUtil) {
-        this.imageUtil = imageUtil;
     }
 
     /**
@@ -59,6 +45,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public Student getStuInfo(String sNo) {
         Student s = userMapper.getStuGeneralInfo(sNo);
+        System.out.println(s);
         return s;
     }
 
@@ -74,25 +61,14 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * @param stu
-     * @param image
-     * @return top.flytop.studentsign.dto.BaseResult<java.lang.String>
-     * @Description TODO 云端人脸库添加人脸信息
-     * @date 2019/1/5 18:59
+     * @param
+     * @return java.util.List<top.flytop.studentsign.pojo.SClass>
+     * @Description TODO
+     * @Date 2019/3/6 17:20
      */
     @Override
-    public BaseResult<String> addFace(Student stu, String image) {
-        if (image == null) {
-            return new BaseResult<>(false, 1, "没有图像，请重试");
-        }
-        // 人脸库注册
-        BaseResult regResult = faceUtil.faceReg(stu.getsNo(), image);
-        if (regResult.isSuccess()) {
-            // 注册成功
-            return new BaseResult<>(true, null);
-        }
-        // 人脸库注册失败
-        return new BaseResult<>(false, 1, regResult.getErrMsg());
+    public List<SClass> getAllSClass() {
+        return userMapper.getAllSClass();
     }
 
     /**
@@ -119,7 +95,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public BaseResult loginByFace(String faceImage, String id) {
-        BaseResult<Map> searResult = faceUtil.faceSearch(faceImage, id);
+       /* BaseResult<Map> searResult = faceUtil.faceSearch(faceImage, id);
         if (!searResult.isSuccess()) {
             //异常，直接返回至Controller
             return searResult;
@@ -129,7 +105,8 @@ public class UserServiceImpl implements UserService {
             return new BaseResult<>(true, id + " 登录成功！");
         } else {
             return new BaseResult(false, 1, "未匹配到您的信息，请重试!");
-        }
+        }*/
+        return null;
     }
 
     /*    *//**
@@ -185,16 +162,6 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    /**
-     * @param image
-     * @return top.flytop.studentsign.dto.BaseResult
-     * @Description TODO
-     * @date 2019/1/20 16:45
-     */
-    @Override
-    public BaseResult faceChecker(String image) {
-        return faceUtil.faceChecker(image);
-    }
 
     /**
      * @param request
@@ -234,22 +201,26 @@ public class UserServiceImpl implements UserService {
         List<Student> students = new ArrayList<Student>();
         List<List<Object>> list = ExcelUtil.getListByExcel(in, filename);
         System.out.println(list);
-        String sName = null;
         String gender = null;
+        String sName = null;
+        String cNo = null;
         Date birthday = null;
         String buildingNo = null;
         String roomNo = null;
+        String phoneNum = null;
         for (List row : list) {
             String sNo = String.valueOf(row.get(0));
             sName = String.valueOf(row.get(1));
-            gender = String.valueOf(row.get(2));
+            cNo = String.valueOf(row.get(2));
+            gender = String.valueOf(row.get(3));
             System.out.println(String.valueOf(row.get(3)));
-            if (StringUtils.isNotBlank(String.valueOf(row.get(3))))
-                birthday = Date.valueOf(String.valueOf(row.get(3)));
-            buildingNo = String.valueOf(row.get(4));
-            roomNo = String.valueOf(row.get(5));
+            if (StringUtils.isNotBlank(String.valueOf(row.get(4))))
+                birthday = Date.valueOf(String.valueOf(row.get(4)));
+            buildingNo = String.valueOf(row.get(5));
+            roomNo = String.valueOf(row.get(6));
+            phoneNum = String.valueOf(row.get(7));
 
-            Student student = new Student(sNo, sName, gender, birthday, buildingNo, roomNo);
+            Student student = new Student(sNo, sName, cNo, gender, birthday, buildingNo, roomNo, phoneNum);
             students.add(student);
 
             log.debug("导入的列表：{}", students);

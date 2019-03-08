@@ -2,6 +2,7 @@ package top.flytop.studentsign.service;
 
 import org.springframework.web.multipart.MultipartFile;
 import top.flytop.studentsign.dto.BaseResult;
+import top.flytop.studentsign.pojo.SClass;
 import top.flytop.studentsign.pojo.Student;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +14,7 @@ public interface UserService {
 
     List<Student> getAllStudent();
 
-    BaseResult addFace(Student stu, String image);
+    List<SClass> getAllSClass();
 
     BaseResult addStudent(Student stu);
 
@@ -24,8 +25,6 @@ public interface UserService {
     BaseResult updateInfo(Student student);
 
     BaseResult removeUser(String sNo) throws Exception;
-
-    BaseResult faceChecker(String image);
 
     BaseResult changePwd(HttpServletRequest request);
 

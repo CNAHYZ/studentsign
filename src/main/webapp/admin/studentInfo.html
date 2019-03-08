@@ -33,9 +33,7 @@
     <link rel="stylesheet" id="css-main" href="../assets/css/oneui.min.css">
     <!-- Page JS Plugins CSS -->
     <link rel="stylesheet" href="../assets/js/plugins/sweetalert2/sweetalert2.min.css">
-    <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
-    <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/amethyst.min.css"> -->
-    <!-- END Stylesheets -->
+    <link rel="stylesheet" href="../assets/js/plugins/select2/css/select2.min.css">
 </head>
 <body>
 <!-- Page Container -->
@@ -577,6 +575,13 @@ MAIN CONTENT LAYOUT
                                     </div>
                                 </div>
                                 <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label" for="select_class">班&nbsp;级</label>
+                                    <div class="col-md-6">
+                                        <select class=" form-control" name="cNo" id="select_class"
+                                                style="width: 100%"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
                                     <label class="col-sm-2 col-form-label" for="3">性&nbsp;别</label>
                                     <div class="form-group col-sm-6" id="3"
                                          style="padding-top: 10px;margin-bottom: -10px">
@@ -596,34 +601,36 @@ MAIN CONTENT LAYOUT
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label" for="4">楼&nbsp;号</label>
-                                    <div class="col-sm-6">
-                                        <input class="form-control" id="4" name="buildingNo" placeholder="宿舍楼号">
+                                    <label class="col-sm-2 col-form-label" for="4">宿舍号</label>
+                                    <div class="col-sm-6 input-group">
+                                        <input class="form-control col-sm-6" id="4" name="buildingNo" placeholder="楼号">
+                                        <div class="font-weight-bold">&nbsp;&nbsp;#&nbsp;&nbsp;</div>
+                                        <input class="form-control col-sm-6" id="5" name="roomNo" placeholder="房间号">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label" for="5">房&nbsp;间&nbsp;号</label>
+                                    <label class="col-sm-2 col-form-label" for="6">出生日期</label>
                                     <div class="col-sm-6">
-                                        <input class="form-control" id="5" name="roomNo" placeholder="宿舍房间号">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label" for="6">生&nbsp;日</label>
-                                    <div class="col-sm-6">
-                                        <input class="form-control" type="text-" id="6" name="birthday"
+                                        <input class="form-control" type="text" id="6" name="birthday"
                                                placeholder="出生日期">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label" for="7">联系方式</label>
+                                    <div class="col-sm-6">
+                                        <input class="form-control" type="text" id="7" name="phoneNum"
+                                               placeholder="联系方式">
                                     </div>
                                 </div>
                             </form>
                             <!-- END Form Horizontal - Default Style -->
                             <div class=" form-group row">
-                                <label class="col-sm-2 col-form-label" for="7">面&nbsp;部&nbsp;图&nbsp;像</label>
-                                <!-- Populating custom file input label with the selected filename (data-toggle="custom-file-input" is initialized in Helpers.coreBootstrapCustomFileInput()) -->
+                                <label class="col-sm-2 col-form-label" for="8">面部图像</label>
                                 <div class="col-sm-6">
                                     <input type="file" class="custom-file-input"
-                                           data-toggle="custom-file-input" id="7"
+                                           data-toggle="custom-file-input" id="8"
                                            name="faceImage">
-                                    <label class="custom-file-label" for="7"></label>
+                                    <label class="custom-file-label" for="8"></label>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -636,10 +643,8 @@ MAIN CONTENT LAYOUT
                 </div>
             </div>
             <!-- END Horizontal -->
-
         </div>
         <!-- END Page Content -->
-
     </main>
     <!-- END Main Container -->
 
@@ -647,11 +652,6 @@ MAIN CONTENT LAYOUT
     <footer id="page-footer" class="bg-body-light">
         <div class="content py-3">
             <div class="row font-size-sm">
-                <div class="col-sm-6 order-sm-2 py-1 text-center text-sm-right">
-                    Crafted with <i class="fa fa-heart text-danger"></i> by <a class="font-w600"
-                                                                               href="https://1.envato.market/ydb"
-                                                                               target="_blank">pixelcave</a>
-                </div>
                 <div class="col-sm-6 order-sm-1 py-1 text-center text-sm-left">
                     <a class="font-w600" href="https://1.envato.market/xWy" target="_blank">OneUI 4.0</a> &copy; <span
                         data-toggle="year-copy">2018</span>
@@ -670,20 +670,17 @@ MAIN CONTENT LAYOUT
 
 <script src="../assets/js/oneui.app.min.js"></script>
 <script src="../assets/js/plugins/jquery.formautofill.js"></script>
-<!-- Page JS Plugins  提醒-->
-<script src="../assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js"></script>
 
 <script src="../assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
 <script src="../assets/js/plugins/jquery-validation/localization/messages_zh.js"></script>
 
-<!-- Page JS Plugins 对话框-->
-<script src="assets/js/plugins/es6-promise/es6-promise.auto.min.js"></script>
 <script src="../assets/js/plugins/sweetalert2/sweetalert2.min.js"></script>
+<script src="../assets/js/plugins/select2/js/select2.full.min.js"></script>
+<script src="../assets/js/plugins/select2/js/i18n/zh-CN.js"></script>
 
 <script>
     /**
      * 页面加载时根据学号获取学生信息
-     *
      * */
     $(document).ready(getInfo = function () {
         var thisURL = document.URL;
@@ -699,22 +696,82 @@ MAIN CONTENT LAYOUT
             data: {"sNo": sno},
             dataType: "json",
             success: function (data) {
+                var realData = data.data;
                 if (data.success) {
                     //使用formautofill插件自动填充表单
-                    $(".form_alter").autofill(data.data);
-                    var path = data.data.faceImage;
-                    if (path != '') {
+                    $(".form_alter").autofill(realData);
+                    /*var path = data.data.faceImage;
+                    if (path !== '') {
                         console.log(path);
                         $("#faceImage").attr("src", path);
+                    }*/
+                    initClassList();
+                    /*初始化当前班级*/
+                    if (realData.sClass) {
+                        var classSelect = $("#select_class");
+                        // create the option and append to Select2
+                        var option = new Option(realData.sClass.grade + "  " + realData.sClass.cName,
+                            realData.sClass.cNo, true, true);
+                        classSelect.append(option).trigger('change');
+                        /* classSelect.trigger({
+                             type: 'select2:select',
+                             params: {
+                                 data: realData
+                             }
+                         });*/
                     }
                 } else
-                    One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: data.errMsg});
+                    Swal.mixin({
+                        toast: true, position: 'top', showConfirmButton: false, timer: 5000
+                    }).fire({type: 'error', title: data.errMsg});
             },
             error: function () {
-                One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: "未知错误，请重试或联系管理员！"});
+                Swal.mixin({
+                    toast: true, position: 'top', showConfirmButton: false, timer: 5000
+                }).fire({type: 'error', title: "未知错误，请稍后再试！"});
             }
         })
     });
+
+    /**
+     * 初始化班级下拉列表
+     */
+    function initClassList() {
+        var select2 = $('#select_class').select2({
+            placeholder: '暂未设置该生班级',
+            delay: 250,
+            language: "zh-CN",
+            ajax: {
+                url: 'classList.do',
+                dataType: 'json',
+                type: 'post',
+                processResults: function (data) {
+                    console.log(data.data);
+                    var realData = $.map(data.data, function (obj) {
+                        //自定义对应关系，id-->cNo，text-->grade、cName
+                        obj.id = obj.id || obj.cNo;
+                        obj.text = obj.text || obj.grade + "  " + obj.cName;
+                        return obj;
+                    });
+                    return {
+                        results: realData
+                    };
+                },
+                success: function (data) {
+                    if (!data.success) {
+                        Swal.mixin({
+                            toast: true, position: 'top', showConfirmButton: false, timer: 5000
+                        }).fire({type: 'error', title: data.errMsg});
+                    }
+                },
+                error: function () {
+                    Swal.mixin({
+                        toast: true, position: 'top', showConfirmButton: false, timer: 5000
+                    }).fire({type: 'error', title: "获取班级列表失败，请重试！"});
+                }
+            }
+        })
+    }
 
     /**
      * 提交按钮点击事件
@@ -733,14 +790,13 @@ MAIN CONTENT LAYOUT
             html: !1,
             preConfirm: function (e) {
                 return new Promise(function (e) {
-
                     setTimeout(function () {
                         e()
                     }, 50)
                 })
             }
         }).then(function (e) {
-            e.value ? convert($('#7')[0]) : "cancel" === e.dismiss /*&& swal("已取消", "", "error")*/
+            e.value ? convert($('#8')[0]) : "cancel" === e.dismiss /*&& swal("已取消", "", "error")*/
         });
 
         /**
@@ -775,7 +831,7 @@ MAIN CONTENT LAYOUT
          * @param imgData
          */
         function commitAlter(imgData) {
-            console.log($('#7')[0].files[0]);
+            console.log($('#8')[0].files[0]);
             var upData = new FormData($('.form_alter')[0]);
             console.log(imgData);
             upData.append("faceImage", imgData);
@@ -793,14 +849,21 @@ MAIN CONTENT LAYOUT
                         swal(data.data, "", "success");
                         getInfo();
                     } else
-                        One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: data.errMsg});
+                        Swal.mixin({
+                            toast: true, position: 'top', showConfirmButton: false, timer: 5000
+                        }).fire({type: 'error', title: data.errMsg});
                 },
                 error: function () {
-                    One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: "未知错误，请重试或联系管理员！"});
+                    Swal.mixin({
+                        toast: true, position: 'top', showConfirmButton: false, timer: 5000
+                    }).fire({type: 'error', title: "未知错误，请稍后再试！"});
                 }
             })
         }
     });
+    /**
+     * 表单合法性验证
+     */
     $(function () {
         validator = $(".form_alter").validate({
             errorClass: "invalid-feedback animated fadeIn",

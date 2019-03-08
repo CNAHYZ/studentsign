@@ -523,13 +523,14 @@
                            id="datatable">
                         <thead>
                         <tr>
-                            <!--<th class="text-center" style="width: 10%;">ID</th>-->
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">学号</th>
+                            <th class="d-none d-sm-table-cell" style="width: 14%;">学号</th>
                             <th class="d-none d-sm-table-cell" style="width: 12%;">姓名</th>
-                            <th class="d-none d-sm-table-cell" style="width: 10%;">性别</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">宿舍号</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">出生日期</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">操作</th>
+                            <th class="d-none d-sm-table-cell" style="width: 18%;">班级</th>
+                            <th class="d-none d-sm-table-cell" style="width: 8%;">性别</th>
+                            <th class="d-none d-sm-table-cell" style="width: 10%;">宿舍号</th>
+                            <th class="d-none d-sm-table-cell" style="width: 14%;">出生日期</th>
+                            <th class="d-none d-sm-table-cell" style="width: 14%;">联系方式</th>
+                            <th class="d-none d-sm-table-cell" style="width: 16%;">操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -581,6 +582,7 @@
         columns: [
             {data: "sNo"},
             {data: "sName"},
+            {data: "sClass"},
             {
                 data: "gender",
                 defaultContent: "-"
@@ -590,6 +592,10 @@
             },
             {
                 data: "birthday",
+                defaultContent: "-"
+            },
+            {
+                data: "phoneNum",
                 defaultContent: "-"
             },
             {
@@ -615,13 +621,22 @@
         "columnDefs": [
             {//每列定义
                 "orderable": false,
-                "targets": [1, 4, -1]//第x列不排序
+                "targets": [1, 4, -1, -2, -3]//第x列不排序
             },
             {
-                "targets": [3],//第x列不排序
+                "targets": [2],
                 defaultContent: "-",
                 render: function (data, type, full) {
-                    return full.buildingNo + "#" + full.roomNo
+                    // console.log(data.sClass.cName);
+                    if (data)
+                        return data.grade + " " + data.cName
+                }
+            },
+            {
+                "targets": [4],
+                defaultContent: "-",
+                render: function (data, type, full) {
+                    return data.buildingNo + "#" + data.roomNo
                 }
             }
         ]
@@ -680,7 +695,7 @@
                             swal(data.errMsg, '', "error");
                         }
                     }, error: function (data) {
-                        swal('系统错误，请稍后再试或联系管理员', '', "error");
+                        swal('系统错误，请稍后再试！', '', "error");
                     }
                 }
             )
@@ -693,7 +708,7 @@
      */
     function resetPwd(id) {
         swal({
-            title: "确认重置吗?",
+            title: "确认重置该生密码吗?",
             type: "warning",
             showCancelButton: !0,
             confirmButtonClass: "btn btn-danger m-1",
@@ -721,7 +736,7 @@
                             swal(data.errMsg, '', "error");
                         }
                     }, error: function (data) {
-                        swal('系统错误，请稍后再试或联系管理员', '', "error");
+                        swal('系统错误，请稍后再试！', '', "error");
                     }
                 }
             )
