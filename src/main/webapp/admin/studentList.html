@@ -282,28 +282,6 @@
                     <i class="fa fa-fw fa-ellipsis-v"></i>
                 </button>
                 <!-- END Toggle Mini Sidebar -->
-
-                <!-- Open Search Section (visible on smaller screens) -->
-                <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                <button type="button" class="btn btn-sm btn-dual d-sm-none" data-toggle="layout"
-                        data-action="header_search_on">
-                    <i class="si si-magnifier"></i>
-                </button>
-                <!-- END Open Search Section -->
-
-                <!-- Search Form (visible on larger screens) -->
-                <form class="d-none d-sm-inline-block" action="be_pages_generic_search.html" method="POST">
-                    <div class="input-group input-group-sm">
-                        <input type="text" class="form-control form-control-alt" placeholder="Search.."
-                               id="page-header-search-input2" name="page-header-search-input2">
-                        <div class="input-group-append">
-                                    <span class="input-group-text bg-body border-0">
-                                        <i class="si si-magnifier"></i>
-                                    </span>
-                        </div>
-                    </div>
-                </form>
-                <!-- END Search Form -->
             </div>
             <!-- END Left Section -->
 
@@ -607,7 +585,7 @@
                         '<i class="fa fa-fw fa-pencil-alt"></i>' +
                         '</button>' +
                         '<button type="button" class="btn btn-sm btn-primary js-tooltip-enabled"' +
-                        ' data-toggle="tooltip" title="重置密码" onclick="resetPwd(' + row.sNo + ')">' +
+                        ' data-toggle="tooltip" title="账户初始化" onclick="initAccount(' + row.sNo + ')">' +
                         '<i class="fa fa-fw fa-eraser"></i>' +
                         '</button>' +
                         '<button type="button" class="btn btn-sm btn-primary js-tooltip-enabled" ' +
@@ -703,28 +681,32 @@
     }
 
     /**
-     * 密码重置
+     * 账户初始化
      * @param id
      */
-    function resetPwd(id) {
-        swal({
-            title: "确认重置该生密码吗?",
+    function initAccount(id) {
+        sw = swal({
+            title: "确认初始化该生账户?",
             type: "warning",
             showCancelButton: !0,
             confirmButtonClass: "btn btn-danger m-1",
             cancelButtonClass: "btn btn-secondary m-1",
-            confirmButtonText: "确认重置",
+            confirmButtonText: "确认",
             cancelButtonText: "取消",
+            showLoaderOnConfirm: true,
             html: !1,
-        }).then(function (e) {
+            preConfirm: function (e) {
+                reset();
+            }
+        })/*.then(function (e) {
             e.value ? reset() : "cancel" === e.dismiss
-        });
+        });*/
 
         function reset() {
             $.ajax(
                 {
                     type: "post",
-                    url: "resetStudentPwd.do",
+                    url: "initStuAccount.do",
                     dataType: "json",
                     data: {
                         "username": id

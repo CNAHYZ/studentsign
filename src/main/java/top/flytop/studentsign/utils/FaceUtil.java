@@ -74,22 +74,14 @@ public class FaceUtil {
             String a = res.toString(2);
             System.out.println(a);
             JSONArray faceList = res.getJSONObject("result").getJSONArray("face_list");
-            Map<String, Object> faceMap = new HashMap<>();
             ArrayList<Map> faceMapList = new ArrayList<>();
             for (int i = 0; i < faceList.length(); i++) {
                 String ctime = faceList.getJSONObject(i).getString("ctime");
                 String faceToken = faceList.getJSONObject(i).getString("face_token");
-               /*拼接图像显示的URL
-                https://console.bce.baidu.com/ai/s/facelib/face?appId=665453&groupId=user
-                &uid=admin&faceId=85186c7ec1dc5c951e92203fa19ac26a
-                */
-                String prefix = "https://console.bce.baidu.com/ai/s/facelib/face?" +
-                        "appId=665453&groupId=user&";
-                String faceUrl = prefix + "uid=" + uid + "&faceId=" + faceToken;
 
+                Map<String, String> faceMap = new HashMap<>();
                 faceMap.put("ctime", ctime);
                 faceMap.put("faceToken", faceToken);
-                faceMap.put("faceUrl", faceUrl);
                 faceMapList.add(faceMap);
             }
             System.out.println(faceMapList);
@@ -155,11 +147,12 @@ public class FaceUtil {
         res = client.addUser(image, imageType, groupId, uid, options);
         System.out.println("=====================注册返回结果=====================");
         System.out.println(res.toString(2));
+        String faceToken = res.getJSONObject("result").getString("face_token");
+
         if (isNormal(res).isSuccess())
             // 注册成功
-            return BaseResult.success(null);
+            return BaseResult.success(faceToken);
         else
-
             return new BaseResult(false, 1, "上传失败：" + res.getString("error_msg"));
     }
 

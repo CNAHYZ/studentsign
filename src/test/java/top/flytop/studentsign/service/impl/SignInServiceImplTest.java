@@ -5,7 +5,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import top.flytop.studentsign.utils.ImageUtil;
+import top.flytop.studentsign.utils.FileUtil;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:spring/applicationContext.xml")
@@ -13,7 +13,7 @@ public class SignInServiceImplTest {
     @Autowired
     private SignInServiceImpl signInService;
     @Autowired
-    private ImageUtil imageUtil;
+    private FileUtil fileUtil;
 
     @Test
     public void getSignRecord() {
@@ -22,7 +22,7 @@ public class SignInServiceImplTest {
 
     @Test
     public void testStudentSign() {
-        String im = imageUtil.imageToBase64("D://2.jpg");
+        String im = fileUtil.imageToBase64("D://2.jpg");
         System.out.println(signInService.studentSign(im));
     }
 }

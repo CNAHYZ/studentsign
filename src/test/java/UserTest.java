@@ -6,7 +6,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import top.flytop.studentsign.mapper.UserMapper;
 import top.flytop.studentsign.pojo.Student;
 import top.flytop.studentsign.service.impl.UserServiceImpl;
-import top.flytop.studentsign.utils.ImageUtil;
+import top.flytop.studentsign.utils.FileUtil;
 
 import javax.annotation.Resource;
 
@@ -20,7 +20,7 @@ public class UserTest {
     @Resource
     public Student stu;
     @Autowired
-    private ImageUtil imageUtil;
+    private FileUtil fileUtil;
 
     @Test
     public void testGetStuInfo() {
@@ -47,14 +47,14 @@ public class UserTest {
     public void testStudentReg() {
         stu.setsNo("27");
         stu.setsName("yyyy");
-        String im = imageUtil.imageToBase64("D://2.jpg");
+        String im = fileUtil.imageToBase64("D://2.jpg");
 //        BaseResult res = userServiceImpl.addFace(stu, im);
 //        System.out.println(res);
     }
 
     @Test
     public void testUserLogin() {
-        String im = imageUtil.imageToBase64("D://1.jpg");
+        String im = fileUtil.imageToBase64("D://1.jpg");
         System.out.println(userServiceImpl.loginByFace(im, "23"));
     }
 

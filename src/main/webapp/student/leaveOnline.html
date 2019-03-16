@@ -289,9 +289,10 @@
     });
 
     $("#btn_submit").click(function () {
-        if (!$(".askLeave").valid())
+        var askLeaveSelect = $('.askLeave');
+        if (!askLeaveSelect.valid())
             return;
-        form = new FormData($('.askLeave')[0]);
+        form = new FormData(askLeaveSelect[0]);
         $.ajax({
             processData: false,
             contentType: false,
@@ -318,6 +319,9 @@
         })
     });
 
+    /**
+     * 文件框改变事件（选择文件）
+     */
     function changFile(e) {
         for (var i = 0; i < e.target.files.length; i++) {
             var file = e.target.files.item(i);

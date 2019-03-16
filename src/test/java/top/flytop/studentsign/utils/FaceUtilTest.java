@@ -13,7 +13,7 @@ public class FaceUtilTest {
     @Autowired
     private FaceUtil faceUtil;
     @Autowired
-    private ImageUtil imageUtil;
+    private FileUtil fileUtil;
 
     @Test
     public void getClient() {
@@ -27,14 +27,14 @@ public class FaceUtilTest {
 
     @Test
     public void faceChecker() {
-        String im = imageUtil.imageToBase64("D://3.jpg");
+        String im = fileUtil.imageToBase64("D://3.jpg");
         BaseResult result = faceUtil.faceChecker(im);
         System.out.println(result);
     }
 
     @Test
     public void faceSearch() {
-        String im = imageUtil.imageToBase64("D://3.jpg");
+        String im = fileUtil.imageToBase64("D://3.jpg");
         System.out.println(faceUtil.faceSearch(im, null));
     }
 

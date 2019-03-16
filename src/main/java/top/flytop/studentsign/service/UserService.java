@@ -30,7 +30,7 @@ public interface UserService {
 
     BaseResult importStuInfo(InputStream in, MultipartFile uploadFile) throws Exception;
 
-    BaseResult initialUser() throws Exception;
+    BaseResult initAllUsers() throws Exception;
 
-    BaseResult resetStudentPwd(String username) throws Exception;
+    BaseResult initStuAccount(String username) throws Exception;
 }

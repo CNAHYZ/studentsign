@@ -1,7 +1,9 @@
 package top.flytop.studentsign.service;
 
 import top.flytop.studentsign.dto.BaseResult;
-import top.flytop.studentsign.pojo.Student;
+
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
 /**
  * @ClassName FaceService
@@ -11,10 +13,11 @@ import top.flytop.studentsign.pojo.Student;
  * @Version 1.0
  */
 public interface FaceService {
-    BaseResult addFace(Student stu, String image);
+    BaseResult addFace(HttpServletRequest request) throws IOException;
 
     BaseResult faceChecker(String image);
 
     BaseResult getUserFaceList(String uid);
 
+    BaseResult removeFaceImg(HttpServletRequest request);
 }

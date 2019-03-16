@@ -13,7 +13,6 @@
     src: url('./fonts/slick.eot');
     src: url('./fonts/slick.eot?#iefix') format('embedded-opentype'), url('./fonts/slick.woff') format('woff'), url('./fonts/slick.ttf') format('truetype'), url('./fonts/slick.svg#slick') format('svg');
 }
-
 /* Arrows */
 .slick-prev,
 .slick-next {
@@ -39,7 +38,6 @@
     outline: none;
     background: transparent;
 }
-
 .slick-prev:hover,
 .slick-prev:focus,
 .slick-next:hover,
@@ -48,14 +46,12 @@
     outline: none;
     background: transparent;
 }
-
 .slick-prev:hover:before,
 .slick-prev:focus:before,
 .slick-next:hover:before,
 .slick-next:focus:before {
     opacity: 1;
 }
-
 .slick-prev.slick-disabled:before,
 .slick-next.slick-disabled:before {
     opacity: .25;
@@ -158,12 +154,10 @@
     outline: none;
     background: transparent;
 }
-
 .slick-dots li button:hover,
 .slick-dots li button:focus {
     outline: none;
 }
-
 .slick-dots li button:hover:before,
 .slick-dots li button:focus:before {
     opacity: 1;

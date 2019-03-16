@@ -33,7 +33,9 @@ public interface UserMapper {
 
     Integer batchAddStudent(List<Student> students);
 
-    Integer initialUser(@Param("pwd") String pwd, @Param("salt") String salt);
+    Integer initAllUsers(@Param("pwd") String pwd, @Param("salt") String salt);
 
-    Integer resetStudentPwd(@Param("pwd") String pwd, @Param("salt") String salt, @Param("username") String username);
+    Integer initUser(User user);
+
+    Integer resetStuPwd(User user);
 }

@@ -28,12 +28,29 @@
     <!-- END Icons -->
 
     <!-- Stylesheets -->
-    <!-- Fonts and OneUI framework -->
-    <link rel="stylesheet" href="#">
-    <link rel="stylesheet" id="css-main" href="../assets/css/oneui.min.css">
     <!-- Page JS Plugins CSS -->
     <link rel="stylesheet" href="../assets/js/plugins/sweetalert2/sweetalert2.min.css">
     <link rel="stylesheet" href="../assets/js/plugins/select2/css/select2.min.css">
+
+    <link rel="stylesheet" href="../assets/js/plugins/slick-carousel/slick.css">
+    <link rel="stylesheet" href="../assets/js/plugins/slick-carousel/slick-theme.css">
+
+    <link rel="stylesheet" href="../assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css">
+
+    <!-- Fonts and OneUI framework -->
+    <link rel="stylesheet" href="#">
+    <link rel="stylesheet" id="css-main" href="../assets/css/oneui.min.css">
+    <style>
+        #slick_img img {
+            display: block;
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+    </style>
 </head>
 <body>
 <!-- Page Container -->
@@ -292,27 +309,6 @@ MAIN CONTENT LAYOUT
                 </button>
                 <!-- END Toggle Mini Sidebar -->
 
-                <!-- Open Search Section (visible on smaller screens) -->
-                <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                <button type="button" class="btn btn-sm btn-dual d-sm-none" data-toggle="layout"
-                        data-action="header_search_on">
-                    <i class="si si-magnifier"></i>
-                </button>
-                <!-- END Open Search Section -->
-
-                <!-- Search Form (visible on larger screens) -->
-                <form class="d-none d-sm-inline-block" action="be_pages_generic_search.html" method="POST">
-                    <div class="input-group input-group-sm">
-                        <input type="text" class="form-control form-control-alt" placeholder="Search.."
-                               id="page-header-search-input2" name="page-header-search-input2">
-                        <div class="input-group-append">
-                                    <span class="input-group-text bg-body border-0">
-                                        <i class="si si-magnifier"></i>
-                                    </span>
-                        </div>
-                    </div>
-                </form>
-                <!-- END Search Form -->
             </div>
             <!-- END Left Section -->
 
@@ -537,102 +533,89 @@ MAIN CONTENT LAYOUT
                 <div class="block-content block-content-full">
 
                     <div class="row">
-                        <div class="col-lg-1"></div>
-                        <div class="col-lg-3">
-                            <div class="options-container fx-item-zoom-in fx-overlay-zoom-out col-lg-12"
-                                 style="min-height: 200px">
-                                <img class="img-fluid options-item" id="faceImage"
-                                     src="../assets/media/photos/noimage.png"
-                                     alt="面部图像">
-                                <!--  <div class="options-overlay bg-black-75">
-                                      <div class="options-overlay-content">
-                                          <h3 class="h4 text-white mb-2">图像操作</h3>
-                                          <a class="btn btn-sm btn-light" href="javascript:void(0)">
-                                              <i class="fa fa-pencil-alt text-primary mr-1"></i> 修改
-                                          </a>
-                                          <a class="btn btn-sm btn-light" href="javascript:void(0)">
-                                              <i class="fa fa-times text-danger mr-1"></i> 删除
-                                          </a>
-                                      </div>
-                                  </div>-->
+                        <div class="col-lg-5 col-md-4 row">
+                            <div class="col-lg-3"></div>
+                            <div class="col-lg-8">
+                                <div id="slick_img" class="js-slider text-center slick-nav-black mb-4">
+                                </div>
+                                <div class="text-center mb-3">
+                                    <a class="btn  btn-light" href="javascript:addFaceImg()">
+                                        <i class="fa fa-plus text-primary mr-1"></i> 添加图片
+                                    </a>
+                                    <a class="btn  btn-light" href="javascript:removeFaceImg()">
+                                        <i class="fa fa-times text-danger mr-1"></i> 删除当前
+                                    </a>
+                                </div>
                             </div>
+                            <div class="col-lg-1"></div>
                         </div>
-                        <div class="col-lg-8">
+                        <div class="col-lg-7 col-md-8 mt-3">
                             <!-- Form Horizontal - Default Style -->
                             <form class="form_alter" enctype="multipart/form-data" action="" method="POST"
                                   onsubmit="return false;">
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label" for="example-hf-email">学&nbsp;号</label>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-8">
                                         <input type="text" readonly="readonly" class="form-control"
                                                id="example-hf-email" name="sNo" placeholder="学号">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label" for="2">姓&nbsp;名</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="2" name="sName" placeholder="学生姓名">
+                                    <label class="col-sm-2 col-form-label" for="sName">姓&nbsp;名</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="sName" name="sName"
+                                               placeholder="学生姓名">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label" for="select_class">班&nbsp;级</label>
-                                    <div class="col-md-6">
+                                    <div class="col-sm-8">
                                         <select class=" form-control" name="cNo" id="select_class"
                                                 style="width: 100%"></select>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label" for="3">性&nbsp;别</label>
-                                    <div class="form-group col-sm-6" id="3"
+                                    <label class="col-sm-2 col-form-label" for="gender">性&nbsp;别</label>
+                                    <div class="form-group col-sm-8 row ml-0" id="gender"
                                          style="padding-top: 10px;margin-bottom: -10px">
-                                        <div class="custom-control custom-radio custom-control-inline custom-control-lg col-sm-3">
+                                        <div class="custom-control custom-radio custom-control-inline custom-control-lg col-4">
                                             <input type="radio" class="custom-control-input"
-                                                   id="example-rd-custom-inline1" name="gender" value="男"
-                                                   checked="checked">
-                                            <label class="custom-control-label"
-                                                   for="example-rd-custom-inline1">男</label>
+                                                   id="rd1" name="gender" value="男" checked="checked">
+                                            <label class="custom-control-label" for="rd1">男</label>
                                         </div>
                                         <div class="custom-control custom-radio custom-control-inline custom-control-lg">
                                             <input type="radio" class="custom-control-input"
-                                                   id="example-rd-custom-inline2" name="gender" value="女">
-                                            <label class="custom-control-label"
-                                                   for="example-rd-custom-inline2">女</label>
+                                                   id="rd2" name="gender" value="女">
+                                            <label class="custom-control-label" for="rd2">女</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label" for="4">宿舍号</label>
-                                    <div class="col-sm-6 input-group">
-                                        <input class="form-control col-sm-6" id="4" name="buildingNo" placeholder="楼号">
+                                    <label class="col-sm-2 col-form-label" for="buildingNo">宿舍号</label>
+                                    <div class="col-sm-8 input-group">
+                                        <input class="form-control col-sm-6" id="buildingNo" name="buildingNo"
+                                               placeholder="楼号">
                                         <div class="font-weight-bold">&nbsp;&nbsp;#&nbsp;&nbsp;</div>
-                                        <input class="form-control col-sm-6" id="5" name="roomNo" placeholder="房间号">
+                                        <input class="form-control col-sm-6" id="roomNo" name="roomNo"
+                                               placeholder="房间号">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label" for="6">出生日期</label>
-                                    <div class="col-sm-6">
-                                        <input class="form-control" type="text" id="6" name="birthday"
+                                    <label class="col-sm-2 col-form-label" for="birthday">出生日期</label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control" type="text" id="birthday" name="birthday"
                                                placeholder="出生日期">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label" for="7">联系方式</label>
-                                    <div class="col-sm-6">
-                                        <input class="form-control" type="text" id="7" name="phoneNum"
+                                    <label class="col-sm-2 col-form-label" for="phoneNum">联系方式</label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control" type="text" id="phoneNum" name="phoneNum"
                                                placeholder="联系方式">
                                     </div>
                                 </div>
                             </form>
                             <!-- END Form Horizontal - Default Style -->
-                            <div class=" form-group row">
-                                <label class="col-sm-2 col-form-label" for="8">面部图像</label>
-                                <div class="col-sm-6">
-                                    <input type="file" class="custom-file-input"
-                                           data-toggle="custom-file-input" id="8"
-                                           name="faceImage">
-                                    <label class="custom-file-label" for="8"></label>
-                                </div>
-                            </div>
                             <div class="form-group row">
                                 <div class="col-sm-10 ml-auto">
                                     <button type="button" class="btn btn-primary" id="btn_submit">提交修改</button>
@@ -643,6 +626,41 @@ MAIN CONTENT LAYOUT
                 </div>
             </div>
             <!-- END Horizontal -->
+            <!-- /.content -->
+            <div class="content">
+                <!-- 模态框（Modal） -->
+                <div class="modal fade" id="addImgModal" tabindex="-1" role="dialog" aria-labelledby="addImgModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="pictureModalLabel">请上传要添加的图片</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true" class="fa fa-times "></span></button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <!--<input type="hidden" id="picturePath" value="">-->
+                                    <img id="img" src="" alt="" width="200px">
+                                    <div class="mt-2 form-group row">
+                                        <label class="col-sm-2 col-form-label" for="faceImage">图像</label>
+                                        <div class="col-sm-10">
+                                            <input type="file" class="custom-file-input"
+                                                   accept="image/png,image/jpeg" data-toggle="custom-file-input"
+                                                   id="faceImage" name="faceImage" onchange="changFile(event)">
+                                            <label class="custom-file-label" for="faceImage"></label>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">取&nbsp;消</button>
+                                <button type="button" class="btn btn-primary" id="confirmAdd">确&nbsp;认</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.modal -->
+            </div>
         </div>
         <!-- END Page Content -->
     </main>
@@ -675,10 +693,35 @@ MAIN CONTENT LAYOUT
 <script src="../assets/js/plugins/jquery-validation/localization/messages_zh.js"></script>
 
 <script src="../assets/js/plugins/sweetalert2/sweetalert2.min.js"></script>
+
 <script src="../assets/js/plugins/select2/js/select2.full.min.js"></script>
 <script src="../assets/js/plugins/select2/js/i18n/zh-CN.js"></script>
 
+<script src="../assets/js/plugins/slick-carousel/slick.min.js"></script>
+
+<script src="../assets/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+<script src="../assets/js/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+
+<script src="../assets/js/common/studentAdd_Info.js"></script>
 <script>
+
+    var getStuInfoUrl = "studentInfoGet.do";
+    var getStuFaceImgUrl = "getStuFaceImg.do";
+    var getClassListUrl = "classList.do";
+    var altStuInfoUrl = "studentInfoAlter.do";
+    var addStuFaceImgUrl = "addFaceImg.do";
+    var removeStuFaceImgUrl = "removeFaceImg.do";
+
+    var sno;
+    var mySlick;
+    //用来存放轮播图下标及其对应的faceToken
+    var tokenObject = {};
+
+    /**
+     * 初始化select2和Datepicker
+     */
+    $(initClassList(), initDatepicker());
+
     /**
      * 页面加载时根据学号获取学生信息
      * */
@@ -692,7 +735,7 @@ MAIN CONTENT LAYOUT
         sno = decodeURI(parameters.substr(1).split('&')[0]);
         $.ajax({
             type: "post",
-            url: "studentInfoGet.do",
+            url: getStuInfoUrl,
             data: {"sNo": sno},
             dataType: "json",
             success: function (data) {
@@ -700,12 +743,8 @@ MAIN CONTENT LAYOUT
                 if (data.success) {
                     //使用formautofill插件自动填充表单
                     $(".form_alter").autofill(realData);
-                    /*var path = data.data.faceImage;
-                    if (path !== '') {
-                        console.log(path);
-                        $("#faceImage").attr("src", path);
-                    }*/
-                    initClassList();
+                    //显示图片
+                    faceImgHandler(sno);
                     /*初始化当前班级*/
                     if (realData.sClass) {
                         var classSelect = $("#select_class");
@@ -728,54 +767,207 @@ MAIN CONTENT LAYOUT
             error: function () {
                 Swal.mixin({
                     toast: true, position: 'top', showConfirmButton: false, timer: 5000
-                }).fire({type: 'error', title: "未知错误，请稍后再试！"});
+                }).fire({type: 'error', title: "系统错误，请稍后再试！"});
             }
         })
     });
 
+
     /**
-     * 初始化班级下拉列表
+     * 处理页面加载时图片的显示
      */
-    function initClassList() {
-        var select2 = $('#select_class').select2({
-            placeholder: '暂未设置该生班级',
-            delay: 250,
-            language: "zh-CN",
-            ajax: {
-                url: 'classList.do',
-                dataType: 'json',
-                type: 'post',
-                processResults: function (data) {
-                    console.log(data.data);
-                    var realData = $.map(data.data, function (obj) {
-                        //自定义对应关系，id-->cNo，text-->grade、cName
-                        obj.id = obj.id || obj.cNo;
-                        obj.text = obj.text || obj.grade + "  " + obj.cName;
-                        return obj;
+    function faceImgHandler(sNo) {
+        $.ajax({
+            data: {"sNo": sno},
+            dataType: "json",
+            type: "post",
+            url: getStuFaceImgUrl,
+            success: function (data) {
+                console.log(data);
+                if (data.success) {
+                    reloadSlick();
+                    data.data.forEach(function (item, index) {
+                        //对象添加属性
+                        tokenObject[index] = item.faceToken;
+                        mySlick.slick("slickAdd", '<div>\n' +
+                            '                          <img src="' + item.url + '" alt="面部图像">\n' +
+                            '                          <div hidden class="text-muted" id="faceToken">' + item.faceToken + '</div>\n' +
+                            '                    </div>');
                     });
-                    return {
-                        results: realData
-                    };
-                },
-                success: function (data) {
-                    if (!data.success) {
-                        Swal.mixin({
-                            toast: true, position: 'top', showConfirmButton: false, timer: 5000
-                        }).fire({type: 'error', title: data.errMsg});
-                    }
-                },
-                error: function () {
-                    Swal.mixin({
-                        toast: true, position: 'top', showConfirmButton: false, timer: 5000
-                    }).fire({type: 'error', title: "获取班级列表失败，请重试！"});
+                    console.log(tokenObject);
                 }
             }
         })
     }
 
     /**
+     * 初始化slick轮播
+     */
+    function initSlick() {
+        mySlick = $('#slick_img').slick({
+            dots: true,
+            fade: true,
+            speed: 600,
+            // adaptiveHeight:true,
+            variableWidth: true
+        });
+    }
+
+    function reloadSlick() {
+        if ($("#slick_img").hasClass("slick-initialized")) {
+            $("#slick_img").slick("unslick");
+            console.log('carousel destroyed');
+            initSlick();
+        } else
+            initSlick();
+    }
+
+    /**
+     * modal框确认按钮点击事件
+     */
+    $('#confirmAdd').click(function () {
+        if (!fileValid()) {
+            return;
+        }
+        form = new FormData();
+        form.append("sNo", sno);
+        form.append("faceImage", $("#faceImage")[0].files[0]);
+        $.ajax({
+            processData: false,
+            contentType: false,
+            type: 'post',
+            data: form,
+            dataType: 'json',
+            url: addStuFaceImgUrl,
+            success: function (result) {
+                console.log(result.errMsg);
+                if (result.success) {
+                    Swal({
+                        title: result.data, type: "success",
+                        onAfterClose: function () {
+                            reloadSlick();
+                            //重新获取slick图片
+                            faceImgHandler();
+                            //关闭modal
+                            $('#addImgModal').modal("hide");
+                        },
+                    })
+                } else Swal(result.errMsg, '', "error")
+            }
+        })
+    });
+
+    /**
+     * 文件非空和类型的验证
+     */
+    function fileValid() {
+        allowtype = ["jpg", "gif", "png", "jpeg"];
+        /*判断是否上传文件*/
+        var fileInput = $('#faceImage').get(0).files[0];
+        console.info(fileInput);
+        if (!fileInput) {
+            swal("未选择文件", "请上传图片文件", "error");
+            return false
+        }
+        /*判断文件类型*/
+        filepath = fileInput.name;
+        console.info(filepath);
+        //截取文件后缀名
+        var fileType = filepath.substring(filepath.lastIndexOf(".") + 1, filepath.length).toLowerCase();
+        //$.inArray()用于在数组中查找指定值，并返回它的索引值（如果没有找到，则返回-1）
+        if ($.inArray(fileType, allowtype) === -1) {
+            swal("文件类型不正确", "请上传图片文件", "error");
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 文件框改变事件（选择文件）
+     */
+    function changFile(e) {
+        for (var i = 0; i < e.target.files.length; i++) {
+            var file = e.target.files.item(i);
+            if (!fileValid()) {
+                $('#confirmAdd').attr('disabled', true);
+                $("#img").attr("src", '');
+                return;
+            }
+        }
+        $('#confirmAdd').removeAttr('disabled');
+        //实例化FileReader API
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function (e) {
+            $("#img").attr("src", e.target.result);
+        }
+    }
+
+    /**
+     *添加图片方法
+     */
+    function addFaceImg() {
+        //显示modal框
+        $('#addImgModal').modal("show");
+    }
+
+    /**
+     *删除图片方法
+     */
+    async function removeFaceImg() {
+        await swal({
+            title: "确认删除吗?",
+            text: "删除后将无法恢复",
+            type: "warning",
+            showCancelButton: !0,
+            confirmButtonText: "确认删除",
+            cancelButtonText: "取消",
+            preConfirm: function (e) {
+                return new Promise(function (e) {
+                    setTimeout(function () {
+                        e()
+                    }, 50)
+                })
+            }
+        }).then(function (e) {
+            e.value ? send() : "cancel" === e.dismiss
+        });
+
+        function send() {
+            var currentSlide = mySlick.slick('slickCurrentSlide');
+            var currentFaceToken = tokenObject[currentSlide];
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                data: {'uid': sno, 'faceToken': currentFaceToken},
+                url: removeStuFaceImgUrl,
+                success: function (data) {
+                    if (data.success) {
+                        /*重新获取slick图片*/
+                        reloadSlick();
+                        faceImgHandler();
+
+                        Swal.mixin({
+                            toast: true, position: 'top', showConfirmButton: false, timer: 5000
+                        }).fire({type: 'success', title: data.data})
+                    } else {
+                        Swal.mixin({
+                            toast: true, position: 'top', showConfirmButton: false, timer: 5000
+                        }).fire({type: 'error', title: data.errMsg})
+                    }
+                },
+                error: function () {
+                    Swal.mixin({
+                        toast: true, position: 'top', showConfirmButton: false, timer: 5000
+                    }).fire({type: 'error', title: "系统错误，请稍后再试！"});
+                }
+            })
+        }
+    }
+
+
+    /**
      * 提交按钮点击事件
-     *
      */
     $("#btn_submit").click(function (e) {
         swal({
@@ -783,8 +975,6 @@ MAIN CONTENT LAYOUT
             text: "提交后将无法撤销",
             type: "warning",
             showCancelButton: !0,
-            confirmButtonClass: "btn btn-danger m-1",
-            cancelButtonClass: "btn btn-secondary m-1",
             confirmButtonText: "确认提交",
             cancelButtonText: "取消",
             html: !1,
@@ -796,53 +986,21 @@ MAIN CONTENT LAYOUT
                 })
             }
         }).then(function (e) {
-            e.value ? convert($('#8')[0]) : "cancel" === e.dismiss /*&& swal("已取消", "", "error")*/
+            e.value ? commitAlter() : "cancel" === e.dismiss /*&& swal("已取消", "", "error")*/
         });
-
-        /**
-         * 图片转换为Base64编码
-         *
-         * */
-        function convert(input_file) {
-            /*input_file：文件按钮对象*/
-            /*get_data: 转换成功后执行的方法*/
-            if (typeof (FileReader) === 'undefined') {
-                alert("抱歉，你的浏览器不支持 FileReader，不能将图片转换为Base64，请使用现代浏览器操作！");
-            } else {
-                /*图片转Base64 核心代码*/
-                var file = input_file.files[0];
-                if (file != null) {
-                    //这里判断类型是不是是图片
-                    if (!/image\/\w+/.test(file.type)) {
-                        alert("请确保文件为图像类型");
-                        return false;
-                    }
-                    var reader = new FileReader();
-                    reader.readAsDataURL(file);
-                    reader.onload = function () {
-                        commitAlter(this.result.substring(23));
-                    };
-                } else commitAlter('');
-            }
-        }
 
         /**
          *发送ajax请求
          * @param imgData
          */
-        function commitAlter(imgData) {
-            console.log($('#8')[0].files[0]);
+        function commitAlter() {
             var upData = new FormData($('.form_alter')[0]);
-            console.log(imgData);
-            upData.append("faceImage", imgData);
             $.ajax({
                 processData: false,
                 contentType: false,
                 type: "post",
-                url: "studentInfoAlter.do",
-                // data:$('.form_alter').serialize() ,
+                url: altStuInfoUrl,
                 data: upData,
-                // contentType: "application/x-www-form-urlencoded; charset=UTF-8",//post请求的信息格式
                 dataType: "json",
                 success: function (data) {
                     if (data.success) {
@@ -856,11 +1014,12 @@ MAIN CONTENT LAYOUT
                 error: function () {
                     Swal.mixin({
                         toast: true, position: 'top', showConfirmButton: false, timer: 5000
-                    }).fire({type: 'error', title: "未知错误，请稍后再试！"});
+                    }).fire({type: 'error', title: "系统错误，请稍后再试！"});
                 }
             })
         }
     });
+
     /**
      * 表单合法性验证
      */
@@ -880,10 +1039,16 @@ MAIN CONTENT LAYOUT
                 jQuery(e).remove()
             },
             rules: {
-                "sName": {required: !0, maxlength: 10},
+                "sName": {maxlength: 15},
                 "roomNo": {digits: !0, minlength: 3, maxlength: 3},
                 "buildingNo": {range: [1, 18]},
-                "birthday": {dateISO: !0}
+                "birthday": {dateISO: !0},
+                "phoneNum": {number: !0, maxlength: 11},
+            },
+            messages: {
+                "phoneNum": {
+                    number: "请输入11位手机号码"
+                }
             }
         })
     })

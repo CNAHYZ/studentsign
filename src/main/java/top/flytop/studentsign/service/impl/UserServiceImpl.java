@@ -27,8 +27,8 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     private static final Logger log = LoggerFactory.getLogger(UserService.class);
     private static final String salt = "flytop";
-    private static final String initialPwd = "123456";
-    private static final String initialEncryptPwd = ShiroMd5.md5Encrypt(initialPwd, salt);
+    private static final String defaultPwd = "123456";
+    private static final String defaultEncryptPwd = ShiroMd5.md5Encrypt(defaultPwd, salt);
     private UserMapper userMapper;
 
     @Autowired
@@ -128,7 +128,7 @@ public class UserServiceImpl implements UserService {
     /**
      * @param student
      * @return top.flytop.studentsign.dto.BaseResult
-     * @Description TODO
+     * @Description TODO 修改学生信息
      * @date 2019/1/20 16:45
      */
     @Override
@@ -142,7 +142,7 @@ public class UserServiceImpl implements UserService {
     /**
      * @param sNo
      * @return top.flytop.studentsign.dto.BaseResult
-     * @Description TODO
+     * @Description TODO 删除学生（及用户）
      * @date 2019/1/20 16:45
      */
     @Override
@@ -166,7 +166,7 @@ public class UserServiceImpl implements UserService {
     /**
      * @param request
      * @return top.flytop.studentsign.dto.BaseResult
-     * @Description TODO
+     * @Description TODO 修改密码
      * @Date 2019/2/19 17:23
      */
     @Override
@@ -236,8 +236,9 @@ public class UserServiceImpl implements UserService {
      * @Date 2019/2/19 21:20
      */
     @Override
-    public BaseResult initialUser() throws Exception {
-        Integer count = userMapper.initialUser(initialEncryptPwd, salt);
+    public BaseResult initAllUsers() throws Exception {
+
+        Integer count = userMapper.initAllUsers(defaultEncryptPwd, salt);
         return BaseResult.success("操作完成，共新增 " + count + " 名用户");
     }
 
@@ -247,9 +248,20 @@ public class UserServiceImpl implements UserService {
      * @Description TODO
      * @Date 2019/2/19 22:11
      */
-    public BaseResult resetStudentPwd(String username) throws Exception {
-        Integer count = userMapper.resetStudentPwd(initialEncryptPwd, salt, username);
-        return BaseResult.success("操作完成，共重置 " + count + " 条密码");
+    public BaseResult initStuAccount(String username) throws Exception {
+        User user = new User();
+        user.setPwd(defaultEncryptPwd);
+        user.setSalt(salt);
+        user.setUsername(username);
+        if (userMapper.getUser(username) == null) {
+            /*user表中无该用户名，新增*/
+            Integer count = userMapper.initUser(user);
+            return BaseResult.success("操作完成，共初始化 " + count + " 个用户");
+        } else {
+            /*user表中有该用户名，重置*/
+            Integer count = userMapper.resetStuPwd(user);
+            return BaseResult.success("操作完成，共重置 " + count + " 条密码");
+        }
     }
 
 }

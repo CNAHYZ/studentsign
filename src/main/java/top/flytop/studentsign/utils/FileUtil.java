@@ -1,11 +1,14 @@
 package top.flytop.studentsign.utils;
 
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
 import top.flytop.studentsign.dto.BaseResult;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
+import java.io.*;
 import java.util.UUID;
 
 /**
@@ -15,29 +18,43 @@ import java.util.UUID;
  * @Date 2019/1/5 18:12
  * @Version 1.0
  */
+@Component
 public class FileUtil {
 
     /**
-     * @param sno
-     * @param image
-     * @param realPath
+     * @param filename
+     * @param request
+     * @param dir
      * @return top.flytop.studentsign.dto.BaseResult
-     * @Description TODO
+     * @Description TODO 根据Base64保存图片文件
      * @Date 2019/3/2 22:31
      */
-    public static BaseResult saveImage(String sno, String image, String realPath) {
-        if (sno != null && image != null) {
-            //图片名称
-            String fileName = sno + ".png";
-            File saveDir = new File(realPath);
-            //文件夹不存在则新建
-            if (!saveDir.exists())
-                saveDir.mkdirs();
-            String filePath = (realPath + fileName);
-            ImageUtil.base64ToImage(image, filePath);
-            return new BaseResult<>(true, "stu_pic/" + fileName);
-        } else
-            return new BaseResult(false, 1, "保存失败");
+    public static BaseResult saveImage(HttpServletRequest request, String filename, String dir) {
+        String basePath = request.getSession().getServletContext().getRealPath("userUpload");
+        MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+        MultipartFile faceImage = multipartRequest.getFile("faceImage");
+        if (filename == null || faceImage == null) {
+            return BaseResult.fail(1, "本地保存失败");
+        }
+        //图片名称
+        String fullName = filename + ".png";
+        String realPath = basePath + "/faceImg/" + dir;
+        if (!realPath.endsWith("/"))
+            realPath += "/";
+        File saveDir = new File(realPath);
+        //文件夹不存在,且新建失败
+        try {
+            if (!saveDir.exists() && !saveDir.mkdirs()) {
+                return BaseResult.fail(1, "本地保存失败");
+            }
+            String filePath = (realPath + "/" + fullName);
+            File file = new File(filePath);
+            faceImage.transferTo(file);
+            return BaseResult.success(filePath);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return BaseResult.fail(1, "本地保存失败");
+        }
     }
 
     /**
@@ -46,17 +63,17 @@ public class FileUtil {
      * @param paraName request中文件的key
      * @param dir      想要保存的文件夹,*名后加/
      * @return top.flytop.studentsign.dto.BaseResult
-     * @Description TODO
+     * @Description TODO 根据传来的请求保存文件
      * @date 2019/1/3 21:28
      */
     public static BaseResult saveFileByReq(HttpServletRequest request, String fileName, String paraName, String dir) {
         if (fileName == null)
             fileName = UUID.randomUUID().toString();
         //获取绝对路径
-        String realPath = request.getSession().getServletContext().getRealPath(dir);
+        String realPath = request.getSession().getServletContext().getRealPath("userUpload/" + dir);
         System.out.println("realPath:" + realPath);
-        if (!realPath.endsWith("\\"))
-            realPath += "\\";
+        if (!realPath.endsWith("/"))
+            realPath += "/";
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
         /*页面控件的文件流**/
         MultipartFile multipartFile = multipartRequest.getFile(paraName);
@@ -112,58 +129,57 @@ public class FileUtil {
         }
         return true;
     }
-    /*
-     *//**
-     * @param path
-     * @param oldName
-     * @param newName
-     * @return void
-     * @Description TODO 文件重命名
-     * @date 2019/1/5 18:21
-     *//*
-    public void renameFile(String path, String oldName, String newName) {
-        if (!oldName.equals(newName)) {
-            try {
-                //新的文件名和以前文件名不同时,才有必要进行重命名
-                File oldFile = new File(path + "/" + oldName);
-                File newFile = new File(path + "/" + newName);
-                if (newFile.exists())
-                    //若在该目录下已经有一个文件和新文件名相同，则不允许重命名
-                    System.out.println(newName + "已经存在！");
-                else {
-                    oldFile.renameTo(newFile);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
 
+    /**
+     * 图片转BASE64
+     *
+     * @param imagePath 路径
+     * @return
+     */
+    public String imageToBase64(String imagePath) {
+        InputStream inputStream = null;
+        byte[] data = null;
+        try {
+            inputStream = new FileInputStream(imagePath);
+            data = new byte[inputStream.available()];
+            inputStream.read(data);
+            inputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        // 加密
+        BASE64Encoder encoder = new BASE64Encoder();
+        return encoder.encode(data);
     }
 
-    *//**
-     * @param oldPath 旧文件的路径，必须包括文件名
-     * @param newPath
-     * @param cover   是否覆盖
-     * @return void
-     * @Description TODO 文件移动
-     * @date 2019/1/5 18:19
-     *//*
-    public void MoveFile(String oldPath, String newPath, boolean cover) {
-        if (!oldPath.equals(newPath)) {
-            try {
-                File oldFile = new File(oldPath);
-                File newFile = new File(newPath);
-                if (newFile.exists()) {//若在待转移目录下，已经存在待转移文件
-                    if (cover)//覆盖
-                        oldFile.renameTo(newFile);
-                    else
-                        System.out.println("在新目录下已经存在同名文件");
-                } else {
-                    oldFile.renameTo(newFile);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+    /**
+     * BASE转图片 若带有："data:image/jpeg;base64," 解码之前得去掉。
+     *
+     * @param baseStr   base64字符串
+     * @param imagePath 生成的图片
+     * @return
+     */
+    public static boolean base64ToImage(String baseStr, String imagePath) {
+        if (baseStr == null) {
+            return false;
         }
-    }*/
+        BASE64Decoder decoder = new BASE64Decoder();
+        try {
+            // 解密
+            byte[] b = decoder.decodeBuffer(baseStr);
+            // 调整异常数据
+            for (int i = 0; i < b.length; ++i) {
+                if (b[i] < 0) {
+                    b[i] += 256;
+                }
+            }
+            OutputStream out = new FileOutputStream(imagePath);
+            out.write(b);
+            out.flush();
+            out.close();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

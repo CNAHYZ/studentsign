@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import top.flytop.studentsign.dto.BaseResult;
 import top.flytop.studentsign.pojo.Student;
 import top.flytop.studentsign.service.UserService;
-import top.flytop.studentsign.utils.ImageUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
@@ -22,8 +21,6 @@ import java.text.SimpleDateFormat;
 public class StudentController {
     @Autowired
     private UserService userService;
-    @Autowired
-    private ImageUtil imageUtil;
     private Logger logger;
 
     /**

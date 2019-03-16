@@ -81,7 +81,7 @@
     </update>
 
     <!--重置学生密码-->
-    <update id="resetStudentPwd">
+    <update id="resetStuPwd">
         update user
         set pwd=#{pwd},salt=#{salt} where type = 1
         <if test="username!=null and username !=''">
@@ -91,7 +91,7 @@
     <!--===========================插入=============================-->
     <!--添加学生-->
     <insert id="addStudent" parameterType="student">
-        <if test="sNo != null and sNo!='' and sName != null and sName != ''">
+        <if test="sNo != null and sNo!=''">
             insert student (sno,sname,cno,gender,birthday,building_no,room_no,phone_num)
             values (#{sNo},#{sName},#{cNo}, #{gender}, #{birthday},
             #{buildingNo}, #{roomNo}, #{phoneNum})
@@ -108,8 +108,14 @@
         </foreach>
     </insert>
 
-    <!--初始化学生用户的账号，密码-->
-    <insert id="initialUser">
+    <!--初始化单个学生用户的账号，密码-->
+    <insert id="initUser">
+        insert into user(username, pwd, salt)
+        values (#{username}, #{pwd}, #{salt})
+    </insert>
+
+    <!--初始化所有未初始化学生用户的账号，密码-->
+    <insert id="initAllUsers">
         insert into user(username, pwd, salt)
         select sno as username, #{pwd}, #{salt}
         from student a

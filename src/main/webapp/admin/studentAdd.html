@@ -28,13 +28,16 @@
     <!-- END Icons -->
 
     <!-- Stylesheets -->
+
+    <!-- Page JS Plugins CSS -->
+    <link rel="stylesheet" href="../assets/js/plugins/sweetalert2/sweetalert2.min.css">
+    <link rel="stylesheet" href="../assets/js/plugins/select2/css/select2.min.css">
+
+    <link rel="stylesheet" href="../assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css">
+
     <!-- Fonts and OneUI framework -->
     <link rel="stylesheet" href="#">
     <link rel="stylesheet" id="css-main" href="../assets/css/oneui.min.css">
-    <!-- Page JS Plugins CSS -->
-    <link rel="stylesheet" href="../assets/js/plugins/sweetalert2/sweetalert2.min.css">
-    <link rel="stylesheet" href="../assets/js/plugins/webUpload/webuploaderstyle.css"/>
-    <link rel="stylesheet" href="../assets/js/plugins/webUpload/webuploader.css"/>
     <!-- END Stylesheets -->
 </head>
 <body>
@@ -294,27 +297,6 @@ MAIN CONTENT LAYOUT
                 </button>
                 <!-- END Toggle Mini Sidebar -->
 
-                <!-- Open Search Section (visible on smaller screens) -->
-                <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                <button type="button" class="btn btn-sm btn-dual d-sm-none" data-toggle="layout"
-                        data-action="header_search_on">
-                    <i class="si si-magnifier"></i>
-                </button>
-                <!-- END Open Search Section -->
-
-                <!-- Search Form (visible on larger screens) -->
-                <form class="d-none d-sm-inline-block" action="be_pages_generic_search.html" method="POST">
-                    <div class="input-group input-group-sm">
-                        <input type="text" class="form-control form-control-alt" placeholder="Search.."
-                               id="page-header-search-input2" name="page-header-search-input2">
-                        <div class="input-group-append">
-                                    <span class="input-group-text bg-body border-0">
-                                        <i class="si si-magnifier"></i>
-                                    </span>
-                        </div>
-                    </div>
-                </form>
-                <!-- END Search Form -->
             </div>
             <!-- END Left Section -->
 
@@ -510,16 +492,16 @@ MAIN CONTENT LAYOUT
             <div class="content content-full">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <h1 class="flex-sm-fill h3 my-2">
-                        学生信息修改
-                        <small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted">
-                            修改学生信息
+                        学生信息添加
+                        <small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-sm font-w400 text-muted">
+                            面部图片请于修改页面添加
                         </small>
                     </h1>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
                             <li class="breadcrumb-item">学生管理</li>
                             <li class="breadcrumb-item" aria-current="page">
-                                <a class="link-fx" href="">信息修改</a>
+                                <a class="link-fx" href="">添加学生</a>
                             </li>
                         </ol>
                     </nav>
@@ -533,46 +515,14 @@ MAIN CONTENT LAYOUT
 
             <!-- Horizontal -->
             <div class="block">
-                <!--  <div class="block-header">
-                      <h3 class="block-title">学生信息修改</h3>
-                  </div>-->
 
                 <div class="block-content block-content-full">
 
-                    <div class="row">
-                        <!--<div class="col-lg-2"></div>-->
-                        <div class="col-lg-4">
-                            <div id="wrapper">
-                                <div id="container">
-                                    <!--头部，相册选择和格式选择-->
-                                    <div id="uploader">
-                                        <div class="queueList">
-                                            <div id="dndArea" class="placeholder">
-                                                <div id="filePicker"></div>
-                                            </div>
-                                        </div>
-                                        <div class="statusBar" style="display:none;">
-                                            <div class="progress">
-                                                <span class="text">0%</span>
-                                                <span class="percentage"></span>
-                                            </div>
-                                            <div class="info"></div>
-                                            <!--      <div class="btns">
-                                                      <div id="filePicker2"></div>
-                                                      <div class="uploadBtn">开始上传</div>
-                                                  </div>-->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--</div>-->
-                        </div>
-                        <div class="col-lg-8">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-10 ">
                             <!-- Form Horizontal - Default Style -->
                             <form class="form_add validate" action="" method="POST"
                                   onsubmit="return false;">
-
-
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label" for="sNo">学&nbsp;号<span
                                             class="text-danger">*</span></label>
@@ -582,15 +532,22 @@ MAIN CONTENT LAYOUT
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label" for="2">姓&nbsp;名<span
-                                            class="text-danger">*</span></label>
+                                    <label class="col-sm-2 col-form-label" for="sName">姓&nbsp;名</label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="2" name="sName" placeholder="学生姓名">
+                                        <input type="text" class="form-control" id="sName" name="sName"
+                                               placeholder="学生姓名">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label" for="3">性&nbsp;别</label>
-                                    <div class="form-group col-sm-6" id="3"
+                                    <label class="col-sm-2 col-form-label" for="select_class">班&nbsp;级</label>
+                                    <div class="col-sm-6">
+                                        <select class=" form-control" name="cNo" id="select_class"
+                                                style="width: 100%"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label" for="gender">性&nbsp;别</label>
+                                    <div class="form-group col-sm-6" id="gender"
                                          style="padding-top: 10px;margin-bottom: -10px">
                                         <div class="custom-control custom-radio custom-control-inline custom-control-lg col-sm-3">
                                             <input type="radio" class="custom-control-input"
@@ -608,24 +565,27 @@ MAIN CONTENT LAYOUT
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label" for="4">楼&nbsp;号</label>
-                                    <div class="col-sm-6">
-                                        <input class="form-control" type="text" id="4" name="buildingNo"
-                                               placeholder="宿舍楼号">
+                                    <label class="col-sm-2 col-form-label" for="buildingNo">宿舍号</label>
+                                    <div class="col-sm-6 input-group">
+                                        <input class="form-control col-sm-6" id="buildingNo" name="buildingNo"
+                                               placeholder="楼号">
+                                        <div class="font-weight-bold">&nbsp;&nbsp;#&nbsp;&nbsp;</div>
+                                        <input class="form-control col-sm-6" id="roomNo" name="roomNo"
+                                               placeholder="房间号">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label" for="5">房&nbsp;间&nbsp;号</label>
+                                    <label class="col-sm-2 col-form-label" for="birthday">出生日期</label>
                                     <div class="col-sm-6">
-                                        <input class="form-control" type="text" id="5" name="roomNo"
-                                               placeholder="宿舍房间号">
+                                        <input class="form-control" type="text" id="birthday" name="birthday"
+                                               placeholder="出生日期">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label" for="6">生&nbsp;日</label>
+                                    <label class="col-sm-2 col-form-label" for="phoneNum">联系方式</label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="6" name="birthday"
-                                               placeholder="出生日期,格式如1990-01-31">
+                                        <input class="form-control" type="text" id="phoneNum" name="phoneNum"
+                                               placeholder="联系方式">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -651,11 +611,6 @@ MAIN CONTENT LAYOUT
     <footer id="page-footer" class="bg-body-light">
         <div class="content py-3">
             <div class="row font-size-sm">
-                <div class="col-sm-6 order-sm-2 py-1 text-center text-sm-right">
-                    Crafted with <i class="fa fa-heart text-danger"></i> by <a class="font-w600"
-                                                                               href="https://1.envato.market/ydb"
-                                                                               target="_blank">pixelcave</a>
-                </div>
                 <div class="col-sm-6 order-sm-1 py-1 text-center text-sm-left">
                     <a class="font-w600" href="https://1.envato.market/xWy" target="_blank">OneUI 4.0</a> &copy; <span
                         data-toggle="year-copy">2018</span>
@@ -674,25 +629,25 @@ MAIN CONTENT LAYOUT
 
 <script src="../assets/js/oneui.app.min.js"></script>
 <script src="../assets/js/plugins/jquery.formautofill.js"></script>
-<!-- Page JS Plugins  提醒-->
-<script src="../assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js"></script>
-
-<!-- Page JS Helpers (BS Notify Plugin)
-<script>jQuery(function(){ One.helpers('notify'); });</script>-->
-
 <!-- Page JS Plugins 对话框-->
-<script src="/assets/js/plugins/es6-promise/es6-promise.auto.min.js"></script>
 <script src="../assets/js/plugins/sweetalert2/sweetalert2.min.js"></script>
 
+<script src="../assets/js/plugins/select2/js/select2.full.min.js"></script>
+<script src="../assets/js/plugins/select2/js/i18n/zh-CN.js"></script>
 
 <script src="../assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
 <script src="../assets/js/plugins/jquery-validation/localization/messages_zh.js"></script>
 
-<script src="../assets/js/plugins/webUpload/webuploader.js"></script>
-<script src="../assets/js/plugins/webUpload/upload.js"></script>
+<script src="../assets/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+<script src="../assets/js/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+
+
 <!-- Page JS Code -->
+<script src="../assets/js/common/studentAdd_Info.js"></script>
 
 <script>
+    var addStudentUrl = "studentAdd.do";
+    var getClassListUrl = "classList.do";
 
     var fileSavePath;
     var faceToken;
@@ -711,8 +666,12 @@ MAIN CONTENT LAYOUT
     });
 
     /**
+     * 初始化select2和Datepicker
+     */
+    $(initClassList(), initDatepicker());
+
+    /**
      * 提交按钮点击事件
-     *
      */
     $("#btn_submit").click(function (e) {
         if (!$(".form_add").valid()) return;
@@ -761,21 +720,33 @@ MAIN CONTENT LAYOUT
                 processData: false,
                 contentType: false,
                 type: "post",
-                url: "studentAdd.do",
+                url: addStudentUrl,
                 data: data,
                 dataType: "json",
                 success: function (data) {
                     if (data.success) {
-                        swal(data.data, "", "success");
+                        swal({
+                            title: data.data, type: "success", onAfterClose: function () {
+                                window.location.href = "studentInfo.html?" + $("#sNo").val()
+                            }
+                        });
                     } else
-                        One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: data.errMsg});
+                        Swal.mixin({
+                            toast: true, position: 'top', showConfirmButton: false, timer: 5000
+                        }).fire({type: 'error', title: data.errMsg})
                 },
                 error: function () {
-                    One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: "未知错误，请重试或联系管理员！"});
+                    Swal.mixin({
+                        toast: true, position: 'top', showConfirmButton: false, timer: 5000
+                    }).fire({type: 'error', title: "系统错误，请重试或联系管理员！"})
                 }
             })
         }
     });
+
+    /**
+     * 表单校验
+     */
     $(function () {
         validator = $(".form_add").validate({
             errorClass: "invalid-feedback animated fadeIn",
@@ -793,7 +764,7 @@ MAIN CONTENT LAYOUT
             },
             rules: {
                 "sNo": {
-                    required: !0, digits: !0, minlength: 5, /*sNoVal: true*/
+                    required: !0, digits: !0, minlength: 5,
                     remote: {
                         type: "post",
                         url: "studentInfoGet.do",
@@ -809,22 +780,19 @@ MAIN CONTENT LAYOUT
                         }
                     }
                 },
-                "sName": {required: !0},
+                "sName": {maxlength: 15},
                 "roomNo": {digits: !0, minlength: 3, maxlength: 3},
-                "val-number": {required: !0, number: !0},
                 "buildingNo": {range: [1, 18]},
                 "birthday": {dateISO: !0},
-                "val-select2": {required: !0}
+                "phoneNum": {number: !0, maxlength: 11},
             },
             messages: {
                 "sNo": {
                     remote: "该学号已存在，勿重复添加"
+                },
+                "phoneNum": {
+                    number: "请输入11位手机号码"
                 }
-                /*"val-confirm-password": {
-                        required: "Please provide a password",
-                        minlength: "Your password must be at least 5 characters long",
-                        equalTo: "Please enter the same password as above"
-                    }*/
             }
         })
     })

@@ -13,8 +13,6 @@ import top.flytop.studentsign.dto.BaseResult;
 import top.flytop.studentsign.pojo.Student;
 import top.flytop.studentsign.service.FaceService;
 import top.flytop.studentsign.service.UserService;
-import top.flytop.studentsign.utils.FileUtil;
-import top.flytop.studentsign.utils.ImageUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,8 +20,6 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
-import java.util.Map;
 
 @Controller
 @RequestMapping("admin/")
@@ -33,8 +29,6 @@ public class UserController {
     private static final Logger log = LoggerFactory.getLogger(UserController.class);
     @Autowired
     private UserService userService;
-    @Autowired
-    private ImageUtil imageUtil;
     @Autowired
     private FaceService faceService;
 
@@ -84,14 +78,6 @@ public class UserController {
     @RequestMapping(value = "studentInfoAlter", method = RequestMethod.POST)
     @ResponseBody
     public BaseResult studentInfoAlter(HttpServletRequest request, Student student) {
-       /* if (!student.getFaceImage().equals("")) {
-            //获取绝对路径
-            String realPath = request.getSession().getServletContext().getRealPath("stu_pic/");
-            // 本地保存面部图像
-            String imagePath = (String) new FileUtil().saveImage(student.getsNo(), student.getFaceImage(), realPath).getData();
-            // 将图像路径保存至数据库
-            student.setFaceImage(imagePath);
-        }*/
         System.out.println(student);
         return userService.updateInfo(student);
     }
@@ -146,61 +132,16 @@ public class UserController {
     public BaseResult studentAdd(HttpServletRequest request) {
         //从前台发送的数据中获取参数
         String stuString = request.getParameter("stu");
-        String oldPath = request.getParameter("fileSavePath");
-        String faceToken = request.getParameter("faceToken");
-        final String dir = "stu_pic/";
         try {
             System.out.println("============" + stuString);
             Student student = JSON.parseObject(stuString, Student.class);
             System.out.println("------------" + student);
-            if (oldPath != null && faceToken != null) {
-                String fileName = student.getsNo() + oldPath.substring(oldPath.lastIndexOf("."));
-                //新路径
-                String newPath = request.getServletContext().getRealPath(dir) + fileName;
-                System.out.println(newPath);
-                //人脸库注册成功
-                /*if (userService.addFace(student, faceToken).isSuccess()) {
-                    //将图片从临时文件夹移入人脸文件夹，并以学号命名
-                    if (FileUtil.MoveRename(oldPath, newPath, true)) {
-                        //本地数据库中添加学生信息
-                        student.setFaceImage(dir + fileName);
-                    }
-                }*/
-            }
             if (userService.addStudent(student).isSuccess())
                 return new BaseResult<String>(true, student.getsNo() + " 添加成功");
         } catch (Exception e) {
             e.printStackTrace();
         }
         return new BaseResult<String>(false, 1, "添加失败！");
-    }
-
-    /**
-     * @param request
-     * @return top.flytop.studentsign.dto.BaseResult
-     * @Description TODO 人脸检测方法，检测成功进行临时存储
-     * @date 2019/1/8 17:41
-     */
-    @RequestMapping(value = "faceChecker", method = RequestMethod.POST)
-    @ResponseBody
-    public BaseResult faceChecker(HttpServletRequest request) {
-        BaseResult<String> saveResult = FileUtil.saveFileByReq(request, null, "file", "temp/");
-        System.out.println(saveResult);
-        if (saveResult.isSuccess()) {
-            //保存成功
-            String image = imageUtil.imageToBase64(saveResult.getData());
-            BaseResult checkResult = faceService.faceChecker(image);
-            System.out.println("=====checkResult:" + checkResult);
-            if (checkResult.isSuccess()) {
-                //人脸检测成功
-                //返回保存路径
-                Map<String, String> map = new HashMap<>();
-                map.put("fileSavePath", saveResult.getData());
-                map.put("faceToken", String.valueOf(checkResult.getData()));
-                return new BaseResult<Map>(true, map);
-            } else return checkResult;
-        }
-        return saveResult;
     }
 
     /**
@@ -274,14 +215,14 @@ public class UserController {
     /**
      * @param
      * @return top.flytop.studentsign.dto.BaseResult
-     * @Description TODO 初始化学生用户（student ----> user）
+     * @Description TODO 初始化未分配账户的学生用户（student ----> user）
      * @Date 2019/2/19 22:10
      */
-    @RequestMapping(value = "initialUser", method = RequestMethod.GET)
+    @RequestMapping(value = "initAllUsers", method = RequestMethod.GET)
     @ResponseBody
-    public BaseResult initialUser() {
+    public BaseResult initialAllUsers() {
         try {
-            return userService.initialUser();
+            return userService.initAllUsers();
         } catch (Exception e) {
             e.printStackTrace();
             return BaseResult.fail(1, "初始化失败");
@@ -291,14 +232,14 @@ public class UserController {
     /**
      * @param
      * @return top.flytop.studentsign.dto.BaseResult
-     * @Description TODO  重置学生用户密码
+     * @Description TODO  初始化单个学生的账户
      * @Date 2019/2/19 22:10
      */
-    @RequestMapping(value = "resetStudentPwd", method = RequestMethod.POST)
+    @RequestMapping(value = "initStuAccount", method = RequestMethod.POST)
     @ResponseBody
-    public BaseResult resetStudentPwd(String username) {
+    public BaseResult initStuAccount(String username) {
         try {
-            return userService.resetStudentPwd(username);
+            return userService.initStuAccount(username);
         } catch (Exception e) {
             e.printStackTrace();
             return BaseResult.fail(1, "操作失败");
