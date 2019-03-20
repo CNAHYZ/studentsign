@@ -50,6 +50,7 @@ public class FileUtil {
             String filePath = (realPath + "/" + fullName);
             File file = new File(filePath);
             faceImage.transferTo(file);
+
             return BaseResult.success(filePath);
         } catch (Exception e) {
             e.printStackTrace();

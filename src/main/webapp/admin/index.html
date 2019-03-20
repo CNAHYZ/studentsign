@@ -376,84 +376,19 @@ MAIN CONTENT LAYOUT
                     <button type="button" class="btn btn-sm btn-dual" id="page-header-notifications-dropdown"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="si si-bell"></i>
-                        <span class="badge badge-primary badge-pill">6</span>
+                        <span class="badge badge-primary badge-pill" id="notification_count"></span>
                     </button>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0 border-0 font-size-sm"
                          aria-labelledby="page-header-notifications-dropdown">
                         <div class="p-2 bg-primary text-center">
-                            <h5 class="dropdown-header text-uppercase text-white">Notifications</h5>
+                            <h5 class="dropdown-header text-uppercase text-white" id="notification_header"></h5>
                         </div>
-                        <ul class="nav-items mb-0">
-                            <li>
-                                <a class="text-dark media py-2" href="javascript:void(0)">
-                                    <div class="mr-2 ml-3">
-                                        <i class="fa fa-fw fa-check-circle text-success"></i>
-                                    </div>
-                                    <div class="media-body pr-2">
-                                        <div class="font-w600">You have a new follower</div>
-                                        <small class="text-muted">15 min ago</small>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="text-dark media py-2" href="javascript:void(0)">
-                                    <div class="mr-2 ml-3">
-                                        <i class="fa fa-fw fa-plus-circle text-info"></i>
-                                    </div>
-                                    <div class="media-body pr-2">
-                                        <div class="font-w600">1 new sale, keep it up</div>
-                                        <small class="text-muted">22 min ago</small>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="text-dark media py-2" href="javascript:void(0)">
-                                    <div class="mr-2 ml-3">
-                                        <i class="fa fa-fw fa-times-circle text-danger"></i>
-                                    </div>
-                                    <div class="media-body pr-2">
-                                        <div class="font-w600">Update failed, restart server</div>
-                                        <small class="text-muted">26 min ago</small>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="text-dark media py-2" href="javascript:void(0)">
-                                    <div class="mr-2 ml-3">
-                                        <i class="fa fa-fw fa-plus-circle text-info"></i>
-                                    </div>
-                                    <div class="media-body pr-2">
-                                        <div class="font-w600">2 new sales, keep it up</div>
-                                        <small class="text-muted">33 min ago</small>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="text-dark media py-2" href="javascript:void(0)">
-                                    <div class="mr-2 ml-3">
-                                        <i class="fa fa-fw fa-user-plus text-success"></i>
-                                    </div>
-                                    <div class="media-body pr-2">
-                                        <div class="font-w600">You have a new subscriber</div>
-                                        <small class="text-muted">41 min ago</small>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="text-dark media py-2" href="javascript:void(0)">
-                                    <div class="mr-2 ml-3">
-                                        <i class="fa fa-fw fa-check-circle text-success"></i>
-                                    </div>
-                                    <div class="media-body pr-2">
-                                        <div class="font-w600">You have a new follower</div>
-                                        <small class="text-muted">42 min ago</small>
-                                    </div>
-                                </a>
-                            </li>
+                        <ul class="nav-items mb-0" id="notification_content">
+
                         </ul>
                         <div class="p-2 border-top">
-                            <a class="btn btn-sm btn-light btn-block text-center" href="javascript:void(0)">
-                                <i class="fa fa-fw fa-arrow-down mr-1"></i> Load More..
+                            <a class="btn btn-sm btn-light btn-block text-center" href="leaveExamine.html">
+                                <i class="fa fa-fw fa-check-double mr-1"></i> 点此去处理
                             </a>
                         </div>
                     </div>
@@ -501,98 +436,236 @@ MAIN CONTENT LAYOUT
     <main id="main-container">
 
         <!-- Hero -->
-        <div class="bg-body-light">
-            <div class="content content-full">
-                <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-                    <h1 class="flex-sm-fill h3 my-2">
-                        Authentication
-                        <small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted">All
-                            pages in one spot!
-                        </small>
-                    </h1>
-                    <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
-                        <ol class="breadcrumb breadcrumb-alt">
-                            <li class="breadcrumb-item">Authentication</li>
-                            <li class="breadcrumb-item" aria-current="page">
-                                <a class="link-fx" href="">All</a>
-                            </li>
-                        </ol>
-                    </nav>
+        <div class="bg-image overflow-hidden" style="background-image: url('../assets/media/photos/dashboard_bg.jpg');">
+            <div class="bg-primary-dark-op">
+                <div class="content content-narrow content-full">
+                    <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center mt-5 mb-2 text-center text-sm-left">
+                        <div class="flex-sm-fill">
+                            <h1 class="font-w600 text-white mb-0 invisible" data-toggle="appear">宿舍签到系统</h1>
+                            <h2 class="h4 font-w400 text-white-75 mb-0 invisible" data-toggle="appear"
+                                data-timeout="250">欢迎登录</h2>
+                        </div>
+                        <div class="flex-sm-00-auto mt-3 mt-sm-0 ml-sm-3">
+                                    <span class="d-inline-block invisible" data-toggle="appear" data-timeout="350">
+                                        <a class="btn btn-primary px-4 py-2" data-toggle="click-ripple"
+                                           href="javascript:void(0)">
+                                            <i class="fa fa-plus mr-1"></i> New Project
+                                        </a>
+                                    </span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         <!-- END Hero -->
 
         <!-- Page Content -->
-        <div class="content">
+        <div class="content content-narrow">
+            <!-- Stats -->
             <div class="row">
-                <div class="col-md-6">
-                    <!-- Sign In -->
-                    <a class="block block-rounded block-link-shadow" href="../userLogin.html">
-                        <div class="block-content text-center">
-                            <div class="py-3">
-                                <div class="mb-3">
-                                    <i class="si si-login fa-2x text-default"></i>
-                                </div>
-                                <p class="font-size-lg">Sign In
-                                <p>
-                            </div>
+                <div class="col-6 col-md-3 col-lg-6 col-xl-3">
+                    <a class="block block-rounded block-link-pop border-left border-primary border-4x"
+                       href="javascript:void(0)">
+                        <div class="block-content block-content-full">
+                            <div class="font-size-sm font-w600 text-uppercase text-muted">今日签到</div>
+                            <div class="font-size-h2 font-w400 text-dark" id="signCount">0</div>
                         </div>
                     </a>
-                    <!-- END Sign In -->
                 </div>
-                <div class="col-md-6">
-                    <!-- Sign Up -->
-                    <a class="block block-rounded block-link-shadow" href="op_auth_signup.html">
-                        <div class="block-content text-center">
-                            <div class="py-3">
-                                <div class="mb-3">
-                                    <i class="si si-logout fa-2x text-success"></i>
-                                </div>
-                                <p class="font-size-lg">Sign Up
-                                <p>
-                            </div>
+                <div class="col-6 col-md-3 col-lg-6 col-xl-3">
+                    <a class="block block-rounded block-link-pop border-left border-primary border-4x"
+                       href="javascript:void(0)">
+                        <div class="block-content block-content-full">
+                            <div class="font-size-sm font-w600 text-uppercase text-muted">今日请假</div>
+                            <div class="font-size-h2 font-w400 text-dark" id="leaveCount">0</div>
                         </div>
                     </a>
-                    <!-- END Sign Up -->
                 </div>
-                <div class="col-md-6">
-                    <!-- Lock Screen -->
-                    <a class="block block-rounded block-link-shadow" href="op_auth_lock.html">
-                        <div class="block-content text-center">
-                            <div class="py-3">
-                                <div class="mb-3">
-                                    <i class="si si-lock fa-2x text-city"></i>
-                                </div>
-                                <p class="font-size-lg">Lock Screen
-                                <p>
-                            </div>
+                <div class="col-6 col-md-3 col-lg-6 col-xl-3">
+                    <a class="block block-rounded block-link-pop border-left border-primary border-4x"
+                       href="javascript:void(0)">
+                        <div class="block-content block-content-full">
+                            <div class="font-size-sm font-w600 text-uppercase text-muted">待审批请假</div>
+                            <div class="font-size-h2 font-w400 text-dark" id="notExamineLeaveCount">0</div>
                         </div>
                     </a>
-                    <!-- END Lock Screen -->
                 </div>
-                <div class="col-md-6">
-                    <!-- Password Reminder -->
-                    <a class="block block-rounded block-link-shadow" href="op_auth_reminder.html">
-                        <div class="block-content text-center">
-                            <div class="py-3">
-                                <div class="mb-3">
-                                    <i class="si si-support fa-2x text-modern"></i>
-                                </div>
-                                <p class="font-size-lg">Password Reminder
-                                <p>
-                            </div>
+                <div class="col-6 col-md-3 col-lg-6 col-xl-3">
+                    <a class="block block-rounded block-link-pop border-left border-primary border-4x"
+                       href="javascript:void(0)">
+                        <div class="block-content block-content-full">
+                            <div class="font-size-sm font-w600 text-uppercase text-muted">当前在线人数</div>
+                            <div class="font-size-h2 font-w400 text-dark" id="onlineUserCount">0</div>
                         </div>
                     </a>
-                    <!-- END Password Reminder -->
                 </div>
             </div>
+            <!-- END Stats -->
+
+            <!-- Customers and Latest Orders -->
+            <div class="row row-deck">
+                <!-- Latest Customers -->
+                <div class="col-lg-6">
+                    <div class="block block-mode-loading-oneui">
+                        <div class="block-header border-bottom">
+                            <h3 class="block-title">Latest Customers</h3>
+                            <div class="block-options">
+                                <button type="button" class="btn-block-option" data-toggle="block-option"
+                                        data-action="state_toggle" data-action-mode="demo">
+                                    <i class="si si-refresh"></i>
+                                </button>
+                                <button type="button" class="btn-block-option">
+                                    <i class="si si-settings"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="block-content block-content-full">
+                            <table class="table table-striped table-hover table-borderless table-vcenter font-size-sm mb-0">
+                                <thead class="thead-dark">
+                                <tr class="text-uppercase">
+                                    <th class="font-w700" style="width: 80px;">ID</th>
+                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 100px;">
+                                        Photo
+                                    </th>
+                                    <th class="font-w700">Name</th>
+                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 80px;">
+                                        Orders
+                                    </th>
+                                    <th class="font-w700 text-center" style="width: 60px;"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <span class="font-w600">#01368</span>
+                                    </td>
+                                    <td class="d-none d-sm-table-cell text-center">
+                                        <img class="img-avatar img-avatar32" src="assets/media/avatars/avatar15.jpg"
+                                             alt="">
+                                    </td>
+                                    <td class="font-w600">
+                                        Thomas Riley
+                                    </td>
+                                    <td class="d-none d-sm-table-cell text-center">
+                                        <a class="link-fx font-w600" href="javascript:void(0)">5</a>
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left"
+                                           title="Edit">
+                                            <i class="fa fa-fw fa-pencil-alt"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="font-w600">#01368</span>
+                                    </td>
+                                    <td class="d-none d-sm-table-cell text-center">
+                                        <img class="img-avatar img-avatar32" src="assets/media/avatars/avatar2.jpg"
+                                             alt="">
+                                    </td>
+                                    <td class="font-w600">
+                                        Melissa Rice
+                                    </td>
+                                    <td class="d-none d-sm-table-cell text-center">
+                                        <a class="link-fx font-w600" href="javascript:void(0)">14</a>
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left"
+                                           title="Edit">
+                                            <i class="fa fa-fw fa-pencil-alt"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- END Latest Customers -->
+
+                <!-- Latest Orders -->
+                <div class="col-lg-6">
+                    <div class="block block-mode-loading-oneui">
+                        <div class="block-header border-bottom">
+                            <h3 class="block-title">Latest Orders</h3>
+                            <div class="block-options">
+                                <button type="button" class="btn-block-option" data-toggle="block-option"
+                                        data-action="state_toggle" data-action-mode="demo">
+                                    <i class="si si-refresh"></i>
+                                </button>
+                                <button type="button" class="btn-block-option">
+                                    <i class="si si-settings"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="block-content block-content-full">
+                            <table class="table table-striped table-hover table-borderless table-vcenter font-size-sm mb-0">
+                                <thead class="thead-dark">
+                                <tr class="text-uppercase">
+                                    <th class="font-w700">ID</th>
+                                    <th class="d-none d-sm-table-cell font-w700">Date</th>
+                                    <th class="font-w700">State</th>
+                                    <th class="d-none d-sm-table-cell font-w700 text-right" style="width: 120px;">
+                                        Price
+                                    </th>
+                                    <th class="font-w700 text-center" style="width: 60px;"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <span class="font-w600">#07835</span>
+                                    </td>
+                                    <td class="d-none d-sm-table-cell">
+                                        <span class="font-size-sm text-muted">today</span>
+                                    </td>
+                                    <td>
+                                        <span class="font-w600 text-warning">Pending..</span>
+                                    </td>
+                                    <td class="d-none d-sm-table-cell text-right">
+                                        $999,99
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left"
+                                           title="Manage">
+                                            <i class="fa fa-fw fa-pencil-alt"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="font-w600">#07834</span>
+                                    </td>
+                                    <td class="d-none d-sm-table-cell">
+                                        <span class="font-size-sm text-muted">today</span>
+                                    </td>
+                                    <td>
+                                        <span class="font-w600 text-warning">Pending..</span>
+                                    </td>
+                                    <td class="d-none d-sm-table-cell text-right">
+                                        $2.299,00
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left"
+                                           title="Manage">
+                                            <i class="fa fa-fw fa-pencil-alt"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- END Latest Orders -->
+            </div>
+            <!-- END Customers and Latest Orders -->
         </div>
         <!-- END Page Content -->
 
     </main>
     <!-- END Main Container -->
-
     <!-- Footer -->
     <footer id="page-footer" class="bg-body-light">
         <div class="content py-3">
@@ -625,13 +698,29 @@ MAIN CONTENT LAYOUT
     assets/js/core/js.cookie.min.js
 -->
 <script src="../assets/js/oneui.core.min.js"></script>
+<script src="../assets/js/common/common_header.js"></script>
 
-<!--
-    OneUI JS
-
-    Custom functionality including Blocks/Layout API as well as other vital and optional helpers
-    webpack is putting everything together at assets/_es6/main/app.js
--->
 <script src="../assets/js/oneui.app.min.js"></script>
+<script>
+
+    $(function () {
+        $.post('getSignCount.do', {dayNum: 0}, function (data) {
+            $("#signCount").text(data.data[0].count);
+        }, "json");
+
+        $.post('getLeave.do', {dayNum: 0}, function (data) {
+            $("#leaveCount").text(data.data.length);
+        }, "json");
+
+        $.post('getNoExamineLeave.do', {}, function (data) {
+            $("#notExamineLeaveCount").text(data.data.total);
+        }, "json");
+
+        $.post('/getOnlineUserCount.do', {}, function (data) {
+            $("#onlineUserCount").text(data);
+        }, "json");
+
+    })
+</script>
 </body>
 </html>

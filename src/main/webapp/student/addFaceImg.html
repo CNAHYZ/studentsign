@@ -3,22 +3,27 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>OneUI - Bootstrap 4 Admin Template &amp; UI Framework</title>
-    <meta name="robots" content="noindex, nofollow">
-    <!-- Open Graph Meta -->
 
-    <!-- Icons -->
-    <link rel="shortcut icon" href="../assets/media/favicons/favicon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="../assets/media/favicons/favicon-192x192.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="../assets/media/favicons/apple-touch-icon-180x180.png">
+    <title>OneUI - Bootstrap 4 Admin Template &amp; UI Framework</title>
+
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Open Graph Meta -->
+    <link rel="shortcut icon" href="/assets/media/favicons/favicon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/media/favicons/favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/media/favicons/apple-touch-icon-180x180.png">
     <!-- END Icons -->
 
     <!-- Stylesheets -->
+    <!-- Page JS Plugins CSS -->
+    <link rel="stylesheet" href="/assets/js/plugins/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.css">
+    <link rel="stylesheet" href="/assets/js/plugins/sweetalert2/sweetalert2.min.css">
+    <link rel="stylesheet" href="../assets/js/plugins/webUpload/webuploaderstyle.css"/>
+    <link rel="stylesheet" href="../assets/js/plugins/webUpload/webuploader.css"/>
+
     <!-- Fonts and OneUI framework -->
     <link rel="stylesheet" href="#">
-    <link rel="stylesheet" id="css-main" href="../assets/css/oneui.min.css">
-
-    <link rel="stylesheet" href="../assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css">
+    <link rel="stylesheet" id="css-main" href="/assets/css/oneui.min.css">
     <!-- END Stylesheets -->
 </head>
 <body>
@@ -83,7 +88,7 @@
                                 <i class="si si-lock ml-1"></i>
                             </a>
                             <a class="dropdown-item d-flex align-items-center justify-content-between"
-                               href="userLogin.html">
+                               href="logOut.do">
                                 <span>Log Out</span>
                                 <i class="si si-logout ml-1"></i>
                             </a>
@@ -118,11 +123,11 @@
             <div class="content content-full">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <h1 class="flex-sm-fill h3 my-2">
-                        签到记录
+                        添加图像
                     </h1>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
-                            <li class="breadcrumb-item">签到记录</li>
+                            <li class="breadcrumb-item">添加图像</li>
                             <li class="breadcrumb-item" aria-current="page">
                                 <a class="link-fx" href="index.html">首页</a>
                             </li>
@@ -132,53 +137,40 @@
             </div>
         </div>
         <!-- END Hero -->
+
         <!-- Page Content -->
         <div class="content">
-            <!-- Dynamic Table with Export Buttons -->
-            <div class="block">
-                <div class="block-content block-content-full">
-                    <div class="">
-                        <div class="px-lg-2"></div>
-                        <div class="px-lg-3"></div>
-                        <div class="col-lg-8 col-xl-6 row ">
-                            <form class="input-daterange input-group" id="dateFilter">
-                                <label class="" style="margin: auto">指定日期筛选：</label>
-                                <input type="text" class="form-control" id="daterange1"
-                                       name="daterange1" placeholder="开始日期">
-                                <div class="input-group-prepend input-group-append">
-                                    <span class="input-group-text font-w600">
-                                        <i class="fa fa-fw fa-arrow-right"></i>
-                                    </span>
+            <div class="row block block-content block-content-full justify-content-center">
+                <div class="col-lg-8 col-md-12 mb-lg-5 my-sm-0 mt-lg-3">
+                    <div class="col-lg-12">
+                        <div id="wrapper">
+                            <div id="container">
+                                <!--头部，相册选择和格式选择-->
+                                <div id="uploader">
+                                    <div class="queueList">
+                                        <div id="dndArea" class="placeholder">
+                                            <div id="filePicker"></div>
+                                        </div>
+                                    </div>
+                                    <div class="statusBar" style="display:none;">
+                                        <div class="progress">
+                                            <span class="text">0%</span>
+                                            <span class="percentage"></span>
+                                        </div>
+                                        <div class="info"></div>
+                                        <div class="btns">
+                                            <div id="filePicker2"></div>
+                                            <div class="uploadBtn">开始上传</div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <input type="text" class="form-control" id="daterange2"
-                                       name="daterange2" placeholder="结束日期">
-                            </form>
-                            <div class="">
-                                <input type="reset" class="btn btn-block btn-info" onclick="formReset()">
                             </div>
                         </div>
                     </div>
-                    <div class="py-2"></div>
-                    <table class="table table-bordered table-hover table-striped table-vcenter js-dataTable-buttons text-center"
-                           id="datatable">
-                        <thead>
-                        <tr>
-                            <th class="text-center" style="width: 15%;">ID</th>
-                            <th class="d-none d-sm-table-cell" style="width: 20%;">学号</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">姓名</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">签到状态</th>
-                            <th class="d-none d-sm-table-cell" style="width: 25%;">签到时间</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
+                    <!-- END Page Content -->
                 </div>
             </div>
-            <!-- END Dynamic Table with Export Buttons -->
         </div>
-        <!-- END Page Content -->
-
     </main>
     <!-- END Main Container -->
 
@@ -197,102 +189,131 @@
 </div>
 <!-- END Page Container -->
 
+<!--
+    OneUI JS Core
+-->
 <script src="../assets/js/oneui.core.min.js"></script>
 
-<!--
-    OneUI JS
--->
 <script src="../assets/js/oneui.app.min.js"></script>
 
-<!-- Page JS Plugins -->
-<script src="../assets/js/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="../assets/js/plugins/datatables/dataTables.bootstrap4.min.js"></script>
-<script src="../assets/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
-<script src="../assets/js/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+<!-- Page JS Plugins 对话框-->
+<script src="../assets/js/plugins/sweetalert2/sweetalert2.min.js"></script>
 
-<script src="/assets/js/common/dataTable.js"></script>
-<script>
-    jQuery(function () {
-        One.helpers(['datepicker']);
-    });
-</script>
+<script src="/assets/js/plugins/jquery-bootstrap-wizard/bs4/jquery.bootstrap.wizard.min.js"></script>
 
+<script src="/assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="/assets/js/plugins/jquery-validation/localization/messages_zh.js"></script>
+
+<script src="../assets/js/plugins/webUpload/webuploader.js"></script>
+<script src="../assets/js/plugins/webUpload/upload.js"></script>
 <script>
-    var options2 = {
-        lengthChange: false,
-        "searching": false,
-        ajax: {
-            type: "post",
-            url: "signList.do",
-            data: {},
-            /* beforeSend: function () {
-                 console.log(sendData)
-             }*/
-        },
-        //每页显示n条数据
-        pageLength: 10,
-        columns: [
-            {data: "id"},
-            {data: "sNo"},
-            {
-                data: "sName",
-                defaultContent: "-"
+    /**
+     * 初始化bootstrap.wizard控件
+     */
+    $(function () {
+        var options = {
+            tabClass: "nav nav-tabs",
+            nextSelector: '[data-wizard="next"]',
+            previousSelector: '[data-wizard="prev"]',
+            finishSelector: '[data-wizard="finish"]',
+            onTabShow: function (a, e, i) {
+                var r = (i + 1) / e.find("li").length * 98,
+                    t = e.parents(".block").find('[data-wizard="progress"] > .progress-bar');
+                t.length && t.css({width: r + 1 + "%"})
             },
-            {
-                data: "signStatus",
-                defaultContent: "-"
+            onNext: function () {
+                return fileValid();
             },
-            {
-                data: "signTime",
-                defaultContent: "-"
+            onTabClick: function (a, e) {
+                return jQuery("a", e).blur(), !1
             }
-        ],
-        "columnDefs": [
-            {}]
-    };
-    /**
-     * 初始化datatable
-     */
-    var t = $('#datatable').DataTable(Object.assign(options2, serverSideOptions));
+        };
+        var wizard = $(".js-wizard-simple").bootstrapWizard(options);
+    });
 
 
     /**
-     * 初始化datepicker
+     * 文件非空和类型的验证
      */
-    $('.input-daterange').datepicker({
-        endDate: '0d',//最大只能选择到今天
-        language: "zh-CN",
-        weekStart: "1",
-        autoclose: "true",
-        todayHighlight: "true",
-        format: "yyyy-mm-dd",
-        todayBtn: "linked",
-        maxViewMode: "years"
-    })
-    /**
-     * 日期改变后的事件
-     */
-        .on('changeDate', function (e) {
-            var startTime = $('#daterange1').val();
-            var endTime = $('#daterange2').val();
-            console.log(startTime);
-            sendData = {
-                "startTime": startTime,
-                "endTime": endTime
-            };
-            //修改ajax传递的参数
-            t.settings()[0].ajax.data = sendData;
-            t.ajax.reload();
-        });
-
-    /**
-     * 清空筛选条件
-     */
-    function formReset() {
-        document.getElementById("dateFilter").reset();
-        t.settings()[0].ajax.data = {};
-        t.ajax.reload();
+    function fileValid() {
+        allowtype = ["jpg", "gif", "png", "jpeg"];
+        /*判断是否上传文件*/
+        var fileInput = $('input[id^="faceImage"]').get(0).files[0];
+        console.info(fileInput);
+        if (!fileInput) {
+            swal("未选择文件", "请上传图片文件", "error");
+            return false
+        }
+        /*判断文件类型*/
+        filepath = fileInput.name;
+        console.info(filepath);
+        //截取文件后缀名
+        var fileType = filepath.substring(filepath.lastIndexOf(".") + 1, filepath.length).toLowerCase();
+        //$.inArray()用于在数组中查找指定值，并返回它的索引值（如果没有找到，则返回-1）
+        if ($.inArray(fileType, allowtype) === -1) {
+            swal("文件类型不正确", "请上传图片文件", "error");
+            return false;
+        }
+        return true;
     }
+
+    /**
+     * 文件框改变事件（选择文件）
+     */
+    function changFile(e) {
+        for (var i = 0; i < e.target.files.length; i++) {
+            var file = e.target.files.item(i);
+            if (!fileValid()) {
+                $('#confirmAdd').attr('disabled', true);
+                $(".img_preview").attr("src", '');
+                return;
+            }
+        }
+        $('#confirmAdd').removeAttr('disabled');
+        //实例化FileReader API
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function (e) {
+            $('#gallery').append(' <img class="img_preview" src="' + e.target.result + '" alt="" width="200px">')
+        }
+    }
+
+
+    /**
+     * 提交修改
+     */
+    $("#btn_submit").click(function () {
+        form = $("#form_pwd");
+        if (!form.valid())
+            return;
+        formData = new FormData(form[0]);
+        $.ajax({
+            processData: false,
+            contentType: false,
+            type: "post",
+            url: "changePwd.do",
+            data: formData,
+            dataType: "json",
+            success: function (data) {
+                if (data.success) {
+                    Swal({
+                        title: data.data,
+                        type: "success",
+                        confirmButtonText: '确定',
+                        onAfterClose: function () {
+                            //清空form表单
+                            document.getElementById("form_pwd").reset()
+                        }
+                    })
+                } else
+                    swal(data.errMsg, "", "error");
+            },
+            error: function () {
+                swal("未知错误，请重试或联系管理员！", "", "error");
+            }
+        })
+    });
+
 </script>
 </body>
 </html>

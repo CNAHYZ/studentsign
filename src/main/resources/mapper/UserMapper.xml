@@ -58,6 +58,12 @@
         where username = #{username};
     </select>
 
+    <!--获取学生总数-->
+    <select id="getTotalCount" resultType="int">
+        select count(*)
+        from student
+    </select>
+
     <!--===========================修改=============================-->
     <!--修改学生信息-->
     <update id="updateStuInfo" parameterType="student">

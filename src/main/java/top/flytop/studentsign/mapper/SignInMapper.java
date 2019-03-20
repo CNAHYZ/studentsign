@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import top.flytop.studentsign.pojo.SignIn;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName SignInMapper
@@ -67,5 +68,11 @@ public interface SignInMapper {
      */
     Boolean addSignRecord(SignIn signIn);
 
-
+    /**
+     * @param dayNum
+     * @return int
+     * @Description TODO
+     * @Date 2019/3/18 22:00
+     */
+    List<Map> getSignCount(int dayNum);
 }

@@ -3,8 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
     <title>OneUI - Bootstrap 4 Admin Template &amp; UI Framework</title>
+
     <meta name="robots" content="noindex, nofollow">
+
     <!-- Open Graph Meta -->
 
     <!-- Icons -->
@@ -15,15 +18,54 @@
     <!-- END Icons -->
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="../assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css">
-
     <!-- Fonts and OneUI framework -->
     <link rel="stylesheet" href="#">
     <link rel="stylesheet" id="css-main" href="../assets/css/oneui.min.css">
+
+    <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
+    <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/amethyst.min.css"> -->
     <!-- END Stylesheets -->
 </head>
 <body>
 <!-- Page Container -->
+<!--
+    Available classes for #page-container:
+
+GENERIC
+
+    'enable-cookies'                            Remembers active color theme between pages (when set through color theme helper Template._uiHandleTheme())
+
+SIDEBAR & SIDE OVERLAY
+
+    'sidebar-r'                                 Right Sidebar and left Side Overlay (default is left Sidebar and right Side Overlay)
+    'sidebar-mini'                              Mini hoverable Sidebar (screen width > 991px)
+    'sidebar-o'                                 Visible Sidebar by default (screen width > 991px)
+    'sidebar-o-xs'                              Visible Sidebar by default (screen width < 992px)
+    'sidebar-dark'                              Dark themed sidebar
+
+    'side-overlay-hover'                        Hoverable Side Overlay (screen width > 991px)
+    'side-overlay-o'                            Visible Side Overlay by default
+
+    'enable-page-overlay'                       Enables a visible clickable Page Overlay (closes Side Overlay on click) when Side Overlay opens
+
+    'side-scroll'                               Enables custom scrolling on Sidebar and Side Overlay instead of native scrolling (screen width > 991px)
+
+HEADER
+
+    ''                                          Static Header if no class is added
+    'page-header-fixed'                         Fixed Header
+
+HEADER STYLE
+
+    ''                                          Light themed Header
+    'page-header-dark'                          Dark themed Header
+
+MAIN CONTENT LAYOUT
+
+    ''                                          Full width Main Content if no class is added
+    'main-content-boxed'                        Full width Main Content with a specific maximum width (screen width > 1200px)
+    'main-content-narrow'                       Full width Main Content with a percentage width (screen width > 1200px)
+-->
 <div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-fixed">
 
     <!-- Sidebar -->
@@ -221,8 +263,9 @@
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_comp_loaders.html">
-                                <span class="nav-main-link-name">Loaders</span>
+                            <a class="nav-main-link" href="changePwd.html">
+                                <i class="nav-main-link-icon fa fa-lock"></i>
+                                <span class="nav-main-link-name">密码修改</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
@@ -244,6 +287,7 @@
         <!-- END Side Navigation -->
     </nav>
     <!-- END Sidebar -->
+
     <!-- Header -->
     <header id="page-header">
         <!-- Header Content -->
@@ -318,7 +362,7 @@
                                 <i class="si si-lock ml-1"></i>
                             </a>
                             <a class="dropdown-item d-flex align-items-center justify-content-between"
-                               href="../userLogin.html">
+                               href="logOut.do">
                                 <span>Log Out</span>
                                 <i class="si si-logout ml-1"></i>
                             </a>
@@ -332,84 +376,19 @@
                     <button type="button" class="btn btn-sm btn-dual" id="page-header-notifications-dropdown"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="si si-bell"></i>
-                        <span class="badge badge-primary badge-pill">6</span>
+                        <span class="badge badge-primary badge-pill" id="notification_count"></span>
                     </button>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0 border-0 font-size-sm"
                          aria-labelledby="page-header-notifications-dropdown">
                         <div class="p-2 bg-primary text-center">
-                            <h5 class="dropdown-header text-uppercase text-white">Notifications</h5>
+                            <h5 class="dropdown-header text-uppercase text-white" id="notification_header"></h5>
                         </div>
-                        <ul class="nav-items mb-0">
-                            <li>
-                                <a class="text-dark media py-2" href="javascript:void(0)">
-                                    <div class="mr-2 ml-3">
-                                        <i class="fa fa-fw fa-check-circle text-success"></i>
-                                    </div>
-                                    <div class="media-body pr-2">
-                                        <div class="font-w600">You have a new follower</div>
-                                        <small class="text-muted">15 min ago</small>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="text-dark media py-2" href="javascript:void(0)">
-                                    <div class="mr-2 ml-3">
-                                        <i class="fa fa-fw fa-plus-circle text-info"></i>
-                                    </div>
-                                    <div class="media-body pr-2">
-                                        <div class="font-w600">1 new sale, keep it up</div>
-                                        <small class="text-muted">22 min ago</small>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="text-dark media py-2" href="javascript:void(0)">
-                                    <div class="mr-2 ml-3">
-                                        <i class="fa fa-fw fa-times-circle text-danger"></i>
-                                    </div>
-                                    <div class="media-body pr-2">
-                                        <div class="font-w600">Update failed, restart server</div>
-                                        <small class="text-muted">26 min ago</small>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="text-dark media py-2" href="javascript:void(0)">
-                                    <div class="mr-2 ml-3">
-                                        <i class="fa fa-fw fa-plus-circle text-info"></i>
-                                    </div>
-                                    <div class="media-body pr-2">
-                                        <div class="font-w600">2 new sales, keep it up</div>
-                                        <small class="text-muted">33 min ago</small>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="text-dark media py-2" href="javascript:void(0)">
-                                    <div class="mr-2 ml-3">
-                                        <i class="fa fa-fw fa-user-plus text-success"></i>
-                                    </div>
-                                    <div class="media-body pr-2">
-                                        <div class="font-w600">You have a new subscriber</div>
-                                        <small class="text-muted">41 min ago</small>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="text-dark media py-2" href="javascript:void(0)">
-                                    <div class="mr-2 ml-3">
-                                        <i class="fa fa-fw fa-check-circle text-success"></i>
-                                    </div>
-                                    <div class="media-body pr-2">
-                                        <div class="font-w600">You have a new follower</div>
-                                        <small class="text-muted">42 min ago</small>
-                                    </div>
-                                </a>
-                            </li>
+                        <ul class="nav-items mb-0" id="notification_content">
+
                         </ul>
                         <div class="p-2 border-top">
-                            <a class="btn btn-sm btn-light btn-block text-center" href="javascript:void(0)">
-                                <i class="fa fa-fw fa-arrow-down mr-1"></i> Load More..
+                            <a class="btn btn-sm btn-light btn-block text-center" href="leaveExamine.html">
+                                <i class="fa fa-fw fa-check-double mr-1"></i> 点此去处理
                             </a>
                         </div>
                     </div>
@@ -423,7 +402,7 @@
         <!-- Header Search -->
         <div id="page-header-search" class="overlay-header bg-white">
             <div class="content-header">
-                <form class="w-100" action="" method="POST">
+                <form class="w-100" action="be_pages_generic_search.html" method="POST">
                     <div class="input-group input-group-sm">
                         <div class="input-group-prepend">
                             <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
@@ -455,109 +434,134 @@
 
     <!-- Main Container -->
     <main id="main-container">
-
+        <!-- Page Content -->
         <!-- Hero -->
-        <div class="bg-body-light">
-            <div class="content content-full">
-                <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-                    <h1 class="flex-sm-fill h3 my-2">
-                        签到记录
-                        <!--<small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted">All-->
-                        <!--pages in one spot!-->
-                        <!--</small>-->
-                    </h1>
-                    <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
-                        <ol class="breadcrumb breadcrumb-alt">
-                            <li class="breadcrumb-item">签到记录</li>
-                            <li class="breadcrumb-item" aria-current="page">
-                                <a class="link-fx" href="index.html">首页</a>
-                            </li>
-                        </ol>
-                    </nav>
+        <div class="bg-image" style="background-image: url('../assets/media/photos/bg_login.jpg');">
+            <div class="bg-black-50">
+                <div class="content content-full text-center">
+                    <div class="my-3">
+                        <img class="img-avatar img-avatar-thumb" src="../assets/media/avatars/avatar0.jpg" alt="">
+                    </div>
+                    <div class="row justify-content-center">
+                        <a href="javascript:jumpToInfo()" class="h3 font-w400 text-white mb-0" id="sName"></a>
+                        <span class="pt-1"> <i id="gender"></i></span>
+                    </div>
+                    <span class="text-white-75" id="otherInfo"></span>
                 </div>
             </div>
         </div>
         <!-- END Hero -->
 
-        <!-- Page Content -->
-        <div class="content">
-            <!-- Dynamic Table with Export Buttons -->
-            <div class="block">
-                <!--      <div class="block-header">
-                          <h3 class="block-title">Dynamic Table
-                              <small>Export Buttons</small>
-                          </h3>
-                      </div>-->
-                <div class="block-content block-content-full">
-                    <div class="row">
-                        <div class="px-lg-2"></div>
-                        <div class="dropdown" style="">
-                            <label style="vertical-align: bottom;">快速筛选：</label>
-                            <button type="button" class="btn btn-outline-primary dropdown-toggle" id="btn_time"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                今天
+        <!-- Stats -->
+        <!-- <div class="bg-white border-bottom">
+             <div class="content content-boxed">
+                 <div class="row items-push text-center">
+                     <div class="col-6 col-md-3">
+                         <div class="font-size-sm font-w600 text-muted text-uppercase">Sales</div>
+                         <a class="link-fx font-size-h3" href="javascript:void(0)">17980</a>
+                     </div>
+                     <div class="col-6 col-md-3">
+                         <div class="font-size-sm font-w600 text-muted text-uppercase">Products</div>
+                         <a class="link-fx font-size-h3" href="javascript:void(0)">27</a>
+                     </div>
+                     <div class="col-6 col-md-3">
+                         <div class="font-size-sm font-w600 text-muted text-uppercase">Followers</div>
+                         <a class="link-fx font-size-h3" href="javascript:void(0)">1360</a>
+                     </div>
+                     <div class="col-6 col-md-3">
+                         <div class="font-size-sm font-w600 text-muted text-uppercase mb-2">739 Ratings</div>
+                         <span class="text-warning">
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star-half"></i>
+                                 </span>
+                         <span class="font-size-sm text-muted">(4.9)</span>
+                     </div>
+                 </div>
+             </div>
+         </div>-->
+        <!-- END Stats -->
+
+        <!-- Customers and Latest Orders -->
+        <div class="row row-deck">
+            <!-- Latest Customers -->
+            <div class="col-lg-4">
+                <div class="block block-mode-loading-oneui">
+                    <div class="block-header border-bottom">
+                        <h3 class="block-title">签到记录</h3>
+                        <div class="block-options">
+                            <button type="button" class="btn-block-option" data-toggle="block-option"
+                                    data-action="state_toggle" data-action-mode="demo">
+                                <i class="si si-refresh"></i>
                             </button>
-                            <div class="dropdown-menu font-size-sm" aria-labelledby="dropdown-default-outline-primary"
-                                 style="min-width:77px">
-                                <a class="dropdown-item" onclick="dropSelect(this,0)">今天</a>
-                                <a class="dropdown-item" onclick="dropSelect(this,6)">近7天</a>
-                                <a class="dropdown-item" onclick="dropSelect(this,29)">近30天</a>
-                                <!--<div class="dropdown-divider"></div>-->
-                                <a class="dropdown-item" onclick="dropSelect(this,null)">全部</a>
-                            </div>
-                        </div>
-                        <div class="px-lg-3"></div>
-                        <div class="col-lg-8 col-xl-6 row">
-                            <div class="input-daterange input-group">
-                                <label class="" style="margin: auto">指定日期筛选：</label>
-                                <input type="text" class="form-control" id="daterange1"
-                                       name="daterange1" placeholder="开始日期">
-                                <div class="input-group-prepend input-group-append">
-                                    <span class="input-group-text font-w600">
-                                        <i class="fa fa-fw fa-arrow-right"></i>
-                                    </span>
-                                </div>
-                                <input type="text" class="form-control" id="daterange2"
-                                       name="daterange2" placeholder="结束日期">
-                            </div>
-                        </div>
-                        <div class="px-lg-3"></div>
-                        <div class="input-group col-lg-3 col-xl-3">
-                            <input type="text" class="form-control" id="ipt_search"
-                                   name="keyword" placeholder="学号、姓名">
-                            <div class="input-group-prepend">
-                                <button type="button" class="btn btn-primary" id="btn_search">
-                                    <i class="fa fa-search mr-1"></i> 搜索
-                                </button>
-                            </div>
+                            <button type="button" class="btn-block-option">
+                                <i class="si si-settings"></i>
+                            </button>
                         </div>
                     </div>
-                    <div class="py-2"></div>
-                    <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons text-center"
-                           id="mydatatable">
-                        <thead>
-                        <tr>
-                            <th class="text-center" style="width: 15%;">ID</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">学号</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">姓名</th>
-                            <th class="d-none d-sm-table-cell" style="width: 20%;">班级</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">签到状态</th>
-                            <th class="d-none d-sm-table-cell" style="width: 20%;">签到时间</th>
-                            <!--<th class="d-none d-sm-table-cell" style="width: 15%;">操作</th>-->
-                        </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
+                    <div class="block-content block-content-full">
+                        <table class="table table-bordered table-hover table-striped table-vcenter js-dataTable-buttons text-center"
+                               id="datatable">
+                            <thead>
+                            <tr>
+                                <th class="text-center" style="width: 15%;">ID</th>
+                                <!--<th class="d-none d-sm-table-cell" style="width: 20%;">学号</th>-->
+                                <th class="d-none d-sm-table-cell" style="width: 25%;">签到时间</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-            <!-- END Dynamic Table with Export Buttons -->
+            <!-- END Latest Customers -->
+
+            <!-- Latest Orders -->
+            <div class="col-lg-8">
+                <div class="block block-mode-loading-oneui">
+                    <div class="block-header border-bottom">
+                        <h3 class="block-title">请假记录</h3>
+                        <div class="block-options">
+                            <button type="button" class="btn-block-option" data-toggle="block-option"
+                                    data-action="state_toggle" data-action-mode="demo">
+                                <i class="si si-refresh"></i>
+                            </button>
+                            <button type="button" class="btn-block-option">
+                                <i class="si si-settings"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="block-content block-content-full">
+                        <table class="table table-bordered table-hover table-striped table-vcenter js-dataTable-buttons text-center "
+                               id="mydatatable">
+                            <thead>
+                            <tr>
+                                <th class="text-center" style="width: 8%;">ID</th>
+                                <!--<th class="d-none d-sm-table-cell" style="width: 12%;">学号</th>-->
+                                <!--<th class="d-none d-sm-table-cell" style="width: 10%;">姓名</th>-->
+                                <th class="d-none d-sm-table-cell" style="width: 15%;">申请时间</th>
+                                <th class="d-none d-sm-table-cell" style="width: 10%;">类别</th>
+                                <th class="d-none d-sm-table-cell" style="width: 22%;">请假时间</th>
+                                <th class="d-none d-sm-table-cell" style="width: 10%;">审批状态</th>
+                                <th class="d-none d-sm-table-cell" style="width: 8%;">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- END Latest Orders -->
+            </div>
+            <!-- END Customers and Latest Orders -->
         </div>
         <!-- END Page Content -->
 
     </main>
     <!-- END Main Container -->
-
     <!-- Footer -->
     <footer id="page-footer" class="bg-body-light">
         <div class="content py-3">
@@ -572,136 +576,175 @@
     <!-- END Footer -->
 </div>
 <!-- END Page Container -->
-
 <script src="../assets/js/oneui.core.min.js"></script>
-
-<!--
-    OneUI JS
--->
-<script src="../assets/js/oneui.app.min.js"></script>
-
-<!-- Page JS Plugins -->
+<script src="../assets/js/common/common_header.js"></script>
+<script src="../assets/js/common/dataTable.js"></script>
 <script src="../assets/js/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="../assets/js/plugins/datatables/dataTables.bootstrap4.min.js"></script>
-
-<script src="../assets/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
-<script src="../assets/js/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js"></script>
-
-<script src="/assets/js/common/dataTable.js"></script>
+<script src="../assets/js/oneui.app.min.js"></script>
 <script>
-    jQuery(function () {
-        One.helpers(['datepicker']);
-    });
-</script>
-
-<script>
-    var options2 = {
-        lengthChange: false,
-        "searching": false,
-        ajax: {
+    var getStuInfoUrl = "studentInfoGet.do";
+    var sNo;
+    $(function () {
+        var thisURL = document.URL;
+        var parameters = window.location.search;
+        sNo = decodeURI(parameters.substr(1).split('=')[1]);
+        $.ajax({
             type: "post",
-            url: "signList.do",
-            //注意：直接写成{"dayNum": d}不可行，dayNum会一直为0
-            data: sendData = {"dayNum": 0},//这里可以调用一个方法，获取sendData
-            beforeSend: function () {
-                console.log(sendData)
-            }
-        },
-        //每页显示n条数据
-        pageLength: 10,
-        columns: [
-            {data: "id"},
-            {data: "sNo"},
-            {
-                data: "sName",
-                defaultContent: "-"
-            },
-            {
-                data: "cName",
-                defaultContent: "-"
-            },
-            {
-                data: "signStatus",
-                defaultContent: "-"
-            },
-            {
-                data: "signTime",
-                defaultContent: "-"
-            },
-            /*{
-                "data": null,
-                render: function (data, type, row) {
-                    return '<div class="btn-group">' +
-                        '<button type="button" class="btn btn-sm btn-primary js-tooltip-enabled" ' +
-                        'data-toggle="tooltip" title="删除" onclick="delStudent(' + row.sNo + ')">' +
-                        '<i class="fa fa-fw fa-times"></i>' +
-                        '</button>' +
-                        '</div>'
+            url: getStuInfoUrl,
+            data: {"sNo": sNo},
+            dataType: "json",
+            success: function (data) {
+                var realData = data.data;
+                if (data.success) {
+                    $('#sName').text(realData.sName);
+                    if ("男" === realData.gender) {
+                        $('#gender').addClass('si si-symbol-male font-w700 ml-2 text-primary');
+                    } else if ("女" === realData.gender) {
+                        $('#gender').addClass('si si-symbol-female font-w700 ml-2 text-danger');
+                    }
+                    $('#otherInfo').text(realData.sNo + ' • ' + realData.sClass.cName + ' • ' +
+                        realData.phoneNum);
+
                 }
-            }*/
-        ],
-        "columnDefs": [
-            {/*//每列定义
-                "orderable": false,
-                "targets": [2, 5, -1]//第x列不排序*/
-            }]
-    };
-    /**
-     * 初始化datatable
-     */
-    var t = $('#mydatatable').DataTable(Object.assign(options2, serverSideOptions));
-    /**
-     *日期筛选按钮的操作
-     * @type {number}
-     */
-    function dropSelect(option, day) {
-        $("#btn_time").text($(option).text());
-        sendData = {'dayNum': day};
-        t.settings()[0].ajax.data = sendData;
-        t.ajax.url('signList.do').load();
-
-    }
-
-    /**
-     * 初始化datepicker
-     */
-    $('.input-daterange').datepicker({
-        endDate: '0d',//最大只能选择到今天
-        language: "zh-CN",
-        weekStart: "1",
-        autoclose: "true",
-        todayHighlight: "true",
-        format: "yyyy-mm-dd",
-        todayBtn: "linked",
-        maxViewMode: "years"
-    })
-    /**
-     * 日期改变后的事件
-     */
-        .on('changeDate', function (e) {
-            var startTime = $('#daterange1').val();
-            var endTime = $('#daterange2').val();
-            sendData = {
-                "startTime": startTime,
-                "endTime": endTime
-            };
-            //修改ajax传递的参数
-            t.settings()[0].ajax.data = sendData;
-            t.ajax.url('signListFilter.do').load();
-            // t.settings()[0].ajax.error = ;
+            }
         });
-    /**
-     * 搜索点击事件
-     */
-    $('#btn_search').click(function () {
-        var keyword = $('#ipt_search').val();
-        if (keyword === '') return false;
-        sendData = {'keyword': keyword};
-        //修改ajax传递的参数
-        t.settings()[0].ajax.data = sendData;
-        t.ajax.url('searchSignList.do').load();
-    })
+        /**
+         * 签到记录表相关
+         */
+        var options2 = {
+            lengthChange: false,
+            "searching": false,
+            ajax: {
+                type: "post",
+                url: "getSignBySNo.do",
+                data: {"sNo": sNo},
+            },
+            //每页显示n条数据
+            pageLength: 5,
+            columns: [
+                {data: "id"},
+                {
+                    data: "signTime",
+                    defaultContent: "-"
+                }
+            ],
+            "columnDefs": [
+                {}]
+        };
+        /**
+         * 初始化datatable
+         */
+        var t = $('#datatable').DataTable(Object.assign(options2, serverSideOptions));
 
+        /**
+         * 请假记录表相关
+         */
+        var options3 = {
+            "ordering": false,
+            "autoWidth": false,
+            "processing": true,
+            "retrieve": true,
+            "bStateSave": true,
+            "lengthChange": false,
+            "searching": false,
+            ajax: {
+                type: "post",
+                url: "getLeaveBySNo.do",
+                data:
+                    function () {
+                        sendData = {"sNo": sNo};
+                        return sendData;
+                    },
+                beforeSend: function () {
+                    console.log(sendData)
+                }
+            },
+            //每页显示n条数据
+            pageLength: 10,
+            columns: [
+                {data: "id"},
+                // {data: "sNo"},
+                /* {
+                     data: "sName",
+                     defaultContent: "-"
+                 },*/
+                {
+                    data: "applicationTime",
+                    defaultContent: "-"
+                },
+                {
+                    data: "category",
+                    defaultContent: "-"
+                },
+                {
+                    data: "startTime",
+                    defaultContent: "-"
+                },
+                {
+                    data: "auditStatus",
+                    defaultContent: "-"
+                },
+                {
+                    "data": null,
+                    render: function (data, type, row) {
+                        return '<div class="btn-group">' +
+                            '<button type="button" class="btn btn-sm btn-primary js-tooltip-enabled"' +
+                            ' data-toggle="tooltip" title="查看详情" ' +
+                            'onclick="window.location.href=\'leaveDetail.html?id=' + row.id + '\'">' +
+                            '<i class="fa fa-fw fa-ellipsis-h"></i>' +
+                            '</button>' +
+                            '</div>'
+                    }
+                }
+            ],
+            "columnDefs": [
+                {
+                    "targets": [2], // 目标列位置，下标从0开始
+                    // "data": "salary", // 数据列名
+                    "render": function (data, type, full) { // 返回自定义内容
+                        if (data === 0)
+                            return "事假";
+                        else if (data === 1)
+                            return "病假";
+                        else return "其它";
+                    }
+                },
+                {
+                    "targets": [-2], // 目标列位置，下标从0开始
+                    "render": function (data, type, full) { // 返回自定义内容
+                        switch (data) {
+                            case 0:
+                                return "<span class=\"badge badge-primary\">待审批</span>";
+                            case 1:
+                                return "<span class=\"badge badge-success\">已同意</span>";
+                            case 2:
+                                return "<span class=\"badge badge-danger\">已拒绝</span>";
+                        }
+                    }
+                },
+                {
+                    "targets": [-3], // 目标列位置，下标从0开始
+                    "render": function (data, type, full) { // 返回自定义内容
+                        return full.startTime +
+                            "<span style='color: #0f86bb'> 至 </span>" + full.endTime;
+                    }
+                }
+            ]
+        };
+        /**
+         * 初始化datatable
+         */
+        var t2 = $('#mydatatable').DataTable(Object.assign(options3, generalOptions));
+
+    });
+
+    /**
+     * 点击姓名跳转方法
+     */
+    function jumpToInfo() {
+        window.location.href = "studentInfo.html?" + sNo
+    }
 </script>
 </body>
 </html>

@@ -32,8 +32,7 @@
     <link rel="stylesheet" href="../assets/js/plugins/sweetalert2/sweetalert2.min.css">
     <link rel="stylesheet" href="../assets/js/plugins/select2/css/select2.min.css">
 
-    <link rel="stylesheet" href="../assets/js/plugins/slick-carousel/slick.css">
-    <link rel="stylesheet" href="../assets/js/plugins/slick-carousel/slick-theme.css">
+    <link rel="stylesheet" href="../assets/js/plugins/swiper/css/swiper.min.css">
 
     <link rel="stylesheet" href="../assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css">
 
@@ -41,14 +40,16 @@
     <link rel="stylesheet" href="#">
     <link rel="stylesheet" id="css-main" href="../assets/css/oneui.min.css">
     <style>
-        #slick_img img {
-            display: block;
+        img {
             width: auto;
             height: auto;
             max-width: 100%;
             max-height: 100%;
-            background-repeat: no-repeat;
-            background-position: center center;
+        }
+
+        .swiper-container {
+            width: 280px;
+            height: 400px;
         }
     </style>
 </head>
@@ -533,10 +534,21 @@ MAIN CONTENT LAYOUT
                 <div class="block-content block-content-full">
 
                     <div class="row">
-                        <div class="col-lg-5 col-md-4 row">
-                            <div class="col-lg-3"></div>
-                            <div class="col-lg-8">
-                                <div id="slick_img" class="js-slider text-center slick-nav-black mb-4">
+                        <div class="col-lg-5 col-md-12 row">
+                            <div class="col-lg-2"></div>
+                            <div class="col-lg-9">
+                                <!-- Slider main container -->
+                                <div class="swiper-container">
+                                    <!-- Additional required wrapper -->
+                                    <div class="swiper-wrapper">
+                                        <!-- Slides -->
+                                    </div>
+                                    <!-- If we need pagination -->
+                                    <div class="swiper-pagination"></div>
+
+                                    <!-- If we need navigation buttons -->
+                                    <div class="swiper-button-prev"></div>
+                                    <div class="swiper-button-next"></div>
                                 </div>
                                 <div class="text-center mb-3">
                                     <a class="btn  btn-light" href="javascript:addFaceImg()">
@@ -697,7 +709,7 @@ MAIN CONTENT LAYOUT
 <script src="../assets/js/plugins/select2/js/select2.full.min.js"></script>
 <script src="../assets/js/plugins/select2/js/i18n/zh-CN.js"></script>
 
-<script src="../assets/js/plugins/slick-carousel/slick.min.js"></script>
+<script src="../assets/js/plugins/swiper/js/swiper.min.js"></script>
 
 <script src="../assets/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
 <script src="../assets/js/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js"></script>
@@ -713,10 +725,9 @@ MAIN CONTENT LAYOUT
     var removeStuFaceImgUrl = "removeFaceImg.do";
 
     var sno;
-    var mySlick;
+    var mySwiper;
     //用来存放轮播图下标及其对应的faceToken
     var tokenObject = {};
-
     /**
      * 初始化select2和Datepicker
      */
@@ -784,43 +795,111 @@ MAIN CONTENT LAYOUT
             url: getStuFaceImgUrl,
             success: function (data) {
                 console.log(data);
+                var sliderHtml = '';
                 if (data.success) {
-                    reloadSlick();
                     data.data.forEach(function (item, index) {
                         //对象添加属性
                         tokenObject[index] = item.faceToken;
-                        mySlick.slick("slickAdd", '<div>\n' +
+                        sliderHtml += '<div class="swiper-slide">\n' +
                             '                          <img src="' + item.url + '" alt="面部图像">\n' +
                             '                          <div hidden class="text-muted" id="faceToken">' + item.faceToken + '</div>\n' +
-                            '                    </div>');
+                            '                    </div>';
                     });
+                    $(".swiper-wrapper").html(sliderHtml);
+                    initSwiper();
                     console.log(tokenObject);
+                } else {
+                    initSwiper();
                 }
             }
         })
     }
 
     /**
-     * 初始化slick轮播
+     * 初始化Swiper轮播
      */
-    function initSlick() {
-        mySlick = $('#slick_img').slick({
-            dots: true,
-            fade: true,
-            speed: 600,
-            // adaptiveHeight:true,
-            variableWidth: true
-        });
+    function initSwiper() {
+        mySwiper = new Swiper('.swiper-container', {
+            speed: 1000,
+            watchOverflow: true,
+            effect: 'fade',
+            observer: true,//修改swiper自己或子元素时，自动初始化swiper
+            observeParents: true,//修改swiper的父元素时，自动初始化swiper
+            autoHeight: true,
+            pagination: {
+                el: '.swiper-pagination',
+            },
+
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            }
+        })
     }
 
-    function reloadSlick() {
-        if ($("#slick_img").hasClass("slick-initialized")) {
-            $("#slick_img").slick("unslick");
-            console.log('carousel destroyed');
-            initSlick();
-        } else
-            initSlick();
+    /**
+     *添加图片方法
+     */
+    function addFaceImg() {
+        //显示modal框
+        $('#addImgModal').modal("show");
     }
+
+    /**
+     *删除图片方法
+     */
+    async function removeFaceImg() {
+        await swal({
+            title: "确认删除吗?",
+            text: "删除后将无法恢复",
+            type: "warning",
+            showCancelButton: !0,
+            confirmButtonText: "确认删除",
+            cancelButtonText: "取消",
+            preConfirm: function (e) {
+                return new Promise(function (e) {
+                    setTimeout(function () {
+                        e()
+                    }, 50)
+                })
+            }
+        }).then(function (e) {
+            e.value ? send() : "cancel" === e.dismiss
+        });
+
+        function send() {
+            var currentSlide = mySwiper.activeIndex;
+            console.log(currentSlide);
+            var currentFaceToken = tokenObject[currentSlide];
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                data: {'uid': sno, 'faceToken': currentFaceToken},
+                url: removeStuFaceImgUrl,
+                success: function (data) {
+                    if (data.success) {
+                        /*重新获取slick图片*/
+                        mySwiper.destroy(true, true);
+                        faceImgHandler();
+
+                        Swal.mixin({
+                            toast: true, position: 'top', showConfirmButton: false, timer: 5000
+                        }).fire({type: 'success', title: data.data})
+                    } else {
+                        Swal.mixin({
+                            toast: true, position: 'top', showConfirmButton: false, timer: 5000
+                        }).fire({type: 'error', title: data.errMsg})
+                    }
+                },
+                error: function () {
+                    Swal.mixin({
+                        toast: true, position: 'top', showConfirmButton: false, timer: 5000
+                    }).fire({type: 'error', title: "系统错误，请稍后再试！"});
+                }
+            })
+        }
+    }
+
 
     /**
      * modal框确认按钮点击事件
@@ -845,7 +924,7 @@ MAIN CONTENT LAYOUT
                     Swal({
                         title: result.data, type: "success",
                         onAfterClose: function () {
-                            reloadSlick();
+                            mySwiper.destroy(true, true);
                             //重新获取slick图片
                             faceImgHandler();
                             //关闭modal
@@ -902,69 +981,6 @@ MAIN CONTENT LAYOUT
             $("#img").attr("src", e.target.result);
         }
     }
-
-    /**
-     *添加图片方法
-     */
-    function addFaceImg() {
-        //显示modal框
-        $('#addImgModal').modal("show");
-    }
-
-    /**
-     *删除图片方法
-     */
-    async function removeFaceImg() {
-        await swal({
-            title: "确认删除吗?",
-            text: "删除后将无法恢复",
-            type: "warning",
-            showCancelButton: !0,
-            confirmButtonText: "确认删除",
-            cancelButtonText: "取消",
-            preConfirm: function (e) {
-                return new Promise(function (e) {
-                    setTimeout(function () {
-                        e()
-                    }, 50)
-                })
-            }
-        }).then(function (e) {
-            e.value ? send() : "cancel" === e.dismiss
-        });
-
-        function send() {
-            var currentSlide = mySlick.slick('slickCurrentSlide');
-            var currentFaceToken = tokenObject[currentSlide];
-            $.ajax({
-                type: "post",
-                dataType: "json",
-                data: {'uid': sno, 'faceToken': currentFaceToken},
-                url: removeStuFaceImgUrl,
-                success: function (data) {
-                    if (data.success) {
-                        /*重新获取slick图片*/
-                        reloadSlick();
-                        faceImgHandler();
-
-                        Swal.mixin({
-                            toast: true, position: 'top', showConfirmButton: false, timer: 5000
-                        }).fire({type: 'success', title: data.data})
-                    } else {
-                        Swal.mixin({
-                            toast: true, position: 'top', showConfirmButton: false, timer: 5000
-                        }).fire({type: 'error', title: data.errMsg})
-                    }
-                },
-                error: function () {
-                    Swal.mixin({
-                        toast: true, position: 'top', showConfirmButton: false, timer: 5000
-                    }).fire({type: 'error', title: "系统错误，请稍后再试！"});
-                }
-            })
-        }
-    }
-
 
     /**
      * 提交按钮点击事件

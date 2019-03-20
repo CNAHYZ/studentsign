@@ -24,7 +24,6 @@ import top.flytop.studentsign.pojo.User;
 @Component
 class GlobalRealm extends AuthorizingRealm {
     private UserMapper userMapper;
-    private User user;
 
     @Autowired
     private void userMapper(UserMapper userMapper) {
@@ -39,10 +38,10 @@ class GlobalRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        System.out.println("------认证方法执行了......");
+        System.out.println("------认证方法执行了------");
         String username = String.valueOf(token.getPrincipal());
         // 2,去数据库中查询用户信息
-        user = userMapper.getUser(username);
+        User user = userMapper.getUser(username);
         if (user == null) {
             // 3，用户不存在，返回null框架抛出异常，到controller进行统一处理
             return null;
@@ -62,7 +61,8 @@ class GlobalRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        System.out.println("------授权方法执行了........");
+        User user = (User) principals.getPrimaryPrincipal();
+        System.out.println("------授权方法执行了------");
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         if (user == null) {
             return null;

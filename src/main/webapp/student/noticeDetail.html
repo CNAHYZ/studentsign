@@ -179,7 +179,7 @@
 <script src="/assets/js/plugins/jquery-pagination_zh/lib/jquery.pagination.js"></script>
 <script>
 
-
+    var getNoticeUrl = "getNoticeDetail.do";
     /**
      *页面初始化
      */
@@ -188,7 +188,6 @@
         var parameters = window.location.search;
         noticeId = decodeURI(parameters.substr(1).split('=')[1]);
         console.log(noticeId);
-        var getNoticeUrl = "getNoticeDetail.do";
         $.ajax({
             type: "post",
             url: getNoticeUrl,

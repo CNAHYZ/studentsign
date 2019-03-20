@@ -38,4 +38,6 @@ public interface UserMapper {
     Integer initUser(User user);
 
     Integer resetStuPwd(User user);
+
+    int getTotalCount();
 }

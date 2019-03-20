@@ -25,7 +25,7 @@ public interface LeaveService {
 
     BaseResult examineLeave(Leave leave);
 
-    Boolean askForLeave(HttpServletRequest request);
+    Boolean addLeave(HttpServletRequest request);
 
     List<Leave> getLeaveBySNo(String sNo, Integer auditStatus);
 

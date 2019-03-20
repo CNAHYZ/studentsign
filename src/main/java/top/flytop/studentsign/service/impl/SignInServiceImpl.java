@@ -4,11 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.flytop.studentsign.dto.BaseResult;
 import top.flytop.studentsign.mapper.SignInMapper;
+import top.flytop.studentsign.mapper.UserMapper;
 import top.flytop.studentsign.pojo.SignIn;
 import top.flytop.studentsign.service.SignInService;
 import top.flytop.studentsign.utils.FaceUtil;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +25,7 @@ import java.util.Map;
 public class SignInServiceImpl implements SignInService {
     private SignInMapper signInMapper;
     private FaceUtil faceUtil;
+    private UserMapper userMapper;
 
     @Autowired
     private void signInMapper(SignInMapper signInMapper) {
@@ -32,6 +35,11 @@ public class SignInServiceImpl implements SignInService {
     @Autowired
     private void faceUtil(FaceUtil faceUtil) {
         this.faceUtil = faceUtil;
+    }
+
+    @Autowired
+    private void userMapper(UserMapper userMapper) {
+        this.userMapper = userMapper;
     }
 
 
@@ -87,6 +95,25 @@ public class SignInServiceImpl implements SignInService {
         return signList;
     }
 
+    /**
+     * @param dayNum
+     * @return java.util.List<java.util.Map>
+     * @Description TODO 获取签到数
+     * @Date 2019/3/19 15:17
+     */
+    @Override
+    public List<Map> getSignCount(int dayNum) {
+        int totalCount = userMapper.getTotalCount();
+        List<Map> signList = signInMapper.getSignCount(dayNum);
+        List<Map> newList = new ArrayList<>();
+
+        for (Map item : signList) {
+            item.put("notCount", totalCount - (long) item.get("count"));
+            newList.add(item);
+        }
+        System.out.println(newList);
+        return newList;
+    }
 
     /**
      * @param faceImage

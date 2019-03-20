@@ -1,28 +1,28 @@
-<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="../config/ehcache.xsd">
+<ehcache>
     <!-- 磁盘上的缓存的临时目录 ，默认是系统的临时目录，也可以手动指定一个目录-->
     <diskStore path="java.io.tmpdir"/>
     <!-- 默认的缓存区域的默认策略 -->
-    <!--
+    <!--以下属性是必须的-->
     maxElementsInMemory:内存中元素最大存放的个数
     eternal：缓存的对象是否永生不死。一般都是false。
+    maxElementsOnDisk：硬盘上最大存放的元素的个数，如果内存10000个满了，就往硬盘上存。
+    overflowToDisk ： 设定当内存缓存溢出的时候是否将过期的element缓存到磁盘上。
+    以下属性是可选的：
     timeToIdleSeconds:发呆的时间，多长时间不用，就干掉，秒
     timeToLiveSeconds：存活的时间，活够了就干掉，秒
-    maxElementsOnDisk：硬盘上最大存放的元素的个数，如果内存10000个满了，就往硬盘上存。
+    diskPersistent ： 在VM重启的时候是否持久化磁盘缓存，默认是false。
+    diskExpiryThreadIntervalSeconds ： 磁盘缓存的清理线程运行间隔，默认是120秒.
     memoryStoreEvictionPolicy:内存中存储和销毁元素的策略：默认使用LRU，解决的是缓存元素满了怎么办。
-      策略有三个：LRU、LFU、FIFO
-    LRU:最少使用被清理，次数
-    LFU：时间，闲置最长的时间
-    FIFO：管道策略，先进先出
-     -->
+    策略有三个：LRU、LFU、FIFO。LRU:最少使用被清理，次数LFU：时间，闲置最长的时间FIFO：管道策略，先进先出
+    -->
     <defaultCache
             maxElementsInMemory="10000"
             eternal="false"
             timeToIdleSeconds="120"
             timeToLiveSeconds="120"
-            maxElementsOnDisk="10000000"
+            overflowToDisk="false"
+            diskPersistent="false"
             diskExpiryThreadIntervalSeconds="120"
-            memoryStoreEvictionPolicy="LRU">
-        <persistence strategy="localTempSwap"/>
-    </defaultCache>
+            memoryStoreEvictionPolicy="LRU"
+    />
 </ehcache>

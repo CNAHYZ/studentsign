@@ -38,7 +38,7 @@ public class StuLeaveController {
     @ResponseBody
     public BaseResult askForLeave(HttpServletRequest request) {
         try {
-            return leaveService.askForLeave(request) ? new BaseResult<>(true, "申请成功，请等待审核！")
+            return leaveService.addLeave(request) ? new BaseResult<>(true, "申请成功，请等待审核！")
                     : new BaseResult<>(false, 1, "申请失败，请稍后重试！");
         } catch (Exception e) {
             e.printStackTrace();

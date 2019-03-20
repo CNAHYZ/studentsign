@@ -9,8 +9,9 @@
     <!--===========================查询=============================-->
     <!--查询所有用户今天、昨天、近7天、近30天及所有时间的签到记录-->
     <select id="signRecord" resultType="signIn">
-        select a.*,b.sname from signin a left join student b
-        on a.sno = b.sno
+        select a.*,b.sname,c.cname from signin a
+        left join student b on a.sno = b.sno
+        left join class c on b.cno=c.cno
         <if test="_parameter != null and _parameter != ''">
             where to_days(now()) - to_days(signtime) &lt;= #{dayNum}
         </if>
@@ -19,8 +20,9 @@
 
     <!--查询所有用户指定时间段内的签到记录-->
     <select id="signRecordTime" resultType="signIn">
-        select a.*,b.sname from signin a left join student b
-        on a.sno = b.sno
+        select a.*,b.sname,c.cname from signin a
+        left join student b on a.sno = b.sno
+        left join class c on b.cno=c.cno
         # 解决日期between...and...不包含右边界的问题
         <if test="_parameter != null">
             where signtime between #{startTime} and DATE_ADD(#{endTime},INTERVAL 1 DAY)
@@ -32,7 +34,9 @@
     <!--bind标签（动态SQL）可以使用OGNL表达式创建一个变量并将其绑定到上下文中-->
     <select id="findSignRecordByKeyword" resultType="signIn">
         select * from(
-        select a.*,b.sname from signin a left join student b on a.sno = b.sno
+        select a.*,b.sname,c.cname from signin a
+        left join student b on a.sno = b.sno
+        left join class c on b.cno=c.cno
         ) c
         <if test="_parameter != null">
             <bind name="pattern" value="'%'+keyword+'%'"></bind>
@@ -57,6 +61,27 @@
         order by signtime desc
     </select>
 
+    <!--签到概况-->
+    <!--分日签到数统计-->
+    <select id="getSignCount" resultType="Map">
+        SELECT count(sno) count,
+               DATE(date) signtime
+        FROM (
+                 #           构造当前日期之前31天的日期表
+                 SELECT @cdate := date_add(@cdate, INTERVAL - 1 DAY) date
+                 FROM (SELECT @cdate := date_add(CURRENT_DATE, INTERVAL 1 DAY) FROM student LIMIT 31) a
+             ) t_date
+                 LEFT JOIN signin signin ON DATE(signin.signtime) = t_date.date
+        WHERE to_days(now()) - to_days(date) &lt;= #{dayNum}
+        GROUP BY to_days(date)
+    </select>
+
+    <!--昨日未签到数统计-->
+    <select id="getNotSignCount" resultType="int">
+        SELECT count(*)
+        FROM student
+        WHERE sno NOT IN (SELECT sno FROM signin WHERE to_days(now()) - to_days(signtime) = 1)
+    </select>
 
     <!--===========================修改=============================-->
 

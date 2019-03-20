@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import top.flytop.studentsign.dto.BaseResult;
 import top.flytop.studentsign.dto.DataTablePageUtil;
 import top.flytop.studentsign.pojo.SignIn;
 import top.flytop.studentsign.service.SignInService;
@@ -31,7 +32,7 @@ public class SignInController {
      * @param dayNum
      * @param request
      * @return top.flytop.studentsign.dto.DataTablePageUtil
-     * @Description TODO
+     * @Description TODO 获取签到列表
      * @Date 2019/2/17 22:49
      */
     @RequestMapping(value = "signList", method = RequestMethod.POST)
@@ -94,6 +95,30 @@ public class SignInController {
         dataTable.setRecordsTotal((int) pageInfo.getTotal());
         dataTable.setRecordsFiltered(dataTable.getRecordsTotal());
         return dataTable;
+    }
+
+
+    @RequestMapping(value = "getSignBySNo", method = RequestMethod.POST)
+    @ResponseBody
+    public DataTablePageUtil getSignBySNo(String sNo, HttpServletRequest request) {
+        DataTablePageUtil dataTable = new DataTablePageUtil(request);
+        //每页显示10条数据
+        dataTable.setLength(10);
+        PageHelper.startPage(dataTable.getPage_num(), dataTable.getPage_size());
+        List<SignIn> result = signInService.getPersonalSignRecord(sNo, null, null);
+        PageInfo<SignIn> pageInfo = new PageInfo<>(result);
+        //封装数据给DataTables
+        dataTable.setData(pageInfo.getList());
+        dataTable.setRecordsTotal((int) pageInfo.getTotal());
+        dataTable.setRecordsFiltered(dataTable.getRecordsTotal());
+        return dataTable;
+    }
+
+
+    @RequestMapping("getSignCount.do")
+    @ResponseBody
+    public BaseResult getSignCount(int dayNum) {
+        return BaseResult.success(signInService.getSignCount(dayNum));
     }
 
 }

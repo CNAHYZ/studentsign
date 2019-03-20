@@ -171,7 +171,7 @@
                      </div>-->
                     <div class="py-2"></div>
                     <div class="col-sm-12">
-                        <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons text-center "
+                        <table class="table table-bordered table-hover table-striped table-vcenter js-dataTable-buttons text-center "
                                id="mydatatable">
                             <thead>
                             <tr>
@@ -220,6 +220,8 @@
 <!-- Page JS Plugins -->
 <script src="../assets/js/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="../assets/js/plugins/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="../assets/js/common/dataTable.js"></script>
+
 <script src="../assets/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
 <script src="../assets/js/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js"></script>
 <script>
@@ -229,8 +231,7 @@
 </script>
 
 <script>
-    var t = $('#mydatatable').DataTable(
-        {
+    var options2 = {
             "ordering": false,
             "autoWidth": false,
             "processing": true,
@@ -238,23 +239,6 @@
             "bStateSave": true,
             "lengthChange": false,
             "searching": false,
-            language: {
-                "sProcessing": "正在加载数据，请稍后...",
-                // "sLengthMenu": "显示 _MENU_ 项结果",
-                "sZeroRecords": "没有匹配结果",
-                "sInfo": "显示第 _START_ 至 _END_ 条记录，共 _TOTAL_ 项",
-                "sInfoEmpty": "显示第 0 至 0 条记录，共 0 项",
-                "sSearch": "搜索:",
-                "sEmptyTable": "没有找到记录",
-                "sLoadingRecords": "载入中...",
-                "sInfoThousands": ",",
-                "oPaginate": {
-                    "sFirst": "首页",
-                    "sPrevious": "上页",
-                    "sNext": "下页",
-                    "sLast": "末页"
-                }
-            },
             ajax: {
                 type: "post",
                 url: "getLeave.do",
@@ -339,8 +323,11 @@
                     }
                 }
             ]
-        });
-
+    };
+    /**
+     * 初始化datatable
+     */
+    var t = $('#mydatatable').DataTable(Object.assign(options2, generalOptions));
 
     /**
      *筛选按钮的操作

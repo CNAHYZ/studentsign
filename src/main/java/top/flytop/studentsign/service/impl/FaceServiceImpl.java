@@ -11,6 +11,7 @@ import top.flytop.studentsign.utils.FaceUtil;
 import top.flytop.studentsign.utils.FileUtil;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
@@ -24,6 +25,7 @@ import java.util.Map;
  */
 @Service
 public class FaceServiceImpl implements FaceService {
+    private static final int faceLimit = 3;
     private FaceUtil faceUtil;
 
     @Autowired
@@ -72,7 +74,18 @@ public class FaceServiceImpl implements FaceService {
      */
     @Override
     public BaseResult addFace(HttpServletRequest request) throws IOException {
+        /*获取sno*/
         String sNo = request.getParameter("sNo");
+        if (sNo == null) {
+            sNo = request.getSession().getAttribute("currentUser").toString();
+        }
+
+        /*判断当前人脸数是否达到上限*/
+        if (getUserFaceList(sNo).isSuccess()) {
+            int currentFaceCount = ((ArrayList) getUserFaceList(sNo).getData()).size();
+            if (currentFaceCount == faceLimit)
+                return BaseResult.fail(1, "人脸数已达上限，无需继续添加！");
+        }
         /*从request中获取faceImage*/
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
         MultipartFile faceImage = multipartRequest.getFile("faceImage");
@@ -112,7 +125,16 @@ public class FaceServiceImpl implements FaceService {
     public BaseResult removeFaceImg(HttpServletRequest request) {
         String uid = request.getParameter("uid");
         String faceToken = request.getParameter("faceToken");
+
+        /*云端删除*/
         BaseResult result = faceUtil.faceRemove(uid, faceToken);
+
+        /*删除本地文件*/
+        String realPath = request.getSession().getServletContext().getRealPath("/userUpload/faceImg/");
+        String path = realPath + uid + "/" + faceToken + ".png";
+        File localImage = new File(path);
+        localImage.delete();
+
         System.out.println("result:" + result);
         return result;
     }

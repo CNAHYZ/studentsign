@@ -22,6 +22,7 @@
                 /*/logOut.do=logout
                 /student/*=roles[student]
                 /admin/*=roles[admin]
+                <!--认证过或“记住我”都可访问-->
                 /** = user
             </value>
         </property>
@@ -62,8 +63,10 @@
     </bean>
     <!--会话管理器-->
     <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+
+        <property name="sessionDAO" ref="sessionDAO"/>
         <!--session的失效时长，毫秒-->
-        <property name="globalSessionTimeout" value="6000000"/>
+        <property name="globalSessionTimeout" value="7200000"/>
         <!--删除失效的session-->
         <property name="deleteInvalidSessions" value="true"/>
     </bean>
@@ -72,8 +75,8 @@
     <bean id="rememberMe" class="org.apache.shiro.web.servlet.SimpleCookie">
         <constructor-arg value="rememberMe"/>
         <property name="httpOnly" value="true"/>
-        <!--cookie 的最大失效时间 3天, maxAge=-1 表示关闭浏览器cookie失效-->
-        <property name="maxAge" value="100000000"/>
+        <!--cookie 的最大失效时间 3天, maxAge=-1 表示关闭浏览器cookie失效,单位S-->
+        <property name="maxAge" value="3600"/>
     </bean>
     <!--rememberMe 管理器, cipherKey表示设置cookie的加密算法，采用的是base64的加密-->
     <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
@@ -81,4 +84,5 @@
                   value=" #{T(org.apache.shiro.codec.Base64).decode('4AvVhmFLUs0KTA3Kprsdag==')}"/>
         <property name="cookie" ref="rememberMe"/>
     </bean>
+    <bean id="sessionDAO" class="org.apache.shiro.session.mgt.eis.MemorySessionDAO"/>
 </beans>

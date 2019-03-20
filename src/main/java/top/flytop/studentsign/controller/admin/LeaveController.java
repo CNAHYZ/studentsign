@@ -11,6 +11,7 @@ import top.flytop.studentsign.dto.BaseResult;
 import top.flytop.studentsign.pojo.Leave;
 import top.flytop.studentsign.service.LeaveService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -31,15 +32,29 @@ public class LeaveController {
     }
 
     /**
-     * @param param
+     * @param dayNum
      * @return top.flytop.studentsign.dto.BaseResult
      * @Description TODO
      * @date 2019/1/27 19:52
      */
     @RequestMapping("getLeave")
     @ResponseBody
-    public BaseResult getLeave(String param) {
-        return leaveService.getLeave(param);
+    public BaseResult getLeave(String dayNum) {
+        return leaveService.getLeave(dayNum);
+    }
+
+    /**
+     * @param auditStatus
+     * @param sNo
+     * @param request
+     * @return top.flytop.studentsign.dto.BaseResult
+     * @Description TODO
+     * @Date 2019/3/20 22:22
+     */
+    @RequestMapping("getLeaveBySNo")
+    @ResponseBody
+    public BaseResult getLeaveBySNo(@RequestParam(defaultValue = "") Integer auditStatus, String sNo, HttpServletRequest request) {
+        return new BaseResult<>(true, leaveService.getLeaveBySNo(sNo, auditStatus));
     }
 
     /**
@@ -106,8 +121,7 @@ public class LeaveController {
      */
     @RequestMapping("getNoExamineLeave")
     @ResponseBody
-    public BaseResult getNoExamineLeave(@RequestParam(defaultValue = "1") Integer pageNo) {
-        int pageSize = 1;
+    public BaseResult getNoExamineLeave(@RequestParam(defaultValue = "0") Integer pageNo, @RequestParam(defaultValue = "1") Integer pageSize) {
         PageHelper.startPage(pageNo, pageSize);
         BaseResult filterResult = leaveService.getLeaveByStatus("0");
         if (filterResult.isSuccess()) {

@@ -107,7 +107,7 @@ public class LeaveServiceImpl implements LeaveService {
      * @Date 2019/2/11 16:03
      */
     @Override
-    public Boolean askForLeave(HttpServletRequest request) {
+    public Boolean addLeave(HttpServletRequest request) {
         HttpSession session = request.getSession();
         BaseResult saveResult =
                 FileUtil.saveFileByReq(request, null, "attachment", "userUpload/leaveFile/");

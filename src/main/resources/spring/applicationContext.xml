@@ -65,8 +65,6 @@
     <!--设置proxy-target-class="true"，使用CGLIB实现AOP，CGLIB直接生成二进制码，使得普通类也可以实现AOP-->
     <tx:annotation-driven proxy-target-class="true" transaction-manager="transactionManager"/>
 
-    <!--<aop:aspectj-autoproxy/> -->
-
     <!-- 使用xml配置aop ,引入AOP的命名空间-->
     <!-- 强制使用cglib代理，如果不设置，将默认使用jdk的代理，但是jdk的代理是基于接口的 -->
     <aop:config proxy-target-class="true"/>
@@ -76,7 +74,7 @@
             <!--定义切入点-->
             <!--第一个*代表任意返回值，第二个和第三个*代表controller包下的任意类的任意方法-->
             <!-- ..表示方法可以有0个或多个参数 -->
-            <aop:pointcut expression="execution(* top.flytop.studentsign.controller.*.*(..))" id="logPointCut"/>
+            <aop:pointcut id="logPointCut" expression="execution(* top.flytop.studentsign.controller.*.*(..))"/>
             <!--方法执行之前被调用执行的-->
             <!--<aop:before method="before" pointcut-ref="logPointCut"/>&lt;!&ndash;一个切入点的引用&ndash;&gt;-->
             <!--<aop:after method="after" pointcut-ref="logPointCut"/>&lt;!&ndash;一个切入点的引用&ndash;&gt;-->
@@ -86,35 +84,34 @@
         </aop:aspect>
     </aop:config>
 
-    <!--    &lt;!&ndash; 配置事务通知属性 &ndash;&gt;
-        <tx:advice id="txAdvice" transaction-manager="transactionManager">
-            &lt;!&ndash; 定义事务传播属性 &ndash;&gt;
-            <tx:attributes>
-                <tx:method name="insert*" propagation="REQUIRED" />
-                <tx:method name="update*" propagation="REQUIRED" />
-                <tx:method name="edit*" propagation="REQUIRED" />
-                <tx:method name="save*" propagation="REQUIRED" />
-                <tx:method name="add*" propagation="REQUIRED" />
-                <tx:method name="new*" propagation="REQUIRED" />
-                <tx:method name="set*" propagation="REQUIRED" />
-                <tx:method name="remove*" propagation="REQUIRED" />
-                <tx:method name="delete*" propagation="REQUIRED" />
-                <tx:method name="change*" propagation="REQUIRED" />
-                <tx:method name="check*" propagation="REQUIRED" />
-                <tx:method name="get*" propagation="REQUIRED" read-only="true" />
-                <tx:method name="find*" propagation="REQUIRED" read-only="true" />
-                <tx:method name="load*" propagation="REQUIRED" read-only="true" />
-                <tx:method name="*" propagation="REQUIRED" read-only="true" />
-            </tx:attributes>
-        </tx:advice>
+    <!-- 配置事务切面,并关联事务的传播属性 使用xml配置形式的事务（必要主要的都是使用配置式）  -->
+    <aop:config>
+        <!-- 切入点表达式 -->
+        <aop:pointcut id="txPoint" expression="execution(* top.flytop.studentsign.service.*.*(..))"/>
+        <!-- 配置事务增强 -->
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPoint"/>
+    </aop:config>
 
-        &lt;!&ndash; 配置事务切面,并关联事务的传播属性 使用xml配置形式的事务（必要主要的都是使用配置式）  &ndash;&gt;
-            <aop:config>
-                &lt;!&ndash; 切入点表达式 &ndash;&gt;
-                <aop:pointcut expression="execution(* com.qihang.service..*(..))" id="txPoint"/>
-                &lt;!&ndash; 配置事务增强 &ndash;&gt;
-                <aop:advisor advice-ref="txAdvice" pointcut-ref="txPoint"/>
-            </aop:config>-->
+    <!-- 配置事务通知属性 -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <!-- 定义事务传播属性 -->
+        <tx:attributes>
+            <tx:method name="insert*" propagation="REQUIRED"/>
+            <tx:method name="update*" propagation="REQUIRED"/>
+            <tx:method name="edit*" propagation="REQUIRED"/>
+            <tx:method name="save*" propagation="REQUIRED"/>
+            <tx:method name="add*" propagation="REQUIRED"/>
+            <tx:method name="set*" propagation="REQUIRED"/>
+            <tx:method name="remove*" propagation="REQUIRED"/>
+            <tx:method name="delete*" propagation="REQUIRED"/>
+            <tx:method name="change*" propagation="REQUIRED"/>
+            <tx:method name="check*" propagation="REQUIRED"/>
+            <tx:method name="get*" propagation="REQUIRED" read-only="true"/>
+            <tx:method name="find*" propagation="REQUIRED" read-only="true"/>
+            <tx:method name="load*" propagation="REQUIRED" read-only="true"/>
+            <tx:method name="*" propagation="REQUIRED" read-only="true"/>
+        </tx:attributes>
+    </tx:advice>
 
     <!-- 配置视图解析器 -->
     <!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -122,4 +119,5 @@
          &lt;!&ndash; 视图后缀controller中的方法返回的url字符串会添加该前缀 &ndash;&gt;
          &lt;!&ndash;<property name="prefix" value="/WEB-INF/jsp/"/> &ndash;&gt;
      </bean>-->
+
 </beans>

@@ -22,4 +22,7 @@ public interface SignInService {
     List<SignIn> getSignRecordFilter(String startTime, String endTime);
 
     List<SignIn> getSignRecordByKeyword(String keyword);
+
+    List getSignCount(int dayNum);
+
 }

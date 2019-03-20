@@ -33,8 +33,8 @@
                 ratio = window.devicePixelRatio || 1,
 
                 // 缩略图大小
-                thumbnailWidth = 110 * ratio,
-                thumbnailHeight = 110 * ratio,
+                thumbnailWidth = 220 * ratio,
+                thumbnailHeight = 220 * ratio,
 
                 // 可能有pedding, ready, uploading, confirm, done.
                 state = 'pedding',
@@ -141,35 +141,40 @@
 
             // 实例化
             uploader = WebUploader.create({
-                auto: true,
+                auto: false,
                 pick: {
                     id: '#filePicker',
                     label: '点击选择文件'
                 },
+                //文件上传请求的参数表，每次发送都会发送此对象中的参数
                 formData: {
-                    uid: 123,
+                    // uid: 123,
                 },
+                //设置文件上传域的name。[可选] [默认值：'file']
+                fileVal: 'faceImage',
 
+                // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+                resize: false,
                 dnd: '#dndArea',
                 paste: '#uploader',
                 swf: 'assets/js/plugins/webUpload/Uploader.swf',
-                chunked: true,
-                chunkSize: 512 * 1024,
-                server: 'faceChecker.do',
+                server: 'addFaceImg.do',
                 method: 'POST',
-                // runtimeOrder: 'flash',
+                //是否允许在文件传输时提前把下一个文件准备好
+                prepareNextFile: true,
 
                 // 只允许选择图片文件。
                 accept: {
-                    title: 'HTML5组态文件',
-                    extensions: 'gif,jpg,jpeg,bmp,png',
-                    mimeTypes: 'img/*'
+                    title: 'Images',
+                    extensions: 'jpg,jpeg,bmp,png',
+                    mimeTypes: 'image/*'
                 },
+
                 // 禁掉全局的拖拽功能。这样不会出现图片拖进页面的时候，把图片打开。
                 disableGlobalDnd: true,
-                fileNumLimit: 1,
+                fileNumLimit: 3,
                 fileSizeLimit: 2 * 1024 * 1024,    // 2 M
-                fileSingleSizeLimit: 2 * 1024 * 1024    // 50 M
+                fileSingleSizeLimit: 7 * 1024 * 1024    // 6 M
             });
 
             // 拖拽时不接受 js, txt 文件。
@@ -187,31 +192,39 @@
                         break;
                     }
                 }
-
                 return !denied;
             });
 
-            // uploader.on('filesQueued', function() {
-            //     uploader.sort(function( a, b ) {
-            //         if ( a.name < b.name )
-            //           return -1;
-            //         if ( a.name > b.name )
-            //           return 1;
-            //         return 0;
-            //     });
-            // });
+        /**
+         * 默认如果啥也不处理，只要有返回数据就认为是成功，就算返回的是错误信息，也认为是成功了。
+         但是，在认为成功前会派送一个事件uploadAccept，这个事件是用来询问是否上传成功的。
+         在这个事件中你可以拿到上传的是哪个文件，以及对应的服务端返回reponse。
+         */
+        uploader.on('uploadAccept', function (file, response) {
+            console.log(response);
+            if (!response.success) {
+                alert(response.errMsg);
+                // // 重置uploader，目前只重置了文件队列
+                // uploader.reset();
+                // // 更新状态等，重新计算文件总个数和总大小
+                // uploader.removeFile(file.file);
+                // 通过return false来告诉组件，此文件上传有错。
+                return false;
+            } else
+                fileSavePath = response.data.fileSavePath;
+            faceToken = response.data.faceToken;
+        });
+
 
             // 添加“添加文件”的按钮，
-            /*  uploader.addButton({
-                  id: '#filePicker2',
-                  label: '继续添加'// 添加“添加下一个”模型的按钮，
-              /*uploader.addButton({
-                  id: '#addModel',
-                  label: '添加下一个'
-              });*/
+        uploader.addButton({
+            id: '#filePicker2',
+            label: '继续添加'// 添加“添加下一个”模型的按钮，
+        });
             uploader.on('ready', function () {
                 window.uploader = uploader;
             });
+
 
             // 当有文件添加进来时执行，负责view的创建
             function addFile(file) {
@@ -219,12 +232,12 @@
                     '<p class="title">' + file.name + '</p>' +
                     '<p class="imgWrap"></p>' +
                     '<p class="progress"><span></span></p>' +
-                    '</li>');
+                    '</li>'),
 
-                $btns = $('<div class="file-panel">' +
-                    '<span class="cancel">删除</span>' +
-                    '<span class="rotateRight">向右旋转</span>' +
-                    '<span class="rotateLeft">向左旋转</span></div>').appendTo($li),
+                    $btns = $('<div class="file-panel">' +
+                        '<span class="cancel">删除</span>' +
+                        '<span class="rotateRight">向右旋转</span>' +
+                        '<span class="rotateLeft">向左旋转</span></div>').appendTo($li),
                     $prgress = $li.find('p.progress span'),
                     $wrap = $li.find('p.imgWrap'),
                     $info = $('<p class="error"></p>'),
@@ -253,30 +266,13 @@
                     // @todo lazyload
                     $wrap.text('预览中');
                     uploader.makeThumb(file, function (error, src) {
-                        var img;
-
                         if (error) {
                             $wrap.text('不能预览');
                             return;
                         }
 
-                        if (isSupportBase64) {
-                            img = $('<img src="' + src + '">');
-                            $wrap.empty().append(img);
-                        } else {
-                            $.ajax('../../server/preview.php', {
-                                method: 'POST',
-                                data: src,
-                                dataType: 'json'
-                            }).done(function (response) {
-                                if (response.result) {
-                                    img = $('<img src="' + response.result + '">');
-                                    $wrap.empty().append(img);
-                                } else {
-                                    $wrap.text("预览出错");
-                                }
-                            });
-                        }
+                        var img = $('<img src="' + src + '">');
+                        $wrap.empty().append(img);
                     }, thumbnailWidth, thumbnailHeight);
 
                     percentages[file.id] = [file.size, 0];
@@ -346,27 +342,8 @@
                         });
                     } else {
                         $wrap.css('filter', 'progid:DXImageTransform.Microsoft.BasicImage(rotation=' + (~~((file.rotation / 90) % 4 + 4) % 4) + ')');
-                        // use jquery animate to rotation
-                        // $({
-                        //     rotation: rotation
-                        // }).animate({
-                        //     rotation: file.rotation
-                        // }, {
-                        //     easing: 'linear',
-                        //     step: function( now ) {
-                        //         now = now * Math.PI / 180;
-
-                        //         var cos = Math.cos( now ),
-                        //             sin = Math.sin( now );
-
-                        //         $wrap.css( 'filter', "progid:DXImageTransform.Microsoft.Matrix(M11=" + cos + ",M12=" + (-sin) + ",M21=" + sin + ",M22=" + cos + ",SizingMethod='auto expand')");
-                        //     }
-                        // });
                     }
-
-
                 });
-
                 $li.appendTo($queue);
             }
 
@@ -392,7 +369,6 @@
 
                 percent = total ? loaded / total : 0;
 
-
                 spans.eq(0).text(Math.round(percent * 100) + '%');
                 spans.eq(1).css('width', Math.round(percent * 100) + '%');
                 updateStatus();
@@ -407,18 +383,18 @@
                 } else if (state === 'confirm') {
                     stats = uploader.getStats();
                     if (stats.uploadFailNum) {
-                        text = '已成功上传' + stats.successNum + '文件，' +
-                            stats.uploadFailNum + '文件上传失败，<a class="retry" href="#">重新上传</a>失败或<a class="ignore" href="#">忽略</a>'
+                        text = '已成功上传' + stats.successNum + '张照片，' +
+                            stats.uploadFailNum + '张照片上传失败，<a class="retry" href="#">重新上传</a>失败图片或<a class="ignore" href="#">忽略</a>'
                     }
 
                 } else {
                     stats = uploader.getStats();
-                    text = '共' + fileCount + '个（' +
+                    text = '共' + fileCount + '张（' +
                         WebUploader.formatSize(fileSize) +
-                        '），已上传' + stats.successNum + '个';
+                        '），已上传' + stats.successNum + '张';
 
                     if (stats.uploadFailNum) {
-                        text += '，失败' + stats.uploadFailNum + '个';
+                        text += '，失败' + stats.uploadFailNum + '张';
                     }
                 }
 
@@ -439,6 +415,7 @@
                 switch (state) {
                     case 'pedding':
                         $placeHolder.removeClass('element-invisible');
+                        $queue.parent().removeClass('filled');
                         $queue.hide();
                         $statusBar.addClass('element-invisible');
                         uploader.refresh();
@@ -447,6 +424,7 @@
                     case 'ready':
                         $placeHolder.addClass('element-invisible');
                         $('#filePicker2').removeClass('element-invisible');
+                        $queue.parent().addClass('filled');
                         $queue.show();
                         $statusBar.removeClass('element-invisible');
                         uploader.refresh();
@@ -465,11 +443,8 @@
 
                     case 'confirm':
                         $progress.hide();
-                        $('#filePicker2').removeClass('element-invisible');
-                        $upload.text('开始上传');
-                        /*$('#filePicker2 + .uploadBtn').click(function () {
-                            window.location.reload();
-                        });*/
+                        $upload.text('开始上传').addClass('disabled');
+
                         stats = uploader.getStats();
                         if (stats.successNum && !stats.uploadFailNum) {
                             setState('finish');
@@ -479,7 +454,7 @@
                     case 'finish':
                         stats = uploader.getStats();
                         if (stats.successNum) {
-
+                            alert('上传成功');
                         } else {
                             // 没有成功的图片，重设
                             state = 'done';
@@ -545,32 +520,11 @@
                 }
             });
 
-            /**
-             * 默认如果啥也不处理，只要有返回数据就认为是成功，就算返回的是错误信息，也认为是成功了。
-             但是，在认为成功前会派送一个事件uploadAccept，这个事件是用来询问是否上传成功的。
-             在这个事件中你可以拿到上传的是哪个文件，以及对应的服务端返回reponse。
-             */
-            uploader.on('uploadAccept', function (file, response) {
-                console.log(response);
-                if (!response.success) {
-                    alert(response.errMsg);
-                    // // 重置uploader，目前只重置了文件队列
-                    // uploader.reset();
-                    // // 更新状态等，重新计算文件总个数和总大小
-                    uploader.removeFile(file.file.id, true);
-                    // 通过return false来告诉组件，此文件上传有错。
-                    return false;
-                } else
-                    fileSavePath = response.data.fileSavePath;
-                faceToken = response.data.faceToken;
-            });
-
             uploader.onError = function (code) {
                 alert('Eroor: ' + code);
             };
 
             $upload.on('click', function () {
-
                 if ($(this).hasClass('disabled')) {
                     return false;
                 }
@@ -583,12 +537,6 @@
                     uploader.stop();
                 }
             });
-            /**
-             * 上传完成删除进度条
-             */
-            uploader.on('uploadComplete', function (file) {
-                $('#' + file.id).find('.progress').fadeOut();
-            });
 
             $info.on('click', '.retry', function () {
                 uploader.retry();
@@ -599,6 +547,14 @@
             });
 
             $upload.addClass('state-' + state);
+
+        /**
+         * 上传完成删除进度条
+         */
+        uploader.on('uploadComplete', function (file) {
+            $('#' + file.id).find('.progress').fadeOut();
+        });
+
             updateTotalProgress();
         }
     );

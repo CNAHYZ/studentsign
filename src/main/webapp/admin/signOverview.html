@@ -3,8 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
     <title>OneUI - Bootstrap 4 Admin Template &amp; UI Framework</title>
+
     <meta name="robots" content="noindex, nofollow">
+
     <!-- Open Graph Meta -->
 
     <!-- Icons -->
@@ -15,11 +18,12 @@
     <!-- END Icons -->
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="../assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css">
-
     <!-- Fonts and OneUI framework -->
     <link rel="stylesheet" href="#">
     <link rel="stylesheet" id="css-main" href="../assets/css/oneui.min.css">
+
+    <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
+    <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/amethyst.min.css"> -->
     <!-- END Stylesheets -->
 </head>
 <body>
@@ -221,8 +225,9 @@
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_comp_loaders.html">
-                                <span class="nav-main-link-name">Loaders</span>
+                            <a class="nav-main-link" href="changePwd.html">
+                                <i class="nav-main-link-icon fa fa-lock"></i>
+                                <span class="nav-main-link-name">密码修改</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
@@ -244,6 +249,7 @@
         <!-- END Side Navigation -->
     </nav>
     <!-- END Sidebar -->
+
     <!-- Header -->
     <header id="page-header">
         <!-- Header Content -->
@@ -318,7 +324,7 @@
                                 <i class="si si-lock ml-1"></i>
                             </a>
                             <a class="dropdown-item d-flex align-items-center justify-content-between"
-                               href="../userLogin.html">
+                               href="logOut.do">
                                 <span>Log Out</span>
                                 <i class="si si-logout ml-1"></i>
                             </a>
@@ -423,7 +429,7 @@
         <!-- Header Search -->
         <div id="page-header-search" class="overlay-header bg-white">
             <div class="content-header">
-                <form class="w-100" action="" method="POST">
+                <form class="w-100" action="be_pages_generic_search.html" method="POST">
                     <div class="input-group input-group-sm">
                         <div class="input-group-prepend">
                             <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
@@ -461,16 +467,16 @@
             <div class="content content-full">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <h1 class="flex-sm-fill h3 my-2">
-                        签到记录
-                        <!--<small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted">All-->
-                        <!--pages in one spot!-->
-                        <!--</small>-->
+                        签到概况
+                        <small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted">All
+                            pages in one spot!
+                        </small>
                     </h1>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
-                            <li class="breadcrumb-item">签到记录</li>
+                            <li class="breadcrumb-item">签到概况</li>
                             <li class="breadcrumb-item" aria-current="page">
-                                <a class="link-fx" href="index.html">首页</a>
+                                <a class="link-fx" href="">首页</a>
                             </li>
                         </ol>
                     </nav>
@@ -481,80 +487,13 @@
 
         <!-- Page Content -->
         <div class="content">
-            <!-- Dynamic Table with Export Buttons -->
-            <div class="block">
-                <!--      <div class="block-header">
-                          <h3 class="block-title">Dynamic Table
-                              <small>Export Buttons</small>
-                          </h3>
-                      </div>-->
-                <div class="block-content block-content-full">
-                    <div class="row">
-                        <div class="px-lg-2"></div>
-                        <div class="dropdown" style="">
-                            <label style="vertical-align: bottom;">快速筛选：</label>
-                            <button type="button" class="btn btn-outline-primary dropdown-toggle" id="btn_time"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                今天
-                            </button>
-                            <div class="dropdown-menu font-size-sm" aria-labelledby="dropdown-default-outline-primary"
-                                 style="min-width:77px">
-                                <a class="dropdown-item" onclick="dropSelect(this,0)">今天</a>
-                                <a class="dropdown-item" onclick="dropSelect(this,6)">近7天</a>
-                                <a class="dropdown-item" onclick="dropSelect(this,29)">近30天</a>
-                                <!--<div class="dropdown-divider"></div>-->
-                                <a class="dropdown-item" onclick="dropSelect(this,null)">全部</a>
-                            </div>
-                        </div>
-                        <div class="px-lg-3"></div>
-                        <div class="col-lg-8 col-xl-6 row">
-                            <div class="input-daterange input-group">
-                                <label class="" style="margin: auto">指定日期筛选：</label>
-                                <input type="text" class="form-control" id="daterange1"
-                                       name="daterange1" placeholder="开始日期">
-                                <div class="input-group-prepend input-group-append">
-                                    <span class="input-group-text font-w600">
-                                        <i class="fa fa-fw fa-arrow-right"></i>
-                                    </span>
-                                </div>
-                                <input type="text" class="form-control" id="daterange2"
-                                       name="daterange2" placeholder="结束日期">
-                            </div>
-                        </div>
-                        <div class="px-lg-3"></div>
-                        <div class="input-group col-lg-3 col-xl-3">
-                            <input type="text" class="form-control" id="ipt_search"
-                                   name="keyword" placeholder="学号、姓名">
-                            <div class="input-group-prepend">
-                                <button type="button" class="btn btn-primary" id="btn_search">
-                                    <i class="fa fa-search mr-1"></i> 搜索
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="py-2"></div>
-                    <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons text-center"
-                           id="mydatatable">
-                        <thead>
-                        <tr>
-                            <th class="text-center" style="width: 15%;">ID</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">学号</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">姓名</th>
-                            <th class="d-none d-sm-table-cell" style="width: 20%;">班级</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">签到状态</th>
-                            <th class="d-none d-sm-table-cell" style="width: 20%;">签到时间</th>
-                            <!--<th class="d-none d-sm-table-cell" style="width: 15%;">操作</th>-->
-                        </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
+            <div class="content-narrow row px-3">
+                <div id="echarts_pie" style="width: 450px;height:400px;" class="mr-4"></div>
+
+                <div id="echarts_line" style="width: 750px;height:400px;"></div>
             </div>
-            <!-- END Dynamic Table with Export Buttons -->
         </div>
         <!-- END Page Content -->
-
     </main>
     <!-- END Main Container -->
 
@@ -575,133 +514,87 @@
 
 <script src="../assets/js/oneui.core.min.js"></script>
 
-<!--
-    OneUI JS
--->
 <script src="../assets/js/oneui.app.min.js"></script>
-
-<!-- Page JS Plugins -->
-<script src="../assets/js/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="../assets/js/plugins/datatables/dataTables.bootstrap4.min.js"></script>
-
-<script src="../assets/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
-<script src="../assets/js/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js"></script>
-
-<script src="/assets/js/common/dataTable.js"></script>
+<script src="../assets/js/plugins/Echarts/echarts.common.min.js"></script>
 <script>
-    jQuery(function () {
-        One.helpers(['datepicker']);
-    });
-</script>
+    // 基于准备好的dom，初始化echarts实例
+    var myChart_pie = echarts.init(document.getElementById('echarts_pie'), 'light');
+    var myChart_line = echarts.init(document.getElementById('echarts_line'), 'light');
 
-<script>
-    var options2 = {
-        lengthChange: false,
-        "searching": false,
-        ajax: {
-            type: "post",
-            url: "signList.do",
-            //注意：直接写成{"dayNum": d}不可行，dayNum会一直为0
-            data: sendData = {"dayNum": 0},//这里可以调用一个方法，获取sendData
-            beforeSend: function () {
-                console.log(sendData)
-            }
+    // 指定图表的配置项和数据
+    myChart_pie.setOption({
+        title: {
+            text: '今日签到情况'
         },
-        //每页显示n条数据
-        pageLength: 10,
-        columns: [
-            {data: "id"},
-            {data: "sNo"},
+        tooltip: {},
+        series: [
             {
-                data: "sName",
-                defaultContent: "-"
-            },
-            {
-                data: "cName",
-                defaultContent: "-"
-            },
-            {
-                data: "signStatus",
-                defaultContent: "-"
-            },
-            {
-                data: "signTime",
-                defaultContent: "-"
-            },
-            /*{
-                "data": null,
-                render: function (data, type, row) {
-                    return '<div class="btn-group">' +
-                        '<button type="button" class="btn btn-sm btn-primary js-tooltip-enabled" ' +
-                        'data-toggle="tooltip" title="删除" onclick="delStudent(' + row.sNo + ')">' +
-                        '<i class="fa fa-fw fa-times"></i>' +
-                        '</button>' +
-                        '</div>'
-                }
-            }*/
-        ],
-        "columnDefs": [
-            {/*//每列定义
-                "orderable": false,
-                "targets": [2, 5, -1]//第x列不排序*/
-            }]
-    };
-    /**
-     * 初始化datatable
-     */
-    var t = $('#mydatatable').DataTable(Object.assign(options2, serverSideOptions));
-    /**
-     *日期筛选按钮的操作
-     * @type {number}
-     */
-    function dropSelect(option, day) {
-        $("#btn_time").text($(option).text());
-        sendData = {'dayNum': day};
-        t.settings()[0].ajax.data = sendData;
-        t.ajax.url('signList.do').load();
+                name: '访问来源',
+                type: 'pie',
+                radius: '55%',
+                data: []
+            }
+        ]
+    });
+    // 显示标题，图例和空的坐标轴
+    myChart_line.setOption({
+        title: {
+            text: '近7天签到数据'
+        },
+        tooltip: {},
+        xAxis: {
+            type: 'category',
+            name: '时间',
+            data: []
+        },
+        yAxis: {name: '人数',},
+        series: [{
+            type: 'line',
+            data: []
+        }]
+    });
+    $(function () {
+        $.ajax({
+            type: 'post',
+            url: 'getSignCount.do',
+            dataType: 'json',
+            data: {dayNum: 7},
+            success: function (data) {
+                result = data.data;
+                if (data.success)
+                    myChart_pie.setOption({
+                        series: [
+                            {
+                                data: [
+                                    {value: result[6].count, name: '已签到人数'},
+                                    {value: result[6].notCount, name: '未签到人数'},
+                                ]
+                            }
+                        ]
+                    });
+                var x = [];
+                var y = [];
+                result.forEach(function (item, index) {
+                    var date = new Date(item.signtime).toLocaleDateString();
+                    x[index] = date;
+                    y[index] = item.count;
+                });
+                console.log(x);
+                console.log(y);
+                myChart_line.setOption({
+                    xAxis: {
+                        data: x
+                    },
+                    series: [{
+                        // 根据名字对应到相应的系列
+                        name: '签到人数',
+                        data: y
+                    }]
+                });
 
-    }
-
-    /**
-     * 初始化datepicker
-     */
-    $('.input-daterange').datepicker({
-        endDate: '0d',//最大只能选择到今天
-        language: "zh-CN",
-        weekStart: "1",
-        autoclose: "true",
-        todayHighlight: "true",
-        format: "yyyy-mm-dd",
-        todayBtn: "linked",
-        maxViewMode: "years"
+            }
+        })
     })
-    /**
-     * 日期改变后的事件
-     */
-        .on('changeDate', function (e) {
-            var startTime = $('#daterange1').val();
-            var endTime = $('#daterange2').val();
-            sendData = {
-                "startTime": startTime,
-                "endTime": endTime
-            };
-            //修改ajax传递的参数
-            t.settings()[0].ajax.data = sendData;
-            t.ajax.url('signListFilter.do').load();
-            // t.settings()[0].ajax.error = ;
-        });
-    /**
-     * 搜索点击事件
-     */
-    $('#btn_search').click(function () {
-        var keyword = $('#ipt_search').val();
-        if (keyword === '') return false;
-        sendData = {'keyword': keyword};
-        //修改ajax传递的参数
-        t.settings()[0].ajax.data = sendData;
-        t.ajax.url('searchSignList.do').load();
-    })
-
 </script>
 </body>
 </html>

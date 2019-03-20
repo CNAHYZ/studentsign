@@ -21,23 +21,33 @@ public class SignIn implements Serializable {
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Timestamp signTime;
     private String sName;
+    private String cName;
+
+    public SignIn() {
+    }
+
+    public SignIn(Integer id, String sNo, Integer signStatus, Timestamp signTime, String sName, String cName) {
+        this.id = id;
+        this.sNo = sNo;
+        this.signStatus = signStatus;
+        this.signTime = signTime;
+        this.sName = sName;
+        this.cName = cName;
+    }
+
+    public String getcName() {
+        return cName;
+    }
+
+    public void setcName(String cName) {
+        this.cName = cName;
+    }
 
     public String getsName() {
         return sName;
     }
 
     public void setsName(String sName) {
-        this.sName = sName;
-    }
-
-    public SignIn() {
-    }
-
-    public SignIn(Integer id, String sNo, Integer signStatus, Timestamp signTime, String sName) {
-        this.id = id;
-        this.sNo = sNo;
-        this.signStatus = signStatus;
-        this.signTime = signTime;
         this.sName = sName;
     }
 
@@ -81,6 +91,7 @@ public class SignIn implements Serializable {
                 ", signStatus=" + signStatus +
                 ", signTime=" + signTime +
                 ", sName='" + sName + '\'' +
+                ", cName='" + cName + '\'' +
                 '}';
     }
 }
