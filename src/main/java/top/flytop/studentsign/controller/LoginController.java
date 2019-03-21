@@ -133,7 +133,7 @@ public class LoginController {
      * @Description TODO 统计当前在线人数
      * @Date 2019/3/20 10:02
      */
-    @RequestMapping("getOnlineUserCount")
+    @RequestMapping(value = "getOnlineUserCount", method = RequestMethod.POST)
     @ResponseBody
     public int getOnlineUserCount() {
         /*SessionDAO为接口，需要在Spring的配置文件中注入
@@ -144,5 +144,17 @@ public class LoginController {
             System.out.println("-================" + s);
         }
         return sessions.size();
+    }
+
+    /**
+     * @param request
+     * @return java.lang.String
+     * @Description TODO 获取当前用户名
+     * @Date 2019/3/21 10:17
+     */
+    @RequestMapping(value = "getCurrentUser", method = RequestMethod.POST)
+    @ResponseBody
+    public String getCurrentUser(HttpServletRequest request) {
+        return String.valueOf(request.getSession().getAttribute("currentUser"));
     }
 }

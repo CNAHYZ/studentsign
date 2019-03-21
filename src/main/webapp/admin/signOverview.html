@@ -1,14 +1,14 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-    <title>OneUI - Bootstrap 4 Admin Template &amp; UI Framework</title>
+    <title>学生宿舍签到系统 - yz</title>
 
     <meta name="robots" content="noindex, nofollow">
 
-    <!-- Open Graph Meta -->
+
 
     <!-- Icons -->
     <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
@@ -19,7 +19,7 @@
 
     <!-- Stylesheets -->
     <!-- Fonts and OneUI framework -->
-    <link rel="stylesheet" href="#">
+
     <link rel="stylesheet" id="css-main" href="../assets/css/oneui.min.css">
 
     <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
@@ -35,11 +35,12 @@
         <!-- Side Header -->
         <div class="content-header bg-white-5">
             <!-- Logo -->
-            <a class="font-w600 text-dual" href="../index.html">
-                <i class="fa fa-circle-notch text-primary"></i>
-                <span class="smini-hide">
-                            <span class="font-w700 font-size-h5">ne</span> <span class="font-w400">4.0</span>
-                        </span>
+            <a class="font-w600 text-dual" href="index.html">
+                <!--<i class="fa fa-circle-notch text-primary"></i>-->
+                <span class="text-primary font-w400 font-size-h5">学</span>
+                <span class="smini-hidden">
+                    <span class="font-w400 font-size-h5">生宿舍签到系统</span>
+                </span>
             </a>
             <!-- END Logo -->
 
@@ -53,39 +54,14 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right font-size-sm smini-hide border-0"
                          aria-labelledby="sidebar-themes-dropdown">
-                        <!-- Color Themes -->
-                        <!-- Layout API, functionality initialized in Template._uiHandleTheme() -->
-                        <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme"
-                           data-theme="default" href="#">
-                            <span>Default</span>
-                            <i class="fa fa-circle text-default"></i>
-                        </a>
-                        <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme"
-                           data-theme="assets/css/themes/amethyst.min.css" href="#">
-                            <span>Amethyst</span>
-                            <i class="fa fa-circle text-amethyst"></i>
-                        </a>
-                        <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme"
-                           data-theme="assets/css/themes/city.min.css" href="#">
-                            <span>City</span>
-                            <i class="fa fa-circle text-city"></i>
-                        </a>
-                        <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme"
-                           data-theme="assets/css/themes/modern.min.css" href="#">
-                            <span>Modern</span>
-                            <i class="fa fa-circle text-modern"></i>
-                        </a>
-                        <!-- END Color Themes -->
-
-                        <div class="dropdown-divider"></div>
 
                         <!-- Sidebar Styles -->
                         <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
                         <a class="dropdown-item" data-toggle="layout" data-action="sidebar_style_light" href="#">
-                            <span>Sidebar Light</span>
+                            <i class="fa fa-circle text-light"></i> <span>Sidebar Light</span>
                         </a>
                         <a class="dropdown-item" data-toggle="layout" data-action="sidebar_style_dark" href="#">
-                            <span>Sidebar Dark</span>
+                            <i class="fa fa-circle text-dark"></i> <span>Sidebar Dark</span>
                         </a>
                         <!-- Sidebar Styles -->
 
@@ -94,10 +70,10 @@
                         <!-- Header Styles -->
                         <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
                         <a class="dropdown-item" data-toggle="layout" data-action="header_style_light" href="#">
-                            <span>Header Light</span>
+                            <i class="fa fa-circle text-light"></i> <span>Header Light</span>
                         </a>
                         <a class="dropdown-item" data-toggle="layout" data-action="header_style_dark" href="#">
-                            <span>Header Dark</span>
+                            <i class="fa fa-circle text-dark"></i> <span>Header Dark</span>
                         </a>
                         <!-- Header Styles -->
                     </div>
@@ -120,13 +96,13 @@
         <div class="content-side content-side-full">
             <ul class="nav-main">
                 <li class="nav-main-item">
-                    <a class="nav-main-link" href="be_pages_dashboard.html">
+                    <a class="nav-main-link" href="index.html">
                         <i class="nav-main-link-icon si si-speedometer"></i>
-                        <span class="nav-main-link-name">Dashboard</span>
+                        <span class="nav-main-link-name">系统首页</span>
                     </a>
                 </li>
                 <li class="nav-main-heading">System Management</li>
-                <li class="nav-main-item open">
+                <li class="nav-main-item">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
                        aria-expanded="false" href="#">
                         <i class="nav-main-link-icon si si-speech"></i>
@@ -134,7 +110,7 @@
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
-                            <a class="nav-main-link  active" href="noticeList.html">
+                            <a class="nav-main-link" href="noticeList.html">
                                 <i class="nav-main-link-icon fa fa-comments"></i>
                                 <span class="nav-main-link-name">所有通知</span>
                             </a>
@@ -174,7 +150,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-main-item">
+                <li class="nav-main-item open">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
                        aria-expanded="false" href="#">
                         <i class="nav-main-link-icon si si-badge"></i>
@@ -188,7 +164,7 @@
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="">
+                            <a class="nav-main-link active" href="signOverview.html">
                                 <i class="nav-main-link-icon fa fa-bars"></i>
                                 <span class="nav-main-link-name">签到概况</span>
                             </a>
@@ -283,49 +259,27 @@
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img class="rounded" src="../assets/media/avatars/avatar0.jpg" alt="Header Avatar"
                              style="width: 18px;">
-                        <span class="d-none d-sm-inline-block ml-1">Adam</span>
+                        <span class="d-none d-sm-inline-block ml-1" id="header_username"></span>
                         <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block"></i>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right p-0 border-0 font-size-sm"
                          aria-labelledby="page-header-user-dropdown">
-                        <div class="p-3 text-center bg-primary">
+                        <div class="p-2 text-center bg-primary">
                             <img class="img-avatar img-avatar48 img-avatar-thumb"
                                  src="../assets/media/avatars/avatar0.jpg"
                                  alt="">
                         </div>
                         <div class="p-2">
-                            <h5 class="dropdown-header text-uppercase">User Options</h5>
-                            <a class="dropdown-item d-flex align-items-center justify-content-between"
-                               href="be_pages_generic_inbox.html">
-                                <span>Inbox</span>
-                                <span>
-                                            <span class="badge badge-pill badge-primary">3</span>
-                                            <i class="si si-envelope-open ml-1"></i>
-                                        </span>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center justify-content-between"
-                               href="be_pages_generic_profile.html">
-                                <span>Profile</span>
-                                <span>
-                                            <span class="badge badge-pill badge-success">1</span>
-                                            <i class="si si-user ml-1"></i>
-                                        </span>
-                            </a>
+                            <h5 class="dropdown-header text-center">用户操作</h5>
+                            <div role="separator" class="dropdown-divider"></div>
                             <a class="dropdown-item d-flex align-items-center justify-content-between"
                                href="javascript:void(0)">
-                                <span>Settings</span>
+                                <span>系统设置</span>
                                 <i class="si si-settings"></i>
-                            </a>
-                            <div role="separator" class="dropdown-divider"></div>
-                            <h5 class="dropdown-header text-uppercase">Actions</h5>
-                            <a class="dropdown-item d-flex align-items-center justify-content-between"
-                               href="op_auth_lock.html">
-                                <span>Lock Account</span>
-                                <i class="si si-lock ml-1"></i>
                             </a>
                             <a class="dropdown-item d-flex align-items-center justify-content-between"
                                href="logOut.do">
-                                <span>Log Out</span>
+                                <span>安全退出</span>
                                 <i class="si si-logout ml-1"></i>
                             </a>
                         </div>
@@ -338,84 +292,19 @@
                     <button type="button" class="btn btn-sm btn-dual" id="page-header-notifications-dropdown"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="si si-bell"></i>
-                        <span class="badge badge-primary badge-pill">6</span>
+                        <span class="badge badge-primary badge-pill" id="notification_count"></span>
                     </button>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0 border-0 font-size-sm"
                          aria-labelledby="page-header-notifications-dropdown">
                         <div class="p-2 bg-primary text-center">
-                            <h5 class="dropdown-header text-uppercase text-white">Notifications</h5>
+                            <h5 class="dropdown-header text-uppercase text-white" id="notification_header"></h5>
                         </div>
-                        <ul class="nav-items mb-0">
-                            <li>
-                                <a class="text-dark media py-2" href="javascript:void(0)">
-                                    <div class="mr-2 ml-3">
-                                        <i class="fa fa-fw fa-check-circle text-success"></i>
-                                    </div>
-                                    <div class="media-body pr-2">
-                                        <div class="font-w600">You have a new follower</div>
-                                        <small class="text-muted">15 min ago</small>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="text-dark media py-2" href="javascript:void(0)">
-                                    <div class="mr-2 ml-3">
-                                        <i class="fa fa-fw fa-plus-circle text-info"></i>
-                                    </div>
-                                    <div class="media-body pr-2">
-                                        <div class="font-w600">1 new sale, keep it up</div>
-                                        <small class="text-muted">22 min ago</small>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="text-dark media py-2" href="javascript:void(0)">
-                                    <div class="mr-2 ml-3">
-                                        <i class="fa fa-fw fa-times-circle text-danger"></i>
-                                    </div>
-                                    <div class="media-body pr-2">
-                                        <div class="font-w600">Update failed, restart server</div>
-                                        <small class="text-muted">26 min ago</small>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="text-dark media py-2" href="javascript:void(0)">
-                                    <div class="mr-2 ml-3">
-                                        <i class="fa fa-fw fa-plus-circle text-info"></i>
-                                    </div>
-                                    <div class="media-body pr-2">
-                                        <div class="font-w600">2 new sales, keep it up</div>
-                                        <small class="text-muted">33 min ago</small>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="text-dark media py-2" href="javascript:void(0)">
-                                    <div class="mr-2 ml-3">
-                                        <i class="fa fa-fw fa-user-plus text-success"></i>
-                                    </div>
-                                    <div class="media-body pr-2">
-                                        <div class="font-w600">You have a new subscriber</div>
-                                        <small class="text-muted">41 min ago</small>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="text-dark media py-2" href="javascript:void(0)">
-                                    <div class="mr-2 ml-3">
-                                        <i class="fa fa-fw fa-check-circle text-success"></i>
-                                    </div>
-                                    <div class="media-body pr-2">
-                                        <div class="font-w600">You have a new follower</div>
-                                        <small class="text-muted">42 min ago</small>
-                                    </div>
-                                </a>
-                            </li>
+                        <ul class="nav-items mb-0" id="notification_content">
+
                         </ul>
                         <div class="p-2 border-top">
-                            <a class="btn btn-sm btn-light btn-block text-center" href="javascript:void(0)">
-                                <i class="fa fa-fw fa-arrow-down mr-1"></i> Load More..
+                            <a class="btn btn-sm btn-light btn-block text-center" href="leaveExamine.html">
+                                <i class="fa fa-fw fa-check-double mr-1"></i> 点此去处理
                             </a>
                         </div>
                     </div>
@@ -425,26 +314,6 @@
             <!-- END Right Section -->
         </div>
         <!-- END Header Content -->
-
-        <!-- Header Search -->
-        <div id="page-header-search" class="overlay-header bg-white">
-            <div class="content-header">
-                <form class="w-100" action="be_pages_generic_search.html" method="POST">
-                    <div class="input-group input-group-sm">
-                        <div class="input-group-prepend">
-                            <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                            <button type="button" class="btn btn-danger" data-toggle="layout"
-                                    data-action="header_search_off">
-                                <i class="fa fa-fw fa-times-circle"></i>
-                            </button>
-                        </div>
-                        <input type="text" class="form-control" placeholder="Search or hit ESC.."
-                               id="page-header-search-input" name="page-header-search-input">
-                    </div>
-                </form>
-            </div>
-        </div>
-        <!-- END Header Search -->
 
         <!-- Header Loader -->
         <!-- Please check out the Loaders page under Components category to see examples of showing/hiding it -->
@@ -458,7 +327,6 @@
         <!-- END Header Loader -->
     </header>
     <!-- END Header -->
-
     <!-- Main Container -->
     <main id="main-container">
 
@@ -468,15 +336,15 @@
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <h1 class="flex-sm-fill h3 my-2">
                         签到概况
-                        <small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted">All
+                        <!--<small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted">All
                             pages in one spot!
-                        </small>
+                        </small>-->
                     </h1>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
-                            <li class="breadcrumb-item">签到概况</li>
+                            <li class="breadcrumb-item">签到管理</li>
                             <li class="breadcrumb-item" aria-current="page">
-                                <a class="link-fx" href="">首页</a>
+                                <a class="link-fx" href="">签到概况</a>
                             </li>
                         </ol>
                     </nav>
@@ -502,8 +370,10 @@
         <div class="content py-3">
             <div class="row font-size-sm">
                 <div class="col-sm-6 order-sm-1 py-1 text-center text-sm-left">
-                    <a class="font-w600" href="https://1.envato.market/xWy" target="_blank">OneUI 4.0</a> &copy; <span
+                    <a class="font-w600" href="" target="_blank"></a> &copy; <span
                         data-toggle="year-copy">2018</span>
+                    <span class="fa fa-heart">&nbsp;</span>
+                    <span>YZ . All Rights Reserved</span>
                 </div>
             </div>
         </div>
@@ -515,6 +385,7 @@
 <script src="../assets/js/oneui.core.min.js"></script>
 
 <script src="../assets/js/oneui.app.min.js"></script>
+<script src="../assets/js/common/common_header.js"></script>
 <script src="../assets/js/plugins/Echarts/echarts.common.min.js"></script>
 <script>
     // 基于准备好的dom，初始化echarts实例
