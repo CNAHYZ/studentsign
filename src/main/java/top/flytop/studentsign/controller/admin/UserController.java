@@ -1,6 +1,8 @@
 package top.flytop.studentsign.controller.admin;
 
 import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +12,8 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import top.flytop.studentsign.dto.BaseResult;
+import top.flytop.studentsign.dto.DataTablePageUtil;
 import top.flytop.studentsign.pojo.Student;
-import top.flytop.studentsign.service.FaceService;
 import top.flytop.studentsign.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +22,7 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 @Controller
 @RequestMapping("admin/")
@@ -29,8 +32,6 @@ public class UserController {
     private static final Logger log = LoggerFactory.getLogger(UserController.class);
     @Autowired
     private UserService userService;
-    @Autowired
-    private FaceService faceService;
 
     /**
      * @param binder
@@ -50,10 +51,22 @@ public class UserController {
      * @Description TODO 获取学生列表
      * @date 2019/1/8 17:37
      */
-    @RequestMapping(value = "studentList", method = RequestMethod.POST)
+    @RequestMapping(value = "getStudentList", method = RequestMethod.POST)
     @ResponseBody
-    public BaseResult studentList() {
-        return BaseResult.success(userService.getAllStudent());
+    public DataTablePageUtil studentList(HttpServletRequest request) {
+        DataTablePageUtil<Student> dataTable = new DataTablePageUtil<>(request);
+
+        /*开始分页*/
+        PageHelper.startPage(dataTable.getPage_num(), dataTable.getPage_size());
+        List<Student> result = userService.getAllStudent();
+        PageInfo<Student> pageInfo = new PageInfo<>(result);
+
+        /*封装数据给DataTables*/
+        dataTable.setData(pageInfo.getList());
+        dataTable.setRecordsTotal((int) pageInfo.getTotal());
+        dataTable.setRecordsFiltered(dataTable.getRecordsTotal());
+
+        return dataTable;
     }
 
     /**
@@ -215,7 +228,7 @@ public class UserController {
     /**
      * @param
      * @return top.flytop.studentsign.dto.BaseResult
-     * @Description TODO 初始化未分配账户的学生用户（student ----> user）
+     * @Description TODO 初始化所有未分配账户的学生用户（student ----> user）
      * @Date 2019/2/19 22:10
      */
     @RequestMapping(value = "initAllUsers", method = RequestMethod.GET)
@@ -232,14 +245,15 @@ public class UserController {
     /**
      * @param
      * @return top.flytop.studentsign.dto.BaseResult
-     * @Description TODO  初始化单个学生的账户
+     * @Description TODO  批量初始化学生的账户
      * @Date 2019/2/19 22:10
      */
     @RequestMapping(value = "initStuAccount", method = RequestMethod.POST)
     @ResponseBody
-    public BaseResult initStuAccount(String username) {
+    public BaseResult initStuAccount(String[] sNos) {
+        System.out.println(sNos.length);
         try {
-            return userService.initStuAccount(username);
+            return userService.initStuAccount(sNos);
         } catch (Exception e) {
             e.printStackTrace();
             return BaseResult.fail(1, "操作失败");

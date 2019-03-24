@@ -350,7 +350,8 @@
      */
     $("#btn_delete").click(
         function delLeave() {
-            id = $("#id").val();
+            id = $("#id").text();
+            console.log(id);
             $.ajax({
                 type: "post",
                 url: "removeLeave.do",

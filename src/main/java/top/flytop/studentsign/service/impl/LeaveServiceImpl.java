@@ -110,7 +110,7 @@ public class LeaveServiceImpl implements LeaveService {
     public Boolean addLeave(HttpServletRequest request) {
         HttpSession session = request.getSession();
         BaseResult saveResult =
-                FileUtil.saveFileByReq(request, null, "attachment", "userUpload/leaveFile/");
+                FileUtil.saveFileByReq(request, null, "attachment", "/leaveFile/");
         String attachment = null;
         if (saveResult.isSuccess()) {
             attachment = String.valueOf(saveResult.getData());

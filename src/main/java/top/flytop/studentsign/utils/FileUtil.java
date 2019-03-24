@@ -92,7 +92,7 @@ public class FileUtil {
             File file = new File(filePath);
             multipartFile.transferTo(file);
             //相对Web项目的路径
-            String relativePath = "/" + dir + fileName + suffix;
+            String relativePath = "/userUpload/" + dir + fileName + suffix;
             return new BaseResult<>(true, relativePath);
         } catch (Exception e) {
             e.printStackTrace();

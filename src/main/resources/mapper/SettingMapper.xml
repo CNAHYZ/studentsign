@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.flytop.studentsign.mapper.SettingMapper">
+
+    <!--=========================resultMap===========================-->
+    <resultMap id="openTimeResultMap" type="openTime">
+        <result column="time_start" property="timeStart"></result>
+        <result column="time_end" property="timeEnd"></result>
+        <result column="start_cron_expr" property="startCronExpr"></result>
+        <result column="end_cron_expr" property="endCronExpr"></result>
+    </resultMap>
+    <!--===========================查询=============================-->
+
+    <select id="getOpenTime" resultMap="openTimeResultMap">
+        select *
+        from opentime
+        where id = 'UNIQUE'
+    </select>
+    <!--===========================新增=============================-->
+    <insert id="saveOpenTime">
+        REPLACE INTO opentime
+            (weekday, time_start, time_end, start_cron_expr, end_cron_expr)
+        VALUES (#{weekday}, #{timeStart}, #{timeEnd}, #{startCronExpr}, #{endCronExpr})
+    </insert>
+</mapper>

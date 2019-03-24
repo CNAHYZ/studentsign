@@ -9,7 +9,6 @@
     <meta name="robots" content="noindex, nofollow">
 
 
-
     <!-- Icons -->
     <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
     <link rel="shortcut icon" href="../assets/media/favicons/favicon.png">
@@ -463,7 +462,27 @@
     // 限制一次最多上传 10 张图片
     editor.customConfig.uploadImgMaxLength = 2;
     editor.customConfig.uploadFileName = 'noticeImg';
-
+    editor.customConfig.menus = [
+        'head',  // 标题
+        'bold',  // 粗体
+        'fontSize',  // 字号
+        'fontName',  // 字体
+        'italic',  // 斜体
+        'underline',  // 下划线
+        'strikeThrough',  // 删除线
+        'foreColor',  // 文字颜色
+        'backColor',  // 背景颜色
+        'link',  // 插入链接
+        'list',  // 列表
+        'justify',  // 对齐方式
+        'quote',  // 引用
+        'image',  // 插入图片
+        'table',  // 表格
+        'video',  // 插入视频
+        'code',  // 插入代码
+        'undo',  // 撤销
+        'redo'  // 重复
+    ],
     editor.create();
     //获取id
     var thisURL = document.URL;
@@ -541,7 +560,12 @@
             dataType: "json",
             success: function (data) {
                 if (data.success) {
-                    swal(data.data, "", "success");
+                    Swal({
+                        title: data.data, type: "success",
+                        onAfterClose: function () {
+                            window.location.href = "noticeList.html";
+                        },
+                    })
                 } else swal(data.data, "", "fail");
             }, error: function (data) {
                 swal("系统出错，请稍后再试", "", "error");

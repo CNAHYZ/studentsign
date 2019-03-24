@@ -35,9 +35,9 @@ public interface UserMapper {
 
     Integer initAllUsers(@Param("pwd") String pwd, @Param("salt") String salt);
 
-    Integer initUser(User user);
+    Integer initUser(@Param("username") String username, @Param("salt") String salt, @Param("pwd") String pwd);
 
-    Integer resetStuPwd(User user);
+    Integer resetStuPwd(@Param("username") String username, @Param("salt") String salt, @Param("pwd") String pwd);
 
     int getTotalCount();
 }

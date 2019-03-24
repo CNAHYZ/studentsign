@@ -243,25 +243,27 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * @param username
+     * @param sNos
      * @return top.flytop.studentsign.dto.BaseResult
      * @Description TODO
      * @Date 2019/2/19 22:11
      */
-    public BaseResult initStuAccount(String username) throws Exception {
-        User user = new User();
-        user.setPwd(defaultEncryptPwd);
-        user.setSalt(salt);
-        user.setUsername(username);
-        if (userMapper.getUser(username) == null) {
-            /*user表中无该用户名，新增*/
-            Integer count = userMapper.initUser(user);
-            return BaseResult.success("操作完成，共初始化 " + count + " 个用户");
-        } else {
-            /*user表中有该用户名，重置*/
-            Integer count = userMapper.resetStuPwd(user);
-            return BaseResult.success("操作完成，共重置 " + count + " 条密码");
+    public BaseResult initStuAccount(String[] sNos) throws Exception {
+        int initCount = 0;
+        int resetCount = 0;
+        for (String username : sNos) {
+            if (userMapper.getUser(username) == null) {
+                /*user表中无该用户名，新增*/
+                initCount += userMapper.initUser(username, salt, defaultEncryptPwd);
+            } else {
+                /*user表中有该用户名，重置*/
+                resetCount += userMapper.resetStuPwd(username, salt, defaultEncryptPwd);
+            }
         }
+        if (initCount + resetCount != sNos.length)
+            throw new RuntimeException("失败");
+        else
+            return BaseResult.success("操作完成，新增用户数： " + initCount + " <br/>重置密码数： " + resetCount);
     }
 
 }

@@ -32,5 +32,5 @@ public interface UserService {
 
     BaseResult initAllUsers() throws Exception;
 
-    BaseResult initStuAccount(String username) throws Exception;
+    BaseResult initStuAccount(String[] sNos) throws Exception;
 }

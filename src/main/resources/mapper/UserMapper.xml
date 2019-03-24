@@ -41,7 +41,7 @@
     <select id="getAllStudent" resultMap="studentResultMap">
         select a.*, b.cname, b.grade
         from student a
-                 left join class b on a.cno = b.cno;
+                 left join class b on a.cno = b.cno
     </select>
 
     <!--获取班级列表-->
@@ -55,7 +55,7 @@
     <select id="getUser" resultType="user">
         select *
         from user
-        where username = #{username};
+        where username = #{username}
     </select>
 
     <!--获取学生总数-->
@@ -134,7 +134,7 @@
         delete
         from student
         where
-        <if test="_parameter!=null">sno = #{sNo}</if>;
+        <if test="_parameter!=null">sno = #{sNo}</if>
     </delete>
 
     <!--删除用户-->
@@ -142,6 +142,6 @@
         delete
         from user
         where
-        <if test="_parameter!=null">username = #{username}</if>;
+        <if test="_parameter!=null">username = #{username}</if>
     </delete>
 </mapper>

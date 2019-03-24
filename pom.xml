@@ -26,6 +26,7 @@
         <baiduaip.version>4.9.0</baiduaip.version>
         <shiro.version>1.4.0</shiro.version>
         <poi.version>3.17</poi.version>
+        <quartz.version>2.3.0</quartz.version>
     </properties>
 
     <dependencies>
@@ -50,6 +51,11 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
             <version>${spring.version}</version>
         </dependency>
         <dependency>
@@ -228,6 +234,7 @@
             <version>RELEASE</version>
             <scope>compile</scope>
         </dependency>
+
         <!--================================= poi =================================-->
         <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
         <dependency>
@@ -242,6 +249,17 @@
             <version>${poi.version}</version>
         </dependency>
 
+        <!--================================= quartz =================================-->
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <version>${quartz.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz-jobs</artifactId>
+            <version>${quartz.version}</version>
+        </dependency>
 
     </dependencies>
     <build>

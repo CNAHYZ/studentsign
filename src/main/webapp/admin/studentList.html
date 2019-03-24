@@ -6,8 +6,6 @@
 
     <title>学生宿舍签到系统 - yz</title>
 
-
-
     <!-- Icons -->
     <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
     <link rel="shortcut icon" href="../assets/media/favicons/favicon.png">
@@ -18,11 +16,13 @@
     <!-- Stylesheets -->
     <!-- Page JS Plugins CSS -->
     <link rel="stylesheet" href="../assets/js/plugins/datatables/dataTables.bootstrap4.css">
-    <link rel="stylesheet" href="../assets/js/plugins/datatables/buttons-bs4/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="../assets/js/plugins/datatables/Select-1.3.0/css/select.jqueryui.min.css">
+    <link rel="stylesheet" href="../assets/js/plugins/datatables/buttons/css/buttons.bootstrap4.scss">
+    <link rel="stylesheet"
+          href="../assets/js/plugins/datatables/jquery-datatables-checkboxes/css/dataTables.checkboxes.css">
     <link rel="stylesheet" href="/assets/js/plugins/sweetalert2/sweetalert2.min.css">
 
     <!-- Fonts and OneUI framework -->
-
     <link rel="stylesheet" id="css-main" href="../assets/css/oneui.min.css">
 
 </head>
@@ -356,18 +356,19 @@
             <!-- Dynamic Table with Export Buttons -->
             <div class="block">
                 <div class="block-content block-content-full">
-                    <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons text-center"
+                    <table class="table table-bordered table-striped js-dataTable-buttons text-center"
                            id="datatable">
                         <thead>
                         <tr>
+                            <th class="d-none d-sm-table-cell" style="width: 3%;"></th>
                             <th class="d-none d-sm-table-cell" style="width: 14%;">学号</th>
-                            <th class="d-none d-sm-table-cell" style="width: 12%;">姓名</th>
-                            <th class="d-none d-sm-table-cell" style="width: 18%;">班级</th>
+                            <th class="d-none d-sm-table-cell" style="width: 11%;">姓名</th>
+                            <th class="d-none d-sm-table-cell" style="width: 20%;">班级</th>
                             <th class="d-none d-sm-table-cell" style="width: 8%;">性别</th>
                             <th class="d-none d-sm-table-cell" style="width: 10%;">宿舍号</th>
-                            <th class="d-none d-sm-table-cell" style="width: 14%;">出生日期</th>
-                            <th class="d-none d-sm-table-cell" style="width: 14%;">联系方式</th>
-                            <th class="d-none d-sm-table-cell" style="width: 16%;">操作</th>
+                            <th class="d-none d-sm-table-cell" style="width: 11%;">出生日期</th>
+                            <th class="d-none d-sm-table-cell" style="width: 11%;">联系方式</th>
+                            <th class="d-none d-sm-table-cell" style="width: 15%;">操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -407,43 +408,109 @@
 <!-- Page JS Plugins -->
 <script src="/assets/js/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="/assets/js/plugins/datatables/dataTables.bootstrap4.min.js"></script>
-<script src="/assets/js/plugins/datatables/buttons/dataTables.buttons.min.js"></script>
+<script src="/assets/js/plugins/datatables/buttons/js/dataTables.buttons.js"></script>
+<script src="/assets/js/plugins/datatables/buttons/js/buttons.bootstrap4.js"></script>
+<script src="/assets/js/plugins/datatables/Select-1.3.0/js/dataTables.select.js"></script>
+<script src="/assets/js/plugins/datatables/jquery-datatables-checkboxes/js/dataTables.checkboxes.min.js"></script>
+
 <script src="/assets/js/plugins/sweetalert2/sweetalert2.min.js"></script>
 
 <script src="/assets/js/common/dataTable.js"></script>
 
 <script>
+    var removeUserUrl = "removeUser.do";
+    var getStudentListUrl = "getStudentList.do";
+    var initStuAccountUrl = "initStuAccount.do";
     /**
      * datatable的配置选项
      */
     var options2 = {
+        dom: "<'row'<'col-sm-12 col-md-4'l><'col-sm-12 col-md-4'B><'col-sm-12 col-md-4'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+        select: {
+            style: 'multi',
+            blurable: true,
+            selector: 'td:first-child'
+        },
+        buttons: [
+            {
+                text: '批量删除',
+                action: function (e, dt) {
+                    var sNos = selected();
+                    if (sNos.length === 0) {
+                        swal("请先选择要删除的学生！", '', "info");
+                        return
+                    }
+                    realDel(sNos);
+                },
+                attr: {
+                    id: 'batchDel',
+                },
+                className: 'btn-danger'
+            },
+            {
+                text: '账户初始化',
+                action: function (e, dt) {
+                    var sNos = selected();
+                    if (sNos.length === 0) {
+                        swal("请先选择要初始化的学生！", '', "info");
+                        return
+                    }
+                    realInit(sNos);
+                },
+                attr: {
+                    id: 'batchInit'
+                },
+                className: 'btn-primary'
+            }
+        ],
         ajax: {
             type: "post",
-            url: "studentList.do"
+            url: getStudentListUrl
         },
         columns: [
+            {
+                data: null,
+                'checkboxes': {
+                    'selectRow': true
+                }
+            },
             {data: "sNo"},
             {data: "sName"},
-            {data: "sClass"},
             {
-                data: "gender",
-                defaultContent: "-"
+                data: "sClass", defaultContent: "-",
+                render: function (data, type, full) {
+                    // console.log(data.sClass.cName);
+                    if (data)
+                        return data.grade + " " + data.cName
+                }
             },
             {
-                data: null
+                data: "gender", defaultContent: "-"
             },
             {
-                data: "birthday",
-                defaultContent: "-"
+                data: null,
+                defaultContent: "-",
+                render: function (data, type, full) {
+                    return data.buildingNo + "#" + data.roomNo
+                }
+
             },
             {
-                data: "phoneNum",
-                defaultContent: "-"
+                data: "birthday", defaultContent: "-"
+            },
+            {
+                data: "phoneNum", defaultContent: "-"
             },
             {
                 "data": null,
                 render: function (data, type, row) {
                     return '<div class="btn-group">' +
+                        '<button type="button" class="btn btn-sm btn-primary js-tooltip-enabled"' +
+                        ' data-toggle="tooltip" title="学生主页" onclick="personalSummary(' + row.sNo + ')">' +
+                        '<i class="fa fa-fw fa-info"></i>' +
+                        '</button>' +
                         '<button type="button" class="btn btn-sm btn-primary js-tooltip-enabled"' +
                         ' data-toggle="tooltip" title="编辑" onclick="editStudent(' + row.sNo + ')">' +
                         '<i class="fa fa-fw fa-pencil-alt"></i>' +
@@ -461,25 +528,9 @@
             }
         ],
         "columnDefs": [
-            {//每列定义
+            {
                 "orderable": false,
                 "targets": [1, 4, -1, -2, -3]//第x列不排序
-            },
-            {
-                "targets": [2],
-                defaultContent: "-",
-                render: function (data, type, full) {
-                    // console.log(data.sClass.cName);
-                    if (data)
-                        return data.grade + " " + data.cName
-                }
-            },
-            {
-                "targets": [4],
-                defaultContent: "-",
-                render: function (data, type, full) {
-                    return data.buildingNo + "#" + data.roomNo
-                }
             }
         ]
 
@@ -489,10 +540,10 @@
      * @type {jQuery|*}
      */
     var t = $('#datatable').DataTable(
-        Object.assign(options2, generalOptions));
+        Object.assign(options2, serverSideOptions));
 
     /**
-     * 修改学生信息
+     * 跳转至信息修改页
      * @param id
      */
     function editStudent(id) {
@@ -500,32 +551,49 @@
     }
 
     /**
-     * 删除学生
+     * 跳转至个人主页
+     * @param id
+     */
+    function personalSummary(id) {
+        window.location.href = "personalSummary.html?id=" + id;
+    }
+
+    /**
+     * 删除单个学生
      * @param id
      */
     function delStudent(id) {
+        sNos = [id];
+        realDel(sNos);
+    }
+
+    /**
+     * 通用删除学生方法
+     */
+    function realDel(sNos) {
         swal({
-            title: "确认删除吗?",
+            title: "确认删除这 " + sNos.length + " 条用户吗?",
             text: "删除后将无法恢复",
             type: "warning",
             showCancelButton: !0,
-            confirmButtonClass: "btn btn-danger m-1",
-            cancelButtonClass: "btn btn-secondary m-1",
             confirmButtonText: "确认删除",
             cancelButtonText: "取消",
-            html: !1,
         }).then(function (e) {
-            e.value ? del() : "cancel" === e.dismiss
+            e.value ? del(sNos) : "cancel" === e.dismiss
         });
 
-        function del() {
+        /**
+         * ajax发送删除数据的方法
+         */
+        function del(sNos) {
             $.ajax(
                 {
                     type: "post",
-                    url: "removeUser.do",
+                    url: removeUserUrl,
+                    traditional: true,
                     dataType: "json",
                     data: {
-                        "sNo": id
+                        "sNos": sNos
                     },
                     success: function (data) {
                         if (data.success) {
@@ -542,38 +610,49 @@
                 }
             )
         }
+
     }
 
     /**
-     * 账户初始化
+     * 初始化单个学生
      * @param id
      */
     function initAccount(id) {
-        sw = swal({
-            title: "确认初始化该生账户?",
+        sNos = [id];
+        realInit(sNos);
+    }
+
+    /**
+     * 通用账户初始化
+     * @param sNos
+     */
+    function realInit(sNos) {
+        swal({
+            title: '确认初始化这' + sNos.length + '条学生账户?',
             type: "warning",
             showCancelButton: !0,
-            confirmButtonClass: "btn btn-danger m-1",
-            cancelButtonClass: "btn btn-secondary m-1",
             confirmButtonText: "确认",
             cancelButtonText: "取消",
             showLoaderOnConfirm: true,
-            html: !1,
             preConfirm: function (e) {
-                reset();
+                reset(sNos);
             }
-        })/*.then(function (e) {
-            e.value ? reset() : "cancel" === e.dismiss
-        });*/
+        });
 
-        function reset() {
+        /**
+         * ajax重置
+         */
+        function reset(sNos) {
             $.ajax(
                 {
                     type: "post",
-                    url: "initStuAccount.do",
+                    url: initStuAccountUrl,
                     dataType: "json",
+                    // 设置traditional 为true阻止深度序列化，序列化结果如：
+                    // p: ["123", "456", "789"]  =>  p=123&p=456&p=456
+                    traditional: true,
                     data: {
-                        "username": id
+                        "sNos": sNos
                     },
                     success: function (data) {
                         if (data.success) {
@@ -587,6 +666,22 @@
                 }
             )
         }
+
+    }
+
+    /**
+     * 获取复选框选中的数据
+     * @returns {Array}
+     */
+    function selected() {
+        var rows = t.rows({selected: true}).data();
+        console.log(rows);
+        var sNos = [];
+        rows.each(function (item, index) {
+            sNos[index] = item.sNo
+        });
+        console.log(sNos);
+        return sNos;
     }
 </script>
 

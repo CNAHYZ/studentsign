@@ -33,7 +33,6 @@ import java.util.Map;
 @RequestMapping("admin/")
 public class NoticeController {
     private NoticeService noticeService;
-    private DataTablePageUtil dataTable;
 
     @Autowired
     private void noticeService(NoticeService noticeService) {
@@ -51,7 +50,7 @@ public class NoticeController {
     @ResponseBody
     public JSONObject noticeImageUpload(MultipartFile noticeImg, HttpServletRequest request) {
         String realName = "";
-        String dir = "userUpload/noticeImg/";
+        String dir = "/noticeImg/";
         if (noticeImg != null) {
             BaseResult saveResult = FileUtil.saveFileByReq(request, null, "noticeImg", dir);
             String filePath = String.valueOf(saveResult.getData());
@@ -88,18 +87,22 @@ public class NoticeController {
     @RequestMapping(value = "getAllNotice", method = RequestMethod.POST)
     @ResponseBody
     public DataTablePageUtil getAllNotice(HttpServletRequest request) {
-        dataTable = new DataTablePageUtil<Notice>(request);
+        DataTablePageUtil<Notice> dataTable = new DataTablePageUtil<>(request);
+
         //每页显示5条数据
         dataTable.setLength(5);
         Map<String, Object> paraMap = new HashMap<>();
         paraMap.put("searchWord", dataTable.getSearch());
+
         PageHelper.startPage(dataTable.getPage_num(), dataTable.getPage_size());
         List<Notice> result = noticeService.getNotice(paraMap);
         PageInfo<Notice> pageInfo = new PageInfo<>(result);
+
         //封装数据给DataTables
         dataTable.setData(pageInfo.getList());
         dataTable.setRecordsTotal((int) pageInfo.getTotal());
         dataTable.setRecordsFiltered(dataTable.getRecordsTotal());
+
         return dataTable;
     }
 

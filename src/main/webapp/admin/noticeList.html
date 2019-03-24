@@ -389,7 +389,7 @@
                             <th class="d-none d-lg-table-cell" style="width: 47%;">通知内容</th>
                             <th class="d-none d-lg-table-cell" style="width: 13%;">状态</th>
                             <th class="d-none d-lg-table-cell" style="width: 15%;">创建时间</th>
-                            <th class="d-none d-lg-table-cell" style="width: 20%;">操作</th>
+                            <th class="d-none d-lg-table-cell" style="width: 15%;">操作</th>
                         </tr>
                         </thead>
                         <tbody class="">
@@ -571,14 +571,14 @@
             {
                 "targets": [-1],
                 render: function (data, type, row) {
-                    return "<div class=\"btn-group btn-group-lg\" role=\"group\" aria-label=\"Large Horizontal Primary\">\n" +
+                    return "<div class=\"btn-group btn-group\" role=\"group\" aria-label=\"Large Horizontal Primary\">\n" +
                         "            <div class=\"dropdown\">\n" +
-                        "                <button type=\"button\" class=\"btn btn-lg btn-outline-primary dropdown-toggle\" id=\"btn_time\"\n" +
+                        "                <button type=\"button\" class=\"btn btn-outline-primary dropdown-toggle\" id=\"btn_time\"\n" +
                         "                        data-toggle=\"dropdown\" title=\"修改展示状态\" style=\"border-radius:.25rem 0 0 .25rem\">\n" +
                         "                    状态\n" +
                         "                </button>\n" +
-                        "                <div class=\"dropdown-menu font-size-lg\" aria-labelledby=\"dropdown-default-outline-primary\"\n" +
-                        "                     style=\"min-width:100px\">\n" +
+                        "                <div class=\"dropdown-menu\" aria-labelledby=\"dropdown-default-outline-primary\"\n" +
+                        "                     style=\"min-width:80px\">\n" +
                         "                    <a class=\"dropdown-item\" onclick=\"operation(" + row.noticeId + ",1)\">下线</a>\n" +
                         "                    <a class=\"dropdown-item\" onclick=\"operation(" + row.noticeId + ",0)\">展示</a>\n" +
                         "                    <a class=\"dropdown-item\" onclick=\"operation(" + row.noticeId + ",2)\">置顶</a>\n" +
