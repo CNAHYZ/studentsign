@@ -94,6 +94,13 @@
             and username = #{username}
         </if>
     </update>
+
+    <!--更新管理员登录时间-->
+    <update id="updateAdminLoginTime" parameterType="admin">
+        update admin
+        set last_login=#{lastLogin}
+        where username = #{username}
+    </update>
     <!--===========================插入=============================-->
     <!--添加学生-->
     <insert id="addStudent" parameterType="student">

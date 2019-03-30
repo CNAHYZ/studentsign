@@ -40,4 +40,5 @@ public interface UserMapper {
     Integer resetStuPwd(@Param("username") String username, @Param("salt") String salt, @Param("pwd") String pwd);
 
     int getTotalCount();
+
 }

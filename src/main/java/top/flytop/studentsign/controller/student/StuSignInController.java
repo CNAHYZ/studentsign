@@ -62,9 +62,12 @@ public class StuSignInController {
      */
     @RequestMapping(value = "stuSign", method = RequestMethod.POST)
     @ResponseBody
-    public BaseResult stuSign(String faceImage) {
-        BaseResult baseResult = signInService.studentSign(faceImage);
-        return baseResult;
-    }
+    public BaseResult stuSign(String faceImage, HttpServletRequest request) {
+        //判断是否可签到
+        boolean whetherSign = (boolean) request.getSession().getServletContext().getAttribute("whetherSign");
 
+        return whetherSign ?
+                signInService.studentSign(faceImage)
+                : BaseResult.fail(1, "签到失败，非签到时间！");
+    }
 }

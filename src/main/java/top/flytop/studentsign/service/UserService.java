@@ -18,10 +18,6 @@ public interface UserService {
 
     BaseResult addStudent(Student stu);
 
-    BaseResult loginByFace(String faceImage, String id);
-
-//    BaseResult<Integer> loginByPwd(String username, String pwd);
-
     BaseResult updateInfo(Student student);
 
     BaseResult removeUser(String sNo) throws Exception;
@@ -33,4 +29,5 @@ public interface UserService {
     BaseResult initAllUsers() throws Exception;
 
     BaseResult initStuAccount(String[] sNos) throws Exception;
+
 }

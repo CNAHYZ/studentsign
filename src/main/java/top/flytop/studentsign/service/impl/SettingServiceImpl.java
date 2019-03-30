@@ -8,6 +8,8 @@ import top.flytop.studentsign.pojo.OpenTime;
 import top.flytop.studentsign.quartz.QuartzManager;
 import top.flytop.studentsign.service.SettingService;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -35,7 +37,7 @@ public class SettingServiceImpl implements SettingService {
      * @Date 2019/3/23 17:42
      */
     @Override
-    public BaseResult saveOpenTime(OpenTime openTime) {
+    public BaseResult saveOpenTime(OpenTime openTime, HttpServletRequest request) {
         String JOB_GROUP_NAME = "JOBGROUP_NAME";
         String TRIGGER_GROUP_NAME = "TRIGGERGROUP_NAME";
 
@@ -60,6 +62,8 @@ public class SettingServiceImpl implements SettingService {
                 "startTimeSetting", TRIGGER_GROUP_NAME, startCronExpr);
         QuartzManager.modifyJobTime("endTimeSetting", JOB_GROUP_NAME,
                 "endTimeSetting", TRIGGER_GROUP_NAME, endCronExpr);
+
+        judgeOpenTime(openTime, request.getServletContext());
 
         if (settingMapper.saveOpenTime(openTime) > 0)
             return BaseResult.success("设置成功！");
@@ -110,4 +114,27 @@ public class SettingServiceImpl implements SettingService {
         map.put("minute", calendar.get(Calendar.MINUTE));
         return map;
     }
+
+    /**
+     * @param openTime
+     * @param servletContext
+     * @return void
+     * @Description TODO 修改时间或服务器重启后手动判断时间
+     * @Date 2019/3/30 15:03
+     */
+    public void judgeOpenTime(OpenTime openTime, ServletContext servletContext) {
+        String[] weekday = openTime.getWeekday().split(",");
+        SimpleDateFormat sft = new SimpleDateFormat("HH:mm:ss");
+        Calendar now = Calendar.getInstance();
+        String nowTime = sft.format(new Date()).replace(":", "");
+        String start = openTime.getTimeStart().replace(":", "");
+        String end = openTime.getTimeEnd().replace(":", "");
+
+        if (Arrays.asList(weekday).contains(String.valueOf(now.get(Calendar.DAY_OF_WEEK)))
+                && nowTime.compareTo(start) > 0 && nowTime.compareTo(end) < 0) {
+            servletContext.setAttribute("whetherSign", true);
+            System.out.println("=============系统开放============");
+        }
+    }
 }
+

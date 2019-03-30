@@ -234,8 +234,9 @@ MAIN CONTENT LAYOUT
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_comp_image_cropper.html">
-                                <span class="nav-main-link-name">Image Cropper</span>
+                            <a class="nav-main-link" href="systemSetting.html">
+                                <i class="nav-main-link-icon fa fa-cog"></i>
+                                <span class="nav-main-link-name">系统设置</span>
                             </a>
                         </li>
                     </ul>
@@ -635,12 +636,12 @@ MAIN CONTENT LAYOUT
                     }
                 } else
                     Swal.mixin({
-                        toast: true, position: 'top', showConfirmButton: false, timer: 5000
+                        toast: true, position: 'top', timer: 5000
                     }).fire({type: 'error', title: data.errMsg});
             },
             error: function () {
                 Swal.mixin({
-                    toast: true, position: 'top', showConfirmButton: false, timer: 5000
+                    toast: true, position: 'top', timer: 5000
                 }).fire({type: 'error', title: "系统错误，请稍后再试！"});
             }
         })
@@ -746,17 +747,17 @@ MAIN CONTENT LAYOUT
                         faceImgHandler();
 
                         Swal.mixin({
-                            toast: true, position: 'top', showConfirmButton: false, timer: 5000
+                            toast: true, position: 'top', timer: 5000
                         }).fire({type: 'success', title: data.data})
                     } else {
                         Swal.mixin({
-                            toast: true, position: 'top', showConfirmButton: false, timer: 5000
+                            toast: true, position: 'top', timer: 5000
                         }).fire({type: 'error', title: data.errMsg})
                     }
                 },
                 error: function () {
                     Swal.mixin({
-                        toast: true, position: 'top', showConfirmButton: false, timer: 5000
+                        toast: true, position: 'top', timer: 5000
                     }).fire({type: 'error', title: "系统错误，请稍后再试！"});
                 }
             })
@@ -887,12 +888,12 @@ MAIN CONTENT LAYOUT
                         getInfo();
                     } else
                         Swal.mixin({
-                            toast: true, position: 'top', showConfirmButton: false, timer: 5000
+                            toast: true, position: 'top', timer: 5000
                         }).fire({type: 'error', title: data.errMsg});
                 },
                 error: function () {
                     Swal.mixin({
-                        toast: true, position: 'top', showConfirmButton: false, timer: 5000
+                        toast: true, position: 'top', timer: 5000
                     }).fire({type: 'error', title: "系统错误，请稍后再试！"});
                 }
             })

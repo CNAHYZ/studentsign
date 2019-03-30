@@ -52,11 +52,11 @@ public class UserTest {
 //        System.out.println(res);
     }
 
-    @Test
+ /*   @Test
     public void testUserLogin() {
         String im = fileUtil.imageToBase64("D://1.jpg");
         System.out.println(userServiceImpl.loginByFace(im, "23"));
-    }
+    }*/
 
  /*   @Test
     public void testLoginByPwd() {

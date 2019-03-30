@@ -4,30 +4,22 @@ import org.apache.ibatis.type.Alias;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
 
 @Alias(value = "admin")
 @Component("admin")
 public class Admin implements Serializable {
-    Integer id;
     String username;
-    Date lastLogin;
+    String realName;
+    Timestamp lastLogin;
 
     public Admin() {
     }
 
-    public Admin(Integer id, String username, Date lastLogin) {
-        this.id = id;
+    public Admin(String username, String realName, Timestamp lastLogin) {
         this.username = username;
+        this.realName = realName;
         this.lastLogin = lastLogin;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getUsername() {
@@ -38,19 +30,27 @@ public class Admin implements Serializable {
         this.username = username;
     }
 
-    public Date getLastLogin() {
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
+    }
+
+    public Timestamp getLastLogin() {
         return lastLogin;
     }
 
-    public void setLastLogin(Date lastLogin) {
+    public void setLastLogin(Timestamp lastLogin) {
         this.lastLogin = lastLogin;
     }
 
     @Override
     public String toString() {
         return "Admin{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
+                "username='" + username + '\'' +
+                ", realName='" + realName + '\'' +
                 ", lastLogin=" + lastLogin +
                 '}';
     }

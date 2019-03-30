@@ -42,8 +42,7 @@ public class QuartzManager {
             /* 触发器时间设定(设置misfire机制：withMisfireHandlingInstructionFireAndProceed
             ——以当前时间为触发频率立刻触发一次执行
             ——然后按照Cron频率依次执行)*/
-            triggerBuilder.withSchedule(CronScheduleBuilder.cronSchedule(cron)
-                    .withMisfireHandlingInstructionFireAndProceed());
+            triggerBuilder.withSchedule(CronScheduleBuilder.cronSchedule(cron));
             // 创建Trigger对象
             CronTrigger trigger = (CronTrigger) triggerBuilder.build();
 

@@ -311,12 +311,12 @@
                     $(".form_alter").autofill(data.data);
                 } else
                     Swal.mixin({
-                        toast: true, position: 'top', showConfirmButton: false, timer: 5000
+                        toast: true, position: 'top', timer: 5000
                     }).fire({type: 'error', title: data.errMsg});
             },
             error: function () {
                 Swal.mixin({
-                    toast: true, position: 'top', showConfirmButton: false, timer: 5000
+                    toast: true, position: 'top', timer: 5000
                 }).fire({type: 'error', title: "系统错误，请重试或联系管理员！"});
             }
         })
@@ -362,7 +362,7 @@
             },
             error: function () {
                 Swal.mixin({
-                    toast: true, position: 'top', showConfirmButton: false, timer: 5000
+                    toast: true, position: 'top', timer: 5000
                 }).fire({type: 'error', title: "面部数据获取失败，请重试或联系管理员！"});
             }
         })

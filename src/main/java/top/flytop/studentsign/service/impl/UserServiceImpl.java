@@ -86,16 +86,16 @@ public class UserServiceImpl implements UserService {
             return new BaseResult<>(true, "注册失败！");
     }
 
-    /**
+    /*    *//**
      * @param faceImage
      * @param id
      * @return top.flytop.studentsign.dto.BaseResult
      * @Description TODO
      * @date 2019/1/20 16:36
-     */
+     *//*
     @Override
     public BaseResult loginByFace(String faceImage, String id) {
-       /* BaseResult<Map> searResult = faceUtil.faceSearch(faceImage, id);
+        BaseResult<Map> searResult = faceUtil.faceSearch(faceImage, id);
         if (!searResult.isSuccess()) {
             //异常，直接返回至Controller
             return searResult;
@@ -105,9 +105,9 @@ public class UserServiceImpl implements UserService {
             return new BaseResult<>(true, id + " 登录成功！");
         } else {
             return new BaseResult(false, 1, "未匹配到您的信息，请重试!");
-        }*/
+        }
         return null;
-    }
+    }*/
 
     /*    *//**
      * @param username

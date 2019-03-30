@@ -3,6 +3,7 @@ package top.flytop.studentsign.service;
 import top.flytop.studentsign.dto.BaseResult;
 import top.flytop.studentsign.pojo.OpenTime;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
@@ -13,7 +14,7 @@ import java.util.Map;
  * @Version 1.0
  */
 public interface SettingService {
-    BaseResult saveOpenTime(OpenTime openTime);
+    BaseResult saveOpenTime(OpenTime openTime, HttpServletRequest request);
 
     Map getOpenTime();
 }

@@ -115,7 +115,9 @@
     </tx:advice>
 
     <!--quartz-->
-    <bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean"/>
+    <bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="configLocation" value="classpath:properties/quartz.properties"/>
+    </bean>
 
     <!-- 配置视图解析器 -->
     <!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

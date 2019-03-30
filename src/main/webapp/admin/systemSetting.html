@@ -208,8 +208,9 @@
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_comp_image_cropper.html">
-                                <span class="nav-main-link-name">Image Cropper</span>
+                            <a class="nav-main-link" href="systemSetting.html">
+                                <i class="nav-main-link-icon fa fa-cog"></i>
+                                <span class="nav-main-link-name">系统设置</span>
                             </a>
                         </li>
                     </ul>
@@ -359,7 +360,21 @@
                 </div>
                 <div class="block-content">
                     <!-- Info -->
-
+                    <h4 class="border-bottom pb-2">签到开关</h4>
+                    <div class="row items-push">
+                        <div class="col-lg-4">
+                            <p class="font-size-sm text-muted">
+                                显示当前签到功能是否开放<br/>可以手动更改当前时间段内的状态<br/>下面设置的签到时间仍然有效，可能会覆盖此状态
+                            </p>
+                        </div>
+                        <form class="col-lg-6" id="form_openStatus">
+                            <label class="">当前是否可签到：</label>
+                            <div class="custom-control custom-control-success custom-switch custom-control-lg mb-2 ml-8">
+                                <input type="checkbox" class="custom-control-input" id="openStatus" name="openStatus">
+                                <label class="custom-control-label" for="openStatus"></label>
+                            </div>
+                        </form>
+                    </div>
                     <h4 class="border-bottom pb-2">签到时间设置</h4>
                     <div class="row items-push">
                         <div class="col-lg-4">
@@ -409,19 +424,19 @@
                             <div class="form-group">
                                 <label>时分设置(24时制)</label>
                                 <div class="input-daterange input-group">
-                                    <input type="text" class="js-masked-time form-control col-5" id="timeStart"
+                                    <input type="text" class=" form-control col-5" id="timeStart"
                                            name="timeStart" placeholder="开始时间">
                                     <div class="input-group-prepend input-group-append">
                                         <span class="input-group-text font-w600">
                                             <i class="fa fa-fw fa-arrow-right"></i>
                                         </span>
                                     </div>
-                                    <input type="text" class="js-masked-time form-control  col-6" id="timeEnd"
+                                    <input type="text" class="form-control  col-6" id="timeEnd"
                                            name="timeEnd" placeholder="结束时间">
                                 </div>
                             </div>
                             <div class="ml-auto form-group text-right">
-                                <button type="button" class="btn btn-primary" id="btn_saveTime">保存设置</button>
+                                <button type="button" class="btn btn-primary" id="btn_saveTime">保存时间设置</button>
                             </div>
                         </form>
                     </div>
@@ -461,20 +476,31 @@
 <!-- Page JS Plugins 对话框-->
 <script src="../assets/js/plugins/sweetalert2/sweetalert2.min.js"></script>
 
-<script src="/assets/js/plugins/jquery.maskedinput/jquery.maskedinput.min.js"></script>
+<script src="/assets/js/plugins/Inputmask-4.x/min/inputmask.min.js"></script>
+<script src="/assets/js/plugins/Inputmask-4.x/min/jquery.inputmask.min.js"></script>
 
 <script src="/assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
 <script src="/assets/js/plugins/jquery-validation/localization/messages_zh.js"></script>
 
 <script src="../assets/js/plugins/jquery.formautofill.js"></script>
 
-<script>jQuery(function () {
-    One.helpers(['select2', 'masked-inputs']);
-});</script>
 <script>
     var openTimeSettingUrl = "openTimeSetting.do";
     var getOpenTimeUrl = "getOpenTime.do";
-    $(function () {
+    var getOpenStatusUrl = "getOpenStatus.do";
+    var openStatusSettingUrl = "openStatusSetting.do";
+
+    /**
+     *页面加载
+     */
+    $(//设置时间的格式
+        Inputmask({regex: "([0-1]\\d)|(2[0-3]):[0-5]\\d"}).mask("#timeStart,#timeEnd"),
+        getOpenTime(), getOpenStatus());
+
+    /**
+     * 获取开放时间
+     */
+    function getOpenTime() {
         $.ajax({
             type: "post",
             url: getOpenTimeUrl,
@@ -491,19 +517,40 @@
                     })
                 } else
                     Swal.mixin({
-                        toast: true, position: 'top', showConfirmButton: false, timer: 5000
+                        toast: true, position: 'top', timer: 5000
                     }).fire({type: 'error', title: data.errMsg});
             },
             error: function () {
                 Swal.mixin({
-                    toast: true, position: 'top', showConfirmButton: false, timer: 5000
+                    toast: true, position: 'top', timer: 5000
                 }).fire({type: 'error', title: "系统错误，请稍后再试！"});
             }
         })
+    }
+
+    /**
+     * 获取开放状态
+     */
+    function getOpenStatus() {
+        $.post(getOpenStatusUrl, {}, function (data) {
+            $("#openStatus").prop('checked', data.data);
+        }, "json")
+    }
+
+    /**
+     * 签到开关改变事件
+     */
+    $("#openStatus").change(function () {
+        $.post(openStatusSettingUrl, {openStatus: this.checked}, function (data) {
+            Swal.mixin({
+                toast: true, position: 'top', timer: 5000
+            }).fire({type: 'success', title: data.data});
+            getOpenStatus();
+        }, "json")
     });
 
     /**
-     * 提交修改
+     * 提交修改开放时间
      */
     $("#btn_saveTime").click(function () {
         form = $("#form_timeSetting");
@@ -524,7 +571,8 @@
                         type: "success",
                         confirmButtonText: '确定',
                         onAfterClose: function () {
-
+                            getOpenTime();
+                            getOpenStatus()
                         }
                     })
                 } else
