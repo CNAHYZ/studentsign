@@ -113,24 +113,19 @@ public class UserController {
     }
 
     /**
-     * @param sNo
+     * @param sNos
      * @return top.flytop.studentsign.dto.BaseResult
      * @Description TODO 根据学号删除学生
      * @date 2019/1/8 17:39
      */
     @RequestMapping(value = "removeUser", method = RequestMethod.POST)
     @ResponseBody
-    public BaseResult removeUser(String sNo) {
+    public BaseResult removeUser(String[] sNos) {
         try {
-            BaseResult delResult = userService.removeUser(sNo);
-            if (delResult.isSuccess())
-                return delResult;
-            else
-                return new BaseResult(false, 1, "删除失败");
-
+            return userService.batchRemoveUser(sNos);
         } catch (Exception e) {
 //            logger.info("=================" + e.getMessage());
-            return new BaseResult(false, 1, "删除失败");
+            return BaseResult.fail(1, "删除失败");
         }
     }
 
@@ -203,7 +198,7 @@ public class UserController {
         try {
             in = uploadFile.getInputStream();
             //数据导入
-            BaseResult result = userService.importStuInfo(in, uploadFile);
+            BaseResult result = userService.batchImportStu(in, uploadFile);
             in.close();
             return result;
         } catch (Exception e) {
@@ -245,7 +240,7 @@ public class UserController {
     /**
      * @param
      * @return top.flytop.studentsign.dto.BaseResult
-     * @Description TODO  批量初始化学生的账户
+     * @Description TODO  批量（单个）初始化学生的账户
      * @Date 2019/2/19 22:10
      */
     @RequestMapping(value = "initStuAccount", method = RequestMethod.POST)
@@ -253,7 +248,7 @@ public class UserController {
     public BaseResult initStuAccount(String[] sNos) {
         System.out.println(sNos.length);
         try {
-            return userService.initStuAccount(sNos);
+            return userService.batchInitStuAccount(sNos);
         } catch (Exception e) {
             e.printStackTrace();
             return BaseResult.fail(1, "操作失败");

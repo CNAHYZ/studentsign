@@ -122,7 +122,7 @@ public class SignInServiceImpl implements SignInService {
      * @date 2019/1/20 16:36
      */
     @Override
-    public BaseResult studentSign(String faceImage) {
+    public BaseResult saveStudentSign(String faceImage) {
         BaseResult<Map> searResult = faceUtil.faceSearch(faceImage, null);
         if (!searResult.isSuccess()) {
             //异常，直接返回至Controller

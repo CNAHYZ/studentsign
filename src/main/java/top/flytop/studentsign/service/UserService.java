@@ -20,14 +20,14 @@ public interface UserService {
 
     BaseResult updateInfo(Student student);
 
-    BaseResult removeUser(String sNo) throws Exception;
+    BaseResult batchRemoveUser(String[] sNos);
 
     BaseResult changePwd(HttpServletRequest request);
 
-    BaseResult importStuInfo(InputStream in, MultipartFile uploadFile) throws Exception;
+    BaseResult batchImportStu(InputStream in, MultipartFile uploadFile) throws Exception;
 
     BaseResult initAllUsers() throws Exception;
 
-    BaseResult initStuAccount(String[] sNos) throws Exception;
+    BaseResult batchInitStuAccount(String[] sNos) throws Exception;
 
 }

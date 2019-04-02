@@ -23,6 +23,6 @@ public class SignInServiceImplTest {
     @Test
     public void testStudentSign() {
         String im = fileUtil.imageToBase64("D://2.jpg");
-        System.out.println(signInService.studentSign(im));
+        System.out.println(signInService.saveStudentSign(im));
     }
 }

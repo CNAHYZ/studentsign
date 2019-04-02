@@ -5,7 +5,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import top.flytop.studentsign.dto.BaseResult;
 import top.flytop.studentsign.mapper.UserMapper;
@@ -21,6 +20,7 @@ import javax.servlet.http.HttpSession;
 import java.io.InputStream;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -140,26 +140,25 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * @param sNo
+     * @param sNos
      * @return top.flytop.studentsign.dto.BaseResult
-     * @Description TODO 删除学生（及用户）
+     * @Description TODO 删除学生（及用户、签到记录、请假记录）
      * @date 2019/1/20 16:45
      */
     @Override
-    @Transactional
-    public BaseResult removeUser(String sNo) throws Exception {
-        System.out.println(userMapper.getUser(sNo));
-        if (userMapper.getUser(sNo) != null) {
-            //user表中存在该条记录
-            if (userMapper.deleteStudent(sNo) == 1 && userMapper.deleteUser(sNo) == 1)
-                return new BaseResult<>(true, "删除成功");
-            else
-                throw new RuntimeException("删除失败，请重试！");
-        } else if (userMapper.deleteStudent(sNo) == 1) {
-            return new BaseResult<>(true, "删除成功");
-        } else {
-            throw new RuntimeException("删除失败，请重试！");
+    public BaseResult batchRemoveUser(String[] sNos) {
+        System.out.println("大小：" + sNos.length + "  " + Arrays.toString(sNos));
+        /*签到、请假记录在数据库外键已经设置
+        ON DELETE CASCADE，无需编码删除*/
+        int stuCount = 0;
+        int userCount = 0;
+        try {
+            stuCount = userMapper.deleteStudent(sNos);
+            userCount = userMapper.deleteUser(sNos);
+        } catch (Exception e) {
+            throw new RuntimeException("删除失败");
         }
+        return BaseResult.success("删除成功! <br/>其中学生数：" + stuCount + ", 用户数：" + userCount);
     }
 
 
@@ -196,7 +195,7 @@ public class UserServiceImpl implements UserService {
      * @Date 2019/2/19 17:21
      */
     @Override
-    public BaseResult importStuInfo(InputStream in, MultipartFile uploadFile) throws Exception {
+    public BaseResult batchImportStu(InputStream in, MultipartFile uploadFile) throws Exception {
         String filename = uploadFile.getOriginalFilename();
         List<Student> students = new ArrayList<Student>();
         List<List<Object>> list = ExcelUtil.getListByExcel(in, filename);
@@ -211,9 +210,9 @@ public class UserServiceImpl implements UserService {
         for (List row : list) {
             String sNo = String.valueOf(row.get(0));
             sName = String.valueOf(row.get(1));
-            cNo = String.valueOf(row.get(2));
+            if (StringUtils.isNotBlank(String.valueOf(row.get(2))))
+                cNo = String.valueOf(row.get(2));
             gender = String.valueOf(row.get(3));
-            System.out.println(String.valueOf(row.get(3)));
             if (StringUtils.isNotBlank(String.valueOf(row.get(4))))
                 birthday = Date.valueOf(String.valueOf(row.get(4)));
             buildingNo = String.valueOf(row.get(5));
@@ -248,22 +247,13 @@ public class UserServiceImpl implements UserService {
      * @Description TODO
      * @Date 2019/2/19 22:11
      */
-    public BaseResult initStuAccount(String[] sNos) throws Exception {
-        int initCount = 0;
-        int resetCount = 0;
-        for (String username : sNos) {
-            if (userMapper.getUser(username) == null) {
-                /*user表中无该用户名，新增*/
-                initCount += userMapper.initUser(username, salt, defaultEncryptPwd);
-            } else {
-                /*user表中有该用户名，重置*/
-                resetCount += userMapper.resetStuPwd(username, salt, defaultEncryptPwd);
-            }
-        }
-        if (initCount + resetCount != sNos.length)
+    public BaseResult batchInitStuAccount(String[] sNos) {
+        try {
+            userMapper.batchInitUser(sNos, salt, defaultEncryptPwd);
+        } catch (Exception e) {
             throw new RuntimeException("失败");
-        else
-            return BaseResult.success("操作完成，新增用户数： " + initCount + " <br/>重置密码数： " + resetCount);
+        }
+        return BaseResult.success("操作成功");
     }
 
 }

@@ -67,7 +67,7 @@ public class StuSignInController {
         boolean whetherSign = (boolean) request.getSession().getServletContext().getAttribute("whetherSign");
 
         return whetherSign ?
-                signInService.studentSign(faceImage)
+                signInService.saveStudentSign(faceImage)
                 : BaseResult.fail(1, "签到失败，非签到时间！");
     }
 }

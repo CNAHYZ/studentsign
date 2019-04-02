@@ -20,6 +20,8 @@
     </select>
     <!--===========================新增=============================-->
     <insert id="saveOpenTime">
+        # 1. 如果发现表中已经有此行数据（根据主键或者唯一索引判断）则先删除此行数据，然后插入新的数据。
+        # 2. 否则，直接插入新数据。
         REPLACE INTO opentime
             (weekday, time_start, time_end, start_cron_expr, end_cron_expr)
         VALUES (#{weekday}, #{timeStart}, #{timeEnd}, #{startCronExpr}, #{endCronExpr})

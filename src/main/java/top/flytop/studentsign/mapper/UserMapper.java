@@ -23,9 +23,9 @@ public interface UserMapper {
 
     Boolean updateStuInfo(Student student);
 
-    Integer deleteStudent(String sNo);
+    Integer deleteStudent(String[] sNos);
 
-    Integer deleteUser(String username);
+    Integer deleteUser(String[] sNos);
 
     Boolean addStudent(Student student);
 
@@ -35,9 +35,7 @@ public interface UserMapper {
 
     Integer initAllUsers(@Param("pwd") String pwd, @Param("salt") String salt);
 
-    Integer initUser(@Param("username") String username, @Param("salt") String salt, @Param("pwd") String pwd);
-
-    Integer resetStuPwd(@Param("username") String username, @Param("salt") String salt, @Param("pwd") String pwd);
+    Integer batchInitUser(@Param("array") String[] username, @Param("salt") String salt, @Param("pwd") String pwd);
 
     int getTotalCount();
 

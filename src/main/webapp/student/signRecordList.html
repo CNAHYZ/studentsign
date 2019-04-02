@@ -140,8 +140,8 @@
                     <div class="">
                         <div class="px-lg-2"></div>
                         <div class="px-lg-3"></div>
-                        <div class="col-lg-8 col-xl-6 row ">
-                            <form class="input-daterange input-group" id="dateFilter">
+                        <div class="col-lg-8 col-xl-6 row">
+                            <form class="input-daterange input-group col-lg-10" id="dateFilter">
                                 <label class="" style="margin: auto">指定日期筛选：</label>
                                 <input type="text" class="form-control" id="daterange1"
                                        name="daterange1" placeholder="开始日期">
@@ -153,7 +153,7 @@
                                 <input type="text" class="form-control" id="daterange2"
                                        name="daterange2" placeholder="结束日期">
                             </form>
-                            <div class="">
+                            <div>
                                 <input type="reset" class="btn btn-block btn-info" onclick="formReset()">
                             </div>
                         </div>
@@ -165,8 +165,8 @@
                         <tr>
                             <th class="text-center" style="width: 15%;">ID</th>
                             <th class="d-none d-sm-table-cell" style="width: 20%;">学号</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">姓名</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">签到状态</th>
+                            <!--<th class="d-none d-sm-table-cell" style="width: 15%;">姓名</th>-->
+                            <!--<th class="d-none d-sm-table-cell" style="width: 15%;">签到状态</th>-->
                             <th class="d-none d-sm-table-cell" style="width: 25%;">签到时间</th>
                         </tr>
                         </thead>
@@ -236,14 +236,14 @@
         columns: [
             {data: "id"},
             {data: "sNo"},
-            {
-                data: "sName",
-                defaultContent: "-"
-            },
-            {
-                data: "signStatus",
-                defaultContent: "-"
-            },
+            /*{
+                 data: "sName",
+                 defaultContent: "-"
+             },
+             {
+                 data: "signStatus",
+                 defaultContent: "-"
+             },*/
             {
                 data: "signTime",
                 defaultContent: "-"

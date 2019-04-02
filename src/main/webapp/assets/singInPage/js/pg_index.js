@@ -110,7 +110,7 @@ $("#takephoto").click(function () {
        //从MediaStream中删除视频轨的MediaStreamTrack对象。
        //stream.removeTrack(stream.getVideoTracks()[0]);*/
     var context = document.getElementById("canvas").getContext("2d");
-    context.drawImage(video, 0, 0, 490, 360);
+    context.drawImage(video, 0, 0, 490, 280);
     $("[id^=area]").toggle(); //切换area1和area2的显示与隐藏
     upload();
 });
@@ -142,26 +142,31 @@ function upload() {
         success: function (result) {
             if (result.success) {
                 swal({
+                    toast: true,
                     title: result.data,
-                    text: "对话框将在3S内关闭",
                     type: "success",
-                    showConfirmButton: false,
-                    timer: 3500
+                    position: "top",
+                    // showConfirmButton: false,
+                    timer: 5000
                 })
             } else
                 swal({
+                    toast: true,
+                    title: "签到失败",
                     text: result.errMsg,
+                    position: "top",
                     type: "error",
-                    confirmButtonText: '确认',
-                    confirmButtonColor: '#f27474'
+                    // confirmButtonText: '确认',
+                    timer: 5000
                 })
         },
         error: function (data) {
             swal({
-                text: "系统错误，请重试!",
+                toast: true,
+                title: "系统错误，请重试!",
                 type: "error",
-                confirmButtonText: '确认',
-                confirmButtonColor: '#f27474'
+                position: "top",
+                timer: 5000
             })
         }
     });

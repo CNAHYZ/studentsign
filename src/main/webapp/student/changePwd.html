@@ -304,6 +304,7 @@
                         type: "success",
                         confirmButtonText: '确定',
                         onAfterClose: function () {
+                            window.location.href = "logOut.do";
                             //清空form表单
                             document.getElementById("form_pwd").reset()
                         }

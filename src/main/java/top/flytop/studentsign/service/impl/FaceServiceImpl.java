@@ -82,6 +82,12 @@ public class FaceServiceImpl implements FaceService {
 
         /*判断当前人脸数是否达到上限*/
         if (getUserFaceList(sNo).isSuccess()) {
+            /*等待返回信息*/
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             int currentFaceCount = ((ArrayList) getUserFaceList(sNo).getData()).size();
             if (currentFaceCount == faceLimit)
                 return BaseResult.fail(1, "人脸数已达上限，无需继续添加！");

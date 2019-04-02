@@ -56,7 +56,7 @@ public class ExcelUtil {
             int LastCellNum = sheet.getRow(0).getLastCellNum();
             //遍历当前sheet中的所有行,RowNum基0
             //包涵头部，所以要小于等于最后一列数,这里也可以在初始值加上头部行数，以便跳过头部
-            for (int j = sheet.getFirstRowNum(); j < sheet.getLastRowNum(); j++) {
+            for (int j = sheet.getFirstRowNum(); j <= sheet.getLastRowNum(); j++) {
                 //读取一行
                 row = sheet.getRow(j);
                 //去掉空行和表头

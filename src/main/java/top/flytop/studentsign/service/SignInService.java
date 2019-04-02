@@ -13,7 +13,7 @@ import java.util.List;
  * @Version 1.0
  */
 public interface SignInService {
-    BaseResult studentSign(String faceImage);
+    BaseResult saveStudentSign(String faceImage);
 
     List<SignIn> getSignRecord(String dayNum);
 

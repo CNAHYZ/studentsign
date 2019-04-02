@@ -66,18 +66,13 @@ public class UserTest {
 
     @Test
     public void testRemoveUser() throws Exception {
-        System.out.println(userServiceImpl.removeUser("23"));
+        String[] a = {"23", "15401012"};
+        System.out.println(userServiceImpl.batchRemoveUser(a));
     }
 
     @Test
     public void testGetUser() {
         System.out.println(userMapper.getUser("23"));
     }
-
-    @Test
-    public void testDelStudent() {
-        System.out.println(userMapper.deleteStudent("23"));
-    }
-
 
 }
