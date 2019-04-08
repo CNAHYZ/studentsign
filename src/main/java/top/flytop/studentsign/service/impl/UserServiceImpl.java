@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import top.flytop.studentsign.dto.BaseResult;
+import top.flytop.studentsign.mapper.StudentMapper;
 import top.flytop.studentsign.mapper.UserMapper;
 import top.flytop.studentsign.pojo.SClass;
 import top.flytop.studentsign.pojo.Student;
@@ -30,10 +31,16 @@ public class UserServiceImpl implements UserService {
     private static final String defaultPwd = "123456";
     private static final String defaultEncryptPwd = ShiroMd5.md5Encrypt(defaultPwd, salt);
     private UserMapper userMapper;
+    private StudentMapper studentMapper;
 
     @Autowired
-    private void UserMapper(UserMapper userMapper) {
+    private void userMapper(UserMapper userMapper) {
         this.userMapper = userMapper;
+    }
+
+    @Autowired
+    private void studentMapper(StudentMapper studentMapper) {
+        this.studentMapper = studentMapper;
     }
 
     /**
@@ -44,7 +51,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public Student getStuInfo(String sNo) {
-        Student s = userMapper.getStuGeneralInfo(sNo);
+        Student s = studentMapper.getStuGeneralInfo(sNo);
         System.out.println(s);
         return s;
     }
@@ -57,7 +64,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public List<Student> getAllStudent() {
-        return userMapper.getAllStudent();
+        return studentMapper.getAllStudent();
     }
 
     /**
@@ -68,7 +75,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public List<SClass> getAllSClass() {
-        return userMapper.getAllSClass();
+        return studentMapper.getAllSClass();
     }
 
     /**
@@ -79,7 +86,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public BaseResult addStudent(Student stu) {
-        if (userMapper.addStudent(stu))
+        if (studentMapper.addStudent(stu))
             // 数据库保存成功
             return new BaseResult<>(true, "注册成功！");
         else
@@ -133,7 +140,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public BaseResult updateInfo(Student student) {
-        if (userMapper.updateStuInfo(student))
+        if (studentMapper.updateStuInfo(student))
             return new BaseResult<>(true, "修改成功！");
         else
             return new BaseResult(false, 1, "修改失败！请重试");
@@ -153,8 +160,8 @@ public class UserServiceImpl implements UserService {
         int stuCount = 0;
         int userCount = 0;
         try {
-            stuCount = userMapper.deleteStudent(sNos);
-            userCount = userMapper.deleteUser(sNos);
+            stuCount = studentMapper.deleteStudent(sNos);
+            userCount = userMapper.deleteUser(sNos, 1);
         } catch (Exception e) {
             throw new RuntimeException("删除失败");
         }
@@ -224,7 +231,7 @@ public class UserServiceImpl implements UserService {
 
             log.debug("导入的列表：{}", students);
         }
-        int count = userMapper.batchAddStudent(students);
+        int count = studentMapper.batchAddStudent(students);
         return BaseResult.success("执行成功，共导入 " + count + " 条数据");
     }
 

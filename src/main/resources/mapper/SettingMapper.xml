@@ -11,14 +11,17 @@
         <result column="start_cron_expr" property="startCronExpr"></result>
         <result column="end_cron_expr" property="endCronExpr"></result>
     </resultMap>
-    <!--===========================查询=============================-->
 
+    <!--===========================查询=============================-->
+    <!--获取开放时间-->
     <select id="getOpenTime" resultMap="openTimeResultMap">
         select *
         from opentime
         where id = 'UNIQUE'
     </select>
+
     <!--===========================新增=============================-->
+    <!--保存开放时间-->
     <insert id="saveOpenTime">
         # 1. 如果发现表中已经有此行数据（根据主键或者唯一索引判断）则先删除此行数据，然后插入新的数据。
         # 2. 否则，直接插入新数据。
@@ -26,4 +29,7 @@
             (weekday, time_start, time_end, start_cron_expr, end_cron_expr)
         VALUES (#{weekday}, #{timeStart}, #{timeEnd}, #{startCronExpr}, #{endCronExpr})
     </insert>
+
+    <!--=========================== 更新 =============================-->
+
 </mapper>

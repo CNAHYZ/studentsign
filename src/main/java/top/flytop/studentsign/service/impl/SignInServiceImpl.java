@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.flytop.studentsign.dto.BaseResult;
 import top.flytop.studentsign.mapper.SignInMapper;
+import top.flytop.studentsign.mapper.StudentMapper;
 import top.flytop.studentsign.mapper.UserMapper;
 import top.flytop.studentsign.pojo.SignIn;
 import top.flytop.studentsign.service.SignInService;
@@ -26,7 +27,17 @@ public class SignInServiceImpl implements SignInService {
     private SignInMapper signInMapper;
     private FaceUtil faceUtil;
     private UserMapper userMapper;
+    private StudentMapper studentMapper;
 
+    @Autowired
+    private void UserMapper(UserMapper userMapper) {
+        this.userMapper = userMapper;
+    }
+
+    @Autowired
+    private void studentMapper(StudentMapper studentMapper) {
+        this.studentMapper = studentMapper;
+    }
     @Autowired
     private void signInMapper(SignInMapper signInMapper) {
         this.signInMapper = signInMapper;
@@ -36,12 +47,6 @@ public class SignInServiceImpl implements SignInService {
     private void faceUtil(FaceUtil faceUtil) {
         this.faceUtil = faceUtil;
     }
-
-    @Autowired
-    private void userMapper(UserMapper userMapper) {
-        this.userMapper = userMapper;
-    }
-
 
     /**
      * @param dayNum
@@ -103,7 +108,7 @@ public class SignInServiceImpl implements SignInService {
      */
     @Override
     public List<Map> getSignCount(int dayNum) {
-        int totalCount = userMapper.getTotalCount();
+        int totalCount = studentMapper.getTotalCount();
         List<Map> signList = signInMapper.getSignCount(dayNum);
         List<Map> newList = new ArrayList<>();
 

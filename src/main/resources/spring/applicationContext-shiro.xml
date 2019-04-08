@@ -22,6 +22,7 @@
                 /*/logOut.do=logout
                 /student/*=roles[student]
                 /admin/*=roles[admin]
+                /sysadmin/*=roles[sysadmin]
                 <!--认证过或“记住我”都可访问-->
                 /** = user
             </value>

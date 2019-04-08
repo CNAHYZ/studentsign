@@ -5,21 +5,7 @@
 <mapper namespace="top.flytop.studentsign.mapper.UserMapper">
 
     <!--=========================resultMap===========================-->
-    <resultMap id="studentResultMap" type="student">
-        <result property="sNo" column="sno"/>
-        <result property="sName" column="sname"/>
-        <result property="cNo" column="cno"/>
-        <result property="gender" column="gender"/>
-        <result property="birthday" column="birthday"/>
-        <result property="buildingNo" column="building_no"/>
-        <result property="roomNo" column="room_no"/>
-        <result property="phoneNum" column="phone_num"/>
-        <association property="sClass" javaType="class">
-            <id property="cNo" column="cno"></id>
-            <result property="cName" column="cname"></result>
-            <result property="grade" column="grade"></result>
-        </association>
-    </resultMap>
+
     <!--===========================查询=============================-->
     <!--用户登录-->
     <select id="userLogin" resultType="user">
@@ -27,27 +13,6 @@
         FROM user
         WHERE username = #{username}
           and pwd = #{pwd}
-    </select>
-
-    <!--获取学生信息-->
-    <select id="getStuGeneralInfo" resultMap="studentResultMap">
-        select a.*, b.*
-        from student a
-                 left join class b on a.cno = b.cno
-        WHERE sno = #{sNo}
-    </select>
-
-    <!--获取学生列表-->
-    <select id="getAllStudent" resultMap="studentResultMap">
-        select a.*, b.cname, b.grade
-        from student a
-                 left join class b on a.cno = b.cno
-    </select>
-
-    <!--获取班级列表-->
-    <select id="getAllSClass" resultType="class">
-        select *
-        from class;
     </select>
 
     <!--根据用户名获取用户，用于在删除学生时，
@@ -58,26 +23,7 @@
         where username = #{username}
     </select>
 
-    <!--获取学生总数-->
-    <select id="getTotalCount" resultType="int">
-        select count(*)
-        from student
-    </select>
-
     <!--===========================修改=============================-->
-    <!--修改学生信息-->
-    <update id="updateStuInfo" parameterType="student">
-        update student
-        <trim prefix="SET" suffixOverrides="," suffix="where sno=#{sNo}">
-            <if test="sName != null and sName != ''">sname=#{sName},</if>
-            <if test="cNo != null and cNo != ''">cno=#{cNo},</if>
-            <if test="gender != null">gender=#{gender},</if>
-            <if test="buildingNo != null">building_no=#{buildingNo},</if>
-            <if test="roomNo != null">room_no=#{roomNo},</if>
-            <if test="birthday != null">birthday=#{birthday},</if>
-            <if test="phoneNum != null">phone_num=#{phoneNum}</if>
-        </trim>
-    </update>
 
     <!--修改密码-->
     <update id="changePwdByUsername">
@@ -86,33 +32,12 @@
         </if>
     </update>
 
-
-    <!--更新管理员登录时间-->
-    <update id="updateAdminLoginTime" parameterType="admin">
-        update admin
-        set last_login=#{lastLogin}
-        where username = #{username}
-    </update>
     <!--===========================插入=============================-->
-    <!--添加学生-->
-    <insert id="addStudent" parameterType="student">
-        <if test="sNo != null and sNo!=''">
-            insert student (sno,sname,cno,gender,birthday,building_no,room_no,phone_num)
-            values (#{sNo},#{sName},#{cNo}, #{gender}, #{birthday},
-            #{buildingNo}, #{roomNo}, #{phoneNum})
-        </if>
+    <!--添加用户-->
+    <insert id="addUser" parameterType="user">
+        insert user
+        values (#{username}, #{pwd}, #{salt}, #{type})
     </insert>
-
-    <!--批量插入学生信息-->
-    <insert id="batchAddStudent">
-        insert student (sno,sname,cno,gender,birthday,building_no,room_no,phone_num)
-        values
-        <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.sNo},#{item.sName},#{item.cNo}, #{item.gender}, #{item.birthday},
-            #{item.buildingNo}, #{item.roomNo},#{item.phoneNum})
-        </foreach>
-    </insert>
-
     <!--批量初始化学生用户的账号，密码-->
     <!-- on duplicate key update当数据库中存在某个记录时，
     执行这条语句会更新(先删除再插入)它，而不存在这条记录时，会插入它-->
@@ -135,15 +60,6 @@
     </insert>
 
     <!--===========================删除=============================-->
-    <!--删除学生-->
-    <delete id="deleteStudent">
-        delete
-        from student
-        where sno in
-        <foreach collection="array" item="item" open="(" close=")" separator=",">
-            #{item}
-        </foreach>
-    </delete>
 
     <!--删除用户-->
     <delete id="deleteUser">
@@ -153,5 +69,6 @@
         <foreach collection="array" item="item" open="(" close=")" separator=",">
             #{item}
         </foreach>
+        and type = #{type}
     </delete>
 </mapper>

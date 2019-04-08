@@ -11,14 +11,18 @@ import java.sql.Timestamp;
 public class Admin implements Serializable {
     String username;
     String realName;
+    String phoneNum;
+    String comment;
     Timestamp lastLogin;
 
     public Admin() {
     }
 
-    public Admin(String username, String realName, Timestamp lastLogin) {
+    public Admin(String username, String realName, String phoneNum, String comment, Timestamp lastLogin) {
         this.username = username;
         this.realName = realName;
+        this.phoneNum = phoneNum;
+        this.comment = comment;
         this.lastLogin = lastLogin;
     }
 
@@ -38,6 +42,22 @@ public class Admin implements Serializable {
         this.realName = realName;
     }
 
+    public String getPhoneNum() {
+        return phoneNum;
+    }
+
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
     public Timestamp getLastLogin() {
         return lastLogin;
     }
@@ -51,6 +71,8 @@ public class Admin implements Serializable {
         return "Admin{" +
                 "username='" + username + '\'' +
                 ", realName='" + realName + '\'' +
+                ", phoneNum='" + phoneNum + '\'' +
+                ", comment='" + comment + '\'' +
                 ", lastLogin=" + lastLogin +
                 '}';
     }

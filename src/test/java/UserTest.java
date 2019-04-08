@@ -3,7 +3,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import top.flytop.studentsign.mapper.UserMapper;
+import top.flytop.studentsign.mapper.StudentMapper;
 import top.flytop.studentsign.pojo.Student;
 import top.flytop.studentsign.service.impl.UserServiceImpl;
 import top.flytop.studentsign.utils.FileUtil;
@@ -16,7 +16,7 @@ public class UserTest {
     @Resource
     public UserServiceImpl userServiceImpl;
     @Autowired
-    public UserMapper userMapper;
+    public StudentMapper studentMapper;
     @Resource
     public Student stu;
     @Autowired
@@ -30,7 +30,7 @@ public class UserTest {
 
     @Test
     public void testGetAllStudent() {
-        System.out.println(userMapper.getAllStudent());
+        System.out.println(studentMapper.getAllStudent());
         ;
     }
 
@@ -40,7 +40,7 @@ public class UserTest {
         stu.setsNo("23");
         stu.setsName("yyyy");
         stu.setBuildingNo("2");
-        System.out.println(userMapper.addStudent(stu));
+        System.out.println(studentMapper.addStudent(stu));
     }
 
     @Test
@@ -68,11 +68,6 @@ public class UserTest {
     public void testRemoveUser() throws Exception {
         String[] a = {"23", "15401012"};
         System.out.println(userServiceImpl.batchRemoveUser(a));
-    }
-
-    @Test
-    public void testGetUser() {
-        System.out.println(userMapper.getUser("23"));
     }
 
 }

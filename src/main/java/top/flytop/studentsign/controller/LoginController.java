@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import top.flytop.studentsign.dto.BaseResult;
+import top.flytop.studentsign.service.AdminService;
 import top.flytop.studentsign.utils.VerifyCodeUtil;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,11 +34,12 @@ public class LoginController {
     @Autowired
     private SessionDAO sessionDAO;
 
-//
-//    private void sessionDAO(SessionDAO sessionDAO) {
-//        this.sessionDAO = sessionDAO;
-//    }
+    private AdminService adminService;
 
+    @Autowired
+    private void adminService(AdminService adminService) {
+        this.adminService = adminService;
+    }
     /**
      * @param request
      * @return top.flytop.studentsign.dto.BaseResult
@@ -73,13 +75,17 @@ public class LoginController {
             // 登录成功，返回视图
             if (subject.hasRole("student")) {
                 // 学生类型
-                return new BaseResult<>(true, "/student/index.html");
+                return BaseResult.success("/student/index.html");
             } else if (subject.hasRole("admin")) {
                 // 管理员类型
-                return new BaseResult<>(true, "/admin/index.html");
+                adminService.updateAdminLoginTime(username);
+                return BaseResult.success("/admin/index.html");
 
+            } else if (subject.hasRole("sysadmin")) {
+                // 系统管理员类型
+                adminService.updateAdminLoginTime(username);
+                return BaseResult.success("/sysadmin/index.html");
             } else
-                // 备用
                 return null;
         } catch (UnknownAccountException e) {
             e.printStackTrace();

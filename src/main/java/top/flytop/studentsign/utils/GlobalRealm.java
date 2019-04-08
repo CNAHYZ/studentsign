@@ -73,9 +73,10 @@ class GlobalRealm extends AuthorizingRealm {
                 authorizationInfo.addRole("student");
                 break;
             case 2:
+                authorizationInfo.addRole("admin");
                 break;
             case 3:
-                authorizationInfo.addRole("admin");
+                authorizationInfo.addRole("sysadmin");
                 break;
         }
         /*User user1 = (User) SecurityUtils.getSubject().getPrincipal();
