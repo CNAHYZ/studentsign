@@ -102,27 +102,7 @@
                     </a>
                 </li>
                 <li class="nav-main-heading">System Management</li>
-                <li class="nav-main-item">
-                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
-                       aria-expanded="false" href="#">
-                        <i class="nav-main-link-icon si si-speech"></i>
-                        <span class="nav-main-link-name">通知管理</span>
-                    </a>
-                    <ul class="nav-main-submenu">
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="../sysadmin/noticeList.html">
-                                <i class="nav-main-link-icon fa fa-comments"></i>
-                                <span class="nav-main-link-name">所有通知</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="../sysadmin/noticeOperation.html">
-                                <i class="nav-main-link-icon fa fa-edit"></i>
-                                <span class="nav-main-link-name">添加通知</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+
                 <li class="nav-main-item">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
                        aria-expanded="false" href="#">
@@ -206,12 +186,7 @@
                                 <span class="nav-main-link-name">密码修改</span>
                             </a>
                         </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="systemSetting.html">
-                                <i class="nav-main-link-icon fa fa-cog"></i>
-                                <span class="nav-main-link-name">系统设置</span>
-                            </a>
-                        </li>
+
                     </ul>
                 </li>
                 <li class="nav-main-heading">About Me</li>
@@ -271,7 +246,7 @@
                                  alt="">
                         </div>
                         <div class="p-2">
-                            <h5 class="dropdown-header text-center">用户操作</h5>
+                            <h5 class="dropdown-header text-center" id="header_userRole"></h5>
                             <div role="separator" class="dropdown-divider"></div>
                             <a class="dropdown-item d-flex align-items-center justify-content-between"
                                href="javascript:void(0)">
@@ -386,7 +361,8 @@
 <script src="../assets/js/oneui.core.min.js"></script>
 
 <script src="../assets/js/oneui.app.min.js"></script>
-<script src="../assets/js/common/common_header.js"></script>
+<script src="../assets/js/common/common.js"></script>
+<script src="../assets/js/common/common_header_reminders.js"></script>
 <script src="../assets/js/plugins/Echarts/echarts.common.min.js"></script>
 <script>
     // 基于准备好的dom，初始化echarts实例

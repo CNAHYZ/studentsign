@@ -22,5 +22,7 @@ public interface AdminService {
 
     BaseResult getAdmin(String username);
 
-    BaseResult updateAdmin(HttpServletRequest request);
+    BaseResult updateAdminInfo(HttpServletRequest request);
+
+    BaseResult updateAdminPwd(HttpServletRequest request);
 }

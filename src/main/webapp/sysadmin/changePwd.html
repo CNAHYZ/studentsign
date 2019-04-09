@@ -8,7 +8,6 @@
 
     <meta name="robots" content="noindex, nofollow">
 
-
     <!-- Icons -->
     <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
     <link rel="shortcut icon" href="../assets/media/favicons/favicon.png">
@@ -21,7 +20,7 @@
 
     <link rel="stylesheet" id="css-main" href="../assets/css/oneui.min.css">
     <!-- Page JS Plugins CSS -->
-    <link rel="stylesheet" href="../assets/js/plugins/datatables/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="/assets/js/plugins/sweetalert2/sweetalert2.min.css">
     <!-- END Stylesheets -->
     <style>
         .pull {
@@ -32,13 +31,12 @@
 <body>
 <!-- Page Container -->
 <div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-fixed">
-
     <!-- Sidebar -->
     <nav id="sidebar" aria-label="Main Navigation">
         <!-- Side Header -->
         <div class="content-header bg-white-5">
             <!-- Logo -->
-            <a class="font-w600 text-dual" href="../admin/index.html">
+            <a class="font-w600 text-dual" href="index.html">
                 <!--<i class="fa fa-circle-notch text-primary"></i>-->
                 <span class="text-primary font-w400 font-size-h5">学</span>
                 <span class="smini-hidden">
@@ -106,7 +104,7 @@
                 </li>
                 <li class="nav-main-heading">System Management</li>
                 <li class="nav-main-item">
-                    <a class="nav-main-link active" href="noticeList.html">
+                    <a class="nav-main-link" href="noticeList.html">
                         <i class="nav-main-link-icon fa fa-comments"></i>
                         <span class="nav-main-link-name">所有通知</span>
                     </a>
@@ -125,7 +123,7 @@
                 </li>
                 <li class="nav-main-heading">System Setting</li>
                 <li class="nav-main-item">
-                    <a class="nav-main-link" href="changePwd.html">
+                    <a class="nav-main-link active" href="changePwd.html">
                         <i class="nav-main-link-icon fa fa-lock"></i>
                         <span class="nav-main-link-name">密码修改</span>
                     </a>
@@ -209,6 +207,8 @@
                     </div>
                 </div>
                 <!-- END User Dropdown -->
+
+
             </div>
             <!-- END Right Section -->
         </div>
@@ -226,7 +226,6 @@
         <!-- END Header Loader -->
     </header>
     <!-- END Header -->
-
     <!-- Main Container -->
     <main id="main-container">
 
@@ -235,13 +234,13 @@
             <div class="content content-full">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <h1 class="flex-sm-fill h3 my-2">
-                        所有通知
+                        修改密码
                     </h1>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
-                            <li class="breadcrumb-item">通知管理</li>
+                            <li class="breadcrumb-item">系统设置</li>
                             <li class="breadcrumb-item" aria-current="page">
-                                <a class="link-fx" href="">通知列表</a>
+                                <a class="link-fx" href="index.html">修改密码</a>
                             </li>
                         </ol>
                     </nav>
@@ -251,49 +250,93 @@
         <!-- END Hero -->
 
         <!-- Page Content -->
-        <!-- Search -->
         <div class="content">
-            <form action="javascript:commitSearch()" method="POST">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="输入关键词或者标题以搜索" id="ipt_search">
-                    <div class="input-group-append">
-                            <span class="input-group-text" onclick="commitSearch()">
-                                <i class="fa fa-fw fa-search"></i>
-                            </span>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <!-- END Search -->
+            <div class="row block block-content block-content-full justify-content-center">
+                <div class="col-lg-8 col-md-12 mb-lg-4 my-sm-0 mt-lg-3">
+                    <!-- Progress Wizard 2 -->
+                    <div class="js-wizard-simple block block ">
+                        <!-- Wizard Progress Bar -->
+                        <div class="progress rounded-0" data-wizard="progress" style="height: 8px;">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                                 style="width: 50%;" aria-valuenow="30" aria-valuemin="0"
+                                 aria-valuemax="100"></div>
+                        </div>
+                        <!-- END Wizard Progress Bar -->
 
-        <!-- Page Content -->
-        <div class="content">
-            <!-- Results -->
-            <div class="block">
-                <div class="block-content tab-content overflow-hidden">
-                    <!-- Projects -->
-                    <div class="font-size-h4 font-w600 p-2 mb-4 border-left border-4x border-primary bg-body-light">
-                        <mark class="text-danger" id="search_word"></mark>
-                        共有<span class="text-primary font-w700" id="total_count">0</span> 条通知
+                        <!-- Step Tabs -->
+                        <ul class="nav nav-tabs nav-tabs-alt nav-justified" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link font-size-lg" href="#wizard-progress2-step1"
+                                   data-toggle="tab">1. 密码修改</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link font-size-lg" href="#wizard-progress2-step2"
+                                   data-toggle="tab">2. 身份验证</a>
+                            </li>
+                        </ul>
+                        <!-- END Step Tabs -->
+
+                        <!-- Form -->
+                        <form method="POST" id="form_pwd">
+                            <!-- Steps Content -->
+                            <div class="block-content block-content-full tab-content pt-5"
+                                 style="min-height: 214px;">
+                                <!-- Step 1 -->
+                                <div class="tab-pane" id="wizard-progress2-step1" role="tabpanel">
+                                    <div class="form-group mb-5">
+                                        <label for="newPwd_1">请输入新密码</label>
+                                        <input class="form-control form-control-alt" type="password"
+                                               id="newPwd_1" name="newPwd_1">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="newPwd_2">请再次输入新密码</label>
+                                        <input class="form-control form-control-alt" type="password"
+                                               id="newPwd_2" name="newPwd_2">
+                                    </div>
+                                </div>
+                                <!-- END Step 1 -->
+
+                                <!-- Step 2 -->
+                                <div class="tab-pane active show" id="wizard-progress2-step2" role="tabpanel">
+                                    <div class="form-group">
+                                        <label for="oldPwd">请输入旧密码</label>
+                                        <input class="form-control form-control-alt" type="password"
+                                               id="oldPwd" name="oldPwd">
+                                    </div>
+                                </div>
+                                <!-- END Step 2 -->
+                            </div>
+                            <!-- END Steps Content -->
+
+                            <!-- Steps Navigation -->
+                            <div class="block-content block-content-sm block-content-full bg-body-light rounded-bottom my-3">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <button type="button" class="btn btn-secondary" data-wizard="prev">
+                                            <i class="fa fa-angle-left mr-1"></i>上一步
+                                        </button>
+                                    </div>
+                                    <div class="col-6 text-right">
+                                        <button type="button" class="btn btn-secondary disabled d-none"
+                                                data-wizard="next">
+                                            下一步 <i class="fa fa-angle-right ml-1"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-primary" id="btn_submit"
+                                                data-wizard="finish">
+                                            <i class="fa fa-check mr-1"></i> 提交
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END Steps Navigation -->
+                        </form>
+                        <!-- END Form -->
                     </div>
-                    <table class="table table-hover table-vcenter text-center "
-                           id="result">
-                        <thead>
-                        <tr>
-                            <th class="" style="width: 10%">ID</th>
-                            <th class="d-none d-lg-table-cell" style="width: 47%;">通知内容</th>
-                            <th class="d-none d-lg-table-cell" style="width: 13%;">状态</th>
-                            <th class="d-none d-lg-table-cell" style="width: 15%;">创建时间</th>
-                            <th class="d-none d-lg-table-cell" style="width: 15%;">操作</th>
-                        </tr>
-                        </thead>
-                        <tbody class="">
-                        </tbody>
-                    </table>
+                    <!-- END Progress Wizard 2 -->
                 </div>
+                <!-- END Page Content -->
             </div>
         </div>
-        <!-- END Page Content -->
     </main>
     <!-- END Main Container -->
 
@@ -313,191 +356,116 @@
     <!-- END Footer -->
 </div>
 <!-- END Page Container -->
+
+<!--
+    OneUI JS Core
+-->
 <script src="../assets/js/oneui.core.min.js"></script>
 
 <script src="../assets/js/oneui.app.min.js"></script>
-<script src="../assets/js/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="../assets/js/plugins/datatables/dataTables.bootstrap4.min.js"></script>
-<script src="../assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js"></script>
+<script src="../assets/js/common/common.js"></script>
 
-<script src="/assets/js/common/dataTable.js"></script>
+<!-- Page JS Plugins 对话框-->
+<script src="../assets/js/plugins/sweetalert2/sweetalert2.min.js"></script>
 
-<script src="/assets/js/common/common.js"></script>
-</body>
-</html>
+<script src="/assets/js/plugins/jquery-bootstrap-wizard/bs4/jquery.bootstrap.wizard.min.js"></script>
+
+<script src="/assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="/assets/js/plugins/jquery-validation/localization/messages_zh.js"></script>
 <script>
-    var removeNoticeUrl = "removeNotice.do";
-    var changeNoticeStatusUrl = "changeNoticeStatus.do";
-    var getNoticeUrl = "getAllNotice.do";
-    var searchNoticeStatusUrl = "searchNotice.do";
-
     /**
-     * 搜索
+     * 初始化bootstrap.wizard控件
      */
-    function commitSearch() {
-        searchWord = $("#ipt_search").val();
-        $("#search_word").text(searchWord);
-        console.log(searchWord);
-        t.search(searchWord).draw();
-    }
-
+    $(function () {
+        var options = {
+            tabClass: "nav nav-tabs",
+            nextSelector: '[data-wizard="next"]',
+            previousSelector: '[data-wizard="prev"]',
+            finishSelector: '[data-wizard="finish"]',
+            onTabShow: function (a, e, i) {
+                var r = (i + 1) / e.find("li").length * 98,
+                    t = e.parents(".block").find('[data-wizard="progress"] > .progress-bar');
+                t.length && t.css({width: r + 1 + "%"})
+            },
+            onNext: function () {
+                return $("#form_pwd").valid();
+            },
+            onTabClick: function (a, e) {
+                return jQuery("a", e).blur(), !1
+            }
+        };
+        var wizard = $(".js-wizard-simple").bootstrapWizard(options);
+    });
     /**
-     *跳转到通知编辑页面
-     * @param noticeId
+     * 提交修改
      */
-    function noticeDetail(noticeId) {
-        window.location = "noticeOperation.html?noticeId=" + noticeId;
-    }
-
-    /**
-     * 编辑、更改状态操作
-     * @param noticeId
-     * @param status
-     */
-    function operation(noticeId, status) {
-        upData = {"noticeId": noticeId};
-        upUrl = null;
-        if (status === '' || status === undefined) {
-            upUrl = removeNoticeUrl
-        } else {
-            //修改状态操作，向数据中添加status
-            upData["status"] = status;
-            upUrl = changeNoticeStatusUrl
-        }
-        console.log(upData);
+    $("#btn_submit").click(function () {
+        form = $("#form_pwd");
+        if (!form.valid())
+            return;
+        formData = new FormData(form[0]);
         $.ajax({
-            url: upUrl,
-            data: upData,
+            processData: false,
+            contentType: false,
             type: "post",
+            url: "changePwd.do",
+            data: formData,
             dataType: "json",
             success: function (data) {
-                if (data.success)
-                    One.helpers('notify', {
-                        type: 'success', align: 'center', delay: 6000,
-                        icon: 'fa fa-check mr-1', message: data.data
-                    });
-                else
-                    One.helpers('notify', {
-                        type: 'danger', align: 'center', icon: 'fa fa-times mr-1',
-                        message: data.errMsg
-                    });
-                $("#mydatatable").dataTable().fnDraw(false);
-                //重新加载表格数据
-                t.ajax.reload();
-            }, error: function (data) {
-                One.helpers('notify', {
-                    type: 'danger', align: 'center', icon: 'fa fa-times mr-1',
-                    message: data.errMsg
-                });
+                if (data.success) {
+                    Swal({
+                        title: data.data,
+                        type: "success",
+                        confirmButtonText: '确定',
+                        onAfterClose: function () {
+                            window.location.href = "logOut.do";
+                            //清空form表单
+                            document.getElementById("form_pwd").reset()
+                        }
+                    })
+                } else
+                    swal(data.errMsg, "", "error");
+            },
+            error: function () {
+                swal("未知错误，请重试或联系管理员！", "", "error");
             }
         })
-    }
-
-    /*============================================================================*/
-    var options2 = {
-        // "bStateSave": true,
-        // "lengthChange": false,
-        // "retrieve": true,
-        dom: '<"text-right pull"l>rt<"row"<"col-6"i><"col-6"p>>',//隐藏搜索框
-        "searching": true,//调用search()方法，此处必须为true
-        ajax: {
-            type: "post",
-            url: getNoticeUrl,
-            data: {},
-            beforeSend: function () {
-                // console.log(sendData)
-            }
-        },
-        //每页显示n条数据
-        pageLength: 5,
-        columns: [
-            {data: "noticeId"},
-            {
-                data: "content",
-                defaultContent: "-",
-            },
-            {
-                data: "status",
-                render: function (data) {
-                    var myStatus;
-                    switch (data) {
-                        case 0:
-                            myStatus = "<span class=\"badge badge-success\"> 普通展示</span>\n";
-                            break;
-                        case 1:
-                            myStatus = "<span class=\"badge badge-danger\"> 取消展示</span>\n";
-                            break;
-                        case 2:
-                            myStatus = "<span class=\"badge badge-info\"> 置顶展示</span>\n";
-                    }
-                    return myStatus;
-                }
-            },
-            {
-                data: "createTime",
-            },
-            {
-                data: null
-            }
-        ],
-        "columnDefs": [
-            {
-                "targets": [1],
-                className: "text-left",
-                render: function (data, type, full) {
-                    //取内容的前80个字符，并且去除内容中的html标签
-                    if (data.length > 80)
-                        myContent = (data.replace(/<[^>]+>/g, "").substring(0, 80) + '...');
-                    else myContent = data.replace(/<[^>]+>/g, "");
-                    return "<td>\n" +
-                        "                                    <h4 class=\"h5 mt-3 mb-2\" id=\"title\">\n" +
-                        "                                        <a href=\"javascript:noticeDetail(" + full.noticeId + ")\">" + full.title + "</a>\n" +
-                        "                                    </h4>\n" +
-                        "                                    <p class=\"d-none d-sm-block text-muted\" id=\"content\">\n" +
-                        myContent +
-                        "                                    </p>\n" +
-                        "                                    <div class=\"row mx-0\">\n" +
-                        "                                        <span class=\"font-size-sm font-w600\">关键词：</span>\n" +
-                        "                                        <span class=\"font-size-sm text-muted\" id=\"keyword\">\n" +
-                        full.keyword + "</span>\n" +
-                        "                                    </div>\n" +
-                        "                                </td>";
-                }
-            },
-            {
-                "targets": [-1],
-                render: function (data, type, row) {
-                    return "<div class=\"btn-group btn-group\" role=\"group\" aria-label=\"Large Horizontal Primary\">\n" +
-                        "            <div class=\"dropdown\">\n" +
-                        "                <button type=\"button\" class=\"btn btn-outline-primary dropdown-toggle\" id=\"btn_time\"\n" +
-                        "                        data-toggle=\"dropdown\" title=\"修改展示状态\" style=\"border-radius:.25rem 0 0 .25rem\">\n" +
-                        "                    状态\n" +
-                        "                </button>\n" +
-                        "                <div class=\"dropdown-menu\" aria-labelledby=\"dropdown-default-outline-primary\"\n" +
-                        "                     style=\"min-width:80px\">\n" +
-                        "                    <a class=\"dropdown-item\" onclick=\"operation(" + row.noticeId + ",1)\">下线</a>\n" +
-                        "                    <a class=\"dropdown-item\" onclick=\"operation(" + row.noticeId + ",0)\">展示</a>\n" +
-                        "                    <a class=\"dropdown-item\" onclick=\"operation(" + row.noticeId + ",2)\">置顶</a>\n" +
-                        "                </div>\n" +
-                        "            </div>\n" +
-                        "            <button type=\"button\" class=\"btn btn-primary\" data-toggle=\"tooltip\" " +
-                        "               title=\"编辑\" onclick=\"noticeDetail(" + row.noticeId + ")\">" +
-                        "               <i class=\"fa fa-fw fa-pencil-alt\"></i></button>\n" +
-                        "            <button type=\"button\" class=\"btn btn-primary\" data-toggle=\"tooltip\" " +
-                        "               title=\"删除\" onclick=\"operation(" + row.noticeId + "," + '' + ")\">" +
-                        "               <i class=\"fa fa-fw fa-times\"></i></button>\n" +
-                        "        </div>"
-                }
-            }
-        ]
-    };
-
-    var t = $('#result').DataTable(
-        Object.assign(options2, serverSideOptions)
-    );
-    t.on('xhr', function () {
-        //获取最终的json数据
-        var json = t.ajax.json();
-        $("#total_count").text(json.recordsTotal);
     });
+
+
+    /**
+     * 表单合法性验证
+     */
+    $("#form_pwd").validate({
+        errorClass: "invalid-feedback animated fadeIn",
+        errorElement: "div",
+        errorPlacement: function (e, n) {
+            jQuery(n).addClass("is-invalid");
+            jQuery(n).parents(".form-group").append(e)
+        },
+        highlight: function (e) {
+            jQuery(e).parents(".form-group").find(".is-invalid").removeClass("is-invalid").addClass("is-invalid")
+        },
+        success: function (e) {
+            jQuery(e).parents(".form-group").find(".is-invalid").removeClass("is-invalid");
+            jQuery(e).remove()
+        },
+        rules: {
+            "newPwd_1": {required: !0, minlength: 6},
+            "newPwd_2": {required: !0, minlength: 6, pwdCheck: "#newPwd_1"},
+            "oldPwd": {required: !0},
+        },
+        messages: {
+            "newPwd_1": {required: "新密码不能为空",},
+            "newPwd_2": {required: "新密码不能为空"},
+            "oldPwd": {required: "旧密码不能为空",},
+        }
+    });
+    jQuery.validator.addMethod("pwdCheck", function (value, element, param) {
+        //value为当前标签的值 param为传入此方法的参数
+        return $(param).val() === value
+    }, "两次密码输入不一致，请检查");
+
 </script>
+</body>
+</html>

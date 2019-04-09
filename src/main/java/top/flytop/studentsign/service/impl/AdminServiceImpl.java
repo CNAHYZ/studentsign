@@ -1,4 +1,4 @@
-package top.flytop.studentsign.service;
+package top.flytop.studentsign.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -7,6 +7,7 @@ import top.flytop.studentsign.mapper.AdminMapper;
 import top.flytop.studentsign.mapper.UserMapper;
 import top.flytop.studentsign.pojo.Admin;
 import top.flytop.studentsign.pojo.User;
+import top.flytop.studentsign.service.AdminService;
 import top.flytop.studentsign.utils.ShiroMd5;
 
 import javax.servlet.http.HttpServletRequest;
@@ -123,11 +124,29 @@ public class AdminServiceImpl implements AdminService {
     /**
      * @param request
      * @return top.flytop.studentsign.dto.BaseResult
+     * @Description TODO
+     * @Date 09/04/2019 12:10
+     */
+    @Override
+    public BaseResult updateAdminPwd(HttpServletRequest request) {
+        String username = request.getParameter("username");
+        String pwd = request.getParameter("pwd");
+        User user = userMapper.getUser(username);
+        /*对新密码加密*/
+        String pwdEncrypt = ShiroMd5.md5Encrypt(pwd, user.getSalt());
+
+        return userMapper.changePwdByUsername(pwdEncrypt, username) ? BaseResult.success("修改成功，请牢记")
+                : BaseResult.fail(1, "修改失败，请稍后再试！");
+    }
+
+    /**
+     * @param request
+     * @return top.flytop.studentsign.dto.BaseResult
      * @Description TODO 更新admin
      * @Date 08/04/2019 23:14
      */
     @Override
-    public BaseResult updateAdmin(HttpServletRequest request) {
+    public BaseResult updateAdminInfo(HttpServletRequest request) {
         Admin admin = new Admin();
         admin.setUsername(request.getParameter("username"));
         admin.setRealName(request.getParameter("realName"));

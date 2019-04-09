@@ -1,4 +1,4 @@
-package top.flytop.studentsign.controller.admin;
+package top.flytop.studentsign.controller.sysadmin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +19,7 @@ import java.util.Map;
  * @Date 2019/3/23 12:40
  * @Version 1.0
  */
-@RequestMapping("/admin")
+@RequestMapping("sysadmin/")
 @Controller
 public class SettingController {
     private SettingService settingService;

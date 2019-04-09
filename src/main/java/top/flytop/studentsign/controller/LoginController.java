@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import top.flytop.studentsign.dto.BaseResult;
+import top.flytop.studentsign.pojo.User;
 import top.flytop.studentsign.service.AdminService;
 import top.flytop.studentsign.utils.VerifyCodeUtil;
 
@@ -21,6 +22,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @ClassName LoginController
@@ -40,6 +43,7 @@ public class LoginController {
     private void adminService(AdminService adminService) {
         this.adminService = adminService;
     }
+
     /**
      * @param request
      * @return top.flytop.studentsign.dto.BaseResult
@@ -155,12 +159,28 @@ public class LoginController {
     /**
      * @param request
      * @return java.lang.String
-     * @Description TODO 获取当前用户名
+     * @Description TODO 获取当前用户名、角色
      * @Date 2019/3/21 10:17
      */
     @RequestMapping(value = "getCurrentUser", method = RequestMethod.POST)
     @ResponseBody
-    public String getCurrentUser(HttpServletRequest request) {
-        return String.valueOf(request.getSession().getAttribute("currentUser"));
+    public Map getCurrentUser(HttpServletRequest request) {
+        int type = ((User) SecurityUtils.getSubject().getPrincipal()).getType();
+        String typeString = null;
+        switch (type) {
+            case 1:
+                typeString = "学生";
+                break;
+            case 2:
+                typeString = "普通管理员";
+                break;
+            case 3:
+                typeString = "系统管理员";
+                break;
+        }
+        Map<String, Object> map = new HashMap<>();
+        map.put("typeString", typeString);
+        map.put("currentUser", request.getSession().getAttribute("currentUser"));
+        return map;
     }
 }

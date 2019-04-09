@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import top.flytop.studentsign.dto.BaseResult;
 import top.flytop.studentsign.service.AdminService;
+import top.flytop.studentsign.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -25,6 +26,13 @@ public class adminController {
     @Autowired
     private void adminService(AdminService adminService) {
         this.adminService = adminService;
+    }
+
+    private UserService userService;
+
+    @Autowired
+    private void adminService(UserService userService) {
+        this.userService = userService;
     }
 
     /**
@@ -85,7 +93,31 @@ public class adminController {
     @ResponseBody
     @RequestMapping(value = "updateAdmin", method = RequestMethod.POST)
     BaseResult updateAdmin(HttpServletRequest request) {
-        return adminService.updateAdmin(request);
+        return adminService.updateAdminInfo(request);
+    }
+
+    /**
+     * @param request
+     * @return top.flytop.studentsign.dto.BaseResult
+     * @Description TODO 更新普通管理员密码
+     * @Date 08/04/2019 14:40
+     */
+    @ResponseBody
+    @RequestMapping(value = "updateAdminPwd", method = RequestMethod.POST)
+    BaseResult updateAdminPwd(HttpServletRequest request) {
+        return adminService.updateAdminPwd(request);
+    }
+
+    /**
+     * @param request
+     * @return top.flytop.studentsign.dto.BaseResult
+     * @Description TODO 管理员修改自身密码的方法
+     * @Date 2019/2/19 17:20
+     */
+    @RequestMapping(value = "changePwd", method = RequestMethod.POST)
+    @ResponseBody
+    public BaseResult changePwd(HttpServletRequest request) {
+        return userService.changePwd(request);
     }
 
 }

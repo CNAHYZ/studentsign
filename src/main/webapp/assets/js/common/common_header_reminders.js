@@ -34,20 +34,10 @@ $(function () {
                     });
                 }
             } else
-                Swal.mixin({
-                    toast: true, position: 'top', showConfirmButton: false, timer: 5000
-                }).fire({type: 'error', title: data.errMsg});
+                toast("error", data.errMsg)
         },
         error: function () {
-            Swal.mixin({
-                toast: true, position: 'top', showConfirmButton: false, timer: 5000
-            }).fire({type: 'error', title: '待审批请假记录获取失败！'});
+            toast("error", '待审批请假记录获取失败！');
         }
     });
-    /**
-     * 填充用户名
-     */
-    $.post('/getCurrentUser.do', {}, function (data) {
-        $("#header_username").text(data);
-    }, "json");
 });

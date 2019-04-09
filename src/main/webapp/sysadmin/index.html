@@ -152,7 +152,7 @@ MAIN CONTENT LAYOUT
                 </li>
                 <li class="nav-main-item">
                     <a class="nav-main-link" href="adminManage.html">
-                        <i class="nav-main-link-icon fa fa-edit"></i>
+                        <i class="nav-main-link-icon fa fa-user-cog"></i>
                         <span class="nav-main-link-name">管理人员</span>
                     </a>
                 </li>
@@ -226,10 +226,10 @@ MAIN CONTENT LAYOUT
                                  alt="">
                         </div>
                         <div class="p-2">
-                            <h5 class="dropdown-header text-center">用户操作</h5>
+                            <h5 class="dropdown-header text-center" id="header_userRole"></h5>
                             <div role="separator" class="dropdown-divider"></div>
                             <a class="dropdown-item d-flex align-items-center justify-content-between"
-                               href="javascript:void(0)">
+                               href="systemSetting.html">
                                 <span>系统设置</span>
                                 <i class="si si-settings"></i>
                             </a>
@@ -242,30 +242,6 @@ MAIN CONTENT LAYOUT
                     </div>
                 </div>
                 <!-- END User Dropdown -->
-
-                <!-- Notifications Dropdown -->
-                <div class="dropdown d-inline-block ml-2">
-                    <button type="button" class="btn btn-sm btn-dual" id="page-header-notifications-dropdown"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="si si-bell"></i>
-                        <span class="badge badge-primary badge-pill" id="notification_count"></span>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0 border-0 font-size-sm"
-                         aria-labelledby="page-header-notifications-dropdown">
-                        <div class="p-2 bg-primary text-center">
-                            <h5 class="dropdown-header text-uppercase text-white" id="notification_header"></h5>
-                        </div>
-                        <ul class="nav-items mb-0" id="notification_content">
-
-                        </ul>
-                        <div class="p-2 border-top">
-                            <a class="btn btn-sm btn-light btn-block text-center" href="leaveExamine.html">
-                                <i class="fa fa-fw fa-check-double mr-1"></i> 点此去处理
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- END Notifications Dropdown -->
             </div>
             <!-- END Right Section -->
         </div>
@@ -319,8 +295,8 @@ MAIN CONTENT LAYOUT
                     <a class="block block-rounded block-link-pop border-left border-primary border-4x"
                        href="javascript:void(0)">
                         <div class="block-content block-content-full">
-                            <div class="font-size-sm font-w600 text-uppercase text-muted">今日签到</div>
-                            <div class="font-size-h2 font-w400 text-dark" id="signCount">0</div>
+                            <div class="font-size-sm font-w600 text-uppercase text-muted">签到状态</div>
+                            <div class="font-size-h2 font-w400 text-dark" id="signStatus">0</div>
                         </div>
                     </a>
                 </div>
@@ -328,8 +304,8 @@ MAIN CONTENT LAYOUT
                     <a class="block block-rounded block-link-pop border-left border-primary border-4x"
                        href="javascript:void(0)">
                         <div class="block-content block-content-full">
-                            <div class="font-size-sm font-w600 text-uppercase text-muted">今日请假</div>
-                            <div class="font-size-h2 font-w400 text-dark" id="leaveCount">0</div>
+                            <div class="font-size-sm font-w600 text-uppercase text-muted">开放时间</div>
+                            <div class="font-size-h2 font-w400 text-dark" id="openTime">0</div>
                         </div>
                     </a>
                 </div>
@@ -360,13 +336,13 @@ MAIN CONTENT LAYOUT
                 </div>
                 <div class="col-md-6">
                     <!-- Sign In -->
-                    <a class="block block-rounded block-link-shadow" href="signOverview.html">
+                    <a class="block block-rounded block-link-shadow" href="noticeOperation.html">
                         <div class="block-content text-center">
                             <div class="py-4">
                                 <div class="mb-3">
-                                    <i class="fa fa-bars fa-3x text-default"></i>
+                                    <i class="fa fa-bullhorn fa-3x text-default"></i>
                                 </div>
-                                <p class="font-size-lg">签到概况
+                                <p class="font-size-lg">添加通知
                                 <p>
                             </div>
                         </div>
@@ -375,13 +351,13 @@ MAIN CONTENT LAYOUT
                 </div>
                 <div class="col-md-6">
                     <!-- Sign Up -->
-                    <a class="block block-rounded block-link-shadow" href="leaveExamine.html">
+                    <a class="block block-rounded block-link-shadow" href="adminManage.html">
                         <div class="block-content text-center">
                             <div class="py-4">
                                 <div class="mb-3">
-                                    <i class="fa fa-check-circle fa-3x text-success"></i>
+                                    <i class="fa fa-user-shield fa-3x text-success"></i>
                                 </div>
-                                <p class="font-size-lg">请假审批
+                                <p class="font-size-lg">管理人员
                                 <p>
                             </div>
                         </div>
@@ -427,19 +403,18 @@ MAIN CONTENT LAYOUT
     assets/js/core/js.cookie.min.js
 -->
 <script src="../assets/js/oneui.core.min.js"></script>
-<script src="../assets/js/common/common_header.js"></script>
+<script src="../assets/js/common/common.js"></script>
 
 <script src="../assets/js/oneui.app.min.js"></script>
-<script src="../assets/js/common/common_header.js"></script>
 <script>
 
     $(function () {
-        $.post('getSignCount.do', {dayNum: 0}, function (data) {
-            $("#signCount").text(data.data[0].count);
+        $.post('getOpenStatus.do', {}, function (data) {
+            $("#signStatus").text(data.data ? "开" : "关");
         }, "json");
 
-        $.post('getLeave.do', {dayNum: 0}, function (data) {
-            $("#leaveCount").text(data.data.length);
+        $.post('getOpenTime.do', {}, function (data) {
+            $("#openTime").text(data.data.timeStart.substring(0, 5) + "-" + data.data.timeEnd.substring(0, 5));
         }, "json");
 
         $.post('getNoExamineLeave.do', {}, function (data) {
@@ -449,7 +424,9 @@ MAIN CONTENT LAYOUT
         $.post('/getOnlineUserCount.do', {}, function (data) {
             $("#onlineUserCount").text(data);
         }, "json");
-
+        setTimeout(function () {
+            $("h1").append("<text class='font-size-lg font-w400'>•" + $('#header_userRole').text() + "</text>");
+        }, 1500);
     })
 </script>
 </body>

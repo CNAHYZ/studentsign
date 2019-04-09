@@ -35,8 +35,10 @@
     <!--===========================插入=============================-->
     <!--添加用户-->
     <insert id="addUser" parameterType="user">
-        insert user
-        values (#{username}, #{pwd}, #{salt}, #{type})
+        <if test="username!=null and username!=''">
+            insert user
+            values (#{username}, #{pwd}, #{salt}, #{type})
+        </if>
     </insert>
     <!--批量初始化学生用户的账号，密码-->
     <!-- on duplicate key update当数据库中存在某个记录时，
