@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.flytop.studentsign.mapper.StudentMapper">
+
+    <!--=========================resultMap===========================-->
+    <resultMap id="studentResultMap" type="student">
+        <result property="sNo" column="sno"/>
+        <result property="sName" column="sname"/>
+        <result property="cNo" column="cno"/>
+        <result property="gender" column="gender"/>
+        <result property="birthday" column="birthday"/>
+        <result property="buildingNo" column="building_no"/>
+        <result property="roomNo" column="room_no"/>
+        <result property="phoneNum" column="phone_num"/>
+        <association property="sClass" javaType="class">
+            <id property="cNo" column="cno"></id>
+            <result property="cName" column="cname"></result>
+            <result property="grade" column="grade"></result>
+        </association>
+    </resultMap>
+    <!--===========================查询=============================-->
+
+    <!--获取学生信息-->
+    <select id="getStuGeneralInfo" resultMap="studentResultMap">
+        select a.*, b.*
+        from student a
+                 left join class b on a.cno = b.cno
+        WHERE sno = #{sNo}
+    </select>
+
+    <!--获取学生列表-->
+    <select id="getAllStudent" resultMap="studentResultMap">
+        select a.*, b.cname, b.grade
+        from student a
+                 left join class b on a.cno = b.cno
+    </select>
+
+    <!--获取班级列表-->
+    <select id="getAllSClass" resultType="class">
+        select *
+        from class;
+    </select>
+
+    <!--获取学生总数-->
+    <select id="getTotalCount" resultType="int">
+        select count(*)
+        from student
+    </select>
+
+    <!--===========================修改=============================-->
+    <!--修改学生信息-->
+    <update id="updateStuInfo" parameterType="student">
+        update student
+        <trim prefix="SET" suffixOverrides="," suffix="where sno=#{sNo}">
+            <if test="sName != null and sName != ''">sname=#{sName},</if>
+            <if test="cNo != null and cNo != ''">cno=#{cNo},</if>
+            <if test="gender != null">gender=#{gender},</if>
+            <if test="buildingNo != null">building_no=#{buildingNo},</if>
+            <if test="roomNo != null">room_no=#{roomNo},</if>
+            <if test="birthday != null">birthday=#{birthday},</if>
+            <if test="phoneNum != null">phone_num=#{phoneNum}</if>
+        </trim>
+    </update>
+
+    <!--===========================插入=============================-->
+    <!--添加学生-->
+    <insert id="addStudent" parameterType="student">
+        <if test="sNo != null and sNo!=''">
+            insert student (sno,sname,cno,gender,birthday,building_no,room_no,phone_num)
+            values (#{sNo},#{sName},#{cNo}, #{gender}, #{birthday},
+            #{buildingNo}, #{roomNo}, #{phoneNum})
+        </if>
+    </insert>
+
+    <!--批量插入学生信息-->
+    <insert id="batchAddStudent">
+        insert student (sno,sname,cno,gender,birthday,building_no,room_no,phone_num)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.sNo},#{item.sName},#{item.cNo}, #{item.gender}, #{item.birthday},
+            #{item.buildingNo}, #{item.roomNo},#{item.phoneNum})
+        </foreach>
+    </insert>
+
+    <!--===========================删除=============================-->
+    <!--删除学生-->
+    <delete id="deleteStudent">
+        delete
+        from student
+        where sno in
+        <foreach collection="array" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+
+</mapper>

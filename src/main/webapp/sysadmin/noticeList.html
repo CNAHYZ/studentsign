@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+    <title>学生宿舍签到系统 - yz</title>
+
+    <meta name="robots" content="noindex, nofollow">
+
+
+    <!-- Icons -->
+    <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
+    <link rel="shortcut icon" href="../assets/media/favicons/favicon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/media/favicons/favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/media/favicons/apple-touch-icon-180x180.png">
+    <!-- END Icons -->
+
+    <!-- Stylesheets -->
+    <!-- Fonts and OneUI framework -->
+
+    <link rel="stylesheet" id="css-main" href="../assets/css/oneui.min.css">
+    <!-- Page JS Plugins CSS -->
+    <link rel="stylesheet" href="../assets/js/plugins/datatables/dataTables.bootstrap4.css">
+    <!-- END Stylesheets -->
+    <style>
+        .pull {
+            margin-top: -60px;
+        }
+    </style>
+</head>
+<body>
+<!-- Page Container -->
+<div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-fixed">
+
+    <!-- Sidebar -->
+    <nav id="sidebar" aria-label="Main Navigation">
+        <!-- Side Header -->
+        <div class="content-header bg-white-5">
+            <!-- Logo -->
+            <a class="font-w600 text-dual" href="../admin/index.html">
+                <!--<i class="fa fa-circle-notch text-primary"></i>-->
+                <span class="text-primary font-w400 font-size-h5">学</span>
+                <span class="smini-hidden">
+                    <span class="font-w400 font-size-h5">生宿舍签到系统</span>
+                </span>
+            </a>
+            <!-- END Logo -->
+
+            <!-- Options -->
+            <div>
+                <!-- Color Variations -->
+                <div class="dropdown d-inline-block ml-3">
+                    <a class="text-dual font-size-sm" id="sidebar-themes-dropdown" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" href="#">
+                        <i class="si si-drop"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right font-size-sm smini-hide border-0"
+                         aria-labelledby="sidebar-themes-dropdown">
+
+                        <!-- Sidebar Styles -->
+                        <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                        <a class="dropdown-item" data-toggle="layout" data-action="sidebar_style_light" href="#">
+                            <i class="fa fa-circle text-light"></i> <span>Sidebar Light</span>
+                        </a>
+                        <a class="dropdown-item" data-toggle="layout" data-action="sidebar_style_dark" href="#">
+                            <i class="fa fa-circle text-dark"></i> <span>Sidebar Dark</span>
+                        </a>
+                        <!-- Sidebar Styles -->
+
+                        <div class="dropdown-divider"></div>
+
+                        <!-- Header Styles -->
+                        <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                        <a class="dropdown-item" data-toggle="layout" data-action="header_style_light" href="#">
+                            <i class="fa fa-circle text-light"></i> <span>Header Light</span>
+                        </a>
+                        <a class="dropdown-item" data-toggle="layout" data-action="header_style_dark" href="#">
+                            <i class="fa fa-circle text-dark"></i> <span>Header Dark</span>
+                        </a>
+                        <!-- Header Styles -->
+                    </div>
+                </div>
+                <!-- END Themes -->
+
+                <!-- Close Sidebar, Visible only on mobile screens -->
+                <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                <a class="d-lg-none text-dual ml-3" data-toggle="layout" data-action="sidebar_close"
+                   href="javascript:void(0)">
+                    <i class="fa fa-times"></i>
+                </a>
+                <!-- END Close Sidebar -->
+            </div>
+            <!-- END Options -->
+        </div>
+        <!-- END Side Header -->
+
+        <!-- Side Navigation -->
+        <div class="content-side content-side-full">
+            <ul class="nav-main">
+                <li class="nav-main-item">
+                    <a class="nav-main-link" href="../admin/index.html">
+                        <i class="nav-main-link-icon si si-speedometer"></i>
+                        <span class="nav-main-link-name">系统首页</span>
+                    </a>
+                </li>
+                <li class="nav-main-heading">System Management</li>
+                <li class="nav-main-item open">
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
+                       aria-expanded="false" href="#">
+                        <i class="nav-main-link-icon si si-speech"></i>
+                        <span class="nav-main-link-name">通知管理</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link active" href="noticeList.html">
+                                <i class="nav-main-link-icon fa fa-comments"></i>
+                                <span class="nav-main-link-name">所有通知</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="noticeOperation.html">
+                                <i class="nav-main-link-icon fa fa-edit"></i>
+                                <span class="nav-main-link-name">添加通知</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
+                       aria-expanded="false" href="#">
+                        <i class="nav-main-link-icon si si-users"></i>
+                        <span class="nav-main-link-name">学生管理</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="../admin/studentList.html">
+                                <i class="nav-main-link-icon fa fa-address-book"></i>
+                                <span class="nav-main-link-name">学生列表</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="../admin/studentAdd.html">
+                                <i class="nav-main-link-icon fa fa-user-plus"></i>
+                                <span class="nav-main-link-name">添加学生</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="../admin/batchImport.html">
+                                <i class="nav-main-link-icon fa fa-file-import"></i>
+                                <span class="nav-main-link-name">批量导入</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
+                       aria-expanded="false" href="#">
+                        <i class="nav-main-link-icon si si-badge"></i>
+                        <span class="nav-main-link-name">签到管理</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="../admin/signRecordList.html">
+                                <i class="nav-main-link-icon fa fa-signature"></i>
+                                <span class="nav-main-link-name">签到记录</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="../admin/signOverview.html">
+                                <i class="nav-main-link-icon fa fa-bars"></i>
+                                <span class="nav-main-link-name">签到概况</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
+                       aria-expanded="false" href="#">
+                        <i class="nav-main-link-icon si si-grid"></i>
+                        <span class="nav-main-link-name">请假管理</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link " href="../admin/leaveExamine.html">
+                                <i class="nav-main-link-icon fa fa-check-circle"></i>
+                                <span class="nav-main-link-name">请假审批</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="../admin/leaveRecordList.html">
+                                <i class="nav-main-link-icon fa fa-calendar-alt"></i>
+                                <span class="nav-main-link-name">请假记录</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-main-heading">System Setting</li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
+                       aria-expanded="false" href="#">
+                        <i class="nav-main-link-icon si si-wrench"></i>
+                        <span class="nav-main-link-name">系统设置</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="../admin/changePwd.html">
+                                <i class="nav-main-link-icon fa fa-lock"></i>
+                                <span class="nav-main-link-name">密码修改</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="../admin/systemSetting.html">
+                                <i class="nav-main-link-icon fa fa-cog"></i>
+                                <span class="nav-main-link-name">系统设置</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-main-heading">About Me</li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link" href="../admin/index.html">
+                        <i class="nav-main-link-icon si si-info"></i>
+                        <span class="nav-main-link-name">系统介绍</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- END Side Navigation -->
+    </nav>
+    <!-- END Sidebar -->
+
+    <!-- Header -->
+    <header id="page-header">
+        <!-- Header Content -->
+        <div class="content-header">
+            <!-- Left Section -->
+            <div class="d-flex align-items-center">
+                <!-- Toggle Sidebar -->
+                <!-- Layout API, functionality initialized in Template._uiApiLayout()-->
+                <button type="button" class="btn btn-sm btn-dual mr-2 d-lg-none" data-toggle="layout"
+                        data-action="sidebar_toggle">
+                    <i class="fa fa-fw fa-bars"></i>
+                </button>
+                <!-- END Toggle Sidebar -->
+
+                <!-- Toggle Mini Sidebar -->
+                <!-- Layout API, functionality initialized in Template._uiApiLayout()-->
+                <button type="button" class="btn btn-sm btn-dual mr-2 d-none d-lg-inline-block" data-toggle="layout"
+                        data-action="sidebar_mini_toggle">
+                    <i class="fa fa-fw fa-ellipsis-v"></i>
+                </button>
+                <!-- END Toggle Mini Sidebar -->
+
+            </div>
+            <!-- END Left Section -->
+
+            <!-- Right Section -->
+            <div class="d-flex align-items-center">
+                <!-- User Dropdown -->
+                <div class="dropdown d-inline-block ml-2">
+                    <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img class="rounded" src="../assets/media/avatars/avatar0.jpg" alt="Header Avatar"
+                             style="width: 18px;">
+                        <span class="d-none d-sm-inline-block ml-1" id="header_username"></span>
+                        <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right p-0 border-0 font-size-sm"
+                         aria-labelledby="page-header-user-dropdown">
+                        <div class="p-2 text-center bg-primary">
+                            <img class="img-avatar img-avatar48 img-avatar-thumb"
+                                 src="../assets/media/avatars/avatar0.jpg"
+                                 alt="">
+                        </div>
+                        <div class="p-2">
+                            <h5 class="dropdown-header text-center">用户操作</h5>
+                            <div role="separator" class="dropdown-divider"></div>
+                            <a class="dropdown-item d-flex align-items-center justify-content-between"
+                               href="javascript:void(0)">
+                                <span>系统设置</span>
+                                <i class="si si-settings"></i>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center justify-content-between"
+                               href="logOut.do">
+                                <span>安全退出</span>
+                                <i class="si si-logout ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- END User Dropdown -->
+
+                <!-- Notifications Dropdown -->
+                <div class="dropdown d-inline-block ml-2">
+                    <button type="button" class="btn btn-sm btn-dual" id="page-header-notifications-dropdown"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="si si-bell"></i>
+                        <span class="badge badge-primary badge-pill" id="notification_count"></span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0 border-0 font-size-sm"
+                         aria-labelledby="page-header-notifications-dropdown">
+                        <div class="p-2 bg-primary text-center">
+                            <h5 class="dropdown-header text-uppercase text-white" id="notification_header"></h5>
+                        </div>
+                        <ul class="nav-items mb-0" id="notification_content">
+
+                        </ul>
+                        <div class="p-2 border-top">
+                            <a class="btn btn-sm btn-light btn-block text-center" href="../admin/leaveExamine.html">
+                                <i class="fa fa-fw fa-check-double mr-1"></i> 点此去处理
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- END Notifications Dropdown -->
+            </div>
+            <!-- END Right Section -->
+        </div>
+        <!-- END Header Content -->
+
+        <!-- Header Loader -->
+        <!-- Please check out the Loaders page under Components category to see examples of showing/hiding it -->
+        <div id="page-header-loader" class="overlay-header bg-white">
+            <div class="content-header">
+                <div class="w-100 text-center">
+                    <i class="fa fa-fw fa-circle-notch fa-spin"></i>
+                </div>
+            </div>
+        </div>
+        <!-- END Header Loader -->
+    </header>
+    <!-- END Header -->
+
+    <!-- Main Container -->
+    <main id="main-container">
+
+        <!-- Hero -->
+        <div class="bg-body-light">
+            <div class="content content-full">
+                <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
+                    <h1 class="flex-sm-fill h3 my-2">
+                        所有通知
+                    </h1>
+                    <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
+                        <ol class="breadcrumb breadcrumb-alt">
+                            <li class="breadcrumb-item">通知管理</li>
+                            <li class="breadcrumb-item" aria-current="page">
+                                <a class="link-fx" href="">通知列表</a>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- END Hero -->
+
+        <!-- Page Content -->
+        <!-- Search -->
+        <div class="content">
+            <form action="javascript:commitSearch()" method="POST">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="输入关键词或者标题以搜索" id="ipt_search">
+                    <div class="input-group-append">
+                            <span class="input-group-text" onclick="commitSearch()">
+                                <i class="fa fa-fw fa-search"></i>
+                            </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- END Search -->
+
+        <!-- Page Content -->
+        <div class="content">
+            <!-- Results -->
+            <div class="block">
+                <div class="block-content tab-content overflow-hidden">
+                    <!-- Projects -->
+                    <div class="font-size-h4 font-w600 p-2 mb-4 border-left border-4x border-primary bg-body-light">
+                        <mark class="text-danger" id="search_word"></mark>
+                        共有<span class="text-primary font-w700" id="total_count">0</span> 条通知
+                    </div>
+                    <table class="table table-hover table-vcenter text-center "
+                           id="result">
+                        <thead>
+                        <tr>
+                            <th class="" style="width: 10%">ID</th>
+                            <th class="d-none d-lg-table-cell" style="width: 47%;">通知内容</th>
+                            <th class="d-none d-lg-table-cell" style="width: 13%;">状态</th>
+                            <th class="d-none d-lg-table-cell" style="width: 15%;">创建时间</th>
+                            <th class="d-none d-lg-table-cell" style="width: 15%;">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody class="">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- END Page Content -->
+    </main>
+    <!-- END Main Container -->
+
+    <!-- Footer -->
+    <footer id="page-footer" class="bg-body-light">
+        <div class="content py-3">
+            <div class="row font-size-sm">
+                <div class="col-sm-6 order-sm-1 py-1 text-center text-sm-left">
+                    <a class="font-w600" href="" target="_blank"></a> &copy; <span
+                        data-toggle="year-copy">2018</span>
+                    <span class="fa fa-heart">&nbsp;</span>
+                    <span>YZ . All Rights Reserved</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- END Footer -->
+</div>
+<!-- END Page Container -->
+<script src="../assets/js/oneui.core.min.js"></script>
+
+<script src="../assets/js/oneui.app.min.js"></script>
+<script src="../assets/js/common/common_header.js"></script>
+<script src="../assets/js/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../assets/js/plugins/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="../assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js"></script>
+
+<script src="/assets/js/common/dataTable.js"></script>
+
+</body>
+</html>
+<script>
+    var removeNoticeUrl = "removeNotice.do";
+    var changeNoticeStatusUrl = "changeNoticeStatus.do";
+    var getNoticeUrl = "getAllNotice.do";
+    var searchNoticeStatusUrl = "searchNotice.do";
+
+    /**
+     * 搜索
+     */
+    function commitSearch() {
+        searchWord = $("#ipt_search").val();
+        $("#search_word").text(searchWord);
+        console.log(searchWord);
+        t.search(searchWord).draw();
+    }
+
+    /**
+     *跳转到通知编辑页面
+     * @param noticeId
+     */
+    function noticeDetail(noticeId) {
+        window.location = "noticeOperation.html?noticeId=" + noticeId;
+    }
+
+    /**
+     * 编辑、更改状态操作
+     * @param noticeId
+     * @param status
+     */
+    function operation(noticeId, status) {
+        upData = {"noticeId": noticeId};
+        upUrl = null;
+        if (status === '' || status === undefined) {
+            upUrl = removeNoticeUrl
+        } else {
+            //修改状态操作，向数据中添加status
+            upData["status"] = status;
+            upUrl = changeNoticeStatusUrl
+        }
+        console.log(upData);
+        $.ajax({
+            url: upUrl,
+            data: upData,
+            type: "post",
+            dataType: "json",
+            success: function (data) {
+                if (data.success)
+                    One.helpers('notify', {
+                        type: 'success', align: 'center', delay: 6000,
+                        icon: 'fa fa-check mr-1', message: data.data
+                    });
+                else
+                    One.helpers('notify', {
+                        type: 'danger', align: 'center', icon: 'fa fa-times mr-1',
+                        message: data.errMsg
+                    });
+                $("#mydatatable").dataTable().fnDraw(false);
+                //重新加载表格数据
+                t.ajax.reload();
+            }, error: function (data) {
+                One.helpers('notify', {
+                    type: 'danger', align: 'center', icon: 'fa fa-times mr-1',
+                    message: data.errMsg
+                });
+            }
+        })
+    }
+
+    /*============================================================================*/
+    var options2 = {
+        // "bStateSave": true,
+        // "lengthChange": false,
+        // "retrieve": true,
+        dom: '<"text-right pull"l>rt<"row"<"col-6"i><"col-6"p>>',//隐藏搜索框
+        "searching": true,//调用search()方法，此处必须为true
+        ajax: {
+            type: "post",
+            url: getNoticeUrl,
+            data: {},
+            beforeSend: function () {
+                // console.log(sendData)
+            }
+        },
+        //每页显示n条数据
+        pageLength: 5,
+        columns: [
+            {data: "noticeId"},
+            {
+                data: "content",
+                defaultContent: "-",
+            },
+            {
+                data: "status",
+                render: function (data) {
+                    var myStatus;
+                    switch (data) {
+                        case 0:
+                            myStatus = "<span class=\"badge badge-success\"> 普通展示</span>\n";
+                            break;
+                        case 1:
+                            myStatus = "<span class=\"badge badge-danger\"> 取消展示</span>\n";
+                            break;
+                        case 2:
+                            myStatus = "<span class=\"badge badge-info\"> 置顶展示</span>\n";
+                    }
+                    return myStatus;
+                }
+            },
+            {
+                data: "createTime",
+            },
+            {
+                data: null
+            }
+        ],
+        "columnDefs": [
+            {
+                "targets": [1],
+                className: "text-left",
+                render: function (data, type, full) {
+                    //取内容的前80个字符，并且去除内容中的html标签
+                    if (data.length > 80)
+                        myContent = (data.replace(/<[^>]+>/g, "").substring(0, 80) + '...');
+                    else myContent = data.replace(/<[^>]+>/g, "");
+                    return "<td>\n" +
+                        "                                    <h4 class=\"h5 mt-3 mb-2\" id=\"title\">\n" +
+                        "                                        <a href=\"javascript:noticeDetail(" + full.noticeId + ")\">" + full.title + "</a>\n" +
+                        "                                    </h4>\n" +
+                        "                                    <p class=\"d-none d-sm-block text-muted\" id=\"content\">\n" +
+                        myContent +
+                        "                                    </p>\n" +
+                        "                                    <div class=\"row mx-0\">\n" +
+                        "                                        <span class=\"font-size-sm font-w600\">关键词：</span>\n" +
+                        "                                        <span class=\"font-size-sm text-muted\" id=\"keyword\">\n" +
+                        full.keyword + "</span>\n" +
+                        "                                    </div>\n" +
+                        "                                </td>";
+                }
+            },
+            {
+                "targets": [-1],
+                render: function (data, type, row) {
+                    return "<div class=\"btn-group btn-group\" role=\"group\" aria-label=\"Large Horizontal Primary\">\n" +
+                        "            <div class=\"dropdown\">\n" +
+                        "                <button type=\"button\" class=\"btn btn-outline-primary dropdown-toggle\" id=\"btn_time\"\n" +
+                        "                        data-toggle=\"dropdown\" title=\"修改展示状态\" style=\"border-radius:.25rem 0 0 .25rem\">\n" +
+                        "                    状态\n" +
+                        "                </button>\n" +
+                        "                <div class=\"dropdown-menu\" aria-labelledby=\"dropdown-default-outline-primary\"\n" +
+                        "                     style=\"min-width:80px\">\n" +
+                        "                    <a class=\"dropdown-item\" onclick=\"operation(" + row.noticeId + ",1)\">下线</a>\n" +
+                        "                    <a class=\"dropdown-item\" onclick=\"operation(" + row.noticeId + ",0)\">展示</a>\n" +
+                        "                    <a class=\"dropdown-item\" onclick=\"operation(" + row.noticeId + ",2)\">置顶</a>\n" +
+                        "                </div>\n" +
+                        "            </div>\n" +
+                        "            <button type=\"button\" class=\"btn btn-primary\" data-toggle=\"tooltip\" " +
+                        "               title=\"编辑\" onclick=\"noticeDetail(" + row.noticeId + ")\">" +
+                        "               <i class=\"fa fa-fw fa-pencil-alt\"></i></button>\n" +
+                        "            <button type=\"button\" class=\"btn btn-primary\" data-toggle=\"tooltip\" " +
+                        "               title=\"删除\" onclick=\"operation(" + row.noticeId + "," + '' + ")\">" +
+                        "               <i class=\"fa fa-fw fa-times\"></i></button>\n" +
+                        "        </div>"
+                }
+            }
+        ]
+    };
+
+    var t = $('#result').DataTable(
+        Object.assign(options2, serverSideOptions)
+    );
+    t.on('xhr', function () {
+        //获取最终的json数据
+        var json = t.ajax.json();
+        $("#total_count").text(json.recordsTotal);
+    });
+</script>
