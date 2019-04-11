@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.flytop.studentsign.mapper.ClassMapper">
+
+    <!--=========================resultMap===========================-->
+    <!--===========================查询=============================-->
+    <!--获取班级列表-->
+    <select id="getClassList" resultType="class">
+        select *
+        from class
+    </select>
+    <!--根据cno获取班级信息-->
+    <select id="getClassByCNo" resultType="class">
+        select *
+        from class
+        where cno = #{cNo}
+    </select>
+
+    <!--===========================新增=============================-->
+    <!--新增班级-->
+    <insert id="addClass" parameterType="class">
+        insert class (cno, cname, grade)
+        values (#{cNo}, #{cName}, #{grade})
+    </insert>
+
+    <!--=========================== 更新 =============================-->
+
+    <!--更新班级信息-->
+    <update id="updateClassByCNo">
+        update class
+        set cname=#{cName},
+            grade=#{grade}
+        where cno = #{cNo}
+    </update>
+
+    <!--=========================== 删除 =============================-->
+    <!--删除班级-->
+    <delete id="removeClassByCNo">
+        <if test="cNo != null and cNo != ''">
+            delete
+            from class
+            where cno = #{cNo}
+        </if>
+    </delete>
+
+</mapper>

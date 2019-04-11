@@ -230,13 +230,13 @@
             <div class="content content-full">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <h1 class="flex-sm-fill h3 my-2">
-                        学生列表
+                        管理员列表
                     </h1>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
-                            <li class="breadcrumb-item">学生管理</li>
+                            <li class="breadcrumb-item">管理员管理</li>
                             <li class="breadcrumb-item" aria-current="page">
-                                <a class="link-fx" href="">学生列表</a>
+                                <a class="link-fx" href="">管理员列表</a>
                             </li>
                         </ol>
                     </nav>
@@ -460,15 +460,15 @@
                     return '<div class="btn-group">' +
                         '<button type="button" class="btn btn-sm btn-primary js-tooltip-enabled"' +
                         ' data-toggle="tooltip" title="编辑" onclick="editAdminInfo(\'' + row.username + '\')">' +
-                        '<i class="fa fa-fw fa-user-edit"></i>' +
+                        '<i class="fa fa-fw fa-lg fa-user-edit"></i>' +
                         '</button>' +
                         '<button type="button" class="btn btn-sm btn-primary js-tooltip-enabled" ' +
                         'data-toggle="tooltip" title="修改密码" onclick="updateAdminPwd(\'' + row.username + '\')">' +
-                        '<i class="fa fa-fw fa-key"></i>' +
+                        '<i class="fa fa-fw fa-lg fa-key"></i>' +
                         '</button>' +
                         '<button type="button" class="btn btn-sm btn-primary js-tooltip-enabled" ' +
                         'data-toggle="tooltip" title="删除" onclick="delAdmin(\'' + row.username + '\')">' +
-                        '<i class="fa fa-fw fa-times"></i>' +
+                        '<i class="fa fa-fw fa-lg fa-times"></i>' +
                         '</button>' +
                         '</div>'
                 }

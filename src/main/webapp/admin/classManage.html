@@ -16,10 +16,7 @@
     <!-- Stylesheets -->
     <!-- Page JS Plugins CSS -->
     <link rel="stylesheet" href="../assets/js/plugins/datatables/dataTables.bootstrap4.css">
-    <link rel="stylesheet" href="../assets/js/plugins/datatables/Select-1.3.0/css/select.jqueryui.min.css">
     <link rel="stylesheet" href="../assets/js/plugins/datatables/buttons/css/buttons.bootstrap4.scss">
-    <link rel="stylesheet"
-          href="../assets/js/plugins/datatables/jquery-datatables-checkboxes/css/dataTables.checkboxes.css">
     <link rel="stylesheet" href="/assets/js/plugins/sweetalert2/sweetalert2.min.css">
 
     <!-- Fonts and OneUI framework -->
@@ -95,15 +92,15 @@
         <!-- Side Navigation -->
         <div class="content-side content-side-full">
             <ul class="nav-main">
-                <li class="nav-main-item">
-                    <a class="nav-main-link" href="index.html">
+                <li class="nav-main-item open">
+                    <a class="nav-main-link active" href="index.html">
                         <i class="nav-main-link-icon si si-speedometer"></i>
                         <span class="nav-main-link-name">系统首页</span>
                     </a>
                 </li>
                 <li class="nav-main-heading">System Management</li>
 
-                <li class="nav-main-item open">
+                <li class="nav-main-item">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
                        aria-expanded="false" href="#">
                         <i class="nav-main-link-icon si si-users"></i>
@@ -111,7 +108,7 @@
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
-                            <a class="nav-main-link active" href="studentList.html">
+                            <a class="nav-main-link" href="studentList.html">
                                 <i class="nav-main-link-icon fa fa-address-book"></i>
                                 <span class="nav-main-link-name">学生列表</span>
                             </a>
@@ -131,7 +128,7 @@
                     </ul>
                 </li>
                 <li class="nav-main-item">
-                    <a class="nav-main-link" href="classManage.html">
+                    <a class="nav-main-link active" href="classManage.html">
                         <i class="nav-main-link-icon si si-layers"></i>
                         <span class="nav-main-link-name">班级管理</span>
                     </a>
@@ -255,7 +252,7 @@
                             <h5 class="dropdown-header text-center" id="header_userRole"></h5>
                             <div role="separator" class="dropdown-divider"></div>
                             <a class="dropdown-item d-flex align-items-center justify-content-between"
-                               href="javascript:void(0)">
+                               href="">
                                 <span>系统设置</span>
                                 <i class="si si-settings"></i>
                             </a>
@@ -268,7 +265,6 @@
                     </div>
                 </div>
                 <!-- END User Dropdown -->
-
                 <!-- Notifications Dropdown -->
                 <div class="dropdown d-inline-block ml-2">
                     <button type="button" class="btn btn-sm btn-dual" id="page-header-notifications-dropdown"
@@ -292,6 +288,7 @@
                     </div>
                 </div>
                 <!-- END Notifications Dropdown -->
+
             </div>
             <!-- END Right Section -->
         </div>
@@ -317,13 +314,13 @@
             <div class="content content-full">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <h1 class="flex-sm-fill h3 my-2">
-                        学生列表
+                        班级列表
                     </h1>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
-                            <li class="breadcrumb-item">学生管理</li>
+                            <li class="breadcrumb-item">班级管理</li>
                             <li class="breadcrumb-item" aria-current="page">
-                                <a class="link-fx" href="">学生列表</a>
+                                <a class="link-fx" href="">班级列表</a>
                             </li>
                         </ol>
                     </nav>
@@ -342,15 +339,10 @@
                            id="datatable">
                         <thead>
                         <tr>
-                            <th class="d-none d-sm-table-cell" style="width: 3%;"></th>
-                            <th class="d-none d-sm-table-cell" style="width: 14%;">学号</th>
-                            <th class="d-none d-sm-table-cell" style="width: 11%;">姓名</th>
-                            <th class="d-none d-sm-table-cell" style="width: 20%;">班级</th>
-                            <th class="d-none d-sm-table-cell" style="width: 8%;">性别</th>
-                            <th class="d-none d-sm-table-cell" style="width: 10%;">宿舍号</th>
-                            <th class="d-none d-sm-table-cell" style="width: 11%;">出生日期</th>
-                            <th class="d-none d-sm-table-cell" style="width: 11%;">联系方式</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">操作</th>
+                            <th class="d-none d-sm-table-cell" style="width: 15%;">班级号</th>
+                            <th class="d-none d-sm-table-cell" style="width: 25%;">班级名称</th>
+                            <th class="d-none d-sm-table-cell" style="width: 15%;">年级</th>
+                            <th class="d-none d-sm-table-cell" style="width: 16%;">操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -359,6 +351,55 @@
                 </div>
             </div>
             <!-- END Dynamic Table with Export Buttons -->
+
+            <!-- /.Modal -->
+            <div class="content">
+                <!-- 模态框（Modal） -->
+                <div class="modal fade" id="classInfoModal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content pl-3">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="pictureModalLabel">班级信息</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true" class="fa fa-times "></span></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="form_saveClass">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label" for="cNo">班级号<span
+                                                class="text-danger">*</span></label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" maxlength="15"
+                                                   id="cNo" name="cNo" placeholder="班级号">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label" for="cName">班级名称<span
+                                                class="text-danger">*</span></label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="cName" name="cName"
+                                                   placeholder="班级名称">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label" for="grade">年级<span
+                                                class="text-danger">*</span></label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="grade" name="grade"
+                                                   placeholder="年级" maxlength="4">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">取&nbsp;消</button>
+                                <button type="button" class="btn btn-primary" id="confirmSave">确认保存</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.modal -->
         </div>
         <!-- END Page Content -->
 
@@ -385,7 +426,9 @@
 <script src="../assets/js/oneui.core.min.js"></script>
 
 <script src="../assets/js/oneui.app.min.js"></script>
-<script src="../assets/js/common/common.js"></script>
+
+<script src="/assets/js/common/dataTable.js"></script>
+<script src="/assets/js/common/common.js"></script>
 <script src="../assets/js/common/common_header_reminders.js"></script>
 
 <!-- Page JS Plugins -->
@@ -393,118 +436,58 @@
 <script src="/assets/js/plugins/datatables/dataTables.bootstrap4.min.js"></script>
 <script src="/assets/js/plugins/datatables/buttons/js/dataTables.buttons.js"></script>
 <script src="/assets/js/plugins/datatables/buttons/js/buttons.bootstrap4.js"></script>
-<script src="/assets/js/plugins/datatables/Select-1.3.0/js/dataTables.select.js"></script>
-<script src="/assets/js/plugins/datatables/jquery-datatables-checkboxes/js/dataTables.checkboxes.min.js"></script>
+
+<script src="../assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="../assets/js/plugins/jquery-validation/localization/messages_zh.js"></script>
+
+<script src="../assets/js/plugins/jquery.formautofill.js"></script>
 
 <script src="/assets/js/plugins/sweetalert2/sweetalert2.min.js"></script>
 
-<script src="/assets/js/common/dataTable.js"></script>
-
 <script>
-    var removeUserUrl = "removeUser.do";
-    var getStudentListUrl = "getStudentList.do";
-    var initStuAccountUrl = "initStuAccount.do";
+    var removeClassUrl = "removeClass.do";
+    var saveClassUrl = "addClass.do";
+    var getClassUrl = "getClass.do";
+    var updateClassUrl = "updateClass.do";
+    var getClassListUrl = "getClassList.do";
     /**
      * datatable的配置选项
      */
     var options2 = {
-        dom: "<'row'<'col-sm-12 col-md-4'l><'col-sm-12 col-md-4'B><'col-sm-12 col-md-4'f>>" +
+        dom: "<'row'<'col-sm-12 col-md-5'l><'col-sm-12 col-md-3'B><'col-sm-12 col-md-4'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-        select: {
-            style: 'multi',
-            blurable: true,
-            selector: 'td:first-child'
-        },
         buttons: [
             {
-                text: '批量删除',
+                text: '添加班级',
                 action: function (e, dt) {
-                    var sNos = selected();
-                    if (sNos.length === 0) {
-                        swal("请先选择要删除的学生！", '', "info");
-                        return
-                    }
-                    realDel(sNos);
+                    $("#cNo").attr("readonly", false);
+                    $("#classInfoModal").modal("show");
                 },
-                attr: {
-                    id: 'batchDel',
-                },
-                className: 'btn-danger'
-            },
-            {
-                text: '账户初始化',
-                action: function (e, dt) {
-                    var sNos = selected();
-                    if (sNos.length === 0) {
-                        swal("请先选择要初始化的学生！", '', "info");
-                        return
-                    }
-                    realInit(sNos);
-                },
-                attr: {
-                    id: 'batchInit'
-                },
-                className: 'btn-primary'
+                className: 'btn-success'
             }
         ],
         ajax: {
             type: "post",
-            url: getStudentListUrl
+            url: getClassListUrl
         },
         columns: [
+            {data: "cNo"},
+            {data: "cName"},
             {
-                data: null,
-                'checkboxes': {
-                    'selectRow': true
-                }
-            },
-            {data: "sNo"},
-            {data: "sName"},
-            {
-                data: "sClass", defaultContent: "-",
-                render: function (data, type, full) {
-                    // console.log(data.sClass.cName);
-                    if (data)
-                        return data.grade + " " + data.cName
-                }
-            },
-            {
-                data: "gender", defaultContent: "-"
-            },
-            {
-                data: null,
-                defaultContent: "-",
-                render: function (data, type, full) {
-                    return data.buildingNo + "#" + data.roomNo
-                }
-
-            },
-            {
-                data: "birthday", defaultContent: "-"
-            },
-            {
-                data: "phoneNum", defaultContent: "-"
+                data: "grade", defaultContent: "-"
             },
             {
                 "data": null,
                 render: function (data, type, row) {
                     return '<div class="btn-group">' +
                         '<button type="button" class="btn btn-sm btn-primary js-tooltip-enabled"' +
-                        ' data-toggle="tooltip" title="学生主页" onclick="personalSummary(' + row.sNo + ')">' +
-                        '<i class="fa fa-fw fa-info"></i>' +
-                        '</button>' +
-                        '<button type="button" class="btn btn-sm btn-primary js-tooltip-enabled"' +
-                        ' data-toggle="tooltip" title="编辑" onclick="editStudent(' + row.sNo + ')">' +
-                        '<i class="fa fa-fw fa-pencil-alt"></i>' +
-                        '</button>' +
-                        '<button type="button" class="btn btn-sm btn-primary js-tooltip-enabled"' +
-                        ' data-toggle="tooltip" title="账户初始化" onclick="initAccount(' + row.sNo + ')">' +
-                        '<i class="fa fa-fw fa-eraser"></i>' +
+                        ' data-toggle="tooltip" title="编辑" onclick="editClassInfo(\'' + row.cNo + '\')">' +
+                        '<i class="fa fa-lg fa-fw fa-users"></i>' +
                         '</button>' +
                         '<button type="button" class="btn btn-sm btn-primary js-tooltip-enabled" ' +
-                        'data-toggle="tooltip" title="删除" onclick="delStudent(' + row.sNo + ')">' +
-                        '<i class="fa fa-fw fa-times"></i>' +
+                        'data-toggle="tooltip" title="删除" onclick="delClass(\'' + row.cNo + '\')">' +
+                        '<i class="fa fa-lg fa-fw fa-times"></i>' +
                         '</button>' +
                         '</div>'
                 }
@@ -513,7 +496,7 @@
         "columnDefs": [
             {
                 "orderable": false,
-                "targets": [1, 4, -1, -2, -3]//第x列不排序
+                "targets": [-1,]//第x列不排序
             }
         ]
 
@@ -523,149 +506,133 @@
      * @type {jQuery|*}
      */
     var t = $('#datatable').DataTable(
-        Object.assign(options2, serverSideOptions));
+        Object.assign(options2, generalOptions));
 
     /**
-     * 跳转至信息修改页
+     * 信息修改，初始化
      * @param id
      */
-    function editStudent(id) {
-        window.location.href = "studentInfo.html?" + id;
+    function editClassInfo(id) {
+        $("#cNo").attr("readonly", true);
+        $("#classInfoModal").modal("show");
+        $.post(getClassUrl, {"cNo": id}, function (data) {
+            $("#form_saveClass").autofill(data.data);
+        }, "json");
     }
 
+
     /**
-     * 跳转至个人主页
+     * 删除管理员
      * @param id
      */
-    function personalSummary(id) {
-        window.location.href = "personalSummary.html?id=" + id;
-    }
-
-    /**
-     * 删除单个学生
-     * @param id
-     */
-    function delStudent(id) {
-        sNos = [id];
-        realDel(sNos);
-    }
-
-    /**
-     * 通用删除学生方法
-     */
-    function realDel(sNos) {
+    function delClass(id) {
         swal({
-            title: "确认删除这 " + sNos.length + " 条用户吗?",
-            text: "同时会删除账号、请假和签到记录",
+            title: "确认删除此班级吗?",
+            text: "",
             type: "warning",
             showCancelButton: !0,
             confirmButtonText: "确认删除",
             cancelButtonText: "取消",
         }).then(function (e) {
-            e.value ? del(sNos) : "cancel" === e.dismiss
+            e.value ? del(id) : "cancel" === e.dismiss
         });
+    }
 
-        /**
-         * ajax发送删除数据的方法
-         */
-        function del(sNos) {
+    /**
+     * ajax发送删除数据的方法
+     */
+    function del(id) {
+        $.ajax(
+            {
+                type: "post",
+                url: removeClassUrl,
+                traditional: true,
+                dataType: "json",
+                data: {
+                    "cNo": id
+                },
+                success: function (data) {
+                    if (data.success) {
+                        $("#datatable").dataTable().fnDraw(false);
+                        //重新加载表格数据
+                        t.ajax.reload();
+                        swal(data.data, '', "success");
+                    } else {
+                        swal(data.errMsg, '', "error");
+                    }
+                }, error: function (data) {
+                    swal('系统错误，请稍后再试！', '', "error");
+                }
+            }
+        )
+    }
+
+    /**
+     * 管理员信息模态框 确认保存 点击事件
+     */
+    $("#confirmSave").click(
+        function save() {
+            if (!$("#form_saveClass").valid())
+                return;
+            /*判断是修改操作还是新增操作*/
+            var isUpdate;
+            $("#cNo").attr("readonly") === "readonly" ? isUpdate = true : isUpdate = false;
+
+            form = new FormData($("#form_saveClass")[0]);
             $.ajax(
                 {
+                    processData: false,
+                    contentType: false,
                     type: "post",
-                    url: removeUserUrl,
-                    traditional: true,
+                    url: isUpdate ? updateClassUrl : saveClassUrl,
                     dataType: "json",
-                    data: {
-                        "sNos": sNos
-                    },
+                    data: form,
                     success: function (data) {
                         if (data.success) {
-                            $("#datatable").dataTable().fnDraw(false);
+                            //关闭modal
+                            $("#classInfoModal").modal("hide");
+                            toast("success", data.data);
                             //重新加载表格数据
                             t.ajax.reload();
-                            swal(data.data, '', "success");
                         } else {
-                            swal(data.errMsg, '', "error");
+                            toast("error", data.errMsg);
                         }
                     }, error: function (data) {
-                        swal('系统错误，请稍后再试！', '', "error");
+                        toast("error", "系统错误，请稍后再试！");
                     }
                 }
             )
-        }
-
-    }
-
-    /**
-     * 初始化单个学生
-     * @param id
-     */
-    function initAccount(id) {
-        sNos = [id];
-        realInit(sNos);
-    }
-
-    /**
-     * 通用账户初始化
-     * @param sNos
-     */
-    function realInit(sNos) {
-        swal({
-            title: '确认初始化这' + sNos.length + '条学生账户?',
-            type: "warning",
-            showCancelButton: !0,
-            confirmButtonText: "确认",
-            cancelButtonText: "取消",
-            showLoaderOnConfirm: true,
-            preConfirm: function (e) {
-                reset(sNos);
-            }
         });
 
-        /**
-         * ajax重置
-         */
-        function reset(sNos) {
-            $.ajax(
-                {
-                    type: "post",
-                    url: initStuAccountUrl,
-                    dataType: "json",
-                    // 设置traditional 为true阻止深度序列化，序列化结果如：
-                    // p: ["123", "456", "789"]  =>  p=123&p=456&p=456
-                    traditional: true,
-                    data: {
-                        "sNos": sNos
-                    },
-                    success: function (data) {
-                        if (data.success) {
-                            swal(data.data, '', "success");
-                        } else {
-                            swal(data.errMsg, '', "error");
-                        }
-                    }, error: function (data) {
-                        swal('系统错误，请稍后再试！', '', "error");
-                    }
-                }
-            )
-        }
-
-    }
 
     /**
-     * 获取复选框选中的数据
-     * @returns {Array}
+     * 表单合法性验证
      */
-    function selected() {
-        var rows = t.rows({selected: true}).data();
-        console.log(rows);
-        var sNos = [];
-        rows.each(function (item, index) {
-            sNos[index] = item.sNo
-        });
-        console.log(sNos);
-        return sNos;
-    }
+    $("#form_saveClass").validate({
+        errorClass: "invalid-feedback animated fadeIn",
+        errorElement: "div",
+        errorPlacement: function (e, n) {
+            jQuery(n).addClass("is-invalid");
+            jQuery(n).parents(".form-group").append(e)
+        },
+        highlight: function (e) {
+            jQuery(e).parents(".form-group").find(".is-invalid").removeClass("is-invalid").addClass("is-invalid")
+        },
+        success: function (e) {
+            jQuery(e).parents(".form-group").find(".is-invalid").removeClass("is-invalid");
+            jQuery(e).remove()
+        },
+        rules: {
+            "cNo": {required: !0, minlength: 4},
+            "cName": {required: !0},
+            "grade": {required: !0}
+        },
+        messages: {
+            "cNo": {required: "班级号不能为空",},
+            "cName": {required: "班级名称不能为空"},
+            "grade": {required: "年级不能为空"},
+        }
+    });
 </script>
 
 </body>

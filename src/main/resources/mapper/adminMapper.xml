@@ -21,7 +21,7 @@
         where a.username = b.username
           and b.type = 2
     </select>
-    <!--获取普通管理员列表-->
+    <!--根据username获取admin-->
     <select id="getAdminByName" resultMap="adminResultMap">
         select *
         from admin
