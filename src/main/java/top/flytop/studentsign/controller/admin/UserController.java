@@ -3,6 +3,7 @@ package top.flytop.studentsign.controller.admin;
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.junit.platform.commons.util.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import top.flytop.studentsign.dto.BaseResult;
 import top.flytop.studentsign.dto.DataTablePageUtil;
+import top.flytop.studentsign.exception.BusinessException;
 import top.flytop.studentsign.pojo.Student;
 import top.flytop.studentsign.service.UserService;
 
@@ -58,7 +60,14 @@ public class UserController {
 
         /*开始分页*/
         PageHelper.startPage(dataTable.getPage_num(), dataTable.getPage_size());
-        List<Student> result = userService.getAllStudent();
+
+        List<Student> result = null;
+
+        /*判断是否是搜索*/
+        result = StringUtils.isBlank(dataTable.getSearch())
+                ? userService.getAllStudent()
+                : userService.searchStudent(dataTable.getSearch());
+
         PageInfo<Student> pageInfo = new PageInfo<>(result);
 
         /*封装数据给DataTables*/
@@ -69,17 +78,6 @@ public class UserController {
         return dataTable;
     }
 
-    /**
-     * @param
-     * @return top.flytop.studentsign.dto.BaseResult
-     * @Description TODO 获取班级列表
-     * @Date 2019/3/6 17:22
-     */
-    @RequestMapping(value = "classList", method = RequestMethod.POST)
-    @ResponseBody
-    public BaseResult classList() {
-        return BaseResult.success(userService.getAllSClass());
-    }
 
     /**
      * @param request
@@ -201,10 +199,13 @@ public class UserController {
             BaseResult result = userService.batchImportStu(in, uploadFile);
             in.close();
             return result;
-        } catch (Exception e) {
+        } catch (BusinessException be) {
 //            log.error("上传excel导入数据 发生异常：",e.fillInStackTrace());
+            be.printStackTrace();
+            return BaseResult.fail(be.getCode(), be.getMsg());
+        } catch (Exception e) {
             e.printStackTrace();
-            return BaseResult.fail(1, "导入失败！请检查格式是否正确，学号是否有重复");
+            return BaseResult.fail(1, "请检查格式是否正确，学号是否有重复");
         }
     }
 
@@ -223,35 +224,18 @@ public class UserController {
     /**
      * @param
      * @return top.flytop.studentsign.dto.BaseResult
-     * @Description TODO 初始化所有未分配账户的学生用户（student ----> user）
+     * @Description TODO 重置学生密码
      * @Date 2019/2/19 22:10
      */
-    @RequestMapping(value = "initAllUsers", method = RequestMethod.GET)
+    @RequestMapping(value = "resetUserPwd", method = RequestMethod.POST)
     @ResponseBody
-    public BaseResult initialAllUsers() {
+    public BaseResult initialAllUsers(String[] sNos) {
         try {
-            return userService.initAllUsers();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return BaseResult.fail(1, "初始化失败");
-        }
-    }
-
-    /**
-     * @param
-     * @return top.flytop.studentsign.dto.BaseResult
-     * @Description TODO  批量（单个）初始化学生的账户
-     * @Date 2019/2/19 22:10
-     */
-    @RequestMapping(value = "initStuAccount", method = RequestMethod.POST)
-    @ResponseBody
-    public BaseResult initStuAccount(String[] sNos) {
-        System.out.println(sNos.length);
-        try {
-            return userService.batchInitStuAccount(sNos);
+            return userService.batchResetUserPwd(sNos);
         } catch (Exception e) {
             e.printStackTrace();
             return BaseResult.fail(1, "操作失败");
         }
     }
+
 }

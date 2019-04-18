@@ -92,6 +92,7 @@ public class NoticeController {
         //每页显示5条数据
         dataTable.setLength(5);
         Map<String, Object> paraMap = new HashMap<>();
+        //加入搜索关键词
         paraMap.put("searchWord", dataTable.getSearch());
 
         PageHelper.startPage(dataTable.getPage_num(), dataTable.getPage_size());

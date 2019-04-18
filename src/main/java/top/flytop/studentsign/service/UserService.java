@@ -2,7 +2,6 @@ package top.flytop.studentsign.service;
 
 import org.springframework.web.multipart.MultipartFile;
 import top.flytop.studentsign.dto.BaseResult;
-import top.flytop.studentsign.pojo.SClass;
 import top.flytop.studentsign.pojo.Student;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,8 +13,6 @@ public interface UserService {
 
     List<Student> getAllStudent();
 
-    List<SClass> getAllSClass();
-
     BaseResult addStudent(Student stu);
 
     BaseResult updateInfo(Student student);
@@ -26,8 +23,7 @@ public interface UserService {
 
     BaseResult batchImportStu(InputStream in, MultipartFile uploadFile) throws Exception;
 
-    BaseResult initAllUsers() throws Exception;
+    BaseResult batchResetUserPwd(String[] username);
 
-    BaseResult batchInitStuAccount(String[] sNos) throws Exception;
-
+    List<Student> searchStudent(String keyword);
 }

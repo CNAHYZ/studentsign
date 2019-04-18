@@ -26,6 +26,12 @@
     <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
     <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/amethyst.min.css"> -->
     <!-- END Stylesheets -->
+    <style>
+        /*解决modal打开时页面抖动的问题*/
+        body {
+            padding-right: 0 !important;
+        }
+    </style>
 </head>
 <body>
 <!-- Page Container -->
@@ -434,7 +440,7 @@
                                     window.location.href = "studentList.html"
                                 },
                             })
-                        } else Swal(result.errMsg, '', "error")
+                        } else Swal('导入失败', result.errMsg, "error")
                     }
                 })
             },

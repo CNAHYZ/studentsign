@@ -4,6 +4,8 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import top.flytop.studentsign.pojo.User;
 
+import java.util.List;
+
 
 @Repository
 public interface UserMapper {
@@ -16,9 +18,7 @@ public interface UserMapper {
 
     Boolean changePwdByUsername(@Param("pwd") String pwd, @Param("username") String username);
 
-    Integer initAllUsers(@Param("pwd") String pwd, @Param("salt") String salt);
-
     Integer addUser(User user);
 
-    Integer batchInitUser(@Param("array") String[] username, @Param("salt") String salt, @Param("pwd") String pwd);
+    Integer resetUserPwd(List<User> list);
 }

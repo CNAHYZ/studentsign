@@ -346,11 +346,11 @@
                             <th class="d-none d-sm-table-cell" style="width: 14%;">学号</th>
                             <th class="d-none d-sm-table-cell" style="width: 11%;">姓名</th>
                             <th class="d-none d-sm-table-cell" style="width: 20%;">班级</th>
-                            <th class="d-none d-sm-table-cell" style="width: 8%;">性别</th>
+                            <th class="d-none d-sm-table-cell" style="width: 7%;">性别</th>
                             <th class="d-none d-sm-table-cell" style="width: 10%;">宿舍号</th>
                             <th class="d-none d-sm-table-cell" style="width: 11%;">出生日期</th>
-                            <th class="d-none d-sm-table-cell" style="width: 11%;">联系方式</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">操作</th>
+                            <th class="d-none d-sm-table-cell" style="width: 12%;">联系方式</th>
+                            <th class="d-none d-sm-table-cell" style="width: 11%;">操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -403,12 +403,12 @@
 <script>
     var removeUserUrl = "removeUser.do";
     var getStudentListUrl = "getStudentList.do";
-    var initStuAccountUrl = "initStuAccount.do";
+    var resetUserPwdUrl = "resetUserPwd.do";
     /**
      * datatable的配置选项
      */
     var options2 = {
-        dom: "<'row'<'col-sm-12 col-md-4'l><'col-sm-12 col-md-4'B><'col-sm-12 col-md-4'f>>" +
+        dom: "<'row'<'col-sm-12 col-md-5'l><'col-sm-12 col-md-3'B><'col-sm-12 col-md-4'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
         select: {
@@ -433,11 +433,11 @@
                 className: 'btn-danger'
             },
             {
-                text: '账户初始化',
+                text: '密码重置',
                 action: function (e, dt) {
                     var sNos = selected();
                     if (sNos.length === 0) {
-                        swal("请先选择要初始化的学生！", '', "info");
+                        swal("请先选择要重置密码的学生！", '', "info");
                         return
                     }
                     realInit(sNos);
@@ -459,7 +459,12 @@
                     'selectRow': true
                 }
             },
-            {data: "sNo"},
+            {
+                data: "sNo", render: function (data, type, full) {
+                    return '<a class="js-tooltip-enabled" data-toggle="tooltip" title="点击进入学生主页"' +
+                        ' href="personalSummary.html?id=' + data + '">' + data + '</a>'
+                }
+            },
             {data: "sName"},
             {
                 data: "sClass", defaultContent: "-",
@@ -491,15 +496,11 @@
                 render: function (data, type, row) {
                     return '<div class="btn-group">' +
                         '<button type="button" class="btn btn-sm btn-primary js-tooltip-enabled"' +
-                        ' data-toggle="tooltip" title="学生主页" onclick="personalSummary(' + row.sNo + ')">' +
-                        '<i class="fa fa-fw fa-info"></i>' +
-                        '</button>' +
-                        '<button type="button" class="btn btn-sm btn-primary js-tooltip-enabled"' +
                         ' data-toggle="tooltip" title="编辑" onclick="editStudent(' + row.sNo + ')">' +
-                        '<i class="fa fa-fw fa-pencil-alt"></i>' +
+                        '<i class="fa fa-fw fa-user-edit"></i>' +
                         '</button>' +
                         '<button type="button" class="btn btn-sm btn-primary js-tooltip-enabled"' +
-                        ' data-toggle="tooltip" title="账户初始化" onclick="initAccount(' + row.sNo + ')">' +
+                        ' data-toggle="tooltip" title="重置密码" onclick="resetPwd(' + row.sNo + ')">' +
                         '<i class="fa fa-fw fa-eraser"></i>' +
                         '</button>' +
                         '<button type="button" class="btn btn-sm btn-primary js-tooltip-enabled" ' +
@@ -534,14 +535,6 @@
     }
 
     /**
-     * 跳转至个人主页
-     * @param id
-     */
-    function personalSummary(id) {
-        window.location.href = "personalSummary.html?id=" + id;
-    }
-
-    /**
      * 删除单个学生
      * @param id
      */
@@ -555,7 +548,7 @@
      */
     function realDel(sNos) {
         swal({
-            title: "确认删除这 " + sNos.length + " 条用户吗?",
+            title: "确认删除这 " + sNos.length + " 个学生吗?",
             text: "同时会删除账号、请假和签到记录",
             type: "warning",
             showCancelButton: !0,
@@ -597,21 +590,21 @@
     }
 
     /**
-     * 初始化单个学生
+     * 重置单个学生密码
      * @param id
      */
-    function initAccount(id) {
+    function resetPwd(id) {
         sNos = [id];
         realInit(sNos);
     }
 
     /**
-     * 通用账户初始化
+     * 通用密码重置
      * @param sNos
      */
     function realInit(sNos) {
         swal({
-            title: '确认初始化这' + sNos.length + '条学生账户?',
+            title: '确认重置这' + sNos.length + '个学生的密码吗?',
             type: "warning",
             showCancelButton: !0,
             confirmButtonText: "确认",
@@ -629,7 +622,7 @@
             $.ajax(
                 {
                     type: "post",
-                    url: initStuAccountUrl,
+                    url: resetUserPwdUrl,
                     dataType: "json",
                     // 设置traditional 为true阻止深度序列化，序列化结果如：
                     // p: ["123", "456", "789"]  =>  p=123&p=456&p=456

@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import top.flytop.studentsign.dto.BaseResult;
+import top.flytop.studentsign.exception.BusinessException;
 import top.flytop.studentsign.mapper.StudentMapper;
 import top.flytop.studentsign.mapper.UserMapper;
-import top.flytop.studentsign.pojo.SClass;
 import top.flytop.studentsign.pojo.Student;
 import top.flytop.studentsign.pojo.User;
 import top.flytop.studentsign.service.UserService;
@@ -27,9 +27,7 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
     private static final Logger log = LoggerFactory.getLogger(UserService.class);
-    private static final String salt = "flytop";
     private static final String defaultPwd = "123456";
-    private static final String defaultEncryptPwd = ShiroMd5.md5Encrypt(defaultPwd, salt);
     private UserMapper userMapper;
     private StudentMapper studentMapper;
 
@@ -46,7 +44,7 @@ public class UserServiceImpl implements UserService {
     /**
      * @param sNo
      * @return top.flytop.studentsign.pojo.Student
-     * @Description TODO
+     * @Description TODO 获取学生基本信息
      * @date 2019/1/20 16:44
      */
     @Override
@@ -59,23 +57,12 @@ public class UserServiceImpl implements UserService {
     /**
      * @param
      * @return java.util.List<top.flytop.studentsign.pojo.Student>
-     * @Description TODO
+     * @Description TODO 获取所有学生
      * @date 2019/1/20 16:44
      */
     @Override
     public List<Student> getAllStudent() {
         return studentMapper.getAllStudent();
-    }
-
-    /**
-     * @param
-     * @return java.util.List<top.flytop.studentsign.pojo.SClass>
-     * @Description TODO
-     * @Date 2019/3/6 17:20
-     */
-    @Override
-    public List<SClass> getAllSClass() {
-        return studentMapper.getAllSClass();
     }
 
     /**
@@ -86,11 +73,33 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public BaseResult addStudent(Student stu) {
-        if (studentMapper.addStudent(stu))
-            // 数据库保存成功
-            return new BaseResult<>(true, "注册成功！");
-        else
-            return new BaseResult<>(true, "注册失败！");
+        try {
+            //添加学生
+            studentMapper.addStudent(stu);
+            //添加用户
+            userMapper.addUser(buildUser(stu.getsNo()));
+        } catch (Exception e) {
+            throw new RuntimeException();
+        }
+        // 数据库保存成功
+        return BaseResult.success("注册成功！");
+    }
+
+    /**
+     * @param username
+     * @return top.flytop.studentsign.pojo.User
+     * @Description TODO 根据传入的用户名，构建默认密码学生用户
+     * @Date 18/04/2019 14:19
+     */
+    private User buildUser(String username) {
+        /*添加用户*/
+        User user = new User();
+        user.setUsername(username);
+        user.setSalt(String.valueOf(System.currentTimeMillis()));
+        String pwdEncrypt = ShiroMd5.md5Encrypt(defaultPwd, user.getSalt());
+        user.setPwd(pwdEncrypt);
+        user.setType(0);
+        return user;
     }
 
     /*    *//**
@@ -114,22 +123,6 @@ public class UserServiceImpl implements UserService {
             return new BaseResult(false, 1, "未匹配到您的信息，请重试!");
         }
         return null;
-    }*/
-
-    /*    *//**
-     * @param username
-     * @param pwd
-     * @return top.flytop.studentsign.dto.BaseResult<java.lang.Integer>
-     * @Description TODO
-     * @date 2019/1/20 16:37
-     *//*
-    @Override
-    public BaseResult<Integer> loginByPwd(String username, String pwd) {
-        User user = userMapper.userLogin(username, pwd);
-        if (user != null)
-            return new BaseResult<>(true, user.getType());
-        else
-            return new BaseResult<>(false, 1, "用户名或密码错误，请重试！");
     }*/
 
     /**
@@ -165,7 +158,7 @@ public class UserServiceImpl implements UserService {
         } catch (Exception e) {
             throw new RuntimeException("删除失败");
         }
-        return BaseResult.success("删除成功! <br/>其中学生数：" + stuCount + ", 用户数：" + userCount);
+        return BaseResult.success("删除成功! <br/>其中学生数：" + stuCount + ", 账号数：" + userCount);
     }
 
 
@@ -214,8 +207,13 @@ public class UserServiceImpl implements UserService {
         String buildingNo = null;
         String roomNo = null;
         String phoneNum = null;
+        int rowNo = 0;
         for (List row : list) {
+            ++rowNo;
             String sNo = String.valueOf(row.get(0));
+            if (StringUtils.isBlank(sNo)) {
+                throw new BusinessException(1, "学号不能为空，错误行号：" + rowNo + "<Br>" + row);
+            }
             sName = String.valueOf(row.get(1));
             if (StringUtils.isNotBlank(String.valueOf(row.get(2))))
                 cNo = String.valueOf(row.get(2));
@@ -226,9 +224,16 @@ public class UserServiceImpl implements UserService {
             roomNo = String.valueOf(row.get(6));
             phoneNum = String.valueOf(row.get(7));
 
-            Student student = new Student(sNo, sName, cNo, gender, birthday, buildingNo, roomNo, phoneNum);
-            students.add(student);
-
+            Student student = new Student(sNo, sName, cNo, gender, birthday,
+                    buildingNo, roomNo, phoneNum);
+            try {
+                students.add(student);
+                //添加用户
+                userMapper.addUser(buildUser(student.getsNo()));
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new RuntimeException("导入失败");
+            }
             log.debug("导入的列表：{}", students);
         }
         int count = studentMapper.batchAddStudent(students);
@@ -238,29 +243,39 @@ public class UserServiceImpl implements UserService {
     /**
      * @param
      * @return top.flytop.studentsign.dto.BaseResult
-     * @Description TODO
+     * @Description TODO 批量学生密码重置
      * @Date 2019/2/19 21:20
      */
     @Override
-    public BaseResult initAllUsers() throws Exception {
+    public BaseResult batchResetUserPwd(String[] username) {
+        int count = 0;
 
-        Integer count = userMapper.initAllUsers(defaultEncryptPwd, salt);
-        return BaseResult.success("操作完成，共新增 " + count + " 名用户");
+        if (username.length > 1) {
+            /*批量处理*/
+            List<User> list = new ArrayList<>();
+            ;
+            for (String name : username) {
+                list.add(buildUser(name));
+            }
+            count = userMapper.resetUserPwd(list);
+        } else {
+            /*单个*/
+            count = userMapper.resetUserPwd(Arrays.asList(buildUser(username[0])));
+        }
+
+        return BaseResult.success("操作完成，共重置 " + count + " 名用户密码");
     }
 
     /**
-     * @param sNos
-     * @return top.flytop.studentsign.dto.BaseResult
-     * @Description TODO
-     * @Date 2019/2/19 22:11
+     * @param
+     * @return java.util.List<top.flytop.studentsign.pojo.Student>
+     * @Description TODO 搜索学生
+     * @Date 18/04/2019 21:00
      */
-    public BaseResult batchInitStuAccount(String[] sNos) {
-        try {
-            userMapper.batchInitUser(sNos, salt, defaultEncryptPwd);
-        } catch (Exception e) {
-            throw new RuntimeException("失败");
-        }
-        return BaseResult.success("操作成功");
+    @Override
+    public List<Student> searchStudent(String keyword) {
+        return studentMapper.searchStudent(keyword);
     }
+
 
 }

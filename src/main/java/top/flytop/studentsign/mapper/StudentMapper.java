@@ -1,6 +1,5 @@
 package top.flytop.studentsign.mapper;
 
-import top.flytop.studentsign.pojo.SClass;
 import top.flytop.studentsign.pojo.Student;
 
 import java.util.List;
@@ -17,8 +16,6 @@ public interface StudentMapper {
 
     List<Student> getAllStudent();
 
-    List<SClass> getAllSClass();
-
     int getTotalCount();
 
     Boolean updateStuInfo(Student student);
@@ -29,4 +26,5 @@ public interface StudentMapper {
 
     Integer deleteStudent(String[] sNos);
 
+    List<Student> searchStudent(String keyword);
 }

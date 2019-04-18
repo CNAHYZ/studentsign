@@ -24,12 +24,40 @@
     </select>
 
     <!--===========================修改=============================-->
-
     <!--修改密码-->
     <update id="changePwdByUsername">
         <if test="username != null and username != ''">
             update user set pwd = #{pwd} where username = #{username}
         </if>
+    </update>
+
+    <!--批量重置用户的密码-->
+    <!--update user
+            set pwd =
+                case username
+                    when #{username} then #{pwd}
+                    when #{username2} then #{pwd}
+                End,
+            salt =
+                case username
+                    when #{username} then #{salt}
+                    when #{username2} then #{salt}
+                End
+    -->
+    <update id="resetUserPwd">
+        update user
+        set
+        <foreach open="pwd=case username" close="END," collection="list" item="user">
+            when #{user.username} then #{user.pwd}
+        </foreach>
+        <foreach collection="list" item="user" open="salt= case username">
+            when #{user.username} then #{user.salt}
+        </foreach>
+        END
+        where username in
+        <foreach collection="list" separator="," item="user" open="(" close=")">
+            #{user.username}
+        </foreach>
     </update>
 
     <!--===========================插入=============================-->
@@ -40,7 +68,7 @@
             values (#{username}, #{pwd}, #{salt}, #{type})
         </if>
     </insert>
-    <!--批量初始化学生用户的账号，密码-->
+
     <!-- on duplicate key update当数据库中存在某个记录时，
     执行这条语句会更新(先删除再插入)它，而不存在这条记录时，会插入它-->
     <insert id="batchInitUser">
@@ -51,18 +79,7 @@
         </foreach>
         on duplicate key update pwd = #{pwd}
     </insert>
-
-    <!--初始化所有未初始化学生用户的账号，密码-->
-    <insert id="initAllUsers">
-        insert into user(username, pwd, salt)
-        select sno as username, #{pwd}, #{salt}
-        from student a
-        where not exists(
-                select username from user b where a.sno = b.username)
-    </insert>
-
     <!--===========================删除=============================-->
-
     <!--删除用户-->
     <delete id="deleteUser">
         delete

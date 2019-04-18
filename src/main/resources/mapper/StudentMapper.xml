@@ -37,10 +37,13 @@
                  left join class b on a.cno = b.cno
     </select>
 
-    <!--获取班级列表-->
-    <select id="getAllSClass" resultType="class">
-        select *
-        from class;
+    <!--根据学号或姓名搜索学生-->
+    <select id="searchStudent" resultMap="studentResultMap" parameterType="string">
+        select a.*, b.cname, b.grade
+        from student a
+                 left join class b on a.cno = b.cno
+        where a.sno like '%' #{keyword} '%'
+           or a.sname like '%' #{keyword} '%'
     </select>
 
     <!--获取学生总数-->
