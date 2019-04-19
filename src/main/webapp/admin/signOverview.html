@@ -429,7 +429,7 @@
                 var x = [];
                 var y = [];
                 result.forEach(function (item, index) {
-                    var date = new Date(item.signtime).toLocaleDateString();
+                    var date = new Date(item.signtime).toLocaleDateString().substring(0, 4);
                     x[index] = date;
                     y[index] = item.count;
                 });

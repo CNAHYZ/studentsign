@@ -18,6 +18,8 @@ public interface NoticeService {
 
     List<Notice> getNotice(Map paramMap);
 
+    List<Notice> getNoticeTitle();
+
     BaseResult removeNotice(Integer noticeId);
 
     BaseResult updateNotice(Notice notice);

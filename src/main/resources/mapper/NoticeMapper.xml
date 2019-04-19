@@ -39,6 +39,15 @@
         order by status desc,create_time desc
     </select>
 
+    <!--以状态获取通知标题，以状态、时间降序-->
+    <select id="getNoticeTitleByStatus" resultMap="noticeResultMap">
+        select notice_id, title, create_time, status
+        from notice
+        where status = 1
+           or status = 2
+        order by status desc, create_time desc
+    </select>
+
     <!--获取上一条通知-->
     <select id="getPrevNotice">
         select noticeId,title
