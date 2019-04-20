@@ -123,7 +123,7 @@ public class SignInServiceImpl implements SignInService {
     /**
      * @param faceImage
      * @return top.flytop.studentsign.dto.BaseResult
-     * @Description TODO 学生签到方法
+     * @Description TODO
      * @date 2019/1/20 16:36
      */
     @Override

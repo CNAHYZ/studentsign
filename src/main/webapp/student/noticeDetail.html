@@ -3,22 +3,23 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
     <title>学生宿舍签到系统 - yz</title>
+
     <meta name="robots" content="noindex, nofollow">
 
 
-    <!-- Icons -->
-    <link rel="shortcut icon" href="../assets/media/favicons/favicon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="../assets/media/favicons/favicon-192x192.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="../assets/media/favicons/apple-touch-icon-180x180.png">
+    <link rel="shortcut icon" href="/assets/media/favicons/favicon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/media/favicons/favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/media/favicons/apple-touch-icon-180x180.png">
     <!-- END Icons -->
 
     <!-- Stylesheets -->
     <!-- Fonts and OneUI framework -->
 
-    <link rel="stylesheet" id="css-main" href="../assets/css/oneui.min.css">
-
-    <link rel="stylesheet" href="../assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css">
+    <link rel="stylesheet" id="css-main" href="/assets/css/oneui.min.css">
+    <!-- Page JS Plugins CSS -->
+    <link rel="stylesheet" href="/assets/js/plugins/jquery-pagination_zh/lib/pagination.css">
     <!-- END Stylesheets -->
 </head>
 <body>
@@ -118,11 +119,11 @@
             <div class="content content-full">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <h1 class="flex-sm-fill h3 my-2">
-                        签到记录
+                        通知详情
                     </h1>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
-                            <li class="breadcrumb-item">签到记录</li>
+                            <li class="breadcrumb-item">通知详情</li>
                             <li class="breadcrumb-item" aria-current="page">
                                 <a class="link-fx" href="index.html">首页</a>
                             </li>
@@ -132,56 +133,32 @@
             </div>
         </div>
         <!-- END Hero -->
+
         <!-- Page Content -->
-        <div class="content">
-            <!-- Dynamic Table with Export Buttons -->
-            <div class="block">
-                <div class="block-content block-content-full">
-                    <div class="">
-                        <div class="px-lg-2"></div>
-                        <div class="px-lg-3"></div>
-                        <div class="col-lg-8 col-xl-6 row">
-                            <form class="input-daterange input-group col-lg-10" id="dateFilter">
-                                <label class="" style="margin: auto">指定日期筛选：</label>
-                                <input type="text" class="form-control" id="daterange1"
-                                       name="daterange1" placeholder="开始日期">
-                                <div class="input-group-prepend input-group-append">
-                                    <span class="input-group-text font-w600">
-                                        <i class="fa fa-fw fa-arrow-right"></i>
-                                    </span>
-                                </div>
-                                <input type="text" class="form-control" id="daterange2"
-                                       name="daterange2" placeholder="结束日期">
-                            </form>
-                            <div>
-                                <input type="reset" class="btn btn-block btn-info" onclick="formReset()">
-                            </div>
-                        </div>
+        <div class="content  content-narrow">
+            <div class="block block-content">
+                <div id="notice" class="px-5">
+                    <h2 id="title" class="text-center text-black mt-4 mb-2">
+                    </h2>
+                    <div id="time" class="font-size-sm text-center mb-3">
+
                     </div>
-                    <div class="py-2"></div>
-                    <table class="table table-bordered table-hover table-striped table-vcenter js-dataTable-buttons text-center"
-                           id="datatable">
-                        <thead>
-                        <tr>
-                            <th class="text-center" style="width: 15%;">ID</th>
-                            <th class="d-none d-sm-table-cell" style="width: 20%;">学号</th>
-                            <!--<th class="d-none d-sm-table-cell" style="width: 15%;">姓名</th>-->
-                            <!--<th class="d-none d-sm-table-cell" style="width: 15%;">签到状态</th>-->
-                            <th class="d-none d-sm-table-cell" style="width: 25%;">签到时间</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
+                    <div id="content" class="font-size-h5 mb-6" style="line-height: 2">
+
+                    </div>
+                    <div>
+                        <nav aria-label=" Navigation" class="float-right">
+                            <div id="pagination" class="pagination my-4">
+
+                            </div>
+                        </nav>
+                    </div>
                 </div>
             </div>
-            <!-- END Dynamic Table with Export Buttons -->
         </div>
         <!-- END Page Content -->
-
     </main>
     <!-- END Main Container -->
-
     <!-- Footer -->
     <footer id="page-footer" class="bg-body-light">
         <div class="content py-3">
@@ -198,103 +175,40 @@
     <!-- END Footer -->
 </div>
 <!-- END Page Container -->
+<script src="/assets/js/oneui.core.min.js"></script>
 
-<script src="../assets/js/oneui.core.min.js"></script>
-
-<!--
-    OneUI JS
--->
-<script src="../assets/js/oneui.app.min.js"></script>
-
-<!-- Page JS Plugins -->
-<script src="../assets/js/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="../assets/js/plugins/datatables/dataTables.bootstrap4.min.js"></script>
-<script src="../assets/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
-<script src="../assets/js/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js"></script>
-
-<script src="/assets/js/common/dataTable.js"></script>
+<script src="/assets/js/oneui.app.min.js"></script>
+<script src="/assets/js/plugins/jquery-pagination_zh/lib/jquery.pagination.js"></script>
 <script>
-    jQuery(function () {
-        One.helpers(['datepicker']);
-    });
-</script>
 
-<script>
-    var options2 = {
-        lengthChange: false,
-        "searching": false,
-        ajax: {
+    var getNoticeUrl = "getNoticeDetail.do";
+    /**
+     *页面初始化
+     */
+    $(function showEditNoticePage(noticeId) {
+        var thisURL = document.URL;
+        var parameters = window.location.search;
+        noticeId = decodeURI(parameters.substr(1).split('=')[1]);
+        console.log(noticeId);
+        $.ajax({
             type: "post",
-            url: "signList.do",
-            data: {},
-            /* beforeSend: function () {
-                 console.log(sendData)
-             }*/
-        },
-        //每页显示n条数据
-        pageLength: 10,
-        columns: [
-            {data: "id"},
-            {data: "sNo"},
-            /*{
-                 data: "sName",
-                 defaultContent: "-"
-             },
-             {
-                 data: "signStatus",
-                 defaultContent: "-"
-             },*/
-            {
-                data: "signTime",
-                defaultContent: "-"
+            url: getNoticeUrl,
+            data: {"noticeId": noticeId},
+            dataType: "json",
+            success: function (data) {
+                var myData = data.data[0];
+                if (data.success) {
+                    $("#title").text(myData.title);
+                    $("#time").text("发布时间：" + myData.createTime);
+                    $("#content").append(myData.content);
+                } else swal(myData.data, "", "fail");
+            }, error: function (data) {
+                swal("系统出错，请稍后再试", "", "error");
             }
-        ],
-        "columnDefs": [
-            {}]
-    };
-    /**
-     * 初始化datatable
-     */
-    var t = $('#datatable').DataTable(Object.assign(options2, serverSideOptions));
-
-
-    /**
-     * 初始化datepicker
-     */
-    $('.input-daterange').datepicker({
-        endDate: '0d',//最大只能选择到今天
-        language: "zh-CN",
-        weekStart: "1",
-        autoclose: "true",
-        todayHighlight: "true",
-        format: "yyyy-mm-dd",
-        todayBtn: "linked",
-        maxViewMode: "years"
+        })
     })
-    /**
-     * 日期改变后的事件
-     */
-        .on('changeDate', function (e) {
-            var startTime = $('#daterange1').val();
-            var endTime = $('#daterange2').val();
-            console.log(startTime);
-            sendData = {
-                "startTime": startTime,
-                "endTime": endTime
-            };
-            //修改ajax传递的参数
-            t.settings()[0].ajax.data = sendData;
-            t.ajax.reload();
-        });
 
-    /**
-     * 清空筛选条件
-     */
-    function formReset() {
-        document.getElementById("dateFilter").reset();
-        t.settings()[0].ajax.data = {};
-        t.ajax.reload();
-    }
 </script>
+
 </body>
 </html>

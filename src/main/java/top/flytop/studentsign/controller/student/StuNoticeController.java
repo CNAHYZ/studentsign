@@ -42,8 +42,11 @@ public class StuNoticeController {
     @RequestMapping(value = "getNotice", method = RequestMethod.POST)
     @ResponseBody
     public BaseResult getNotice(Integer pageNo, Integer pageSize) {
+        Map<String, Object> paraMap = new HashMap<>();
+        paraMap.put("status1", 1);
+        paraMap.put("status2", 2);
         PageHelper.startPage(pageNo, pageSize);
-        List<Notice> list = noticeService.getNoticeTitle();
+        List<Notice> list = noticeService.getNotice(paraMap);
         PageInfo pageInfo = new PageInfo<>(list);
         return new BaseResult<>(true, pageInfo);
     }

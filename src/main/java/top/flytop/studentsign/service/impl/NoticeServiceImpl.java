@@ -57,17 +57,6 @@ public class NoticeServiceImpl implements NoticeService {
     }
 
     /**
-     * @param
-     * @return java.util.List<top.flytop.studentsign.pojo.Notice>
-     * @Description TODO 学生端通知列表获取
-     * @Date 19/04/2019 11:05
-     */
-    @Override
-    public List<Notice> getNoticeTitle() {
-        return noticeMapper.getNoticeTitleByStatus();
-    }
-
-    /**
      * @param noticeId
      * @return top.flytop.studentsign.dto.BaseResult
      * @Description TODO

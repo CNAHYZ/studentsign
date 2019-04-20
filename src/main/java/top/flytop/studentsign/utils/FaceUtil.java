@@ -164,7 +164,6 @@ public class FaceUtil {
      * @date 2019/1/11 15:56
      */
     public BaseResult<Map> faceSearch(String image, String uid) {
-        System.out.println(uid);
         String imageType = "BASE64";
         Map<String, Object> param = new HashMap<String, Object>();
         // 传入可选参数调用接口

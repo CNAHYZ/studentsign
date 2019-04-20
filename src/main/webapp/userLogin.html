@@ -37,7 +37,7 @@
                                 <div class="block-header">
                                     <h3 class="block-title">登 录</h3>
                                     <div class="block-options">
-                                        <a class="btn-block-option font-size-sm" href="javascript:forgetPwd()">忘记密码?</a>
+                                        <a class="btn-block-option font-size-sm" href="op_auth_reminder.html">忘记密码?</a>
                                     </div>
                                 </div>
                                 <div class="block-content">
@@ -140,7 +140,7 @@
 
 <!-- Page JS Plugins -->
 <script src="assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
-<script src="assets/js/plugins/sweetalert2/sweetalert2.min.js"></script>
+<script src="assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js"></script>
 <!-- Page JS Code -->
 <script>
     /**
@@ -162,16 +162,20 @@
                 if (result.success) {
                     window.location.href = result.data;
                 } else {
-                    Swal.mixin({
-                        toast: true, position: 'top', timer: 5000
-                    }).fire({type: 'error', title: result.errMsg});
+                    One.helpers('notify', {
+                        type: 'danger',
+                        icon: 'fa fa-times mr-1',
+                        message: "<h3 class='d-inline-block mb-0'>" + result.errMsg + "</h3>"
+                    });
                     changeCode();
                 }
             },
             error: function (data) {
-                Swal.mixin({
-                    toast: true, position: 'top', timer: 5000
-                }).fire({type: 'error', title: "系统错误，请稍后重试!"});
+                One.helpers('notify', {
+                    type: 'danger',
+                    icon: 'fa fa-times mr-1',
+                    message: "<h3 class='d-inline-block mb-0'>系统错误，请稍后重试!</h3>"
+                });
                 changeCode();
             }
         });
@@ -184,15 +188,6 @@
         var ts = new Date();
         console.log(ts);
         $('#vCode').attr('src', 'getVCode.do?' + ts);
-    }
-
-    function forgetPwd() {
-        Swal({
-            title: "忘记密码？",
-            text: "请本人携带学生证至xx处重置密码",
-            type: "info",
-            confirmButtonText: '我知道了',
-        })
     }
 
     /**

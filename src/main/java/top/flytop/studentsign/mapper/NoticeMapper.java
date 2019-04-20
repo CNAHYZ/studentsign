@@ -29,6 +29,4 @@ public interface NoticeMapper {
 
 
     List<Notice> getNoticeByStatus(@Param("status1") Integer status1, @Param("status2") Integer status2);
-
-    List<Notice> getNoticeTitleByStatus();
 }

@@ -15,13 +15,15 @@
     <!-- END Icons -->
 
     <!-- Stylesheets -->
-    <!-- Fonts and OneUI framework -->
-
-    <link rel="stylesheet" id="css-main" href="/assets/css/oneui.min.css">
     <!-- Page JS Plugins CSS -->
     <link rel="stylesheet" href="/assets/js/plugins/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.css">
     <link rel="stylesheet" href="/assets/js/plugins/sweetalert2/sweetalert2.min.css">
+    <link rel="stylesheet" href="../assets/js/plugins/webUpload/webuploaderstyle.css"/>
+    <link rel="stylesheet" href="../assets/js/plugins/webUpload/webuploader.css"/>
 
+    <!-- Fonts and OneUI framework -->
+
+    <link rel="stylesheet" id="css-main" href="/assets/css/oneui.min.css">
     <!-- END Stylesheets -->
 </head>
 <body>
@@ -121,11 +123,11 @@
             <div class="content content-full">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <h1 class="flex-sm-fill h3 my-2">
-                        修改密码
+                        添加图像
                     </h1>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
-                            <li class="breadcrumb-item">修改密码</li>
+                            <li class="breadcrumb-item">添加图像</li>
                             <li class="breadcrumb-item" aria-current="page">
                                 <a class="link-fx" href="index.html">首页</a>
                             </li>
@@ -140,88 +142,33 @@
         <div class="content">
             <div class="row block block-content block-content-full justify-content-center">
                 <div class="col-lg-8 col-md-12 mb-lg-5 my-sm-0 mt-lg-3">
-                    <!-- Progress Wizard 2 -->
-                    <div class="js-wizard-simple block block ">
-                        <!-- Wizard Progress Bar -->
-                        <div class="progress rounded-0" data-wizard="progress" style="height: 8px;">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
-                                 style="width: 50%;" aria-valuenow="30" aria-valuemin="0"
-                                 aria-valuemax="100"></div>
+                    <div class="col-lg-12">
+                        <div id="wrapper">
+                            <div id="container">
+                                <!--头部，相册选择和格式选择-->
+                                <div id="uploader">
+                                    <div class="queueList">
+                                        <div id="dndArea" class="placeholder">
+                                            <div id="filePicker"></div>
+                                        </div>
+                                    </div>
+                                    <div class="statusBar" style="display:none;">
+                                        <div class="progress">
+                                            <span class="text">0%</span>
+                                            <span class="percentage"></span>
+                                        </div>
+                                        <div class="info"></div>
+                                        <div class="btns">
+                                            <div id="filePicker2"></div>
+                                            <div class="uploadBtn">开始上传</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <!-- END Wizard Progress Bar -->
-
-                        <!-- Step Tabs -->
-                        <ul class="nav nav-tabs nav-tabs-alt nav-justified" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link font-size-lg" href="#wizard-progress2-step1"
-                                   data-toggle="tab">1. 密码修改</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link font-size-lg" href="#wizard-progress2-step2"
-                                   data-toggle="tab">2. 身份验证</a>
-                            </li>
-                        </ul>
-                        <!-- END Step Tabs -->
-
-                        <!-- Form -->
-                        <form method="POST" id="form_pwd">
-                            <!-- Steps Content -->
-                            <div class="block-content block-content-full tab-content py-5"
-                                 style="min-height: 214px;">
-                                <!-- Step 1 -->
-                                <div class="tab-pane" id="wizard-progress2-step1" role="tabpanel">
-                                    <div class="form-group mb-5">
-                                        <label for="newPwd_1">请输入新密码</label>
-                                        <input class="form-control form-control-alt" type="password"
-                                               id="newPwd_1" name="newPwd_1">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="newPwd_2">请再次输入新密码</label>
-                                        <input class="form-control form-control-alt" type="password"
-                                               id="newPwd_2" name="newPwd_2">
-                                    </div>
-                                </div>
-                                <!-- END Step 1 -->
-
-                                <!-- Step 2 -->
-                                <div class="tab-pane active show" id="wizard-progress2-step2" role="tabpanel">
-                                    <div class="form-group">
-                                        <label for="oldPwd">请输入旧密码</label>
-                                        <input class="form-control form-control-alt" type="password"
-                                               id="oldPwd" name="oldPwd">
-                                    </div>
-                                </div>
-                                <!-- END Step 2 -->
-                            </div>
-                            <!-- END Steps Content -->
-
-                            <!-- Steps Navigation -->
-                            <div class="block-content block-content-sm block-content-full bg-body-light rounded-bottom">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <button type="button" class="btn btn-secondary" data-wizard="prev">
-                                            <i class="fa fa-angle-left mr-1"></i>上一步
-                                        </button>
-                                    </div>
-                                    <div class="col-6 text-right">
-                                        <button type="button" class="btn btn-secondary disabled d-none"
-                                                data-wizard="next">
-                                            下一步 <i class="fa fa-angle-right ml-1"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-primary" id="btn_submit"
-                                                data-wizard="finish">
-                                            <i class="fa fa-check mr-1"></i> 提交
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- END Steps Navigation -->
-                        </form>
-                        <!-- END Form -->
                     </div>
-                    <!-- END Progress Wizard 2 -->
+                    <!-- END Page Content -->
                 </div>
-                <!-- END Page Content -->
             </div>
         </div>
     </main>
@@ -258,6 +205,9 @@
 
 <script src="/assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
 <script src="/assets/js/plugins/jquery-validation/localization/messages_zh.js"></script>
+
+<script src="../assets/js/plugins/webUpload/webuploader.js"></script>
+<script src="../assets/js/plugins/webUpload/upload.js"></script>
 <script>
     /**
      * 初始化bootstrap.wizard控件
@@ -274,7 +224,7 @@
                 t.length && t.css({width: r + 1 + "%"})
             },
             onNext: function () {
-                return $("#form_pwd").valid();
+                return fileValid();
             },
             onTabClick: function (a, e) {
                 return jQuery("a", e).blur(), !1
@@ -282,6 +232,55 @@
         };
         var wizard = $(".js-wizard-simple").bootstrapWizard(options);
     });
+
+
+    /**
+     * 文件非空和类型的验证
+     */
+    function fileValid() {
+        allowtype = ["jpg", "gif", "png", "jpeg"];
+        /*判断是否上传文件*/
+        var fileInput = $('input[id^="faceImage"]').get(0).files[0];
+        console.info(fileInput);
+        if (!fileInput) {
+            swal("未选择文件", "请上传图片文件", "error");
+            return false
+        }
+        /*判断文件类型*/
+        filepath = fileInput.name;
+        console.info(filepath);
+        //截取文件后缀名
+        var fileType = filepath.substring(filepath.lastIndexOf(".") + 1, filepath.length).toLowerCase();
+        //$.inArray()用于在数组中查找指定值，并返回它的索引值（如果没有找到，则返回-1）
+        if ($.inArray(fileType, allowtype) === -1) {
+            swal("文件类型不正确", "请上传图片文件", "error");
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 文件框改变事件（选择文件）
+     */
+    function changFile(e) {
+        for (var i = 0; i < e.target.files.length; i++) {
+            var file = e.target.files.item(i);
+            if (!fileValid()) {
+                $('#confirmAdd').attr('disabled', true);
+                $(".img_preview").attr("src", '');
+                return;
+            }
+        }
+        $('#confirmAdd').removeAttr('disabled');
+        //实例化FileReader API
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function (e) {
+            $('#gallery').append(' <img class="img_preview" src="' + e.target.result + '" alt="" width="200px">')
+        }
+    }
+
+
     /**
      * 提交修改
      */
@@ -304,7 +303,6 @@
                         type: "success",
                         confirmButtonText: '确定',
                         onAfterClose: function () {
-                            window.location.href = "logOut.do";
                             //清空form表单
                             document.getElementById("form_pwd").reset()
                         }
@@ -317,40 +315,6 @@
             }
         })
     });
-
-
-    /**
-     * 表单合法性验证
-     */
-    $("#form_pwd").validate({
-        errorClass: "invalid-feedback animated fadeIn",
-        errorElement: "div",
-        errorPlacement: function (e, n) {
-            jQuery(n).addClass("is-invalid");
-            jQuery(n).parents(".form-group").append(e)
-        },
-        highlight: function (e) {
-            jQuery(e).parents(".form-group").find(".is-invalid").removeClass("is-invalid").addClass("is-invalid")
-        },
-        success: function (e) {
-            jQuery(e).parents(".form-group").find(".is-invalid").removeClass("is-invalid");
-            jQuery(e).remove()
-        },
-        rules: {
-            "newPwd_1": {required: !0, minlength: 6},
-            "newPwd_2": {required: !0, minlength: 6, pwdCheck: "#newPwd_1"},
-            "oldPwd": {required: !0},
-        },
-        messages: {
-            "newPwd_1": {required: "新密码不能为空",},
-            "newPwd_2": {required: "新密码不能为空"},
-            "oldPwd": {required: "旧密码不能为空",},
-        }
-    });
-    jQuery.validator.addMethod("pwdCheck", function (value, element, param) {
-        //value为当前标签的值 param为传入此方法的参数
-        return $(param).val() === value
-    }, "两次密码输入不一致，请检查");
 
 </script>
 </body>
