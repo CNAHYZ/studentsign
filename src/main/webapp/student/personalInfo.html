@@ -25,8 +25,8 @@
     <!-- END Stylesheets -->
     <style>
         img {
-            width: auto;
-            height: auto;
+            width: 100%;
+            height: 100%;
             max-width: 100%;
             max-height: 100%;
         }
@@ -430,6 +430,15 @@
         //显示modal框
         $('#addImgModal').modal("show");
     }
+
+    /**
+     * 模态框关闭事件
+     */
+    $('#addImgModal').on('hide.bs.modal', function () {
+        mySwiper.destroy(true, true);
+        //重新获取slick图片
+        faceImgHandler();
+    });
 
 </script>
 </body>

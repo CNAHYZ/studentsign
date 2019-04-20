@@ -549,6 +549,8 @@
                     uploader.removeFile(uploader.getFiles()[i]);
                 }
                 uploader.reset();
+                /*启用开始上传按钮*/
+                $('.uploadBtn').removeClass('disabled');
             });
 
             $upload.addClass('state-' + state);

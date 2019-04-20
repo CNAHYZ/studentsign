@@ -32,33 +32,44 @@ public class LeaveServiceImpl implements LeaveService {
     /**
      * @param dayNum
      * @return top.flytop.studentsign.dto.BaseResult
-     * @Description TODO
+     * @Description TODO 请假列表/天数筛选
      * @date 2019/1/27 19:50
      */
     @Override
-    public BaseResult getLeave(String dayNum) {
+    public List<Leave> getLeave(String dayNum) {
         List list = leaveMapper.getLeave(dayNum);
-        System.out.println(list);
-        return new BaseResult<>(true, list);
+        return list;
     }
 
     /**
      * @param status
      * @return top.flytop.studentsign.dto.BaseResult
-     * @Description TODO
+     * @Description TODO 根据状态筛选
      * @date 2019/1/27 19:50
      */
     @Override
-    public BaseResult getLeaveByStatus(String status) {
+    public List<Leave> getLeaveByStatus(String status) {
         List list = leaveMapper.getLeaveByStatus(status);
-        System.out.println(list);
-        return new BaseResult<>(true, list);
+        return list;
+    }
+
+    /**
+     * @param startTime
+     * @param endTime
+     * @return java.util.List<top.flytop.studentsign.pojo.Leave>
+     * @Description TODO 根据自定义时间筛选签到记录
+     * @Date 20/04/2019 21:08
+     */
+    @Override
+    public List<Leave> getLeaveByTime(String startTime, String endTime) {
+        List<Leave> list = leaveMapper.getLeaveByTime(startTime, endTime);
+        return list;
     }
 
     /**
      * @param id
      * @return top.flytop.studentsign.dto.BaseResult
-     * @Description TODO
+     * @Description TODO 删除请假记录
      * @date 2019/1/27 20:37
      */
     @Override
@@ -72,7 +83,7 @@ public class LeaveServiceImpl implements LeaveService {
     /**
      * @param id
      * @return top.flytop.studentsign.dto.BaseResult
-     * @Description TODO
+     * @Description TODO 请假详情
      * @date 2019/1/27 20:37
      */
     @Override
@@ -103,7 +114,7 @@ public class LeaveServiceImpl implements LeaveService {
     /**
      * @param request
      * @return top.flytop.studentsign.dto.BaseResult
-     * @Description TODO
+     * @Description TODO 学生请假
      * @Date 2019/2/11 16:03
      */
     @Override
@@ -140,7 +151,7 @@ public class LeaveServiceImpl implements LeaveService {
      * @param sNo
      * @param auditStatus
      * @return java.util.List<top.flytop.studentsign.pojo.Leave>
-     * @Description TODO
+     * @Description TODO 获取某生的请假记录
      * @Date 2019/2/13 18:59
      */
     @Override
@@ -163,6 +174,17 @@ public class LeaveServiceImpl implements LeaveService {
         if (delResult)
             return BaseResult.success("删除成功！");
         else return BaseResult.fail(1, "删除失败，请重试！");
+    }
+
+    /**
+     * @param keyword
+     * @return java.util.List<top.flytop.studentsign.pojo.Leave>
+     * @Description TODO 关键词搜索
+     * @Date 20/04/2019 21:05
+     */
+    @Override
+    public List<Leave> getLeaveListByKeyword(String keyword) {
+        return leaveMapper.getLeaveListByKeyword(keyword);
     }
 
 }

@@ -183,10 +183,13 @@ public class FaceUtil {
             return isNormal(res);
         }
         JSONObject userList0 = res.getJSONObject("result").getJSONArray("user_list").getJSONObject(0);
+        String faceToken = res.getJSONObject("result").getString("face_token");
         // 取出返回的uid和score
         String sNo = userList0.getString("user_id");
-        param.put("sNo", sNo);
         Double score = userList0.getDouble("score");
+
+        param.put("faceToken", faceToken);
+        param.put("sNo", sNo);
         param.put("score", score);
         return new BaseResult<Map>(true, param);
     }

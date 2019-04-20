@@ -20,13 +20,13 @@
         from sleave a left join
         student b
         on a.sno = b.sno
-        <if test="_parameter != null">
+        <if test="_parameter != null and _parameter != ''">
             where audit_status = #{auditStatus}
         </if>
         order by application_time desc
     </select>
 
-    <!--查询所有用户今天、昨天、近7天、近30天及所有时间的请假记录-->
+    <!--查询所有用户今天、近7天、近30天及所有时间的请假记录-->
     <select id="getLeave" resultMap="leaveResultMap">
         select a.*,b.sname
         from sleave a left join
@@ -34,6 +34,30 @@
         on a.sno = b.sno
         <if test="_parameter != null and _parameter != ''">
             where to_days(now()) - to_days(application_time) &lt;= #{dayNum}
+        </if>
+        order by application_time desc
+    </select>
+
+    <!--关键词搜索请假记录-->
+    <select id="getLeaveListByKeyword" resultMap="leaveResultMap">
+        <bind name="pattern" value="'%'+keyword+'%'"></bind>
+        select a.*,b.sname
+        from sleave a left join
+        student b
+        on a.sno = b.sno
+        where b.sno like #{pattern} or b.sname like #{pattern}
+        order by application_time desc
+    </select>
+
+    <!--查询所有用户指定时间段内的请假记录-->
+    <select id="getLeaveByTime" resultMap="leaveResultMap">
+        select a.*,b.sname
+        from sleave a left join
+        student b
+        on a.sno = b.sno
+        # 解决日期between...and...不包含右边界的问题
+        <if test="_parameter != null">
+            where application_time between #{startTime} and DATE_ADD(#{endTime},INTERVAL 1 DAY)
         </if>
         order by application_time desc
     </select>

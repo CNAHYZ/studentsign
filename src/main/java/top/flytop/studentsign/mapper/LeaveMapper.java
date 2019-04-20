@@ -21,6 +21,8 @@ public interface LeaveMapper {
 
     List<Leave> getLeaveByStatus(String status);
 
+    List<Leave> getLeaveByTime(@Param("startTime") String startTime, @Param("endTime") String endTime);
+
     List<Leave> getLeave(String dayNum);
 
     Leave getLeaveDetailById(Integer id);
@@ -28,4 +30,6 @@ public interface LeaveMapper {
     Boolean updateAuditStatus(Leave leave);
 
     List<Leave> getLeaveBySNo(@Param("sNo") String sNo, @Param("auditStatus") Integer auditStatus);
+
+    List<Leave> getLeaveListByKeyword(@Param("keyword") String keyword);
 }

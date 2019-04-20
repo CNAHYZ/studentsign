@@ -377,9 +377,9 @@
                         <div class="px-lg-3"></div>
                         <div class="input-group col-lg-3 col-xl-3">
                             <input type="text" class="form-control" id="ipt_search"
-                                   name="keyword" placeholder="学号、姓名">
+                                   name="keyword" placeholder="学号、姓名" autocomplete="off">
                             <div class="input-group-prepend">
-                                <button type="button" class="btn btn-primary" id="btn_search">
+                                <button type="submit" class="btn btn-primary" id="btn_search">
                                     <i class="fa fa-search mr-1"></i> 搜索
                                 </button>
                             </div>
@@ -485,17 +485,6 @@
                 data: "signTime",
                 defaultContent: "-"
             },
-            /*{
-                "data": null,
-                render: function (data, type, row) {
-                    return '<div class="btn-group">' +
-                        '<button type="button" class="btn btn-sm btn-primary js-tooltip-enabled" ' +
-                        'data-toggle="tooltip" title="删除" onclick="delStudent(' + row.sNo + ')">' +
-                        '<i class="fa fa-fw fa-times"></i>' +
-                        '</button>' +
-                        '</div>'
-                }
-            }*/
         ],
         "columnDefs": [
             {/*//每列定义

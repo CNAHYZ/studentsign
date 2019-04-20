@@ -15,9 +15,11 @@ import java.util.List;
  */
 
 public interface LeaveService {
-    BaseResult getLeave(String dayNum);
+    List<Leave> getLeave(String dayNum);
 
-    BaseResult getLeaveByStatus(String status);
+    List<Leave> getLeaveByStatus(String status);
+
+    List<Leave> getLeaveByTime(String startTime, String endTime);
 
     BaseResult removeLeave(Integer id);
 
@@ -30,4 +32,6 @@ public interface LeaveService {
     List<Leave> getLeaveBySNo(String sNo, Integer auditStatus);
 
     BaseResult removeLeaveForS(Integer id);
+
+    List<Leave> getLeaveListByKeyword(String keyword);
 }

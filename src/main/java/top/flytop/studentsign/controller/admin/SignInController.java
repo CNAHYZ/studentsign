@@ -43,12 +43,8 @@ public class SignInController {
         dataTable.setLength(10);
         PageHelper.startPage(dataTable.getPage_num(), dataTable.getPage_size());
         List<SignIn> result = signInService.getSignRecord(dayNum);
-        PageInfo<SignIn> pageInfo = new PageInfo<>(result);
-        //封装数据给DataTables
-        dataTable.setData(pageInfo.getList());
-        dataTable.setRecordsTotal((int) pageInfo.getTotal());
-        dataTable.setRecordsFiltered(dataTable.getRecordsTotal());
-        return dataTable;
+
+        return signInDataTable(dataTable, result);
     }
 
     /**
@@ -66,12 +62,8 @@ public class SignInController {
         dataTable.setLength(10);
         PageHelper.startPage(dataTable.getPage_num(), dataTable.getPage_size());
         List<SignIn> result = signInService.getSignRecordFilter(startTime, endTime);
-        PageInfo<SignIn> pageInfo = new PageInfo<>(result);
-        //封装数据给DataTables
-        dataTable.setData(pageInfo.getList());
-        dataTable.setRecordsTotal((int) pageInfo.getTotal());
-        dataTable.setRecordsFiltered(dataTable.getRecordsTotal());
-        return dataTable;
+
+        return signInDataTable(dataTable, result);
     }
 
     /**
@@ -89,15 +81,17 @@ public class SignInController {
         dataTable.setLength(10);
         PageHelper.startPage(dataTable.getPage_num(), dataTable.getPage_size());
         List<SignIn> result = signInService.getSignRecordByKeyword(keyword);
-        PageInfo<SignIn> pageInfo = new PageInfo<>(result);
-        //封装数据给DataTables
-        dataTable.setData(pageInfo.getList());
-        dataTable.setRecordsTotal((int) pageInfo.getTotal());
-        dataTable.setRecordsFiltered(dataTable.getRecordsTotal());
-        return dataTable;
+
+        return signInDataTable(dataTable, result);
     }
 
-
+    /**
+     * @param sNo
+     * @param request
+     * @return top.flytop.studentsign.dto.DataTablePageUtil
+     * @Description TODO 获取某个学生的所有签到记录
+     * @Date 20/04/2019 18:10
+     */
     @RequestMapping(value = "getSignBySNo", method = RequestMethod.POST)
     @ResponseBody
     public DataTablePageUtil getSignBySNo(String sNo, HttpServletRequest request) {
@@ -106,19 +100,36 @@ public class SignInController {
         dataTable.setLength(10);
         PageHelper.startPage(dataTable.getPage_num(), dataTable.getPage_size());
         List<SignIn> result = signInService.getPersonalSignRecord(sNo, null, null);
+
+        return signInDataTable(dataTable, result);
+    }
+
+    /**
+     * @param dayNum 获取签到数目
+     * @return top.flytop.studentsign.dto.BaseResult
+     * @Description TODO
+     * @Date 20/04/2019 18:07
+     */
+    @RequestMapping("getSignCount.do")
+    @ResponseBody
+    public BaseResult getSignCount(int dayNum) {
+        return BaseResult.success(signInService.getSignCount(dayNum));
+    }
+
+    /**
+     * @param dataTable
+     * @param result
+     * @return top.flytop.studentsign.dto.DataTablePageUtil
+     * @Description TODO dataTable通用封装
+     * @Date 20/04/2019 18:09
+     */
+    private DataTablePageUtil signInDataTable(DataTablePageUtil dataTable, List<SignIn> result) {
         PageInfo<SignIn> pageInfo = new PageInfo<>(result);
         //封装数据给DataTables
         dataTable.setData(pageInfo.getList());
         dataTable.setRecordsTotal((int) pageInfo.getTotal());
         dataTable.setRecordsFiltered(dataTable.getRecordsTotal());
         return dataTable;
-    }
-
-
-    @RequestMapping("getSignCount.do")
-    @ResponseBody
-    public BaseResult getSignCount(int dayNum) {
-        return BaseResult.success(signInService.getSignCount(dayNum));
     }
 
 }

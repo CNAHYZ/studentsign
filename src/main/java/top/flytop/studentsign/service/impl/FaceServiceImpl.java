@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -82,7 +83,8 @@ public class FaceServiceImpl implements FaceService {
 
         int currentFaceCount = 0;
         BaseResult checkResult = null;
-        String userId = String.valueOf(request.getSession().getAttribute("currentUser"));
+        BaseResult searchResult = null;
+        String faceToken = null;
         /*判断当前人脸数是否达到上限*/
         if (getUserFaceList(sNo).isSuccess()) {
             /*等待返回信息*/
@@ -108,29 +110,38 @@ public class FaceServiceImpl implements FaceService {
             /*如果是第一张人脸图片，则进行人脸检测*/
             checkResult = faceChecker(faceToBase64);
             System.out.println("=====checkResult:" + checkResult);
-
+            /*人脸检测成功*/
+            if (checkResult.isSuccess()) {
+                //返回faceToken
+                faceToken = String.valueOf(checkResult.getData());
+            } else {
+                return checkResult;
+            }
         } else {
             /*如果不是第一张人脸图片，则进行人脸对比，检测是否是同一人*/
-            checkResult = faceUtil.faceSearch(faceToBase64, userId);
-            System.out.println("=====checkResult:" + checkResult);
+            searchResult = faceUtil.faceSearch(faceToBase64, sNo);
+            System.out.println("=====searchResult:" + searchResult);
+            /*人脸检测成功*/
+            if (searchResult.isSuccess()) {
+                faceToken = String.valueOf(((HashMap) searchResult.getData()).get("faceToken"));
+                double score = Double.valueOf(String.valueOf(((HashMap) searchResult.getData()).get("score")));
+                if (score < 75)
+                    return BaseResult.fail(1, "该图片与之前上传的图片可能不是同一人，请重新上传！");
+            } else
+                return BaseResult.fail(1, "上传失败，图片中未检测到信息，或人脸不完整、不清晰，请重新上传！");
         }
 
-        //人脸检测成功
-        if (checkResult.isSuccess()) {
-            //返回faceToken
-            String faceToken = String.valueOf(checkResult.getData());
-            // 人脸库注册
-            BaseResult regResult = faceUtil.faceReg(sNo, faceToken);
-            if (regResult.isSuccess()) {
-                /*注册成功*/
-                //本地保存图片
-                BaseResult saveResult = FileUtil.saveImage(request, String.valueOf(regResult.getData()), sNo);
-                System.out.println("=====saveResult:" + saveResult);
-                return saveResult.isSuccess() ? BaseResult.success("添加成功！") : saveResult;
-            }
-            // 人脸库注册失败
-            return BaseResult.fail(1, regResult.getErrMsg());
-        } else return checkResult;
+        // 人脸库注册
+        BaseResult regResult = faceUtil.faceReg(sNo, faceToken);
+        if (regResult.isSuccess()) {
+            /*注册成功*/
+            //本地保存图片
+            BaseResult saveResult = FileUtil.saveImage(request, String.valueOf(regResult.getData()), sNo);
+            System.out.println("=====saveResult:" + saveResult);
+            return saveResult.isSuccess() ? BaseResult.success("添加成功！") : saveResult;
+        }
+        // 人脸库注册失败
+        return BaseResult.fail(1, regResult.getErrMsg());
     }
 
 

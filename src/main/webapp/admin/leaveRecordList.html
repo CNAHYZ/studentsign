@@ -344,12 +344,12 @@
                             <label style="vertical-align: bottom;">快速筛选：</label>
                             <button type="button" class="btn btn-outline-primary dropdown-toggle" id="btn_time"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                今天
+                                全部时间
                             </button>
                             <div class="dropdown-menu font-size-sm" aria-labelledby="dropdown-default-outline-primary"
                                  style="min-width:77px">
+                                <a class="dropdown-item" onclick="dropSelect(this,null,'time')">全部时间</a>
                                 <a class="dropdown-item" onclick="dropSelect(this,0,'time')">今天</a>
-                                <a class="dropdown-item" onclick="dropSelect(this,2,'time')">近3天</a>
                                 <!--<div class="dropdown-divider"></div>-->
                                 <a class="dropdown-item" onclick="dropSelect(this,6,'time')">近7天</a>
                                 <a class="dropdown-item" onclick="dropSelect(this,29,'time')">近30天</a>
@@ -386,7 +386,7 @@
                                        name="daterange2" placeholder="结束日期">
                             </div>
                         </div>
-                        <div class="px-lg-4"></div>
+                        <div class="px-lg-3"></div>
                         <div class="input-group col-lg-3 col-xl-3">
                             <input type="text" class="form-control" id="ipt_search"
                                    name="keyword" placeholder="学号、姓名" style="min-width: 60px">
@@ -472,13 +472,10 @@
         searching: false,
         ajax: {
             type: "post",
+            dataType: "json",
             url: "getLeave.do",
             //注意：直接写成{"param": 0}不可行，param会一直为0
-            data:
-                function () {
-                    sendData = {"param": 0};//这里可以调用一个方法，获取sendData
-                    return sendData;
-                },
+            data: sendData = {"param": null},
             beforeSend: function () {
                 console.log(sendData)
             }
@@ -566,7 +563,7 @@
      * @type {jQuery|*}
      */
     var t = $('#datatable').DataTable(
-        Object.assign(options2, generalOptions));
+        Object.assign(options2, serverSideOptions));
 
     /**
      *
@@ -605,9 +602,11 @@
         t.settings()[0].ajax.data = sendData;
         if (type === 'time') {
             $("#btn_time").text($(option).text());
+            $("#btn_status").text("全部状态");
             t.ajax.url('getLeave.do').load();
         } else {
             $("#btn_status").text($(option).text());
+            $("#btn_time").text("全部时间");
             t.ajax.url('leaveStatusFilter.do').load();
         }
     }
@@ -637,7 +636,7 @@
             };
             //修改ajax传递的参数
             t.settings()[0].ajax.data = sendData;
-            t.ajax.url('signListFilter.do').load();
+            t.ajax.url('leaveTimeFilter.do').load();
             // t.settings()[0].ajax.error = ;
         });
     /**
@@ -649,7 +648,7 @@
         sendData = {'keyword': keyword};
         //修改ajax传递的参数
         t.settings()[0].ajax.data = sendData;
-        t.ajax.url('searchSignList.do').load();
+        t.ajax.url('searchLeaveList.do').load();
     })
 
 </script>
