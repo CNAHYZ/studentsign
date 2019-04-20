@@ -30,7 +30,8 @@
         <div class="content-header">
             <!-- Left Section -->
             <div class="d-flex align-items-center mt-3">
-                <h1>管理系统</h1>
+                <h3>学生宿舍签到系统 </h3>
+                <div class="">&nbsp;&nbsp;&nbsp;学生端</div>
             </div>
             <!-- END Left Section -->
 
@@ -40,51 +41,29 @@
                 <div class="dropdown d-inline-block ml-2">
                     <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img class="rounded" src="/assets/media/avatars/avatar0.jpg" alt="Header Avatar"
+                        <img class="rounded" src="../assets/media/avatars/avatar0.jpg" alt="Header Avatar"
                              style="width: 18px;">
-                        <span class="d-none d-sm-inline-block ml-1">Adam</span>
+                        <span class="d-none d-sm-inline-block ml-1" id="header_username"></span>
                         <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block"></i>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right p-0 border-0 font-size-sm"
                          aria-labelledby="page-header-user-dropdown">
-                        <div class="p-3 text-center bg-primary">
+                        <div class="p-2 text-center bg-primary">
                             <img class="img-avatar img-avatar48 img-avatar-thumb"
-                                 src="/assets/media/avatars/avatar0.jpg"
+                                 src="../assets/media/avatars/avatar0.jpg"
                                  alt="">
                         </div>
                         <div class="p-2">
-                            <h5 class="dropdown-header text-uppercase">User Options</h5>
+                            <h5 class="dropdown-header text-center" id="header_userRole"></h5>
+                            <div role="separator" class="dropdown-divider"></div>
                             <a class="dropdown-item d-flex align-items-center justify-content-between"
-                               href="be_pages_generic_inbox.html">
-                                <span>Inbox</span>
-                                <span>
-                                            <span class="badge badge-pill badge-primary">3</span>
-                                            <i class="si si-envelope-open ml-1"></i>
-                                        </span>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center justify-content-between"
-                               href="be_pages_generic_profile.html">
-                                <span>Profile</span>
-                                <span>
-                                            <span class="badge badge-pill badge-success">1</span>
-                                            <i class="si si-user ml-1"></i>
-                                        </span>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center justify-content-between"
-                               href="javascript:void(0)">
-                                <span>Settings</span>
+                               href="changePwd.html">
+                                <span>修改密码</span>
                                 <i class="si si-settings"></i>
                             </a>
-                            <div role="separator" class="dropdown-divider"></div>
-                            <h5 class="dropdown-header text-uppercase">Actions</h5>
                             <a class="dropdown-item d-flex align-items-center justify-content-between"
-                               href="op_auth_lock.html">
-                                <span>Lock Account</span>
-                                <i class="si si-lock ml-1"></i>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center justify-content-between"
-                               href="userLogin.html">
-                                <span>Log Out</span>
+                               href="logOut.do">
+                                <span>安全退出</span>
                                 <i class="si si-logout ml-1"></i>
                             </a>
                         </div>
@@ -205,7 +184,7 @@
     OneUI JS
 -->
 <script src="../assets/js/oneui.app.min.js"></script>
-
+<script src="/assets/js/common/common.js"></script>
 <!-- Page JS Plugins -->
 <script src="../assets/js/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="../assets/js/plugins/datatables/dataTables.bootstrap4.min.js"></script>

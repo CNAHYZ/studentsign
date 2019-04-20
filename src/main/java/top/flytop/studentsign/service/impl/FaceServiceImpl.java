@@ -80,6 +80,9 @@ public class FaceServiceImpl implements FaceService {
             sNo = request.getSession().getAttribute("currentUser").toString();
         }
 
+        int currentFaceCount = 0;
+        BaseResult checkResult = null;
+        String userId = String.valueOf(request.getSession().getAttribute("currentUser"));
         /*判断当前人脸数是否达到上限*/
         if (getUserFaceList(sNo).isSuccess()) {
             /*等待返回信息*/
@@ -88,7 +91,7 @@ public class FaceServiceImpl implements FaceService {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            int currentFaceCount = ((ArrayList) getUserFaceList(sNo).getData()).size();
+            currentFaceCount = ((ArrayList) getUserFaceList(sNo).getData()).size();
             if (currentFaceCount == faceLimit)
                 return BaseResult.fail(1, "人脸数已达上限，无需继续添加！");
         }
@@ -100,9 +103,18 @@ public class FaceServiceImpl implements FaceService {
         }
 
         String faceToBase64 = new BASE64Encoder().encode(faceImage.getBytes());
-        /*人脸检测*/
-        BaseResult checkResult = faceChecker(faceToBase64);
-        System.out.println("=====checkResult:" + checkResult);
+
+        if (currentFaceCount == 0) {
+            /*如果是第一张人脸图片，则进行人脸检测*/
+            checkResult = faceChecker(faceToBase64);
+            System.out.println("=====checkResult:" + checkResult);
+
+        } else {
+            /*如果不是第一张人脸图片，则进行人脸对比，检测是否是同一人*/
+            checkResult = faceUtil.faceSearch(faceToBase64, userId);
+            System.out.println("=====checkResult:" + checkResult);
+        }
+
         //人脸检测成功
         if (checkResult.isSuccess()) {
             //返回faceToken

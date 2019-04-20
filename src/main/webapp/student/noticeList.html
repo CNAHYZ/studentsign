@@ -31,7 +31,8 @@
         <div class="content-header">
             <!-- Left Section -->
             <div class="d-flex align-items-center mt-3">
-                <h1>管理系统</h1>
+                <h3>学生宿舍签到系统 </h3>
+                <div class="">&nbsp;&nbsp;&nbsp;学生端</div>
             </div>
             <!-- END Left Section -->
 
@@ -41,51 +42,29 @@
                 <div class="dropdown d-inline-block ml-2">
                     <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img class="rounded" src="/assets/media/avatars/avatar0.jpg" alt="Header Avatar"
+                        <img class="rounded" src="../assets/media/avatars/avatar0.jpg" alt="Header Avatar"
                              style="width: 18px;">
-                        <span class="d-none d-sm-inline-block ml-1">Adam</span>
+                        <span class="d-none d-sm-inline-block ml-1" id="header_username"></span>
                         <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block"></i>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right p-0 border-0 font-size-sm"
                          aria-labelledby="page-header-user-dropdown">
-                        <div class="p-3 text-center bg-primary">
+                        <div class="p-2 text-center bg-primary">
                             <img class="img-avatar img-avatar48 img-avatar-thumb"
-                                 src="/assets/media/avatars/avatar0.jpg"
+                                 src="../assets/media/avatars/avatar0.jpg"
                                  alt="">
                         </div>
                         <div class="p-2">
-                            <h5 class="dropdown-header text-uppercase">User Options</h5>
+                            <h5 class="dropdown-header text-center" id="header_userRole"></h5>
+                            <div role="separator" class="dropdown-divider"></div>
                             <a class="dropdown-item d-flex align-items-center justify-content-between"
-                               href="be_pages_generic_inbox.html">
-                                <span>Inbox</span>
-                                <span>
-                                            <span class="badge badge-pill badge-primary">3</span>
-                                            <i class="si si-envelope-open ml-1"></i>
-                                        </span>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center justify-content-between"
-                               href="be_pages_generic_profile.html">
-                                <span>Profile</span>
-                                <span>
-                                            <span class="badge badge-pill badge-success">1</span>
-                                            <i class="si si-user ml-1"></i>
-                                        </span>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center justify-content-between"
-                               href="javascript:void(0)">
-                                <span>Settings</span>
+                               href="changePwd.html">
+                                <span>修改密码</span>
                                 <i class="si si-settings"></i>
                             </a>
-                            <div role="separator" class="dropdown-divider"></div>
-                            <h5 class="dropdown-header text-uppercase">Actions</h5>
                             <a class="dropdown-item d-flex align-items-center justify-content-between"
-                               href="op_auth_lock.html">
-                                <span>Lock Account</span>
-                                <i class="si si-lock ml-1"></i>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center justify-content-between"
-                               href="userLogin.html">
-                                <span>Log Out</span>
+                               href="logOut.do">
+                                <span>安全退出</span>
                                 <i class="si si-logout ml-1"></i>
                             </a>
                         </div>
@@ -134,18 +113,27 @@
         <!-- END Hero -->
 
         <!-- Page Content -->
-        <div class="content">
-            <div class="block block-content col-11">
-                <div id="list" class="mx-3">
-
+        <div class="content row">
+            <div class="block col-md-3 col-sm-12">
+                <div class="col-md-11 col-sm-12  overflow-hidden">
+                    <div id="list" class="mt-4"></div>
+                    <div>
+                        <nav aria-label="Navigation" class="text-center">
+                            <div id="pagination" class="pagination mt-3"></div>
+                        </nav>
+                    </div>
                 </div>
             </div>
-            <div>
-                <nav aria-label="Navigation" class="float-right">
-                    <div id="pagination" class="pagination my-2">
-
+            <div class="col-md-1 col-sm-0"></div>
+            <div class="block col-md-8 col-sm-12">
+                <div class="row">
+                    <div class="col-md-1 col-sm-0"></div>
+                    <div class="col-md-10 col-sm-12">
+                        <h2 id="title" class="text-center text-black mt-4 mb-2"></h2>
+                        <div id="time" class="font-size-sm text-center mb-3"></div>
+                        <div id="content" class="font-size-h5 mb-6" style="line-height: 2"></div>
                     </div>
-                </nav>
+                </div>
             </div>
         </div>
         <!-- END Page Content -->
@@ -171,21 +159,23 @@
 <script src="/assets/js/oneui.core.min.js"></script>
 
 <script src="/assets/js/oneui.app.min.js"></script>
+<script src="/assets/js/common/common.js"></script>
 <script src="/assets/js/plugins/jquery-pagination_zh/lib/jquery.pagination.js"></script>
 <script>
-
+    var getNoticeUrl = "getNoticeDetail.do";
+    var defaultNoticeId = null;
     $(function () {
         var isFirstLoad = true;
-        var pageSize = 5; // 每页显示多少条记录
+        var pageSize = 9; // 每页显示多少条记录
         var total;//总记录数
         Init(0);
         $("#pagination").pagination(total, {
             items_per_page: pageSize,
             callback: pageselectCallback,
-            prev_text: '上一页',
-            next_text: '下一页',
-            num_display_entries: 5, // 连续分页主体部分显示的分页条目数
-            num_edge_entries: 2, // 两侧显示的首尾分页的条目数
+            prev_text: '<',
+            next_text: '>',
+            num_display_entries: 4, // 连续分页主体部分显示的分页条目数
+            num_edge_entries: 1, // 两侧显示的首尾分页的条目数
         });
 
         //点击上一页、下一页、页码的时候触发的事件
@@ -209,18 +199,21 @@
                     total = data.data.total;
                     console.log(total);
                     $("#list").empty();
+                    defaultNoticeId = data.data.list[0].noticeId;
+                    /**
+                     *页面初始化
+                     */
+                    $(showNoticeDetail(defaultNoticeId));
+                    /*列表遍历*/
                     $.each(data.data.list, function (i, item) {
                         //取内容的前130个字符，并且去除内容中的html标签
                         if (item.content.length > 130)
                             myContent = (item.content.replace(/<[^>]+>/g, "").substring(0, 130) + '...');
                         else myContent = item.content.replace(/<[^>]+>/g, "");
-                        $("#list").append("<div>\n" +
-                            "                                    <h4 class=\"h4 mt-3 mb-2\" id=\"title\">\n" +
-                            "                                        <a href=\"noticeDetail.html?noticeId=" + item.noticeId + "\">" + item.title + "</a>\n" +
-                            "                                    </h4><span class='float-right'>" + item.createTime + "</span>\n" +
-                            "                                    <p class=\"d-none d-sm-block text-muted col-10\" id=\"content\">\n" +
-                            myContent +
-                            "                                    </p>\n" +
+                        $("#list").append("<div class=\"py-1\">\n" +
+                            "                                    <div >\n" +
+                            "                                        <a href=\"javascript:showNoticeDetail(" + item.noticeId + ")\">" + item.title + "</a>\n" +
+                            "                                    </div><div class='text-right font-size-sm'>" + item.createTime + "</div>\n" +
                             "                                </div>")
                     });
                 },
@@ -231,6 +224,24 @@
         }
     });
 
+    function showNoticeDetail(noticeId) {
+        $.ajax({
+            type: "post",
+            url: getNoticeUrl,
+            data: {"noticeId": noticeId},
+            dataType: "json",
+            success: function (data) {
+                var myData = data.data[0];
+                if (data.success) {
+                    $("#title").text(myData.title);
+                    $("#time").text("发布时间：" + myData.createTime);
+                    $("#content").html(myData.content);
+                } else alert(myData.data, "", "fail");
+            }, error: function (data) {
+                alert("系统出错，请稍后再试", "", "error");
+            }
+        })
+    }
 
 </script>
 

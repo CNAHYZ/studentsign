@@ -249,7 +249,8 @@
                                 break;
 
                             case 'interrupt':
-                                text = '上传暂停';
+                                text = '上传暂停'
+                                ;
                                 break;
 
                             default:
@@ -383,8 +384,8 @@
                 } else if (state === 'confirm') {
                     stats = uploader.getStats();
                     if (stats.uploadFailNum) {
-                        text = '已成功上传' + stats.successNum + '张照片，' +
-                            stats.uploadFailNum + '张照片上传失败，<a class="retry" href="#">重新上传</a>失败图片或<a class="ignore" href="#">忽略</a>'
+                        text = '成功' + stats.successNum + '张，' +
+                            stats.uploadFailNum + '张失败，<a class="retry" href="#">重新上传</a>或<a class="ignore" href="#">忽略</a>'
                     }
 
                 } else {
@@ -543,7 +544,11 @@
             });
 
             $info.on('click', '.ignore', function () {
-                alert('todo');
+                /*清空文件队列*/
+                for (var i = 0; i < uploader.getFiles().length; i++) {
+                    uploader.removeFile(uploader.getFiles()[i]);
+                }
+                uploader.reset();
             });
 
             $upload.addClass('state-' + state);
