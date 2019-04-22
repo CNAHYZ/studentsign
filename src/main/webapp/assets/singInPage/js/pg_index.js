@@ -1,14 +1,4 @@
 /*/!*Popup弹窗*!/
-$(document).ready(function () {
-    $('.w3_play_icon,.w3_play_icon1,.w3_play_icon2').magnificPopup({
-        type: 'inline',
-        fixedContentPos: false,
-        fixedBgPos: true,
-        overflowY: 'hidden',
-        closeBtnInside: false,
-        preloader: true,
-        midClick: true,
-        mainClass: 'my-mfp-zoom-in',
         //回调函数,关闭弹窗后停止获取视频流
         callbacks: {
             close: function () {
@@ -17,12 +7,6 @@ $(document).ready(function () {
                      //停止播放轨道对应的源，源与轨道将脱离关联，同时轨道状态将设为“ended”。
                          stream.getVideoTracks()[0].stop();*!/
             }
-            //open: function() {
-            //giv.modal.mp = this;
-            //$.magnificPopup.instance.wrap[0].addEventListener('focus', function() {
-            //giv.modal.callback.afterOpen();
-            //					});
-            //						},
         }
     });
 });*/
@@ -77,12 +61,12 @@ function testTime() {
  */
 $("#signin").click(function () {
     $(".w3l-signin").hide();
-    $("#form").show();
+    $("#form").attr("hidden", false);
     var constraints = {
         audio: false,
         video: {
-            width: 490,
-            height: 360
+            /*width: 550,
+            height: 393*/
         }
     };
     navigator.mediaDevices.getUserMedia(constraints)
@@ -110,7 +94,7 @@ $("#takephoto").click(function () {
        //从MediaStream中删除视频轨的MediaStreamTrack对象。
        //stream.removeTrack(stream.getVideoTracks()[0]);*/
     var context = document.getElementById("canvas").getContext("2d");
-    context.drawImage(video, 0, 0, 490, 280);
+    context.drawImage(video, 0, 0, 524, 393);
     $("[id^=area]").toggle(); //切换area1和area2的显示与隐藏
     upload();
 });

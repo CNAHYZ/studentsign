@@ -211,10 +211,10 @@
                             myContent = (item.content.replace(/<[^>]+>/g, "").substring(0, 130) + '...');
                         else myContent = item.content.replace(/<[^>]+>/g, "");
                         $("#list").append("<div class=\"py-1\">\n" +
-                            "                                    <div >\n" +
-                            "                                        <a href=\"javascript:showNoticeDetail(" + item.noticeId + ")\">" + item.title + "</a>\n" +
-                            "                                    </div><div class='text-right font-size-sm'>" + item.createTime + "</div>\n" +
-                            "                                </div>")
+                            "                  <div >\n" +
+                            "                        <a href=\"javascript:showNoticeDetail(" + item.noticeId + ")\">" + item.title + "</a>\n" +
+                            "                   </div><div class='text-right font-size-sm'>" + item.createTime + "</div>\n" +
+                            "              </div>")
                     });
                 },
                 error: function () {

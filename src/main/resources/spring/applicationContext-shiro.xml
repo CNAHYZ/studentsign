@@ -18,6 +18,10 @@
                 <!-- /**=authc ,所有url都必须认证通过才可以访问-->
                 <!--/** = user 表示访问该地址的用户是身份验证通过或 RememberMe登录的都可以-->
                 /*=anon
+
+                /sysadmin/getOpen*=anon
+                /student/getNotice*=anon
+
                 /student/stuSign.do=anon
                 /*/logOut.do=logout
                 /student/*=roles[student]
