@@ -27,10 +27,10 @@
 
     <div class="" id="main-container">
         <div class="row col-lg-10 col-md-12 align-self-center">
-            <div class="left-side bg-black-50 col-lg-6 col-md-12 text-white fade-left">
+            <div class="left-side bg-black-50 col-lg-6 col-md-12 text-white">
                 <div id="notice_title" class="text-center mt-4 font-size-h2"></div>
                 <div id="notice_time" class="text-center my-2 font-size-lg"></div>
-                <div id="notice_content"></div>
+                <div id="notice_content" class=""></div>
             </div>
             <div class="right-side col-lg-6 bg-black-50 col-md-12 position-relative">
                 <div style="border: aliceblue outset;width: auto;top:10px;left:10px;z-index: 100"
@@ -45,9 +45,8 @@
                 </div>
                 <div id="form" hidden>
                     <div id="contentHolder">
-
-                        <div id="area1" class="text-center" style="max-width:550px ">
-                            <video id="video" style="width: 100%; height:100%;" autoplay></video>
+                        <div id="area1" class="text-center justify-content-center" style="max-width:100% ">
+                            <video id="video" style="width: 87%; height:87%;" autoplay></video>
                         </div>
                         <div id="area2" style="display:none;" class="text-center">
                             <canvas id="canvas" width="524" height="393"></canvas>
@@ -79,6 +78,7 @@
 
 <script type="text/javascript">
     i = 0;
+
     $(init());
 
 
@@ -104,6 +104,10 @@
                     }, "json");
             }
         });
+
+        /**
+         * 获取签到状态、时间
+         */
         $.post('sysadmin/getOpenStatus.do', {},
             function (data) {
                 switch (data.data) {
@@ -123,6 +127,9 @@
 
     }
 
+    /**
+     * 通知翻页
+     */
     function changePage() {
         content = document.getElementById('notice_content');
         clientheight = content.clientHeight;
@@ -133,6 +140,14 @@
         count = Math.ceil(scrollHeight / clientheight);
         setTimeout(function () {
             content.scrollTop = clientheight * i;
+
+            /*添加动画*/
+            $('#notice_content').css('animation', 'fadeIn 1s');
+            /*执行完成后，删除动画*/
+            $('#notice_content')[0].addEventListener("animationend", function () {
+                $(this).css("animation", "");
+            });
+
             i++;
             if (i === count) {
                 i = 0;
@@ -143,6 +158,7 @@
         /*        console.log(clientheight);
                 console.log(scrollHeight);*/
     }
+
 </script>
 </body>
 </html>

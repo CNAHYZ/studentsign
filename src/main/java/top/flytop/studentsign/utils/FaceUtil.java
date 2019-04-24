@@ -47,6 +47,24 @@ public class FaceUtil {
             case 222202:
                 //pic not has face
                 return temp = BaseResult.fail(errCode, "图片中没有人脸信息，请重试！");
+            case 223120:
+                return temp = BaseResult.fail(errCode, "活体检测未通过，请重试！");
+            case 223121:
+            case 223122:
+            case 223123:
+            case 223124:
+            case 223125:
+            case 223126:
+            case 223127:
+                return temp = BaseResult.fail(errCode, "质量检测未通过，请勿遮挡面部！");
+            case 223114:
+                return temp = BaseResult.fail(errCode, "人脸图片模糊，请重试！");
+            case 223115:
+                return temp = BaseResult.fail(errCode, "人脸光照不好，请注意光线！");
+            case 223116:
+                return temp = BaseResult.fail(errCode, "人脸不完整，请勿遮挡面部！");
+            case 223129:
+                return temp = BaseResult.fail(errCode, "人脸未面向正前方，请保持面向正前方");
             default:
                 // 状态异常
                 String errMsg = res.getString("error_msg");
@@ -169,11 +187,12 @@ public class FaceUtil {
         Map<String, Object> param = new HashMap<String, Object>();
         // 传入可选参数调用接口
         HashMap<String, String> options = new HashMap<String, String>();
-//        options.put("quality_control", "NORMAL");
+        //图片质量控制
+        options.put("quality_control", "NORMAL");
         /*活体检测控制 NONE: 不进行控制 LOW:较低的活体要求
          * NORMAL:一般的活体要求(平衡的攻击拒绝率, 通过率) HIGH:
          * 较高的活体要求(高攻击拒绝率 低通过率)*/
-//        options.put("liveness_control", "NORMAL");
+        options.put("liveness_control", "NORMAL");
         String groupIdList = "user";
         options.put("user_id", uid);
         res = client.search(image, imageType, groupIdList, options);

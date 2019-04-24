@@ -130,7 +130,7 @@ function upload() {
                     title: result.data,
                     type: "success",
                     position: "top",
-                    // showConfirmButton: false,
+                    showConfirmButton: false,
                     timer: 5000
                 })
             } else
@@ -140,7 +140,7 @@ function upload() {
                     text: result.errMsg,
                     position: "top",
                     type: "error",
-                    // confirmButtonText: '确认',
+                    showConfirmButton: false,
                     timer: 5000
                 })
         },

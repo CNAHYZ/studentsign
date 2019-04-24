@@ -52,6 +52,17 @@ public class LeaveController {
     }
 
     /**
+     * @return top.flytop.studentsign.dto.BaseResult
+     * @Description TODO 获取今日请假数
+     * @date 2019/1/27 19:52
+     */
+    @RequestMapping("getTodayLeaveCount")
+    @ResponseBody
+    public List<Leave> getTodayLeaveCount() {
+        return leaveService.getLeave("0");
+    }
+
+    /**
      * @param auditStatus
      * @param sNo
      * @param request

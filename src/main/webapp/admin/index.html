@@ -501,7 +501,7 @@ MAIN CONTENT LAYOUT
             $("#signCount").text(data.data[0].count);
         }, "json");
 
-        $.post('getLeave.do', {dayNum: 0}, function (data) {
+        $.post('getTodayLeaveCount.do', {}, function (data) {
             $("#leaveCount").text(data.data.length);
         }, "json");
 
