@@ -22,7 +22,7 @@ public class SignInServiceImplTest {
 
     @Test
     public void testStudentSign() {
-        String im = fileUtil.imageToBase64("D://2.jpg");
+        String im = fileUtil.imageToBase64("D://3.jpg");
         System.out.println(signInService.saveStudentSign(im));
     }
 }

@@ -47,7 +47,7 @@ public class UserTest {
     public void testStudentReg() {
         stu.setsNo("27");
         stu.setsName("yyyy");
-        String im = fileUtil.imageToBase64("D://2.jpg");
+        String im = fileUtil.imageToBase64("D://3.jpg");
 //        BaseResult res = userServiceImpl.addFace(stu, im);
 //        System.out.println(res);
     }
@@ -66,7 +66,7 @@ public class UserTest {
 
     @Test
     public void testRemoveUser() throws Exception {
-        String[] a = {"23", "15401012"};
+        String[] a = {"23", "15401013"};
         System.out.println(userServiceImpl.batchRemoveUser(a));
     }
 
