@@ -26,7 +26,7 @@
         <baiduaip.version>4.9.0</baiduaip.version>
         <shiro.version>1.5.0</shiro.version>
         <poi.version>3.17</poi.version>
-        <quartz.version>2.3.0</quartz.version>
+        <quartz.version>2.3.2</quartz.version>
     </properties>
 
     <dependencies>
